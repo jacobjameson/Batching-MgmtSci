@@ -1,0 +1,774 @@
+#=========================================================================
+# Purpose: Main R file for Preparing + Cleaning Mayo Data
+# Author: Jacob Jameson 
+#=========================================================================
+rm(list = ls())
+
+# libraries
+library(tidyverse)
+library(stringr)
+library(lfe)
+library(lubridate)
+library(ggthemes)
+
+# utility functions
+source("src/00_utils.R")
+
+#=========================================================================
+# Determine test times
+#=========================================================================
+path <- '~/Sue Goldie Dropbox/Jacob Jameson/Batch vs sequential testing/Data/'
+data <- read.csv(paste0(path, 'deidentified_FINAL.csv'))
+
+test_columns = c("US_PERF", "NON_CON_CT_PERF", "CON_CT_PERF", 
+                 "LAB_PERF", "XR_PERF")
+
+colnames(data)[colnames(data) == "PLAIN_XRAY"] = "XR_PERF"
+colnames(data)[colnames(data) == "US_ORDER_DTTM_REL"] ="US_ORDER_DTTM_REL"
+colnames(data)[colnames(data) == "CT_WITHOUT_CONTR_ORDER_DTTM_REL"] = "NON_CON_CT_ORDER_REL"
+colnames(data)[colnames(data) == "CT_WITH_CONTR_ORDER_DTTM_REL"] ="CON_CT_ORDER_REL"
+colnames(data)[colnames(data) == "LAB_ORDER_DTTM_REL"] ="LAB_ORDER_REL"
+colnames(data)[colnames(data) == "PLAIN_XRAY_ORDER_DTTM_REL"] ="XR_ORDER_REL"
+
+data$CT_PERF = ifelse(data$NON_CON_CT_PERF=='Y' | data$CON_CT_PERF=='Y', 1, 0)
+
+for (i in test_columns){
+  data[[i]] = ifelse(data[[i]] =='Y', 1, 0) 
+}
+
+data$nEDTests = rowSums(data[test_columns])
+data$imgTests = data$nEDTests - data$LAB_PERF
+
+# Identify columns with *_REL suffix
+rel_cols <- grep("_REL$", names(data), value = TRUE)
+
+for (col in rel_cols) {
+  # Split into hours and minutes
+  data <- data %>%
+    separate(
+      col,
+      into = c("hrs", "mins"),
+      sep = ":",
+      fill = "right",
+      remove = TRUE
+    ) %>%
+    mutate(
+      across(c(hrs, mins), ~ suppressWarnings(as.numeric(.))),
+      !!col := hrs * 60 + mins
+    ) %>%
+    select(-hrs, -mins)
+}
+
+data <- data %>%
+  filter(ED_DISPOSITION %in% 
+           c('Admit', 'Discharge', 'Hospital Observation'))
+
+data$DISP_TIME <- case_when(
+  data$ED_DISPOSITION == 'Admit' & 
+    !is.na(data$ADMIT_INP_ORD_DTTM_REL) ~ 
+    data$ADMIT_INP_ORD_DTTM_REL - data$ARRIVAL_DTTM_REL,
+  data$ED_DISPOSITION == 'Discharge' & 
+    !is.na(data$ED_DISCHARGE_DT_REL) ~ 
+    data$ED_DISCHARGE_DT_REL - data$ARRIVAL_DTTM_REL,
+  data$ED_DISPOSITION == 'Hospital Observation' & 
+    !is.na(data$ADMIT_OBS_ORD_DTTM_REL) ~ 
+    data$ADMIT_OBS_ORD_DTTM_REL - data$ARRIVAL_DTTM_REL,
+  TRUE ~  data$ED_LOS
+)
+
+# get rowwise minimum of the columns
+data$DISP_TIME <- ifelse(data$DISP_TIME < 0, data$ED_LOS, data$DISP_TIME)
+data$DISP_TIME <- ifelse(data$DISP_TIME > data$ED_LOS, data$ED_LOS, data$DISP_TIME)
+
+data$DISP_REL <- data$ARRIVAL_DTTM_REL + data$DISP_TIME
+
+data$waiting_time <- data$FIRST_CONTACT_DTTM_REL - data$ARRIVAL_DTTM_REL
+data$waiting_time <- ifelse(data$waiting_time < 0, 1, data$waiting_time)
+
+# determine occupancy levels
+calculate_waiting_patients <- function(time, arrivals, first_contacts) {
+  sum(arrivals <= time & first_contacts > time, na.rm = TRUE)
+}
+
+data <- data %>%
+  group_by(date = floor_date(as.POSIXct("2018-10-06", tz = "UTC") + 
+                               minutes(ARRIVAL_DTTM_REL), "hour")) %>%
+  mutate(
+    # Calculate waiting patients at each arrival time
+    patients_waiting = map_dbl(
+      ARRIVAL_DTTM_REL, 
+      ~calculate_waiting_patients(
+        .x, ARRIVAL_DTTM_REL, FIRST_CONTACT_DTTM_REL)
+    ),
+    
+    capacity_level = case_when(
+      waiting_time < 20 ~ "Normal Operations",
+      waiting_time >= 90 | patients_waiting > 20 ~ "Major Overcapacity",
+      waiting_time >= 21 | patients_waiting >= 10 ~ "Minor Overcapacity",
+      TRUE ~ "Normal Operations"
+    )
+  ) %>%
+  ungroup()
+
+
+
+
+
+#=========================================================================
+# Determine batching
+#   - criteria: ordered within 5 minutes of each other
+#               first tests ordered were in a batch
+#=========================================================================
+
+# Vectorized calculation for min_time and max_time
+data$min_time <- pmin(data$US_ORDER_DTTM_REL,
+                      data$NON_CON_CT_ORDER_REL, 
+                      data$CON_CT_ORDER_REL,
+                      data$XR_ORDER_REL, na.rm = TRUE)
+
+data$max_time <- pmax(data$CT_WITHOUT_CONTR_RESULT_DTTM_REL, 
+                      data$CT_WITH_CONTR_RESULT_DTTM_REL, 
+                    data$PLAIN_XRAY_RESULT_DTTM_REL, 
+                    data$US_RESULT_DTTM_REL, na.rm = TRUE)
+
+
+data$total_testing_time <- data$max_time - data$min_time
+data$treatment_time <- data$DISP_REL - data$min_time
+
+
+# subtract min_time from each column
+cols_of_interest <- c("US_ORDER_DTTM_REL", "NON_CON_CT_ORDER_REL",
+                      "CON_CT_ORDER_REL", "XR_ORDER_REL")
+
+data[cols_of_interest] <- data[cols_of_interest] - data$min_time
+
+data$all_tests <- apply(data[cols_of_interest], 1, function(row) {
+  # Get column names for non-NA values in the row
+  non_na_cols <- names(row)[!is.na(row)]
+  # Concatenate column names into a string
+  if (length(non_na_cols) > 0) {
+    return(paste(non_na_cols, collapse = ","))
+  } else {
+    return(NA)
+  }
+})
+
+
+data$tests_below_5 <- apply(data[cols_of_interest], 1, function(row) {
+  # Get column names for non-NA values that are less than 5
+  below_5_cols <- names(row)[!is.na(row) & row <= 5]
+  # Concatenate column names into a string
+  if (length(below_5_cols) > 0) {
+    return(paste(below_5_cols, collapse = ","))
+  } else {
+    return(NA)
+  }
+})
+
+data$batch <- ifelse(grepl(",", data$tests_below_5), data$tests_below_5, NA)
+data$batched <- ifelse(!is.na(data$batch), 1, 0)
+
+# Create tables for batch and all_tests
+batch_table <- table(data$batch)
+all_tests_table <- table(data$all_tests)
+
+# Combine into a data frame
+batch_data <- data.frame(
+  TestCombination = names(batch_table),
+  CountBatched = as.numeric(batch_table)
+)
+
+all_tests_data <- data.frame(
+  TestCombination = names(all_tests_table),
+  CountTotal = as.numeric(all_tests_table)
+)
+
+# Merge the data frames
+combined_data <- merge(all_tests_data, batch_data, by = "TestCombination", all.x = TRUE)
+combined_data$CountBatched[is.na(combined_data$CountBatched)] <- 0
+combined_data$PercentageBatched <- combined_data$CountBatched / combined_data$CountTotal * 100
+
+# Sort by total count
+combined_data <- combined_data[order(combined_data$CountTotal, decreasing = TRUE), ]
+
+# Rename test combinations for better labels
+combined_data$TestCombination <- gsub("US_ORDER_DTTM_REL", "Ultrasound", combined_data$TestCombination)
+combined_data$TestCombination <- gsub("NON_CON_CT_ORDER_REL", "Non-Con CT", combined_data$TestCombination)
+combined_data$TestCombination <- gsub("CON_CT_ORDER_REL", "Con CT", combined_data$TestCombination)
+combined_data$TestCombination <- gsub("XR_ORDER_REL", "X-Ray", combined_data$TestCombination)
+
+combined_data$single_test <- ifelse(grepl(",", combined_data$TestCombination), 0, 1)
+
+ggplot(combined_data, aes(x = reorder(TestCombination, -CountTotal), y = CountTotal)) +
+  geom_bar(stat = "identity", fill = "grey", alpha = 0.7) +
+  geom_bar(aes(y = CountBatched), stat = "identity", fill = "black", alpha = 0.9) +
+  labs(
+    x = "Tests Ordered during Encounter",
+    y = "Patient Encounters"
+  ) +
+  scale_y_continuous(sec.axis = sec_axis(~ . / sum(combined_data$CountTotal) * 100,
+                                         name = "Percentage (%)")) +
+  theme_few() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.title = element_blank(),
+    legend.position = "top",
+    legend.key = element_rect(fill = c("grey", "black"), colour = "black"),
+    legend.text = element_text(size = 8)
+  ) +
+  geom_text(aes(label = paste0(round(PercentageBatched, 1), "%")), vjust = -0.5, size = 3) +
+  scale_fill_manual(values = c("grey", "black")) +
+  annotate("text", x =2, y = 7500, label = "Percentage of encounters where the combination \nof tests ordered were batched", 
+           hjust = 0, vjust = 0, size = 4, color = "black")
+
+#ggsave("figures/combined_tests.png", width = 10, height = 6, dpi = 300)
+
+
+
+
+#=========================================================================
+# Clean Vars -------------------------------------------------------------
+#=========================================================================
+
+# get percentage of batched that occur with a patient with a > 2880 ED_LOS
+data$ED_LOS <- as.numeric(data$ED_LOS)
+data$ED_LOS_2880 <- ifelse(data$ED_LOS > 1440, 1, 0)
+
+# Create tables for batch and all_tests
+batch_table <- table(data$batch, data$ED_LOS_2880)
+
+table(data$batched, data$ED_LOS_2880)
+
+data$PATIENT_RACE <- str_to_lower(data$PATIENT_RACE)
+
+data <- data %>%
+  mutate(race = case_when(
+    grepl('black', PATIENT_RACE, fixed = TRUE) ~ "black",
+    grepl('african', PATIENT_RACE, fixed = TRUE) ~ "black",
+    grepl('asian', PATIENT_RACE, fixed = TRUE) ~ "asian",
+    grepl('pacific islander', PATIENT_RACE, fixed = TRUE) ~ "asian",
+    grepl('native', PATIENT_RACE, fixed = TRUE)~ "native",
+    grepl('samoan', PATIENT_RACE, fixed = TRUE) ~ "other",
+    grepl('guamanian or chamorro', PATIENT_RACE, fixed = TRUE) ~ "other",
+    grepl('white', PATIENT_RACE, fixed = TRUE) ~ "white",
+    grepl('unknown', PATIENT_RACE, fixed = TRUE) ~ "unknown",
+    grepl('choose not to disclose', PATIENT_RACE, fixed = TRUE) ~ "unknown",
+    grepl('unable to provide', PATIENT_RACE, fixed = TRUE) ~ "unknown",
+    grepl('other', PATIENT_RACE, fixed = TRUE) ~ "other",
+    grepl('', PATIENT_RACE, fixed = TRUE) ~ "unknown",
+    TRUE ~ PATIENT_RACE))
+
+data$ARRIVAL_AGE_DI <- ifelse(
+  data$ARRIVAL_AGE_DI == '85+', '85', data$ARRIVAL_AGE_DI
+)
+data$ARRIVAL_AGE_DI <- as.numeric(data$ARRIVAL_AGE_DI)
+
+data <- data %>% 
+  filter(ARRIVAL_AGE_DI >= 18)
+
+#=========================================================================
+# Clean Chief Complaint --------------------------------------------------
+#=========================================================================
+
+data$complaint <- data$CHIEF_COMPLAINT
+
+for (i in seq(1,length(complaints))){
+  name <- names(complaints[i])
+  complaint <- complaints[[i]]
+  
+  data$CHIEF_COMPLAINT <- ifelse(
+    data$CHIEF_COMPLAINT %in% complaint, name, data$CHIEF_COMPLAINT
+  )
+}
+
+data <- data %>%
+  mutate(complaint_esi  = paste(ESI, CHIEF_COMPLAINT),
+         complaint_esi = factor(complaint_esi))
+
+#=========================================================================
+# Categorize Vital Signs -------------------------------------------------
+#=========================================================================
+
+data$tachycardic <- ifelse(
+  is.na(data$TRIAGE_PULSE) == F & data$TRIAGE_PULSE > 100, 1, 0
+)
+data$tachypneic <- ifelse(
+  is.na(data$TRIAGE_RR)  == F  & data$TRIAGE_RR > 20, 1, 0
+)
+data$febrile <- ifelse(
+  is.na(data$TRIAGE_TEMP)  == F  & data$TRIAGE_TEMP > 38, 1, 0
+)
+data$hypotensive <- ifelse(
+  is.na(data$TRIAGE_SBP)  == F  & data$TRIAGE_SBP < 90, 1, 0
+)
+
+#=========================================================================
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(patchwork) # For combining plots
+library(scales) # For nice formatting
+
+data <- data %>%
+  mutate(rel_minutes_arrival = ARRIVAL_DTTM_REL,
+         rel_minutes_depart = rel_minutes_arrival + ED_LOS)
+
+data$patients_in_hospital <- sapply(data$rel_minutes_arrival, 
+                                  function(arrival_time) {
+                                    sum(data$rel_minutes_arrival <= arrival_time & 
+                                          data$rel_minutes_depart > arrival_time
+                                    ) - 1
+                                  })
+
+# Convert relative minutes to hours (mod 24)
+data <- data %>%
+  mutate(hour_of_day = (ARRIVAL_DTTM_REL %% (24*60)) / 60)
+
+# Add date components for analysis
+data <- data %>%
+  mutate(
+    actual_date = as.POSIXct("2018-10-06: 00:00:00", tz = "UTC") + minutes(ARRIVAL_DTTM_REL),
+    hour_of_day = hour(actual_date),
+    is_weekend = ifelse(wday(actual_date) %in% c(1,7), "Weekend", "Weekday"),
+    month = month(actual_date, label = TRUE)
+  )
+
+# Calculate hourly volumes instead of density
+hourly_overall <- data %>%
+  group_by(hour_of_day) %>%
+  summarise(
+    patients = n(),
+    patients_per_hour = n() / n_distinct(date(actual_date))
+  )
+
+hourly_weekday <- data %>%
+  group_by(hour_of_day, is_weekend) %>%
+  summarise(
+    patients = n(),
+    patients_per_hour = n() / n_distinct(date(actual_date))
+  )
+
+hourly_monthly <- data %>%
+  group_by(hour_of_day, month) %>%
+  summarise(
+    patients = n(),
+    patients_per_hour = n() / n_distinct(date(actual_date))
+  )
+
+# Create three coordinated plots
+p1 <- ggplot(hourly_overall, aes(x = hour_of_day, y = patients_per_hour)) +
+  geom_line(color = "#2C3E50", size = 1) +
+  geom_point(color = "#2C3E50", size = 2) +
+  scale_x_continuous(breaks = 0:23) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) +
+  labs(
+    title = "Overall Hourly ED Arrivals",
+    x = NULL,
+    y = "Avg Patients/Hr"
+  ) +
+  theme_few(base_size = 12) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    panel.grid.minor = element_blank()
+  )
+
+p2 <- ggplot(hourly_weekday, aes(x = hour_of_day, y = patients_per_hour, color = is_weekend)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = 0:23) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) +
+  scale_color_manual(values = c("grey", "black")) +
+  labs(
+    title = "Weekday vs Weekend Arrivals",
+    x = NULL,
+    y = "Avg Patients/Hr",
+    color = "Day Type"
+  ) +
+  theme_few(base_size = 12) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+
+p3 <- ggplot(hourly_monthly, aes(x = hour_of_day, y = patients_per_hour, group = month)) +
+  geom_line(size = 0.75, color = 'grey') +
+  scale_x_continuous(breaks = 0:23) +
+  scale_y_continuous(labels = scales::number_format(accuracy = 0.1)) +
+  labs(
+    title = "Monthly Arrival Patterns",
+    x = "Hour of Day",
+    y = "Avg Patients/Hr",
+    color = "Month"
+  ) +
+  theme_few(base_size = 12) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    panel.grid.minor = element_blank(),
+    legend.position = "bottom"
+  )
+
+# Combine plots
+combined_plot <- (p1 / p2 / p3) +
+  plot_layout(heights = c(1, 1, 1)) +
+  plot_annotation(
+    theme = theme(
+      plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+      plot.subtitle = element_text(size = 12, hjust = 0.5)
+    )
+  )
+
+# Display the combined plot
+combined_plot
+
+#ggsave("hourly_arrival_patterns.png", plot = combined_plot, width = 9, height = 10)
+
+# Create Time FE ---------------------------------------------------------
+#=========================================================================
+
+data$time <- data$hour_of_day
+
+data$hour_of_day <- cut(data$hour_of_day, breaks = c(-Inf, 6, 12, 18, Inf), 
+                      labels = c("0:00-6:00", "6:00-12:00", "12:00-18:00", "18:00-24:00"))
+
+data$day_of_week <- weekdays(data$actual_date)
+data$month_of_year <- month(data$actual_date, label = TRUE)
+data$dayofweekt <- paste(data$day_of_week, data$hour_of_day)
+
+
+#=========================================================================
+# Create Final Dataset ---------------------------------------------------
+#=========================================================================
+
+
+final <- data %>% 
+  mutate(RTN_72_HR = ifelse(RTN_72_HR == 'Y', 1, 0),
+         RTN_72_HR_ADMIT = ifelse(RTN_72_HR_ADMIT == 'Y', 1, 0)) 
+
+final$admit = ifelse(final$ED_DISPOSITION == 'Admit', 1, 0)
+final$discharge = ifelse(final$ED_DISPOSITION == 'Discharge', 1, 0)
+final$observation = ifelse(final$ED_DISPOSITION == 'Observation', 1, 0)
+
+final <- final %>%
+  mutate(dispo = case_when(
+    admit == 1 ~ 'admit',
+    discharge == 1 ~ 'discharge',
+    observation == 1 ~ 'observation',
+    TRUE ~ 'other')) 
+
+# Limit dataset to only physicians that had more than 520 encounters
+provider_counts <- table(final$ED_PROVIDER)
+providers_less_than_500 <- names(provider_counts[provider_counts < 500])
+final <- final[!(final$ED_PROVIDER %in% providers_less_than_500), ]
+final$complaint_esi <- paste(final$CHIEF_COMPLAINT, final$ESI)
+final <- filter(final, !is.na(final$ESI))
+final <- filter(final, !is.na(final$ED_PROVIDER))
+
+
+rm(list = setdiff(ls(), "final"))
+
+final <- final %>%
+  filter(ED_LOS < 1440, ED_LOS > 0)
+
+final$ln_ED_LOS <- log(final$ED_LOS)
+final$ln_disp_time <- log(final$DISP_TIME)
+
+# add experience variable for physicians 
+final <- final %>%
+  mutate(EXPERIENCE = case_when(
+    ED_PROVIDER == 'JUDSON, KURTIS A' ~ 2006,
+    ED_PROVIDER == 'KOMARA, JAMES S' ~ 1985,
+    ED_PROVIDER == 'RAPPAPORT, DOUGLAS E' ~ 2016,
+    ED_PROVIDER == 'MONAS, JESSICA' ~ 2011,
+    ED_PROVIDER == 'KELLEY, JAMES' ~ 1994,
+    ED_PROVIDER == 'DRECHSEL, KEVIN M' ~ 1998,
+    ED_PROVIDER == 'DIETRICH, BOB D' ~ 1999,
+    ED_PROVIDER == 'URUMOV, ANDREJ' ~ 2005,
+    ED_PROVIDER == 'MACY, CHERYL' ~ 2011,
+    ED_PROVIDER == 'BRAND, SHARI I.' ~ 1999,
+    ED_PROVIDER == 'TRAUB, STEPHEN J' ~ 1998,
+    ED_PROVIDER == 'CHANTLER, EDMUNDO L' ~ 2005,
+    ED_PROVIDER == 'HAY-ROE, NEIL' ~ 1987,
+    ED_PROVIDER == 'GAUHAROU, ERIK SHAWN' ~ 1999,
+    ED_PROVIDER == 'HODGSON, NICOLE R' ~ 2017,
+    ED_PROVIDER == 'STEWART, CHRISTOPHER F' ~ 1999,
+    ED_PROVIDER == 'TORRES, MARCELLA' ~ 1995,
+    ED_PROVIDER == 'MAHER, STEVEN A' ~ 2004,
+    ED_PROVIDER == 'ARNOLD, RICKY R' ~ 1997,
+    ED_PROVIDER == 'VINCIJANOVIC, LISA M' ~ 2007,
+    ED_PROVIDER == 'MORRO, DAVID C' ~ 2003,
+    ED_PROVIDER == 'PETRI, ROLAND W' ~ 1988,
+    ED_PROVIDER == 'KOZAK, PAUL A' ~ 1993,
+    ED_PROVIDER == 'LINDOR, RACHEL A' ~ 2017,
+  ))
+
+final$EXPERIENCE <- 2019 - final$EXPERIENCE
+
+final <- final %>%
+  mutate(PROVIDER_SEX = case_when(
+    ED_PROVIDER == 'JUDSON, KURTIS A' ~ 'M',
+    ED_PROVIDER == 'KOMARA, JAMES S' ~ 'M',
+    ED_PROVIDER == 'RAPPAPORT, DOUGLAS E' ~ 'M',
+    ED_PROVIDER == 'MONAS, JESSICA' ~ 'F',
+    ED_PROVIDER == 'KELLEY, JAMES' ~ 'M',
+    ED_PROVIDER == 'DRECHSEL, KEVIN M' ~ 'M',
+    ED_PROVIDER == 'DIETRICH, BOB D' ~ 'M',
+    ED_PROVIDER == 'URUMOV, ANDREJ' ~ 'M',
+    ED_PROVIDER == 'MACY, CHERYL' ~ 'F',
+    ED_PROVIDER == 'BRAND, SHARI I.' ~ 'F',
+    ED_PROVIDER == 'TRAUB, STEPHEN J' ~ 'M',
+    ED_PROVIDER == 'CHANTLER, EDMUNDO L' ~ 'M',
+    ED_PROVIDER == 'HAY-ROE, NEIL' ~ 'M',
+    ED_PROVIDER == 'GAUHAROU, ERIK SHAWN' ~ 'M',
+    ED_PROVIDER == 'HODGSON, NICOLE R' ~ 'F',
+    ED_PROVIDER == 'STEWART, CHRISTOPHER F' ~ 'M',
+    ED_PROVIDER == 'TORRES, MARCELLA' ~ 'F',
+    ED_PROVIDER == 'MAHER, STEVEN A' ~ 'M',
+    ED_PROVIDER == 'ARNOLD, RICKY R' ~ 'M',
+    ED_PROVIDER == 'VINCIJANOVIC, LISA M' ~ 'F',
+    ED_PROVIDER == 'MORRO, DAVID C' ~ 'M',
+    ED_PROVIDER == 'PETRI, ROLAND W' ~ 'M',
+    ED_PROVIDER == 'KOZAK, PAUL A' ~ 'M',
+    ED_PROVIDER == 'LINDOR, RACHEL A' ~ 'F',
+  ))
+
+
+final <- final %>% 
+  mutate(date = as.Date(actual_date))
+
+final <- final %>%
+  arrange(ED_PROVIDER, actual_date) %>%
+  group_by(ED_PROVIDER) %>%
+  mutate(
+    time_diff = as.numeric(difftime(actual_date, lag(actual_date), units = "hours")),
+    new_shift = if_else(is.na(time_diff) | time_diff > 8, 1, 0),
+    shift_id = cumsum(new_shift)
+  ) %>%
+  group_by(ED_PROVIDER, shift_id) %>%
+  mutate(
+    shift_start = min(actual_date),
+    hrs_in_shift = as.numeric(difftime(actual_date, shift_start, units = "hours"))
+  ) %>%
+  ungroup()
+
+final <- final %>% 
+  group_by(ED_PROVIDER, date) %>% 
+  mutate(patients_seen = n(),
+         patient_order_of_day = row_number(),
+         patients_tbs = patients_seen - patient_order_of_day) %>%
+  ungroup()
+
+
+final <- final %>%
+  mutate(
+    Time_arrival_to_triage = TRIAGE_COMPLETED_REL - ARRIVAL_DTTM_REL,
+    Time_triage_to_firstcontact = FIRST_CONTACT_DTTM_REL - TRIAGE_COMPLETED_REL,
+    Time_to_Result_Lab = LAB_RESULT_DTTM_REL - LAB_ORDER_REL,
+    Time_to_Result_XRay = PLAIN_XRAY_RESULT_DTTM_REL - XR_ORDER_REL,
+    Time_to_Result_Ultrasound = US_RESULT_DTTM_REL - US_ORDER_DTTM_REL,
+    Time_to_Result_CTcon = CT_WITH_CONTR_RESULT_DTTM_REL - CON_CT_ORDER_REL,
+    Time_to_Result_CTnon = CT_WITHOUT_CONTR_RESULT_DTTM_REL - NON_CON_CT_ORDER_REL
+  )
+
+#=========================================================================
+##########################################################################
+#=========================================================================
+# IV Construction --------------------------------------------------------
+#=========================================================================
+##########################################################################
+final$imaging <- ifelse(final$imgTests > 0, 1, 0)
+
+# keep complaints that appear more than 500 times
+complaint_counts <- table(final$CHIEF_COMPLAINT)
+complaints_less_than_500 <- names(complaint_counts[complaint_counts < 1000])
+final <- final[!(final$CHIEF_COMPLAINT %in% complaints_less_than_500), ]
+
+final %>%
+  group_by(complaint_esi) %>%
+  filter(n() > 1) %>%
+  ungroup()
+
+final$residual_batch <- resid(
+  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + ARRIVAL_AGE_DI  
+       | dayofweekt + month_of_year + complaint_esi  |0| ED_PROVIDER, data=final)
+)
+
+final$residual_Tests <- resid(
+  felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + ARRIVAL_AGE_DI  
+       | dayofweekt + month_of_year + complaint_esi |0| ED_PROVIDER, data=final)
+)
+
+final$residual_iTests <- resid(
+  felm(imgTests ~ tachycardic + tachypneic + febrile + hypotensive + ARRIVAL_AGE_DI  
+       | dayofweekt + month_of_year + complaint_esi |0| ED_PROVIDER, data=final)
+)
+
+final$residual_admit <- resid(
+  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + ARRIVAL_AGE_DI  
+       | dayofweekt + month_of_year + complaint_esi |0| ED_PROVIDER, data=final)
+)
+
+# Step 2: get batch tendency for each provider
+final <- final %>%
+  group_by(ED_PROVIDER) %>%
+  mutate(Sum_Resid=sum(residual_batch, na.rm=T),
+         batch.tendency = (Sum_Resid - residual_batch) / (n() - 1),
+         
+         Sum_Resid=sum(residual_Tests, na.rm=T),
+         test.tendency = (Sum_Resid - residual_Tests) / (n() - 1),
+         
+         Sum_Resid=sum(residual_iTests, na.rm=T),
+         img.test.tendency = (Sum_Resid - residual_iTests) / (n() - 1),
+         
+         Sum_Resid=sum(residual_admit, na.rm=T),
+         admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)) %>%
+  ungroup()
+
+
+
+#write.csv(final, 'outputs/data/all_clean.csv')
+
+
+
+final$ln_ED_LOS <- log(final$ED_LOS)
+final$ln_disp_time <- log(final$DISP_TIME)
+
+
+#write.csv(final, 'outputs/data/final.csv')
+
+
+final$CHIEF_COMPLAINT
+final$ED_PROVIDER
+final$batched
+
+
+plot_data <- final %>%
+  group_by(CHIEF_COMPLAINT, ED_PROVIDER) %>%
+  summarise(avg_batched = mean(batched, na.rm = TRUE), .groups = "drop") %>%
+  group_by(CHIEF_COMPLAINT) %>%
+  mutate(variance = var(avg_batched, na.rm = TRUE)) %>%
+  ungroup()
+
+# Create the plot
+# Create the plot
+
+
+    ggplot(plot_data, aes(x = reorder(CHIEF_COMPLAINT, -variance), y = avg_batched)) +
+      geom_boxplot(aes(fill = variance), color = "black", alpha = 0.7, outlier.shape = NA, size = 0.6) +
+      geom_jitter(aes(color = variance), width = 0.2, alpha = 0.8, size = 2.5) +
+      scale_color_gradient(
+        low = "blue", high = "red",
+        name = "Variance"
+      ) +
+      scale_fill_gradient(
+        low = "blue", high = "red",
+        name = "Variance"
+      ) +
+      guides(
+        color = guide_colorbar(title = "Variance", title.position = "top", 
+                               title.hjust = 0.5, barwidth = 10, barheight = 0.8,
+                               label.position = "bottom", label.hjust = 0.5),
+        fill = guide_colorbar(title = "Variance", title.position = "top", 
+                              title.hjust = 0.5, barwidth = 10, barheight = 0.8,
+                              label.position = "bottom", label.hjust = 0.5)
+      ) +
+      coord_flip() +
+      theme_minimal(base_size = 14) +
+      theme(
+        axis.title = element_text(size = 14, face = "bold"),
+        axis.text = element_text(size = 14),
+        plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+        plot.caption = element_text(size = 12, hjust = 0),
+        legend.title = element_text(size = 14, face = "bold"),
+        legend.text = element_text(size = 12),
+        legend.key.size = unit(1.5, "lines"),
+        legend.position = "top" ,
+        # make the legend bar longer
+        legend.key.height = unit(2, "cm"),
+      ) +
+      labs(
+        x = "Chief Complaint (Ordered by Variance)",
+        y = "Average Batched Rate",
+      )
+
+    # Create the plot
+    ggplot(plot_data, aes(x = reorder(CHIEF_COMPLAINT, -variance), y = avg_batched)) +
+      geom_jitter(aes(color = variance), width = 0.2, size = 2.5, alpha = 0.9) +
+      geom_boxplot(aes(fill = variance), color = "black", alpha = 0.7, outlier.shape = NA, size = 0.6) +
+      scale_color_gradient(
+        low = "#2972b6", high = "#d8031c",
+        name = "Spread of Batched Rates",
+        guide = guide_colorbar(
+          title.position = "top",
+          title.hjust = 0.5,
+          barwidth = 15,
+          barheight = 0.8,
+          label = FALSE  # Suppress numeric labels
+        )
+      ) +
+      scale_fill_gradient(
+        low = "#2972b6", high = "#d8031c",
+        name = "Spread of Batched Rates",
+        guide = guide_colorbar(
+          title.position = "top",
+          title.hjust = 0.5,
+          barwidth = 15,
+          barheight = 0.8,
+          ticks = FALSE,  # Remove ticks
+          label = FALSE
+        )
+      ) +
+      guides(
+        fill = guide_colorbar(
+          title = "Spread of Batched Rates",
+          label = TRUE,
+          label.hjust = -0.5,
+          barwidth = 15,
+          barheight = 0.8,
+          title.position = "top",
+          title.hjust = 0.5
+        )
+      ) +
+      scale_y_continuous(labels = scales::percent_format(scale = 100)) +
+      coord_flip() +
+      theme_bw(base_size = 14) +
+      theme(
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 14, color = "black"),
+        plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+        plot.caption = element_text(size = 12, hjust = 0),
+        axis.title.y = element_blank(),
+        legend.position = "none"
+      ) +
+      labs(
+        y = "Physician Batch Rate",
+      ) +
+      labs(
+        x = "Chief Complaint",
+        y = "\nPhysician Batch Rate",
+      ) +
+      # Add annotations
+      annotate(
+        "text", x = 14.5, y = 0.32,
+        label = "Lower intra-complaint \nphysician variance", color = "#2972b6", 
+        angle = 0, hjust = 0, size = 5, fontface = "bold"
+      ) +
+      annotate(
+        "text", x = 4.5, y = 0.32,
+        label = "Higher intra-complaint \nphysician variance", color = "#d8031c",
+        angle = 0, hjust = 0, size = 5, fontface = "bold"
+      ) +
+      annotate(
+        "segment", x = 6, xend = 2,
+        y = 0.52, yend = 0.52,
+        size = 1.5,
+        arrow = arrow(length = unit(0.25, "cm"), type = "closed"), color = "#d8031c"
+      ) +
+      annotate(
+        "segment", x = 12, xend = 16,
+        y = 0.52, yend = 0.52,
+        size = 1.5,
+        arrow = arrow(length = unit(0.25, "cm"), type = "closed"), color = "#2972b6"
+      )
+    
+#ggsave("boxplot.png", width = 10, height = 6, dpi = 300, bg= 'white')
