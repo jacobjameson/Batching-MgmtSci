@@ -276,7 +276,7 @@ data$discharge = ifelse(data$ED_DISPOSITION == 'Discharge', 1, 0)
 data$observation = ifelse(data$ED_DISPOSITION == 'Observation', 1, 0)
 
 # Create Table 1
-source('src/tables/summary_statistics.R')
+source('src/tables/summary_statistics_mayo.R')
 
 
 #=========================================================================
@@ -377,4 +377,55 @@ data <- data %>%
 
 #############
 
+data$imaging <- ifelse(data$imgTests > 0, 1, 0)
+
+# keep complaints that appear more than 500 times
+complaint_counts <- table(data$CHIEF_COMPLAINT)
+complaints_less_than_500 <- names(complaint_counts[complaint_counts < 1000])
+data <- data[!(data$CHIEF_COMPLAINT %in% complaints_less_than_500), ]
+
+data <- data %>%
+  group_by(complaint_esi) %>%
+  filter(n() > 1) %>%
+  ungroup()
+
+
+#####
+
+source('src/figures/fig1_batch_rates.R')
+
+
+### Create the instrument
+data$residual_batch <- resid(
+  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age  
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
+
+data$residual_labtests <- resid(
+  felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + age  
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
+
+data$residual_admit <- resid(
+  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age  
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
+
+# Step 2: get batch tendency for each provider
+data <- data %>%
+  group_by(ED_PROVIDER) %>%
+  mutate(Sum_Resid=sum(residual_batch, na.rm=T),
+         batch.tendency = (Sum_Resid - residual_batch) / (n() - 1),
+         
+         Sum_Resid=sum(residual_labtests, na.rm=T),
+         lab.tendency = (Sum_Resid - residual_labtests) / (n() - 1),
+         
+         Sum_Resid=sum(residual_admit, na.rm=T),
+         admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)) %>%
+  ungroup()
+
+
 rm(list = setdiff(ls(), c("data")))
+
+
+
