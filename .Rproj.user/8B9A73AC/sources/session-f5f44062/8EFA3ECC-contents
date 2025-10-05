@@ -1,0 +1,687 @@
+################################################################################
+# Author: J Jameson
+################################################################################
+
+# Libraries
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(stringr)
+
+# Load the data ----------------------------------------------------------------
+path <- "~/Sue Goldie Dropbox/Jacob Jameson/ED MGH"
+
+data_enc <- read_excel(
+  paste0(path, "/2024 03 13 ED Effectiveness Data.xlsx"), 
+  sheet = "encounters", col_types = c("text", 
+                                      "text", "text", "text", "text", "text", 
+                                      "numeric", "date", "text", "text", 
+                                      "date", "numeric", "text", "text", 
+                                      "text", "date", "text", "text", 
+                                      "numeric", "text", "text", "text", 
+                                      "text", "text", "text", "text", "text", 
+                                      "text", "text", "text", "text", "text", 
+                                      "text", "text", "text", "numeric", 
+                                      "text", "text", "text", "text", "text", 
+                                      "text", "text", "numeric", "numeric", 
+                                      "numeric", "numeric", "numeric", 
+                                      "numeric", "numeric", "numeric", 
+                                      "numeric", "numeric", "numeric", 
+                                      "text", "text", "text", "text", "text", 
+                                      "text", "text", "text", "text", "text", 
+                                      "text", "text"))
+
+data_enc <- filter(data_enc, age_at_arrival_years >= 18)
+data_enc$rfv <- str_to_lower(data_enc$rfv)
+table(data_enc$initial_care_area)
+data_enc <- data_enc %>%
+  mutate(care_area = case_when(
+    str_detect(initial_care_area, "^Eval|Eval Virtual") ~ "Eval",
+    str_detect(initial_care_area, "Fast Track|FT |FT Virtual|FT ARRIVAL") ~ "Fast track",
+    str_detect(initial_care_area, "Pedi") ~ "Pedi",
+    str_detect(initial_care_area, "Urgent|Acute|Orange") ~ "Urgent",
+    str_detect(initial_care_area, "Super Track|ST |ST Virtual|ST ARRIVAL") ~ "Super track",
+    str_detect(initial_care_area, "CDU|Virtual Observation") ~ "Observation",
+    TRUE ~ "Other"
+  ))
+
+# make data_enc$triage_started_dts datatime
+summary(as.numeric((data_enc$triage_started_dts - data_enc$arrival_dts)/60))
+
+
+summary(as.numeric((data_enc$ed_departure_dts - data_enc$arrival_dts)/60))
+
+table(data_enc$sex)
+
+
+
+data_enc <- data_enc %>%
+  mutate(
+    arrival_dts = as_datetime(arrival_dts),
+    ed_departure_dts = as_datetime(ed_departure_dts)
+  )
+
+# Sort by patient ID and arrival time
+data_enc <- data_enc %>%
+  arrange(deid_pat_id, arrival_dts)
+
+# Calculate the time difference between arrivals and departures
+data_enc <- data_enc %>%
+  group_by(deid_pat_id) %>%
+  mutate(
+    time_since_last_departure = difftime(arrival_dts, lag(ed_departure_dts), units = "hours"),
+    returned_within_72hrs = ifelse(!is.na(time_since_last_departure) & time_since_last_departure <= 72, 1, 0)
+  ) %>%
+  ungroup()
+
+# Identify patients who returned within 72 hours
+patients_returned <- data_enc %>%
+  group_by(deid_pat_id) %>%
+  summarize(returned_within_72hrs = max(returned_within_72hrs, na.rm = TRUE)) %>%
+  filter(returned_within_72hrs == 1)
+
+# View patients who returned within 72 hours
+patients_returned
+
+
+complaint_map <- list(
+  'Abdominal Complaints' = c(
+    'abdominal pain', 'pelvic pain', 'testicle pain',
+    'rectal pain', 'constipation', 'diarrhea', 'nausea', 'vomiting',
+    'nausea/vomiting', 'hematemesis', 'inguinal hernia', 'nephrolithiasis',
+    'gi problem', 'gi bleeding', 'rectal bleeding', 'groin pain', 
+    'rectal prolapse', 'bloated', 'abdominal cramping',
+    'hernia', 'fecal impaction', 'diverticulitis', 'ascites',
+    'pancreatitis', 'cholelithiasis', 'abdominal injury',
+    'vomiting blood', 'black or bloody stool', 'vomitting with diarrhea',
+    'gas', 'gastritis', 'umbilical hernia', 'hernia', 'abdominal injury',
+    'irritable bowel syndrome', 'fecal incontinence', 'gastroesophageal reflux',
+    'reflux'
+  ),
+  
+  'Abnormal Test Results' = c(
+    'abnormal lab', 'hypotension', 'abnormal potassium', 'elevated lfts',
+    'abnormal sodium', 'abnormal ecg',
+    'abnormal x-ray', 'abnormal calcium', 'abnormal cxr', 'abnormal potassium',
+    'abnormal sodium', 'leukocytosis', 'hypercalcemia', 'proteinuria',
+    'phs amb ren electrolyte abnormality', 'phs amb nut underweight',
+    'anemia','blood sugar problem','hypertension','hyperglycemia',
+    'hypoglycemia','diabetes','diabetes - other','diabetic ketoacidosis',
+    'coagulation disorder','neutropenia','thrombophilia'
+  ),
+  
+  'Allergic Reaction' = c(
+    'allergic reaction', 'medication reaction', 'urticaria', 'allergies',
+    'immunization reactions',
+    'hives', 'angioedema', 'anaphylaxis', 'allergic rhinitis',
+    'skin irritation', 'eczema', 'psoriasis', 'itching', 'urticaria',
+    'poison ivy', 'dermatitis', 'alopecia', 'eye allergy', 'lip swelling'
+  ),
+  
+  'Back or Flank Pain' = c(
+    'back pain', 'flank pain', 'phs amb chi lower back pain',
+    'low back pain', 'sciatica', 'tailbone pain',
+    'back injury', 'phs amb chi upper back pain', 'phs amb chi mid back pain'
+  ),
+  
+  'Breast Complaints' = c(
+    'breast pain', 'breast mass', 
+    'breast discharge', 'breast problem', 'breast mass', 'mastitis'
+  ),
+  
+  'Cardiac Arrhythmias' = c(
+    'tachycardia', 'atrial fibrillation', 'palpitations',
+    'irregular heart beat', 'cardiac arrest',
+    'bradycardia', 'rapid heart rate', 'atrial flutter',
+    'ventricular tachycardia',
+    'ventricular tachycardia', 'premature ventricular contractions',
+    'supraventricular tachycardia', 'pacemaker problem', 'pacemaker check',
+    'paralysis', 'cardiomyopathy', 'pericardial effusion'
+  ),
+  
+  'Chest Pain' = c(
+    'chest pain', 'chest discomfort',
+    'chest wall pain',
+    'thoracic pain', 'angina', 'pleurisy', 'chest wall pain', 
+    'aortic aneurysm','aortic dissection','cardiomyopathy',
+    'heart problem','pericardial effusion'
+  ),
+  
+  'Dizziness/Lightheadedness/Syncope' = c(
+    'dizziness', 'lightheadedness', 'pre syncope', 'syncope',
+    'loss of consciousness',
+    'vertigo', 'photophobia', 'lightheadedness'
+  ),
+  
+  'Ear Complaints' = c(
+    'ear pain', 'otalgia', 'ear laceration', 'ear drainage',
+    'hearing problem', 'otitis media',
+    'ear injury', 'cerumen impaction', 'ear problem',
+    'ear fullness', 'hearing loss',
+    'earache', 'otitis externa', 'earache', 'tinnitus', 'ear fullness',
+    'phs amb aural fullness', 'hearing loss', 'hearing problem'
+  ),
+  
+  'Epistaxis' = c(
+    'nose bleed',
+    'epistaxis', 'phs amb nosebleed', 'nose injury', 'nasal drainage',
+    'nasal swelling', 'nasal polyps', 'nose injury'
+  ),
+  
+  'Exposures, Bites, and Envenomations' = c(
+    'animal bite', 'insect bite', 'tick bite', 'tick removal',
+    'body fluid exposure',
+    'chemical exposure', 'heat exposure', 'smoke inhalation',
+    'electric shock', 'human bite', 'bite',
+    'animal bite', 'cold exposure', 'toxic inhalation', 'chemical exposure',
+    'smoke inhalation', 'battery', 'poisoning', 'venom exposure',
+    'post-exposure prophylaxis'
+    
+  ),
+  
+  'Extremity Complaints' = c(
+    'foot pain', 'hand pain', 'shoulder pain', 'leg pain', 'knee pain',
+    'neck pain', 'arm pain', 'hip pain', 'ankle pain', 'wrist pain',
+    'finger injury', 'toe injury', 'shoulder injury', 'hip injury',
+    'leg injury', 'arm injury', 'foot injury', 'wrist injury',
+    'ankle injury', 'foot problem', 'arm swelling', 'swelling',
+    'joint swelling', 'joint pain', 'extremity weakness',
+    'extremity laceration', 'hand injury', 'foot infection',
+    'finger laceration', 'puncture wound', 'rib injury',
+    'elbow pain', 'toe pain', 'finger pain', 'elbow injury',
+    'clavicle injury', 'leg cramps', 'foot blister', 'gout',
+    'trigger finger', 'foot numbness', 'ingrown toenail',
+    'knee injury', 'foot swelling', 'foot burn', 'hand burn',
+    'muscle pain', 'joint stiffness', 'tailbone pain',
+    'toe problem', 'arthritis',
+    'cold feet',
+    'flat foot',
+    'groin injury',
+    'groin swelling',
+    "phs amb vas lower extremity ulcer",
+    'leg swelling',
+    'neck swelling',
+    'phs amb pls hand/finger fracture',
+    'toenail problem',
+    'varicose veins',
+    'heel pain', 'hand problem', 'arm problem', 'leg problem',
+    'foot ulcer', 'foot blister', 'foot numbness', 'foot/ankle fracture',
+    'elbow injury', 'knee injury', 'dislocation', 'cold extremity',
+    'skin injury', 'burning sensation', 'achilles pain', 'toe pain',
+    'toe problem', 'wrist pain', 'ankle injury', 'clavicle injury',
+    'phs amb chi lower extremity weakness', 'phs amb chi upper extremity weakness',
+    'phs amb pcpt humerus fracture', 'phs amb pcpt multiple rib fractures',
+    'phs amb pcpt femur fracture', 'fracture', 'bursitis', 'muscle tension',
+    'muscle pain', 'limb pain'
+  ),
+  
+  'Eye Complaints' = c(
+    'eye pain', 'eye problem', 'eye trauma', 'conjunctivitis',
+    'blurred vision', 'diplopia', 'loss of vision', 'phs change in vision',
+    'eye drainage', 'eye twitching', 'eye irritation',
+    'burning eyes', 'blepharitis', 'foreign body in eye',
+    'photophobia', 'stye', 'uveitis', 'eyelid pain', 'eye allergy',
+    'spots and/or floaters', 'vision disturbance', 'foreign body in eye',
+    'eye irritation', 'blepharitis', 'burning eyes', 'eyelid problem',
+    'orbital mass',
+    'ptosis',
+    'strabismus'
+  ),
+  
+  'Falls, Motor Vehicle Crashes, Assaults, and Trauma' = c(
+    'fall', 'assault victim', 'head injury', 'head laceration',
+    'laceration', 'sexual assault', 'motor vehicle crash',
+    'motorcycle crash', 'burn', 'chest injury',
+    'facial burn', 'facial injury', 'stab wound', 'lip laceration',
+    'domestic violence', 'concussion', 'fracture', 'mouth injury',
+    'dental injury', 'abdominal injury',
+    'gun shot wound', 'stab wound', 'motorcycle vs pedestrian',
+    'traumatic brain injury', 'subdural hematoma', 'epidural hematoma',
+    'skull fractures', 'injury', 'back injury', 'neck injury',
+    'phs amb pls facial/mandibular fractures', 'phs amb pcpt multiple rib fractures',
+    'phs amb pcpt femur fracture', 'fracture', 'abrasion', 'dislocation',
+    'concussion', 'facial laceration',
+    'trauma'
+  ),
+  
+  'Fatigue and Weakness' = c(
+    'fatigue', 'weakness', 'weakness - generalized',
+    'generalized body aches',
+    'lethargy', 'anemia',
+    'fatigue', 'lethargy', 'weakness', 'phs amb pulr weakness/fatigue',
+    'impaired balance', 'decreased functional mobility', 'restless leg syndrome'
+  ),
+  
+  'Fevers, Sweats or Chills' = c(
+    'fever', 'chills', 'excessive sweating', 'bacteremia',
+    'blood infection',
+    'sickle cell anemia',
+    'fever/infection', 'hot flashes', 'diaphoresis', 'chills', 'sweating'
+  ),
+  
+  'Foreign Body' = c(
+    'foreign body', 'swallowed foreign body', 'foreign body in vagina',
+    'foreign body in ear', 'foreign body in eye', 'foreign body in nose',
+    'foreign body in rectum', 'foreign body in skin',
+    'foreign body in ear', 'foreign body in eye',
+    'foreign body in skin', 'choking',
+    'ingestion'
+  ),
+  
+  'Gastrointestinal Issues' = c(
+    'vomiting', 'nausea', 'nausea/vomiting', 'diarrhea', 'constipation',
+    'dehydration', 'hematemesis', 'gi bleeding', 'gi problem',
+    'rectal bleeding', 'dry mouth',
+    'eating issues',
+    'emesis',
+    'gerd', 'dysphagia',
+    'hiccups',
+    'jaundice',
+    'pinworms',
+    'poor appetite',
+    'spitting up (reflux)',
+    'vomiting blood', 'black or bloody stool', 'vomitting with diarrhea',
+    'gas', 'gastritis', 'umbilical hernia', 'hernia', 'irritable bowel syndrome',
+    'fecal incontinence', 'gastroesophageal reflux', 'reflux',
+    'pancreatitis', 'liver mass', 'liver lesion', 'cirrhosis',
+    'ascites', 'diverticulitis', 'ulcerative colitis', 'crohn\'s disease',
+    'hepatitis', 'abdominal injury', 'gastritis', 'colitis',
+    'melena', 'brbpr', 'heartburn', 'gastroesophageal reflux',
+    'crohn\'s disease', 'ulcerative colitis', 'hematochezia',
+    'constipation', 'rectal problems', 'diverticulitis',
+    'pancreatitis', 'fecal impaction', 'hemorrhoids'
+  ),
+  
+  'Genital Complaints' = c(
+    'testicle pain', 'vaginal bleeding', 'vaginal itching',
+    'vaginal pain', 'concerns of sti', 'foreign body in vagina',
+    'female gu problem', 'male gu problem', 'penile discharge', 'penis injury',
+    'penis pain', 'erectile dysfunction', 'genital warts', 'bartholin\'s cyst',
+    'vaginal discharge', 'sti screening', 'std', 'exposure to std',
+    'genital herpes', 'phs amb hiv exposure', 'gonorrhea', 'vaginitis',
+    'vaginal bleeding - pregnant', 'menorrhagia', 'amenorrhea',
+    'decreased fetal movement', 'ectopic pregnancy', 'rupture of membranes',
+    'mastitis', 'ovarian cyst', 'ovarian torsion', 'pelvic mass',
+    'postpartum care', 'genital problem', 'prostate check',
+    'testicle injury',
+    'testicular mass',
+    'unplanned sexual encounter', 'std exposure', 'penis pain',
+    'vaginal discharge', 'vaginal prolapse', 'vaginitis',
+    'ovarian cyst', 'ovarian torsion', 'pelvic mass'
+  ),
+  
+  'Medical Device or Treatment Issue' = c(
+    'aicd problem', 'vascular access problem', 'medication refill',
+    'suture / staple removal', 'suture/staple questions', 'wound check',
+    'post-op problem', 'phs fistula', 'assess success with recommended aid',
+    'foot wound check',
+    'heart transplant',
+    'phs amb new diabetic patient',
+    'phs amb nwh art us',
+    'pacemaker problem', 'pacemaker check', 'left ventricle assist device',
+    'feeding tube', 'ostomy care', 'stoma complication', 'cast removal',
+    'cast repair', 'cast check', 'cast problem', 'phs amb medication backorder issue',
+    'medication management', 'medication change request', 'medication follow up',
+    'medication problem', 'medication question', 'iv medication', 'wound care',
+    'wound management', 'wound dehiscence', 'drainage from incision',
+    'dressing change', 'procedure', 'chemo related symptoms', 'dialysis access',
+    'cast removal', 'cast problem', 'shunt',
+    'tracheostomy tube change', 'dressing change',
+    'stoma complication', 'wound dehiscence'
+  ),
+  
+  'Medication Request' = c(
+    'medication refill',
+    'medication change request', 'medication follow up', 'medication problem',
+    'medication question', 'new medication request', 'medication visit',
+    'phs amb medication backorder issue',
+    'new medication request'
+  ),
+  
+  'Neurological Issue' = c(
+    'headache', 'seizures', 'febrile seizure', 'altered mental status',
+    'slurred speech', 'numbness', 'stroke', 'aphasia',
+    'cerebrovascular accident', 'confusion', 'gait problem','neurologic problem',
+    'speech problem',
+    'transient ischemic attack', 'paralysis', 'spasms', 'tremors', 'myasthenia gravis',
+    'multiple sclerosis', 'neuralgia', 'dementia', 'stroke', 'vertigo',
+    'brain tumor', 'headache', 'migraine', 'seizure disorder', 'traumatic brain injury',
+    'tics', 'memory loss', 'word finding problems', 'difficulty swallowing',
+    'dysarthria', 'difficulty walking', 'gait abnormality', 'tingling',
+    'numbness', 'peripheral neuropathy', 'chronic nerve pain', 'restless leg syndrome',
+    'phs amb chi lower extremity numbness', 'phs amb chi upper extremity weakness',
+    'phs amb chi lower extremity weakness', 'hydrocephalus', 'meningitis',
+    'neuralgia', 'torticollis', 'cerebrospinal fluid leak',
+    'facial droop', 'trigeminal neuralgia', 'phs amb nsr brain mass',
+    'tremors', 'shaking', 'memory loss', 'seizure disorder',
+    'cerebrospinal fluid leak', 'gait abnormality', 'brain tumor',
+    'phs amb nsr stroke', 'myasthenia gravis', 'difficulty swallowing',
+    'tingling', 'head and neck pain', 'facial paralysis',
+    'difficulty walking'
+  ),
+  
+  'Other' = c(
+    'other', 'null', 'phs amb new patient', 'phs amb return pt',
+    'school/sports/camp physical', 'blood pressure check', 'infection',
+    'weight gain', 'failure to thrive', 'phs amb vas dvt',
+    'phs amb nsr radiculopathy', "symptom flare",
+    'lump', 'mass', 'skin (lump/localized swelling)', 'lymphadenopathy',
+    'lymph nodes, swollen', 'phs amb nut underweight', 'immunizations',
+    'flu vaccine', 'vaccine', 'vaccine follow-up', 'housing', 'forms and paperwork',
+    'letter for school/work', 'inpatient admission', 'baseline evaluation',
+    'new evaluation', 'labs', 'labs only', 'procedure', 'symptom management',
+    'palliative care follow-up', 'phs amb substance use - alcohol related',
+    'phs amb substance use - benzodiaepines', 'phs amb substance use - opioid related',
+    'phs amb pcpt unexplained bruising', 'ip case management stem cell transplant continuum',
+    'feeding difficulty', 'feeding tube', 'newborn', 'infusion', 'flu symptoms',
+    'upper respiratory infection', 'uri', 'viral infection', 'cold extremity',
+    'social service visit', 'symptom management', 'phs amb globus sensation',
+    'weight loss', 'lung nodule', 'anasarca', 'lymphadenopathy',
+    'lymph nodes, swollen', 'homeless', 'evaluate for admission',
+    'phs amb neck mass', 'thyroid problem', 'covid-19 post discharge follow-up',
+    'fussy', 'annual exam', 'weekly visit', 'follow-up',
+    'social complaints', '2nd opinion', 'pain', 'labs only',
+    'edema', 'polydipsia', 'mass', 'mental health problem',
+    'behavior problem','circulatory problem',
+    'consultation with social work',
+    'covid-19 return to work inquiry',
+    'crying (3 months or older)', 'lupus',
+    'lymphoma', 'bleeding',
+    'osteomyelitis',
+    'thyroid nodule'
+  ),
+  
+  'Other Pain' = c(
+    'facial pain', 'facial swelling', 'jaw pain', 'mouth pain',
+    'back pain', 'neck pain','bleeding gums',
+    'dental pain',
+    'dental problem',
+    'fibromyalgia',
+    'infection of the mouth',
+    'sickle cell pain crisis',
+    'chronic pain', 'pain', 'incisional pain', 'cancer pain', 'hand pain',
+    'foot pain', 'neck pain', 'arm pain', 'leg pain', 'facial jaw pain',
+    'temporomandibular joint pain', 'head and neck pain', 'oral pain',
+    'eye pain', 'ear pain', 'tooth pain', 'broken tooth',
+    'chronic pain', 'mouth lesions', 'oral swelling',
+    'head and neck pain', 'tailbone pain'
+  ),
+  
+  'Post-Op Issue' = c(
+    'post-op problem', 'wound infection',
+    'post-op', 'post-op problem', 'wound dehiscence', 'drainage from incision',
+    'wound care', 'wound management', 'chemo related symptoms', 'ostomy care',
+    'stoma complication', 'postpartum care', 'incisional pain',
+    'wound dehiscence'
+  ),
+  
+  'Psychiatric Complaints' = c(
+    'suicidal', 'psychiatric evaluation', 'anxiety', 'panic attack',
+    'hallucinations', 'depression', 'agitation', 'insomnia',
+    'delirium tremens (dts)',  'manic behavior',
+    'grief/bereavement', 'paranoia', 'delusional', 'psychotic symptoms',
+    'psychological issue', 'depression', 'anxiety', 'stress',
+    'adjustment disorder with mixed anxiety and depressed mood',
+    'post-traumatic stress disorder', 'suicide attempt', 'phs amb substance use - alcohol related',
+    'phs amb substance use - benzodiaepines', 'phs amb substance use - opioid related',
+    'racing thoughts', 'sleeping problem', 'insomnia', 'eating disorder',
+    'psychosocial problems', 'dementia',
+    'paranoid', 'aggressive behavior', 'suicide attempt',
+    'homicidal', 'eating disorder', 'adjustment disorder with mixed anxiety and depressed mood',
+    'psychosocial problems'
+  ),
+  
+  'Shortness of Breath' = c(
+    'shortness of breath', 'respiratory distress', 'asthma', 'wheezing',
+    'copd', 'shortness of breath', 'phs amb difficulty breathing',
+    'tachypnea', 'hyperventilating', 'cyanosis', 'asthma', 'wheezing',
+    'stridor', 'pleural effusion', 'pulmonary embolism', 'pneumonia',
+    'lung nodule', 'respiratory distress', 'near drowning', 'bronchitis',
+    'hypoxia', 'congestive heart failure', 'pneumonia',
+    'airway obstruction', 'near drowning', 'aspiration',
+    'sleep apnea',
+    'tracheal stenosis'
+  ),
+  
+  'Skin Complaints' = c(
+    'rash', 'abscess', 'cellulitis', 'pruritus', 'skin check',
+    'wound infection', 'nail problem', 'cyst',  'bleeding/bruising',
+    'pilonidal symptoms',
+    'sore',
+    'thrush',
+    'vasculitis',
+    'skin irritation', 'skin discoloration', 'eczema', 'psoriasis',
+    'itching', 'rash', 'urticaria', 'hives', 'diaper rash', 'skin ulcer',
+    'skin injury', 'burning sensation', 'burn', 'blister', 'frostbite',
+    'sunburn', 'skin (lump/localized swelling)', 'changing mole', 'dermatitis',
+    'skin problem', 'alopecia', 'cellulitis', 'abscess', 'herpes zoster',
+    'poison ivy', 'varicella', 'stye', 'genital warts', 'skin infection',
+    'recurrent skin infections', 'melanoma',
+    'rash or redness', 'blister', 'sunburn', 'skin problem',
+    'skin ulcer', 'herpes zoster', 'mrsa', 'head lice'
+  ),
+  
+  'Substance Abuse Issues' = c(
+    'alcohol problem', 'alcohol intoxication', 'addiction problem',
+    'drug overdose',
+    'phs amb substance use - alcohol related', 'phs amb substance use - benzodiaepines',
+    'phs amb substance use - opioid related', 'drug screen', 'alcohol problem',
+    'addiction problem', 'drug overdose', 'withdrawal', 'substance abuse',
+    'withdrawal', 'drug / alcohol assessment'
+  ),
+  
+  'Upper Respiratory Symptoms' = c(
+    'sore throat', 'cough', 'nasal congestion',
+    'upper respiratory infection', 'uri', 'influenza', 'flu symptoms',
+    'coughing up blood', 'throat problem', 'sore throat', 'strep throat',
+    'laryngitis', 'hoarseness', 'nasal congestion', 'sinus congestion',
+    'sinus headache', 'sinusitis', 'allergic rhinitis', 'phs amb noisy breathing',
+    'sinus congestion', 'sinusitis', 'nasal polyps', 'covid-19 inquiry',
+    'croup',
+    'hemoptysis',
+    'sinus cancer',
+    'sneezing',
+    'snoring'
+  ),
+  
+  'Pregnancy Related' = c(
+    'non-stress test', 'vaginal bleeding', 'vaginal pain',
+    'concerns of sti', 'weight gain', 'contraception',
+    'vaginal bleeding - pregnant', 'ectopic pregnancy', 'rupture of membranes',
+    'decreased fetal movement', 'emesis during pregnancy', 'vomiting during pregnancy',
+    'morning sickness', 'nausea/vomiting in pregnancy', 'laboring',
+    'pregnancy problem', 'postpartum care', 'threatened miscarriage',
+    'miscarriage', 'pregnancy-related issue',
+    'contractions', 'possible pregnancy', 'threatened miscarriage',
+    'miscarriage', 'vaginal bleeding - pregnant', 'emesis during pregnancy',
+    'laboring', 'pregnancy problem'
+  ),
+  'Renal' = c(
+    'urinary tract infection', 'hematuria', 'urinary retention',
+    'pyelonephritis', 'nephrolithiasis',
+    'recurrent uti', 'cystitis', 'urinary urgency', 'urine leakage',
+    'nephritis', 'nephrotic syndrome', 'kidney transplant pre-evaluation',
+    'chronic kidney disease', 'aki (acute kidney injury)', 'acute renal failure',
+    'diabetic nephropathy', 'aki (acute kidney injury)', 'acute renal failure'
+  ),
+  
+  'Urinary Complaints' = c(
+    'urinary retention', 'dysuria', 'hematuria', 'urinary incontinence',
+    'blood in urine', 'urinary urgency', 'urine leakage', 'bladder pain',
+    'bladder problem', 'difficulty urinating', 'urinary frequency',
+    'polyuria',
+    'urinary symptom', 'lower urinary tract symptoms', 'fecal incontinence',
+    'proteinuria', 'phs amb vas dialysis access',
+    'blood in urine', 'urinary frequency', 'urination pain',
+    'urinary problem', 'difficulty urinating',
+    'lower urinary tract symptoms', 'urinary symptom'
+  )
+)
+
+data_enc$complaint <- data_enc$rfv
+
+for (i in seq(1,length(complaint_map))){
+  name <- names(complaint_map[i])
+  complaint <- complaint_map[[i]]
+  
+  data_enc$complaint <- ifelse(
+    data_enc$complaint %in% complaint, name, data_enc$complaint
+  )
+}
+
+table(data_enc$complaint)
+
+
+
+data_enc %>%
+  mutate(
+    systolic_bp = as.numeric(sub("/.*", "", first_bp_reading)),
+    diastolic_bp = as.numeric(sub(".*/", "", first_bp_reading)),
+    pulse = as.numeric(first_pulse_reading),
+    respiratory_rate = as.numeric(first_rr_reading),
+    
+    # Ensure comorbidities are numeric (0 or 1)
+    across(c(hypertension, diabetes, cad, chf, copd, asthma, aud, ivdu, afib, cva, cancer), 
+           ~ifelse(is.na(.), 0, as.numeric(.)))
+  ) -> data_enc
+
+
+data_enc$tachycardic <- ifelse(
+  is.na(data_enc$pulse) == F & data_enc$pulse > 100, 1, 0
+)
+
+data_enc$tachypneic <- ifelse(
+  is.na(data_enc$respiratory_rate)  == F  & data_enc$respiratory_rate > 20, 1, 0
+)
+
+data_enc$febrile <- ifelse(
+  is.na(data_enc$first_temp_reading)  == F  & data_enc$first_temp_reading > 99.5, 1, 0
+)
+
+data_enc$hypotensive <- ifelse(
+  is.na(data_enc$systolic_bp)  == F  & data_enc$systolic_bp < 90, 1, 0
+)
+
+
+summary(data_enc$tachycardic)
+summary(data_enc$tachypneic)
+summary(data_enc$febrile)
+summary(data_enc$hypotensive)
+
+summary(data_enc$age_at_arrival_years)
+table(data_enc$race_list)
+
+
+
+
+data_img <-  read_excel("~/Sue Goldie Dropbox/Jacob Jameson/ED MGH/2024 03 13 ED Effectiveness Data.xlsx", 
+                        sheet = "imaging", col_types = c("text", 
+                                                         "date", "date", "date", "date", "numeric", 
+                                                         "numeric", "numeric", "numeric", 
+                                                         "numeric", "numeric", "numeric", 
+                                                         "numeric", "numeric", "numeric", 
+                                                         "numeric", "numeric", "numeric", 
+                                                         "numeric", "numeric"))
+
+
+
+data_img %>%
+  mutate(us = us - us_bedside) %>%
+  group_by(deid_enc_id) %>%
+  arrange(deid_enc_id) %>%
+  mutate(time_diff = as.numeric(difftime(img_available_dts, img_order_dts, units = "mins"))) %>%
+  filter(us == 1, time_diff < 10000) %>%
+  select(deid_enc_id, time_diff) %>%
+  summary()
+
+data_img <- data_img %>%
+  dplyr::select(deid_enc_id, img_order_dts, img_available_dts, xr, ct, us, mri)  %>%
+  group_by(deid_enc_id) %>%
+  arrange(deid_enc_id) %>%
+  mutate(time_diff = as.numeric(difftime(img_available_dts, img_order_dts, units = "mins"))) 
+
+filter(data_img, us == 1)$time_diff %>% summary()
+
+
+
+data_iv <-  read_excel("~/Sue Goldie Dropbox/Jacob Jameson/ED MGH/2024 03 13 ED Effectiveness Data.xlsx", 
+                        sheet = "medications", col_types = c("text", 
+                                                         "text", "date", 'text', 'text'))
+
+data_iv <- data_iv %>%
+  filter(medication_route_dsc == 'Intravenous', med_orderstatus == 'Completed') 
+
+
+table(data_iv$pharmaceutical_class_dsc)
+
+
+# Filter for IV contrast agents in data_iv
+contrast_agents <- c("CARDIOVASCULAR DIAGNOSTICS-RADIOPAQUE")
+
+data_iv_contrast <- data_iv %>%
+  filter(pharmaceutical_class_dsc %in% contrast_agents) %>%
+  distinct(deid_enc_id, .keep_all = TRUE) 
+
+# Filter CT scans in data_img
+data_ct <- data_img %>%
+  filter(ct == 1)
+
+# Join data_iv_contrast with data_ct
+data_ct_with_contrast <- data_ct %>%
+  left_join(data_iv_contrast, by = "deid_enc_id", relationship = 'many-to-one') %>%
+  mutate(
+    time_diff = difftime(img_order_dts, med_order_dts, units = "mins"),
+    ct_type = case_when(
+      !is.na(time_diff) & time_diff >= -60 & time_diff <= 60 ~ "With Contrast",
+      TRUE ~ "Without Contrast"
+    )
+  )
+
+# Select relevant columns and ensure uniqueness
+data_ct_with_contrast <- data_ct_with_contrast %>%
+  mutate(time_diff = as.numeric(difftime(img_available_dts, img_order_dts, units = "mins"))) 
+
+
+# get summary of time_diff for CT scans with contrast
+filter(data_ct_with_contrast, ct_type == 'With Contrast')$time_diff %>% summary()
+filter(data_ct_with_contrast, ct_type == 'Without Contrast')$time_diff %>% summary()
+
+
+summary(data_img$mri)
+
+
+
+
+
+data_lab <-  read_excel("~/Sue Goldie Dropbox/Jacob Jameson/ED MGH/2024 03 13 ED Effectiveness Data.xlsx", 
+                       sheet = "labs")
+                       
+length(unique(data_lab$deid_enc_id))
+
+
+
+
+
+
+# Define categories for IV fluids and meds
+iv_fluids <- c("ELECTROLYTE MAINTENANCE", "SODIUM/SALINE PREPARATIONS", 
+               "IV SOLUTIONS: DEXTROSE AND LACTATED RINGERS", 
+               "IV SOLUTIONS: DEXTROSE-SALINE", 
+               "IV SOLUTIONS: DEXTROSE-WATER")
+
+data_iv <- data_iv %>%
+  mutate(
+    iv_type = case_when(
+      pharmaceutical_class_dsc %in% iv_fluids ~ "IV Fluid",
+      TRUE ~ "IV Med"
+    )
+  )
+
+
+data_iv %>%
+  filter(iv_type == "IV Med") %>%
+  distinct(deid_enc_id) %>% nrow()
+                       
+
+
+

@@ -440,7 +440,6 @@ data$dayofweekt <- paste(data$day_of_week, data$hour_of_day)
 # Create Final Dataset ---------------------------------------------------
 #=========================================================================
 
-
 final <- data %>% 
   mutate(RTN_72_HR = ifelse(RTN_72_HR == 'Y', 1, 0),
          RTN_72_HR_ADMIT = ifelse(RTN_72_HR_ADMIT == 'Y', 1, 0)) 
