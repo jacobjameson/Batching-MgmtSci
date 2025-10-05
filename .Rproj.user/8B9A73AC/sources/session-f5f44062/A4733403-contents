@@ -63,10 +63,10 @@ data$time_to_dispo <- ifelse(data$time_to_dispo < 0, NA, data$time_to_dispo)
 
 # Filter data for correct times
 data <- data %>%
-  filter(time_to_dispo <= 1440,
+  filter(time_to_dispo <= 2880,
          !is.na(time_to_dispo),
          time_to_dispo > 0,
-         ED_LOS <= 1440,
+         ED_LOS <= 2880,
          ED_LOS > 0,
          !is.na(ED_LOS),
          time_to_dispo <= ED_LOS)
@@ -450,6 +450,9 @@ data$capacity_level <- factor(data$capacity_level,
 
 source('src/tables/table2_first_stage.R')
 source('src/figures/fig3_firststage.R')
+
+source('src/tables/table3_reduced_form.R')
+
 
 
 

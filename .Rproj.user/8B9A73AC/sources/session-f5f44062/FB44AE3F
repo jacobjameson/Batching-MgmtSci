@@ -1,26 +1,26 @@
 {
-    "id": "C1B137D4",
-    "path": "~/GitHub/Batch Heavy/src/03_IV.R",
-    "project_path": null,
+    "id": "FB44AE3F",
+    "path": "~/GitHub/Batching MgmtSci RR/src/figures/fig3_firststage.R",
+    "project_path": "src/figures/fig3_firststage.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1759693662588.0,
+    "created": 1759698607745.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 7,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "296,0",
-        "scrollLine": "296"
+        "cursorPosition": "32,0",
+        "scrollLine": "14"
     },
     "folds": "",
-    "lastKnownWriteTime": 1758823802,
+    "lastKnownWriteTime": 1759698802,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1758823802,
+    "last_content_update": 1759698802436,
     "read_only": false,
     "read_only_alternatives": []
 }
