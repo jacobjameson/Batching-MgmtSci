@@ -1,26 +1,26 @@
 {
-    "id": "945A52A1",
-    "path": "~/GitHub/Batching MgmtSci RR/src/figures/fig1_batch_rates.R",
-    "project_path": "src/figures/fig1_batch_rates.R",
+    "id": "88E089EC",
+    "path": "~/GitHub/Batching MgmtSci RR/src/figures/fig3_firststage.R",
+    "project_path": "src/figures/fig3_firststage.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1759692987685.0,
+    "created": 1759696471128.0,
     "source_on_save": false,
-    "relative_order": 7,
+    "relative_order": 6,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "55,5",
-        "scrollLine": "41"
+        "cursorPosition": "28,0",
+        "scrollLine": "10"
     },
     "folds": "",
-    "lastKnownWriteTime": 1759693546,
+    "lastKnownWriteTime": 1759696966,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1759693546393,
+    "last_content_update": 1759696966745,
     "read_only": false,
     "read_only_alternatives": []
 }

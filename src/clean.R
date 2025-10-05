@@ -398,17 +398,17 @@ source('src/figures/fig1_batch_rates.R')
 ### Create the instrument
 data$residual_batch <- resid(
   felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year + CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 data$residual_labtests <- resid(
   felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year + CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 data$residual_admit <- resid(
   felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year +  CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 # Step 2: get batch tendency for each provider
@@ -427,5 +427,29 @@ data <- data %>%
 
 rm(list = setdiff(ls(), c("data")))
 
+source('src/figures/fig2_randomization.R')
+
+# FILTER TO MAIN SAMPLE
+data <- data %>%
+  group_by(complaint_esi) %>%
+  filter(n() > 1) %>%
+  ungroup() %>%
+  group_by(complaint_esi) %>%
+  mutate(batchmean = mean(batched)) %>%
+  ungroup() %>% 
+  filter(batchmean > 0.05, imaging == 1)
+
+data$ln_ED_LOS <- log(data$ED_LOS)
+data$ln_disp_time <- log(data$time_to_dispo)
+
+data$capacity_level <- factor(data$capacity_level,
+                              levels = c('Normal Operations', 
+                                         'Minor Overcapacity', 
+                                         'Major Overcapacity'))
 
 
+source('src/tables/table2_first_stage.R')
+source('src/figures/fig3_firststage.R')
+
+
+s
