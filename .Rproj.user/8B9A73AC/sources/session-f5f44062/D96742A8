@@ -3,7 +3,7 @@
     "path": "~/GitHub/Batching MgmtSci RR/src/tables/table4_iv_results.R",
     "project_path": "src/tables/table4_iv_results.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "238753365",
     "contents": "",
     "dirty": false,
     "created": 1759697909836.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "75,45",
-        "scrollLine": "66"
+        "cursorPosition": "92,62",
+        "scrollLine": "78"
     },
     "folds": "",
-    "lastKnownWriteTime": 1759698219,
+    "lastKnownWriteTime": 1759759749,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1759698219890,
+    "last_content_update": 1759759749374,
     "read_only": false,
     "read_only_alternatives": []
 }

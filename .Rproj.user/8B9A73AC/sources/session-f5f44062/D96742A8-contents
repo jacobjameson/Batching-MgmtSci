@@ -17,7 +17,7 @@ run_models <- function(data, y_var) {
   model_3 <- feols(
     as.formula(paste(
       y_var,
-      "~ tachycardic + tachypneic + febrile + hypotensive + EXPERIENCE + PROVIDER_SEX + age + LAB_PERF |
+      "~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + PROVIDER_SEX + LAB_PERF + age |
        dayofweekt + month_of_year + complaint_esi + race + GENDER + capacity_level |
        batched ~ batch.tendency"
     )),
@@ -36,7 +36,7 @@ run_models <- function(data, y_var) {
   model_5 <- feols(
     as.formula(paste(
       y_var,
-      "~ batched + tachycardic + tachypneic + febrile + hypotensive + EXPERIENCE + PROVIDER_SEX + age + LAB_PERF |
+      "~ batched + tachycardic + tachypneic + hrs_in_shift + febrile + hypotensive + EXPERIENCE + PROVIDER_SEX + age + LAB_PERF |
        dayofweekt + month_of_year + complaint_esi + race + GENDER + capacity_level"
     )),
     cluster = ~ED_PROVIDER,
@@ -83,3 +83,18 @@ run_models(data, "ln_ED_LOS")
 run_models(data, "imgTests")
 run_models(data, "RTN_72_HR_ADMIT")
 run_models(data, "RTN_72_HR")
+
+
+
+
+feols(
+  as.formula(paste(
+    'ln_ED_LOS',
+    "~ tachycardic + tachypneic + febrile + hrs_in_shift + par LAB_PERF + hypotensive + EXPERIENCE + PROVIDER_SEX  + age |
+       dayofweekt + month_of_year + complaint_esi + race + GENDER + capacity_level |
+       batched ~ batch.tendency"
+  )),
+  cluster = ~ED_PROVIDER,
+  data = data
+)
+

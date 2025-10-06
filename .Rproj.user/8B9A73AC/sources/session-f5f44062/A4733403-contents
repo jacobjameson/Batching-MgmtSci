@@ -31,19 +31,15 @@ rel_cols <- grep("_REL$", names(data), value = TRUE)
 
 for (col in rel_cols) {
   data <- data %>%
-    separate(
-      col,
-      into = c("hrs", "mins"),
-      sep = ":",
-      fill = "right",
-      remove = TRUE
-    ) %>%
+    separate(col, into = c(paste0(col, "_hrs"), paste0(col, "_mins")),
+             sep = ":", fill = "right", remove = TRUE) %>%
     mutate(
-      across(c(hrs, mins), ~ suppressWarnings(as.numeric(.))),
-      !!col := hrs * 60 + mins
+      across(all_of(c(paste0(col, "_hrs"), paste0(col, "_mins"))), as.numeric),
+      !!col := get(paste0(col, "_hrs")) * 60 + get(paste0(col, "_mins"))
     ) %>%
-    select(-hrs, -mins)
+    select(-matches(paste0(col, "_hrs|", col, "_mins")))
 }
+
 
 data$admit <- ifelse(data$ED_DISPOSITION == 'Admit', 1, 0)
 
@@ -60,16 +56,16 @@ data <- data %>%
 # create time to disposition variable
 data$time_to_dispo <- data$dispo_time - data$ARRIVAL_DTTM_REL
 data$time_to_dispo <- ifelse(data$time_to_dispo < 0, NA, data$time_to_dispo)
+data$time_to_dispo <- ifelse(data$time_to_dispo > data$ED_LOS, 
+                             data$ED_LOS, data$time_to_dispo)
 
 # Filter data for correct times
 data <- data %>%
-  filter(time_to_dispo <= 2880,
-         !is.na(time_to_dispo),
+  filter(!is.na(time_to_dispo),
          time_to_dispo > 0,
          ED_LOS <= 2880,
          ED_LOS > 0,
-         !is.na(ED_LOS),
-         time_to_dispo <= ED_LOS)
+         !is.na(ED_LOS))
 
 
 # create waiting time variable
@@ -159,21 +155,17 @@ data$batched <- ifelse(data$batch_count > 1, 1, 0)
 data$PATIENT_RACE <- str_to_lower(data$PATIENT_RACE)
 
 data <- data %>%
-  mutate(race = case_when(
-    grepl('black', PATIENT_RACE, fixed = TRUE) ~ "black",
-    grepl('african', PATIENT_RACE, fixed = TRUE) ~ "black",
-    grepl('asian', PATIENT_RACE, fixed = TRUE) ~ "asian",
-    grepl('pacific islander', PATIENT_RACE, fixed = TRUE) ~ "asian",
-    grepl('native', PATIENT_RACE, fixed = TRUE)~ "native",
-    grepl('samoan', PATIENT_RACE, fixed = TRUE) ~ "other",
-    grepl('guamanian or chamorro', PATIENT_RACE, fixed = TRUE) ~ "other",
-    grepl('white', PATIENT_RACE, fixed = TRUE) ~ "white",
-    grepl('unknown', PATIENT_RACE, fixed = TRUE) ~ "unknown",
-    grepl('choose not to disclose', PATIENT_RACE, fixed = TRUE) ~ "unknown",
-    grepl('unable to provide', PATIENT_RACE, fixed = TRUE) ~ "unknown",
-    grepl('other', PATIENT_RACE, fixed = TRUE) ~ "other",
-    grepl('', PATIENT_RACE, fixed = TRUE) ~ "unknown",
-    TRUE ~ PATIENT_RACE))
+  mutate(
+    race = case_when(
+      str_detect(PATIENT_RACE, "black|african") ~ "black",
+      str_detect(PATIENT_RACE, "asian|pacific islander") ~ "asian",
+      str_detect(PATIENT_RACE, "native") ~ "native",
+      str_detect(PATIENT_RACE, "white") ~ "white",
+      str_detect(PATIENT_RACE, "samoan|guamanian|chamorro") ~ "other",
+      str_detect(PATIENT_RACE, "unknown|choose not|unable") ~ "unknown",
+      TRUE ~ "other"
+    )
+  )
 
 data$age <- ifelse(
   data$ARRIVAL_AGE_DI == '85+', '85', data$ARRIVAL_AGE_DI
@@ -376,10 +368,9 @@ data <- data %>%
   ungroup()
 
 #############
-
 data$imaging <- ifelse(data$imgTests > 0, 1, 0)
 
-# keep complaints that appear more than 500 times
+# keep complaints that appear more than 1000 times
 complaint_counts <- table(data$CHIEF_COMPLAINT)
 complaints_less_than_500 <- names(complaint_counts[complaint_counts < 1000])
 data <- data[!(data$CHIEF_COMPLAINT %in% complaints_less_than_500), ]
@@ -398,17 +389,17 @@ source('src/figures/fig1_batch_rates.R')
 ### Create the instrument
 data$residual_batch <- resid(
   felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 data$residual_labtests <- resid(
   felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 data$residual_admit <- resid(
   felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year +  CHIEF_COMPLAINT + as.factor(ESI) + race + GENDER |0| ED_PROVIDER, data=data)
+       | dayofweekt + month_of_year +  complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 # Step 2: get batch tendency for each provider
@@ -430,7 +421,7 @@ rm(list = setdiff(ls(), c("data")))
 source('src/figures/fig2_randomization.R')
 
 # FILTER TO MAIN SAMPLE
-data <- data %>%
+final <- data %>%
   group_by(complaint_esi) %>%
   filter(n() > 1) %>%
   ungroup() %>%
