@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  6 OCT 2025 11:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  7 OCT 2025 09:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -295,19 +295,7 @@ LaTeX Info: Redefining \cite on input line 694.
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-09-02 L3 programming layer (loader) 
- (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count319
-))
-Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
-)
-Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count320
-\l__lipsum_a_int=\count321
-\l__lipsum_b_int=\count322
- (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@headwidth=\skip65
 \f@nch@offset@elh=\skip66
@@ -325,34 +313,37 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthR=\skip78
 \@temptokenb=\toks35
 )
-LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 53.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `normal'
-(Font)                  U/euf/m/n --> U/euf/m/n on input line 53.
+(Font)                  U/euf/m/n --> U/euf/m/n on input line 52.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/b/n --> U/euf/m/n on input line 53.
-\c@example=\count323
-\c@theorem=\count324
-\c@lemma=\count325
-\c@claim=\count326
-\c@corollary=\count327
-\c@proposition=\count328
- (./response_leter.aux)
+(Font)                  U/euf/b/n --> U/euf/m/n on input line 52.
+\c@example=\count319
+\c@theorem=\count320
+\c@lemma=\count321
+\c@claim=\count322
+\c@corollary=\count323
+\c@proposition=\count324
+ (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count325
+) (./response_leter.aux)
 \openout1 = `response_leter.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
+LaTeX Font Info:    ... okay on input line 101.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -390,16 +381,16 @@ LaTeX Font Info:    ... okay on input line 102.
 
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count329
+\scratchcounter=\count326
 \scratchdimen=\dimen267
 \scratchbox=\box61
-\nofMPsegments=\count330
-\nofMParguments=\count331
+\nofMPsegments=\count327
+\nofMParguments=\count328
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count332
+\MPscratchCnt=\count329
 \MPscratchDim=\dimen268
-\MPnumerator=\count333
-\makeMPintoPDFobject=\count334
+\MPnumerator=\count330
+\makeMPintoPDFobject=\count331
 \everyMPtoPDFconversion=\toks37
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -417,17 +408,17 @@ Package caption Info: End \AtBeginDocument code.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 107.
+(fancyhdr)                Please consider using the `twoside' option on input line 106.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 122.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 121.
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 122.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 121.
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 122.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 121.
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
@@ -437,7 +428,7 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ]
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 154.
+(fancyhdr)                Please consider using the `twoside' option on input line 153.
 
 
 
@@ -456,14 +447,14 @@ Package fancyhdr Warning: \fancyhead's `E' option without twoside option is usel
 [7]
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 337.
+(fancyhdr)                Please consider using the `twoside' option on input line 336.
 
 
 
 [8
 
 ]
-Overfull \hbox (11.99466pt too wide) in paragraph at lines 381--382
+Overfull \hbox (11.99466pt too wide) in paragraph at lines 380--381
 []\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
  []
 
@@ -480,29 +471,19 @@ Overfull \hbox (11.99466pt too wide) in paragraph at lines 381--382
 [13]
 
 [14]
-
-LaTeX Warning: File `panel_batched.png' not found on input line 497.
-
-
-! Package pdftex.def Error: File `panel_batched.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.497 ...hics[width=\textwidth]{panel_batched.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+<../outputs/figures/fig2_panel_batched_standardized.png, id=59, 867.24pt x 433.62pt>
+File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
+<use ../outputs/figures/fig2_panel_batched_standardized.png>
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 495.
+(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
 
 
-
-[15]
+[15 <../outputs/figures/fig2_panel_batched_standardized.png>]
 
 [16]
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 535.
+(fancyhdr)                Please consider using the `twoside' option on input line 532.
 
 
 
@@ -516,14 +497,18 @@ Package fancyhdr Warning: \fancyhead's `E' option without twoside option is usel
 
 [20]
 
-[21]
+Package natbib Warning: Citation `coen2022clinical; featherston2020decision' on page 21 undefined on input line 640.
 
-[22]
-Overfull \hbox (7.39651pt too wide) in paragraph at lines 727--728
+
+Overfull \hbox (7.39651pt too wide) in paragraph at lines 656--657
 []\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
 
+
+[21]
+
+[22]
 
 [23]
 
@@ -532,45 +517,41 @@ Overfull \hbox (7.39651pt too wide) in paragraph at lines 727--728
 [25]
 
 [26]
-
-[27]
-Overfull \hbox (2.58746pt too wide) in paragraph at lines 892--894
+Overfull \hbox (2.58746pt too wide) in paragraph at lines 789--791
 \T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
  []
 
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[27]
 
 [28]
 
 [29]
 
 [30]
-Overfull \hbox (26.6901pt too wide) in paragraph at lines 988--989
-[]\T1/cmr/m/n/10.95 Our repli-ca-tion at MGH^^Vwhere mid-level providers par-tic-i-pate un-der at-tend-ing su-per-vi-sion^^Vdemonstrates
- []
-
-
 
 [31]
 
 [32]
 
-[33]
-
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 1067.
+(fancyhdr)                Please consider using the `twoside' option on input line 961.
 
 
 
-[34
+[33
 
 ]
 
+[34]
+
 [35]
 
-[36]
-
-[37
+[36
 
 ]
 
@@ -581,14 +562,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1234 ...gen–Paap $F$-statistic equals 187 (≫
+l.1128 ...gen–Paap $F$-statistic equals 187 (≫
                                                   10).
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
 
-[38]
+[37]
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
 
@@ -596,18 +577,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1253 \item A
+l.1147 \item A
               dded Appendix B.3 describing the construction of
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
 
+[38]
+
 [39]
 
-[40]
-
-LaTeX Warning: File `combined_tests.png' not found on input line 1334.
+LaTeX Warning: File `combined_tests.png' not found on input line 1228.
 
 
 ! Package pdftex.def Error: File `combined_tests.png' not found: using draft setting.
@@ -616,20 +597,20 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1334 ...width=0.8\textwidth]{combined_tests.png}
+l.1228 ...width=0.8\textwidth]{combined_tests.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
 
+[40]
+
 [41]
 
 [42]
 
-[43]
-
-LaTeX Warning: File `mayo.png' not found on input line 1419.
+LaTeX Warning: File `mayo.png' not found on input line 1313.
 
 
 ! Package pdftex.def Error: File `mayo.png' not found: using draft setting.
@@ -638,20 +619,22 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1419 ...egraphics[width=0.8\textwidth]{mayo.png}
+l.1313 ...egraphics[width=0.8\textwidth]{mayo.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
 
-[44]
+[43]
 
-[45]
+[44]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+
+[45]
 
 [46]
 
@@ -659,41 +642,40 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [48]
 
-[49]
+[49] (./response_leter.bbl
 
-[50] (./response_leter.bbl
+[50])
 
-[51])
+Package natbib Warning: There were undefined citations.
 
-[52] (./response_leter.aux)
+
+
+[51] (./response_leter.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
  )
-(\end occurred inside a group at level 7)
+(\end occurred inside a group at level 4)
 
-### simple group (level 7) entered at line 1614 ({)
-### simple group (level 6) entered at line 1585 ({)
-### simple group (level 5) entered at line 1414 ({)
-### simple group (level 4) entered at line 986 ({)
-### simple group (level 3) entered at line 961 ({)
-### simple group (level 2) entered at line 475 ({)
-### simple group (level 1) entered at line 226 ({)
+### simple group (level 4) entered at line 1508 ({)
+### simple group (level 3) entered at line 1479 ({)
+### simple group (level 2) entered at line 1308 ({)
+### simple group (level 1) entered at line 225 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 8213 strings out of 469686
- 137125 string characters out of 5474629
- 633577 words of memory out of 5000000
- 36505 multiletter control sequences out of 15000+600000
+ 7759 strings out of 469686
+ 126096 string characters out of 5474629
+ 536697 words of memory out of 5000000
+ 36065 multiletter control sequences out of 15000+600000
  652764 words of font info for 108 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 73i,13n,77p,1597b,913s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on response_leter.pdf (52 pages, 412783 bytes).
+ 67i,13n,77p,1579b,730s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on response_leter.pdf (51 pages, 708241 bytes).
 PDF statistics:
- 825 PDF objects out of 1000 (max. 8388607)
- 213 compressed objects within 3 object streams
+ 819 PDF objects out of 1000 (max. 8388607)
+ 211 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

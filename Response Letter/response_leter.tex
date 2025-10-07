@@ -40,7 +40,6 @@
 % Misc
 % ---------------------------------------------------------------------
 \usepackage{url}                        % For URLs in references
-\usepackage{lipsum}                     % (optional) filler text
 
 % ---------------------------------------------------------------------
 % Line spacing and paragraph spacing
@@ -460,50 +459,49 @@ Following standard practice in the judges design literature \cite{dobbie2018effe
 \begin{quote2}
 \textbf{R1 Wrote (Minor Concern – Randomization mechanism clarity):}  
 
-\noindent``In this report I am taking the authors’ word regarding the randomization of patient to physician
-matching as described in the paper. More details on this should be given, and the patient-to physician
-assignment can be empirically shown – if the patients are assigned to physicians in a
-round-robin format, and you know when patients arrive at the hospital, and which physicians are
-working, you can empirically show that assignment is random. This is an important part of the
-empirical design of the paper, and so future iterations should show this empirically. Related to
-this, there is also the question of what the the queue configuration of the physicians look like – if
-it is random, and there are 5 physicians working, which physician gets the first patient? Is it by
-alphabetical order? More detail to describe this assignment mechanism would be helpful.” 
+\noindent``In this report I am taking the authors’ word regarding the randomization of patient to physician matching as described in the paper. More details on this should be given, and the patient-to physician assignment can be empirically shown – if the patients are assigned to physicians in a round-robin format, and you know when patients arrive at the hospital, and which physicians are working, you can empirically show that assignment is random. This is an important part of the empirical design of the paper, and so future iterations should show this empirically. Related to this, there is also the question of what the the queue configuration of the physicians look like – if it is random, and there are 5 physicians working, which physician gets the first patient? Is it by alphabetical order? More detail to describe this assignment mechanism would be helpful.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \color{blue}{We thank the reviewer for requesting additional detail about the patient-physician assignment mechanism, which is indeed crucial to our identification strategy. We have substantially expanded our description of this system in Section 3.1.
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for requesting additional detail about the patient-physician assignment mechanism, which is crucial to our identification strategy. We have substantially expanded Section 3.1 with detailed description of Mayo Clinic's rotational assignment system, documented in prior publications at this site \cite{Traub2016, traub2016emergency, Traub2018}. 
+
+The key institutional features address the reviewer's specific questions:
+
+\textbf{Assignment mechanism:} Patients are automatically assigned to physicians 60 seconds after registration through a computerized algorithm in the electronic health record system. Assignment is based solely on arrival time—the algorithm does not consider patient demographics, chief complaint, Emergency Severity Index score, physician workload, or the acuity of recently assigned patients.
+
+\textbf{Rotation initialization and ordering:} At shift start, each physician receives four consecutive patients to establish an initial patient load, after which they enter rotation with other on-duty physicians. The rotation order is predetermined by the ED scheduler and varies across shifts to prevent systematic advantages (e.g., Physician A might be first in Monday morning's rotation but third on Tuesday evening). This scheduling variation ensures no physician systematically receives healthier, sicker, or more complex patients based on their position in the queue.
+
+\textbf{System constraints:} To maintain integrity, physicians receive no new patients during their final 120 minutes and are capped at 18 patients per shift.
+
+We have added this detailed explanation to Section 3.1:
 
 \begin{quote}
-    ``Our study uses data from two large U.S. emergency departments (EDs): the Mayo Clinic of Arizona and Massachusetts General Hospital (MGH). The MGH dataset, which includes 129,489 patient encounters from November 10, 2021, through December 10, 2022, provides a robust sample for validating the generalizability of our findings. However, our primary analysis focuses on the Mayo Clinic data due to its unique feature of random patient-physician assignment, which allows for stronger causal inference. More specifically, the Mayo Clinic ED employs a sophisticated computerized rotational patient assignment algorithm that addresses many of the empirical challenges previously identified (\cite{Traub2016, traub2016emergency, Traub2018}). The system automatically assigns patients to physicians 60 seconds after registration through the electronic health record system, following a strict rotational protocol. At shift start, each physician receives four consecutive patients to establish an initial patient load, after which they enter rotation with other on-duty physicians. Critically, these assignments are based solely on arrival time—the algorithm does not consider patient demographics, chief complaint, Emergency Severity Index score, physician workload, or the acuity of recently assigned patients. To maintain system integrity, physicians receive no new patients during their final 120 minutes and are capped at 18 patients per shift. The rotation order follows a predetermined schedule that varies across shifts to ensure fairness over time.
+``The Mayo Clinic ED employs a sophisticated computerized rotational patient assignment algorithm that addresses many empirical challenges in healthcare settings \cite{Traub2016, traub2016emergency, Traub2018}. The system automatically assigns patients to physicians 60 seconds after registration through the electronic health record system, following a strict rotational protocol. At shift start, each physician receives four consecutive patients to establish an initial patient load, after which they enter rotation with other on-duty physicians. The rotation order is predetermined by the ED scheduler and varies across shifts to ensure fairness over time. Critically, these assignments are based solely on arrival time—the algorithm does not consider patient demographics, chief complaint, Emergency Severity Index score, physician workload, or the acuity of recently assigned patients. To maintain system integrity, physicians receive no new patients during their final 120 minutes and are capped at 18 patients per shift.
 
-    This rotational mechanism achieves the quasi-randomization necessary for causal inference. Unlike settings where patient-physician matching may be influenced by triage decisions, physician preferences, or informal routing practices, the Mayo Clinic's algorithmic assignment removes discretion from the matching process. We establish that, conditional on arrival time, patient-physician matching is effectively random---a critical requirement for our identification strategy that distinguishes our study from observational analyses where endogenous matching could confound the effects of physician discretion."
+This rotational mechanism achieves the quasi-randomization necessary for causal inference. Unlike settings where patient-physician matching may be influenced by triage decisions, physician preferences, or informal routing practices, the Mayo Clinic's algorithmic assignment removes discretion from the matching process."
 \end{quote}
 
-We have also added the Traub et al. (2018) citation, which documents the durability and effectiveness of this rotational assignment system at our study site.
+\textbf{Empirical verification:} Regarding the reviewer's suggestion to empirically demonstrate randomization, Figure 2 provides precisely this test. The right panel shows that after conditioning on time fixed effects (which account for the mechanical rotation across shifts), no patient characteristic—including demographics, vital signs, ESI level, or chief complaint—significantly predicts assignment to high versus low batch-tendency physicians. The coefficients are all near zero with confidence intervals crossing zero, confirming that the rotational algorithm effectively randomizes patient assignment conditional on shift timing.
 
-Regarding empirical verification of randomization, Figure 2 provides precisely the test suggested by the reviewer. The right panel shows that after conditioning on time fixed effects (to account for the mechanical rotation), no patient characteristic—including demographics, vital signs, ESI level, or chief complaint—significantly predicts assignment to high versus low batch-tendency physicians. The coefficients are all near zero with confidence intervals crossing zero, confirming that the rotational algorithm effectively randomizes patient assignment.
-
-We have added the following text to Section 3.3 to emphasize this empirical verification: 
+We have added explanatory text in Section 3.3 emphasizing this empirical verification:
 
 \begin{quote}
-    ``Figure 2 provides empirical verification that, while the decision to batch depends on patient characteristics, our measure---batch tendency---is plausibly exogenous. The left panel uses a linear probability model to test whether encounter, patient, ED, and physician characteristics predict the batching decision, controlling for shift-level fixed effects with standard errors clustered at the physician level. As expected, patient characteristics strongly predict batching decisions; for instance, patients with Falls/Assaults/Trauma complaints are 16.2 percentage points more likely to be batched compared to similar patients under similar ED capacity. The right panel assesses whether these same characteristics predict assignment to physicians with different batch tendencies. Importantly, we find that patient characteristics do not significantly predict assignment to high versus low batch-tendency physicians. The coefficients are near zero with confidence intervals crossing zero for all patient characteristics, confirming that, conditional on shift fixed effects (which account for the mechanical rotation), the assignment of patients to physicians with different batching tendencies is effectively random. This validates the rotational assignment mechanism and establishes batch tendency as an exogenous source of variation for identifying causal effects."
+``Figure 2 provides empirical verification that, while the decision to batch depends on patient characteristics, our measure—batch tendency—is plausibly exogenous. The left panel uses a linear probability model to test whether encounter, patient, ED, and physician characteristics predict the batching decision, controlling for shift-level fixed effects with standard errors clustered at the physician level. As expected, patient characteristics strongly predict batching decisions; for instance, patients with Falls/Assaults/Trauma complaints are 16.2 percentage points more likely to be batched compared to similar patients under similar ED capacity. The right panel assesses whether these same characteristics predict assignment to physicians with different batch tendencies. Importantly, we find that patient characteristics do not significantly predict assignment to high versus low batch-tendency physicians. The coefficients are near zero with confidence intervals crossing zero for all patient characteristics, confirming that, conditional on shift fixed effects (which account for the mechanical rotation), the assignment of patients to physicians with different batching tendencies is effectively random. This validates the rotational assignment mechanism and establishes batch tendency as an exogenous source of variation for identifying causal effects."
 \end{quote}
 
 \begin{figure}[t]
 \centering
 \caption*{Figure 2: Batch Tendency by Patient Characteristics}
 \begin{threeparttable}
-\includegraphics[width=\textwidth]{panel_batched.png}
+\includegraphics[width=\textwidth]{../outputs/figures/fig2_panel_batched_standardized.png}
     \begin{tablenotes}
         \small
-        \item \textit{Notes:} This figure plots a test for quasi-random assignment of patients to physicians in the Mayo Clinic ED. Residualization fixed effects include hospital-year-month, hospital-day of week-time of day. Robust standard errors are clustered at the physician level.
+        \item \textit{Notes:} This figure plots a test for quasi-random assignment of patients to physicians in the Mayo Clinic ED. The left panel shows how patient characteristics predict batching decisions. The right panel shows these same characteristics do not predict assignment to physicians with different batch tendencies. Residualization fixed effects include hospital-year-month, hospital-day of week-time of day. Robust standard errors are clustered at the physician level.
     \end{tablenotes}
 \end{threeparttable}
 \end{figure}
 
 
-Together, the institutional details and empirical evidence confirm that the Mayo Clinic's rotational assignment mechanism achieves the quasi-randomization necessary for our identification strategy.
-
+Together, the institutional details and empirical balance tests confirm that Mayo Clinic's rotational assignment mechanism achieves the quasi-randomization necessary for our identification strategy. This distinguishes our study from observational analyses where endogenous patient-physician matching could confound estimates of physician practice effects.
 
 \color{black}
 
@@ -542,15 +540,7 @@ Together, the institutional details and empirical evidence confirm that the Mayo
 \begin{quote2}
 \textbf{R2 Wrote (Research question \& contribution:):}  
 
-\noindent``The paper’s research question is clear. The main contribution is to provide causal evidence
-that batch ordering of advanced imaging tests in emergency departments (EDs) — commonly
-assumed to be efficient — increases patient length of stay (LOS), test volume, and admission
-rates. EDs are under constant pressure to improve throughput, and advanced imaging is a
-major driver of delays, costs and overcrowding in the EDs. The paper does have the potential
-to make a significant and novel contribution by causally examining the impact of diagnostic
-batch ordering in emergency departments. While prior research has explored physician-driven
-variation in testing and the operational burden of imaging, this study uniquely isolates the
-effect of batching behavior using a quasi-randomized design.”
+\noindent``The paper’s research question is clear. The main contribution is to provide causal evidence that batch ordering of advanced imaging tests in emergency departments (EDs) — commonly assumed to be efficient — increases patient length of stay (LOS), test volume, and admission rates. EDs are under constant pressure to improve throughput, and advanced imaging is a major driver of delays, costs and overcrowding in the EDs. The paper does have the potential to make a significant and novel contribution by causally examining the impact of diagnostic batch ordering in emergency departments. While prior research has explored physician-driven variation in testing and the operational burden of imaging, this study uniquely isolates the effect of batching behavior using a quasi-randomized design.”
 \end{quote2}
 
 \noindent\textbf{Response:} \textcolor{blue}{We appreciate the reviewer's recognition of our contribution to understanding diagnostic test ordering in emergency departments. We agree that challenging the conventional wisdom about batch ordering efficiency is important given the operational pressures EDs face. The reviewer's acknowledgment that our quasi-randomized design uniquely isolates batching effects validates our empirical approach. Following the reviewer's and other referees' suggestions, we have further clarified how our findings differ from prior work on physician practice variation by specifically focusing on the timing and sequencing of test orders rather than just testing intensity.}
@@ -569,100 +559,42 @@ strategies or evaluate outcomes where delayed imaging causes diagnostic delays.�
 \end{quote2}
 
 
-\noindent\textbf{***Response:} \color{blue}
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for this important clarification about our treatment comparison. The reviewer is absolutely correct that our empirical strategy compares ``early batched imaging" with ``everything else" rather than a pure batching versus sequential comparison. We appreciate this opportunity to clarify our approach and have made substantial revisions to address this concern.
 
-We thank the reviewer for this important clarification about our treatment comparison. The reviewer is absolutely correct that our empirical strategy compares ``early batched imaging" with ``everything else" rather than a pure batching versus sequential comparison. We appreciate this opportunity to clarify our approach and have made substantial revisions to address this concern.
+First, an essential clarification: our sample includes only encounters where at least one imaging test was ordered. The "everything else" comparison therefore comprises patients who received either (1) a single imaging test, or (2) multiple tests ordered sequentially—but not patients with zero imaging. This distinction is critical because our comparison is between different imaging strategies for patients requiring diagnostic imaging, not testing versus no testing. That said, the reviewer is correct that our counterfactual remains composite—mixing single-test and sequential multi-test encounters.
 
-The reviewer raises a fundamental question: are the harms from batching itself or from differences between patients needing multiple early tests? This gets to the heart of causal inference in our setting. Physicians cannot know ex-ante which patients will ultimately need multiple tests—they make batching decisions under uncertainty. Conditioning our analysis on eventual test count would introduce post-treatment bias, as the initial ordering strategy causally affects subsequent testing decisions. Our approach preserves causal interpretation by comparing strategies at the moment of decision-making.
+The reviewer raises a fundamental question: are the harms from batching itself or from differences between patients needing multiple early tests? This gets to the heart of causal inference in our setting. For decisions at the margin of physciain discretion, such as the one we study, the batching decision is made under uncertainty about whether additional tests will be needed. Conditioning our analysis on eventual test count would introduce post-treatment bias, as the initial ordering strategy causally affects subsequent testing decisions. Our approach preserves causal interpretation by comparing strategies at the moment of decision-making.
 
 We have made the following changes to address your concerns which we believe have made the manuscript stronger:
 
 \begin{enumerate}
     \item \textbf{Reframed our comparison throughout the manuscript}. We now consistently describe our comparison as ``batch ordering versus standard practice" rather than "batching versus sequencing." For example, in the abstract and Section 1.2, we revised: ``the marginal batched patient experiences a 130\% increase in total ED LOS compared to standard practice" (previously ``compared to patients who have their tests ordered sequentially").
-
-    \item \textbf{Clarified what we identify and why it matters}. We added text in Section 3.3 explaining: 
-    \begin{quote}
-    ``Our two-stage least squares estimates represent the LATE of batch ordering for `compliers'---patients whose testing strategy depends on the assigned physician's practice style. This effect compares early batching to standard practice, which includes both sequential ordering and single tests. While this involves a composite counterfactual, it provides the policy-relevant parameter: the effect of encouraging comprehensive upfront testing versus allowing diagnostic information to guide testing decisions for patients at the margin of clinical discretion—those whose testing strategy is not dictated by clear clinical necessity but rather depends on physician practice style and judgment."
-    \end{quote}
-
-    \item \textbf{Added discussion of the information problem}. In Section 3.2.1, we now explain: 
-    \begin{quote}
-    ``Our treatment variable, $Batched_{i,t}$, is an indicator taking the value of $1$ if patient $i$ has their tests batch ordered during their ED encounter, which took place on date $t$, and $0$ otherwise. Batching occurs when a physician simultaneously orders a comprehensive set of diagnostic tests, typically covering a broad range of potential diagnoses. This contrasts with standard practice, where a single test is ordered and subsequent tests are ordered in sequence on an as-needed basis.
     
-    We define ``batching" in line with standard emergency medicine practices and focus on batches that include two or more different imaging modalities where the time between orders is within 5 minutes, occurring as the first imaging tests ordered for the patient encounter (Su et al. 2025, Jameson et al. (2024)). We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, making early batching a discretionary choice based on practice style rather than clinical necessity. Each imaging modality, such as X-ray, contrast CT scan, non-contrast CT, MRI, and ultrasound, is considered a separate and distinct test for our study. In particular, we focus on batching instances where the physician orders different imaging tests because such tests cannot be done in a single scanning session (due to differences in equipment and setting). Encounters where a single test precedes subsequent batched tests (1.91\% of multi-test cases) are classified as sequential in our primary analysis, as the physician has initiated sequential information gathering before placing additional orders. Sensitivity analyses around this time window, batch size threshold, and when the batch occurs show that our results are robust to variation in these values."
+    \item \textbf{Clarified what we identify and why it matters}. We added text in Section 3.3 explaining:
+    \begin{quote}
+    ``Our two-stage least squares estimates represent the LATE of batch ordering for `compliers'---patients whose testing strategy depends on the assigned physician's practice style. This effect compares batch ordering to standard practice, which includes both sequential ordering and single tests. While this involves a composite counterfactual, it provides the policy-relevant parameter: the effect of encouraging comprehensive upfront testing versus allowing diagnostic information to guide testing decisions for patients at the margin of clinical discretion—those whose testing strategy is not dictated by clear clinical necessity but rather depends on physician practice style and judgment."
     \end{quote}
-
-
-    \item \textbf{Provided exploratory analysis with appropriate caveats}. While maintaining that conditioning on eventual test count introduces bias, we present this analysis in Appendix Table A.X (included below) with appropriate caveats about post-treatment conditioning. When we restrict to patients receiving 2+ tests, the 2SLS estimates change substantially---log LOS shows a small positive effect (0.178, not significant) and log time to disposition shows 0.423 (not significant). The number of tests actually shows a small negative effect (-0.102). However, we strongly caution that these estimates cannot be interpreted causally as they condition on a post-treatment variable. The dramatic change from our main results (0.837 for log LOS) likely reflects selection bias: batching causally increases the probability of receiving multiple tests, so conditioning on 2+ tests compares fundamentally different populations of compliers. This illustrates why preserving the full causal pathway is essential for valid inference."
-
-
-\begin{table}[ht]
-\centering
-\caption*{Appendix Table A.X: Exploratory Analysis: Patients Receiving 2+ Imaging Tests}
-\label{tab:exploratory_2plus}
-\begin{threeparttable}
-\begin{tabular}{lcccc}
-\toprule
-& \multicolumn{2}{c}{Main Analysis} & \multicolumn{2}{c}{2+ Tests Only} \\
-& \multicolumn{2}{c}{(N=11,404)} & \multicolumn{2}{c}{(N=4,375)} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
-& OLS & 2SLS & OLS & 2SLS \\
-& (1) & (2) & (3) & (4) \\
-\midrule
-Log time to disposition & $0.108^{***}$ & $0.804^{*}$ & $0.029^{*}$ & 0.423 \\
-& (0.014) & (0.349) & (0.015) & (0.372) \\[0.5em]
-
-Log LOS & $0.125^{***}$ & $0.837^{*}$ & $-0.069^{***}$ & 0.178 \\
-& (0.013) & (0.299) & (0.013) & (0.245) \\[0.5em]
-
-Number of tests & $0.830^{***}$ & $1.414^{***}$ & $0.043^{**}$ & -0.102 \\
-& (0.016) & (0.220) & (0.015) & (0.108) \\[0.5em]
-
-72hr return w/ admit & -0.000 & -0.012 & 0.003 & -0.019 \\
-& (0.002) & (0.018) & (0.003) & (0.025) \\[0.5em]
-
-\midrule
-\multicolumn{5}{l}{\textit{Mean for standard care patients:}} \\
-Log time to disposition & \multicolumn{2}{c}{5.236} & \multicolumn{2}{c}{5.237} \\
-Log LOS & \multicolumn{2}{c}{5.487} & \multicolumn{2}{c}{5.669} \\
-Number of tests & \multicolumn{2}{c}{1.336} & \multicolumn{2}{c}{2.172} \\
-72hr return w/ admit & \multicolumn{2}{c}{0.012} & \multicolumn{2}{c}{0.008} \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}
-\footnotesize
-\item \textit{Notes:} Columns 1-2 reproduce our main results from Table 4 for comparison. Columns 3-4 show results when restricting to patients who received 2 or more imaging tests. The dramatic differences between main and restricted samples illustrate the selection bias introduced by conditioning on post-treatment outcomes. Since batching causally increases the likelihood of receiving multiple tests (see Table 4, Panel A), the restricted sample compares different populations of compliers. The OLS sign reversal for log LOS (positive in main analysis, negative in restricted sample) particularly highlights this selection issue. All specifications include time fixed effects and baseline controls. Standard errors clustered at physician level.
-\item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
-This exploratory analysis, while limited by post-treatment conditioning, actually strengthens our methodological approach. The dramatic attenuation of effects illustrates precisely why our main specification---which preserves the full causal pathway---provides the relevant parameter for policy.
-
-\item \textbf{Connected to delayed imaging concerns}. The reviewer correctly notes we don't evaluate delayed imaging. We now acknowledge in Section 4.1:
-
+    
+    \item \textbf{Added discussion of the information problem}. In Section 3.2.1, we explain why we focus on early batching:
+    \begin{quote}
+    ``We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty, when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, leading to instances of early batching as discretionary choice based on practice style rather than clinical necessity."
+    \end{quote}
+    
+\item \textbf{Connected to delayed imaging concerns}. The reviewer correctly notes we do not evaluate delayed imaging. We now acknowledge in Section 4.1:
 \begin{quote}
-    ``Our estimates capture the full effect of early batching including its impact on test volume. The 1.4 additional tests under batching represent part of the causal pathway---forfeiting the information value of sequential testing leads to tests that would have been avoided under standard practice."
-\end{quote} 
-
-Regarding potential harms from delayed sequential testing, we find no evidence of quality impacts: 72-hour return rates are identical between groups (-0.012, p=0.50), suggesting sequential approaches don't cause harmful diagnostic delays.
-
-
-\item \textbf{Clarified why ``everything else" is the right comparison}. We added to Section 5.1: 
-
-\begin{quote}
-    ``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces both testing intensity and processing time."
+    ``Our estimates capture the full effect of discretionary batching including its impact on test volume. The 1.4 additional tests under batching represent part of the causal pathway---forfeiting the information value of ordering tests in sequence leads to tests that would have been avoided under standard practice."
 \end{quote}
+Regarding potential harms from delayed sequential testing, we find no evidence of quality impacts: 72-hour return rates are identical between groups (-0.012, p=0.50), suggesting sequential approaches do not cause harmful diagnostic delays.
 
-The reviewer's observation about mixed clinical pathways in our counterfactual is astute. However, this heterogeneity is precisely what makes our estimate policy-relevant. ED managers cannot randomize patients to pure sequential protocols based on eventual diagnostic needs (which are unknown ex-ante). They can only influence whether physicians default to comprehensive early testing or preserve diagnostic optionality when facing uncertainty. Our LATE provides exactly this parameter.
-
-We believe these revisions substantially improve the manuscript's clarity while maintaining scientific rigor. The comparison we identify—early batching versus standard practice for marginal patients—is both what we can credibly estimate given the information structure and what policymakers need to know. We are grateful to the reviewer for pushing us to clarify this important distinction, as it has led us to better articulate both the methodological foundations and practical implications of our work.
-
+\item \textbf{Clarified why ``everything else" is the right comparison}. We added to Section 5.1:
+\begin{quote}
+    ``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces both testing intensity and length of stay."
+\end{quote}
 \end{enumerate}
 
+The reviewer's observation about mixed clinical pathways in our counterfactual is astute. However, this heterogeneity reflects what makes our estimate policy-relevant. ED managers cannot randomize patients to pure sequential protocols based on eventual diagnostic needs (which are unknown ex-ante). They can only influence whether physicians default to comprehensive early testing or preserve diagnostic optionality when facing uncertainty. Our LATE provides exactly this parameter.
 
-
-
+We believe these revisions substantially improve the manuscript's clarity while maintaining scientific rigor. The comparison we identify—batch ordering versus standard practice for marginal patients—is both what we can credibly estimate given the information structure and what policymakers need to know. We are grateful to the reviewer for pushing us to clarify this important distinction, as it has led us to better articulate both the methodological foundations and practical implications of our work.
 \color{black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -672,11 +604,9 @@ We believe these revisions substantially improve the manuscript's clarity while 
 \noindent``As it currently stands, the study lacks a clearly articulated hypotheses section, which would help clarify the underlying mechanisms the authors expect to observe in the results. This section is typically where one would expect the authors to build a narrative around the anticipated behavioral patterns and how those behaviors are theoretically linked to the operational outcomes under study.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \color{blue}
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for this valuable suggestion to develop formal hypotheses. The reviewer is absolutely correct that explicitly articulating our theoretical predictions strengthens the paper's contribution and clarifies the mechanisms we expect to observe.
 
-We thank the reviewer for this valuable suggestion to develop formal hypotheses. You are absolutely correct that explicitly articulating our theoretical predictions strengthens the paper's contribution and clarifies the mechanisms we expect to observe. This recommendation has significantly improved our manuscript by making our theoretical framework more transparent and our empirical tests more clearly motivated.
-
-Following your guidance, we have added a new Section 2.3 ``Hypothesis Development" that builds naturally from our literature review to develop four formal hypotheses about how batch ordering affects ED operations. We present these additions in detail below:
+Following this guidance, we have added Section 2.3 ``Hypothesis Development" that builds from our literature review to develop four formal hypotheses about how batch ordering affects ED operations:
 
 \begin{quote}
 \subsection*{``Hypothesis Development}
@@ -707,7 +637,7 @@ Moreover, the cognitive load literature suggests that processing multiple test r
 
 \subsubsection*{Clinical Decision-Making and Disposition}
 
-The medical literature recognizes ``diagnostic momentum"---where abnormal findings, even if clinically insignificant, drive further workup and more conservative clinical decisions \cite{coen2022clinical, featherston2020decision}. When physicians batch order and receive multiple results simultaneously, they encounter more opportunities for incidental findings that may influence disposition decisions \cite{lumbreras2010incidental, berlin2011incidentaloma}. As our review noted, physicians facing uncertainty and potential legal consequences may opt for more conservative disposition decisions \cite{rao2012overuse, lam2020why}. The simultaneous arrival of multiple test results, particularly with incidental findings, may trigger defensive medicine behaviors:
+The medical literature recognizes ``diagnostic momentum"---where abnormal findings, even if clinically insignificant, drive further workup and more conservative clinical decisions \cite{coen2022clinical; featherston2020decision}. When physicians batch order and receive multiple results simultaneously, they encounter more opportunities for incidental findings that may influence disposition decisions \cite{lumbreras2010incidental, berlin2011incidentaloma}. As our review noted, physicians facing uncertainty and potential legal consequences may opt for more conservative disposition decisions \cite{rao2012overuse, lam2020why}. The simultaneous arrival of multiple test results, particularly with incidental findings, may trigger defensive medicine behaviors:
 
 \begin{quote}
 \small
@@ -726,29 +656,33 @@ The literature on physician behavior under capacity constraints consistently sho
 These hypotheses provide testable predictions that we examine using our quasi-experimental design. By leveraging variation in physician batching tendency under random patient assignment, we can identify whether these theoretical mechanisms manifest in actual ED operations."
 \end{quote}
 
-
-
-
+This new section provides the theoretical foundation that motivates our empirical specifications and helps readers understand which mechanisms we test. We are grateful to the reviewer for this suggestion, which has substantially strengthened the manuscript's theoretical contribution.
 
 \color{black}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{quote2}
 \textbf{R2 Wrote (Shift‑of‑testing to other settings):}  
-“While the study finds that batch ordering increases imaging in the ED as well as inpatient admissions, it does not evaluate whether this
-reflects actual overuse or a shift in imaging from the inpatient setting to the ED. In other
-words, it is unclear whether batching increases unnecessary testing or simply frontloads
-diagnostics.” 
+``While the study finds that batch ordering increases imaging in the ED as well as inpatient admissions, it does not evaluate whether this reflects actual overuse or a shift in imaging from the inpatient setting to the ED. In other words, it is unclear whether batching increases unnecessary testing or simply frontloads diagnostics."
+
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}{We thank the reviewer for this important distinction between overuse and frontloading of diagnostics. The reviewer is correct that we cannot definitively determine whether the additional imaging represents unnecessary testing or simply shifts testing from inpatient to ED settings. We have been careful throughout the manuscript to avoid characterizing these additional tests as ``waste" or ``overuse," as our LATE estimate identifies the effect of batching for marginal patients whose testing decisions vary by physician preference—these tests may still have clinical value.
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for this important distinction between overuse and frontloading of diagnostics. The reviewer is correct that we cannot definitively determine whether the additional imaging represents unnecessary testing or simply shifts testing from inpatient to ED settings. This is an important limitation of our study.
 
-However, based on extensive discussions with our physician coauthors at both study sites, we note several reasons why frontloading diagnostics in the ED—even if the tests would eventually be ordered as an inpatient—represents an operational inefficiency:
+However, interpreting our findings purely as frontloading faces a conceptual challenge. Frontloading would imply batched patients receive ED tests that would have been ordered during a predetermined hospitalization. Yet admission itself is a downstream consequence of the testing strategy in our data—we find that batching increases admission probability through increases in imaging tests performed. This suggests at least some proportion of the additional tests are driving new admission decisions rather than frontloading diagnostics for patients who would have been admitted regardless of their ED imaging results. That is, the tests themselves are creating admissions, not being ordered because admission was already determined.
 
-First, ED imaging resources are typically more constrained than inpatient resources, with ED scanners serving both emergency and admitted patients. Frontloading increases congestion in these shared resources, delaying care for other ED patients. Second, ED lengths of stay directly impact ED crowding, which has well-documented negative effects on patient outcomes and left-without-being-seen rates. Third, the ED environment is optimized for rapid stabilization and disposition decisions, not comprehensive diagnostic workups. Inpatient teams often prefer to direct their own diagnostic approach based on evolving clinical pictures.
+That said, we acknowledge multiple causal pathways may operate simultaneously. Some batched patients may receive tests that genuinely reveal admission-worthy conditions that would have been discovered later. Others may be admitted defensively due to incidental findings from comprehensive imaging that would not have been pursued under sequential testing. Without linked inpatient imaging records, we cannot empirically separate these mechanisms.
 
-While our finding of increased admissions could partly reflect frontloading of diagnostic workups that reveal conditions requiring admission, the magnitude of the effect and lack of improvement in 72-hour returns suggest the additional testing may not be optimally targeted. However, we acknowledge in the revised limitations section that we cannot fully disentangle frontloading effects from potentially unnecessary testing. Future research with access to inpatient imaging data could better address this distinction.
+We have been careful throughout the manuscript to avoid characterizing the additional tests as "waste" or "overuse," as our LATE identifies effects for marginal patients whose testing decisions vary by physician preference—these tests may have clinical value regardless of timing. However, even if batching represents frontloading rather than overuse, it has operational consequences worth noting. Based on discussions with our physician coauthors at both study sites: ED imaging resources are typically more constrained than inpatient resources, frontloading increases ED congestion and delays care for other ED patients, and inpatient teams often prefer directing their own diagnostic approach based on evolving clinical information.
 
-We have added text to the Discussion acknowledging both possibilities and noting this as a limitation of our study.}
+We have added discussion of this limitation in Section 5.3:
+
+\begin{quote}
+"We cannot determine the extent to which the additional imaging from batching represents unnecessary testing or frontloading of diagnostics that would eventually occur in the inpatient setting. However, interpreting our findings purely as frontloading is complicated by the fact that admission itself is affected by batching—we observe a XX percentage point increase in admission probability, suggesting the tests themselves influence disposition decisions. Multiple mechanisms may operate: some additional tests may reveal genuine admission-worthy conditions, while others may trigger defensive admissions through incidental findings. Distinguishing between these pathways would require linked ED-inpatient imaging data to examine whether batched patients receive correspondingly fewer tests after admission. This remains an important direction for future research."
+\end{quote}
+
+We appreciate the reviewer highlighting this distinction, as it has led us to be more precise about the causal pathways our estimates capture and the important questions that remain for future research.
 
 \color{black}
 
@@ -768,59 +702,37 @@ analysis?”
 \begin{quote2}
 \textbf{R2 Wrote (Batch timing and its relation to LOS):}
 
-\noindent``Batch timing is unclear to me. Specifically,
-Length of Stay (LOS) is used as a primary outcome. Batching, defined as imaging
-orders within the first 5 minutes of encounter, is treated as a treatment applied at the
-beginning of the visit. But in real ED workflows, the decision to batch may itself be a
-function of how the patient’s case has unfolded up to that point. For example, if the
-diagnosis is taking longer, or prior tests have not resolved the issue, or if the physician
-senses the patient may be admitted soon, then the physician might batch several tests
-later in the encounter in order to “wrap things up” and avoid delays — i.e., batching
-becomes a consequence of extended LOS, not just a cause. The 5-minute window may
-not capture the delayed batching; e.g., if initial results come back inconclusive or the
-patient’s condition worsens. Thus, the batching variable may be misclassified, and later
-batches that react to prolonged stays are excluded from the analysis. Even when orders
-are placed early, test results often take time to return. That delay — especially from CTs
-or MRIs — inflates LOS. Therefore, the measured LOS may not be a clean posttreatment
-outcome, but instead partially determined by the batching process itself. This
-risks simultaneity bias, where cause and effect are entangled in time. The issue is less
-severe if the paper really only claims to understand something about initial batching
-decisions, but I am not sure the authors have made those distinctions clear enough.” 
+\noindent``Batch timing is unclear to me. Specifically, Length of Stay (LOS) is used as a primary outcome. Batching, defined as imaging orders within the first 5 minutes of encounter, is treated as a treatment applied at the beginning of the visit. But in real ED workflows, the decision to batch may itself be a function of how the patient’s case has unfolded up to that point. For example, if the diagnosis is taking longer, or prior tests have not resolved the issue, or if the physician senses the patient may be admitted soon, then the physician might batch several tests later in the encounter in order to “wrap things up” and avoid delays — i.e., batching becomes a consequence of extended LOS, not just a cause. The 5-minute window may not capture the delayed batching; e.g., if initial results come back inconclusive or the patient’s condition worsens. Thus, the batching variable may be misclassified, and later batches that react to prolonged stays are excluded from the analysis. Even when orders are placed early, test results often take time to return. That delay — especially from CTs or MRIs — inflates LOS. Therefore, the measured LOS may not be a clean posttreatment outcome, but instead partially determined by the batching process itself. This risks simultaneity bias, where cause and effect are entangled in time. The issue is less severe if the paper really only claims to understand something about initial batching decisions, but I am not sure the authors have made those distinctions clear enough.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \color{blue}
-We thank the reviewer for this insightful observation about the temporal relationship between batching and LOS. This comment has led us to substantially clarify throughout the manuscript that our study specifically examines \textit{discretionary early batching decisions}---those made at the beginning of encounters under diagnostic uncertainty. These are precisely the decisions where physician practice style dominates clinical necessity, representing the margin where ED protocols, training interventions, and decision support systems can meaningfully influence practice. Later adaptive batching in response to case complexity represents clinical judgment that managerial policies cannot and should not constrain. We have revised multiple sections to make this critical distinction explicit, as detailed below.
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for this insightful observation about the temporal relationship between batching and LOS. This comment has led us to substantially clarify throughout the manuscript that our study specifically examines discretionary early batching decisions—those made at the beginning of encounters in the very first set of tests ordered under diagnostic uncertainty. These are precisely the decisions where physician practice style dominates clinical necessity, representing the margin where ED protocols, training interventions, and decision support systems can meaningfully influence practice. Later adaptive batching in response to case complexity represents clinical judgment that managerial policies cannot and should not constrain.
 
+\textbf{Why early batching is the relevant parameter:} The reviewer correctly notes that physicians might batch tests later to ``wrap things up." This adaptive behavior is fundamentally different from the discretionary decision to order comprehensive imaging upfront. Our instrumental variable (physician batch tendency) specifically captures variation in early ordering propensity—identifying physicians who habitually commit to comprehensive imaging before information unfolds versus those who preserve diagnostic flexibility.
 
-\textbf{Clarifications made throughout the manuscript:}
+Empirically, we verify that ``late batching"—cases where a single test is followed by a batch—is rare, occurring in only 189 encounters (1.91\% of multi-test encounters). To verify this classification does not impact our results, we re-estimated all models treating such cases as batched (Appendix Table X.X). The results are virtually identical, confirming our classification is appropriate.
 
-Following the reviewer's observation, we have revised our framing to emphasize that our parameter of interest is the effect of \textit{early discretionary batching} versus standard practice. Key revisions include:
+\textbf{Clarifications made throughout the manuscript:} Following the reviewer's observation, we have revised our framing to emphasize that our parameter of interest is the effect of discretionary batching versus standard practice:
 
 \begin{enumerate}
-\item \textbf{Abstract:} Now specifies ``early batch ordering" and ``discretionary batching decisions made at encounter initiation"
-\item \textbf{Section 1.2:} Clarifies that our LATE identifies ``the effect of discretionary batching for patients whose testing strategy depends on physician practice style rather than clinical necessity"
-\item \textbf{Section 3.2.1:} Extensively revised to state:
+\item \textbf{Abstract:} Now specifies "discretionary batching decisions made at encounter initiation"
+
+\item \textbf{Section 1.2:} Clarifies that our LATE identifies "the effect of discretionary batching for patients whose testing strategy depends on physician practice style rather than clinical necessity"
+
+\item \textbf{Section 3.2.1:} Extensively revised to clarify our focus:
 \begin{quote}
-``We define ``batching" in line with standard emergency medicine practices and focus on batches that include two or more different imaging modalities where the time between orders is within 5 minutes, occurring as the first imaging tests ordered for the patient encounter (Su et al. 2025, Jameson et al. 2024). We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, making early batching a discretionary choice based on practice style rather than clinical necessity. Each imaging modality, such as X-ray, contrast CT scan, non-contrast CT, MRI, and ultrasound, is considered a separate and distinct test for our study. In particular, we focus on batching instances where the physician orders different imaging tests because such tests cannot be done in a single scanning session (due to differences in equipment and setting). Encounters where a single test precedes subsequent batched tests (1.91\% of multi-test cases) are classified as sequential in our primary analysis, as the physician has initiated sequential information gathering before placing additional orders. Sensitivity analyses around this time window, batch size threshold, and when the batch occurs show that our results are robust to variation in these values."
+"We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, making early batching a discretionary choice based on practice style rather than clinical necessity."
 \end{quote}
 \end{enumerate}
 
-\textbf{Why early batching is the relevant parameter:}
+\textbf{LOS as outcome and simultaneity bias:} The reviewer raises an important concern about whether LOS can serve as a clean post-treatment outcome given that test completion times mechanically contribute to its measurement. We acknowledge this concern but emphasize that this relationship is not a confounder—it is precisely the causal pathway our study seeks to identify.
 
-The reviewer correctly notes that physicians might batch tests later to ``wrap things up." This adaptive behavior is fundamentally different from the discretionary decision to order comprehensive imaging upfront. Our instrumental variable (physician batch tendency) specifically captures variation in early ordering propensity---identifying physicians who habitually commit to comprehensive imaging before information unfolds versus those who preserve diagnostic flexibility.
+The reviewer asks whether this creates ``simultaneity bias, where cause and effect are entangled in time." This would be a concern if batching and LOS were simultaneously determined by some third factor, or if LOS caused batching. However, our design addresses this: we focus on early batching decisions (first tests ordered of the encounter), and our instrument (physician batch tendency) is predetermined before the patient encounter begins. The temporal ordering is clear: physician tendency $\rightarrow$ batching decision $\rightarrow$ test ordering $\rightarrow$ test completion $\rightarrow$ LOS. The mechanical relationship between test completion and LOS represents the causal pathway through which early batching operates, not simultaneity bias.
 
-Empirically, we verify that ``late-batching" or cases where a single test is followed by a batch is rare and only occurs in 189 encounters, representing 1.91\% of multi-test encounters. To verify this classification does not impact our results, we re-estimated all models treating a single test followed by a batch in our definition of batching (Appendix Table A4). The results are identical; the batching rate remains the same, and all coefficients are unchanged, confirming that our
-classification is appropriate.
+Our treatment is the decision to batch, and LOS captures the total consequences of that decision. When physicians choose to batch tests upfront, they set in motion a cascade of operational consequences: patients wait for multiple tests to complete, radiologists must interpret multiple images, physicians must cognitively process all results simultaneously, and clinical decisions must integrate potentially conflicting or incidental findings. These are the mediating mechanisms through which early batching decisions affect patient flow.
 
-\textbf{LOS as a post-treatment outcome:}
+Our mediation analysis (Section 4.3) formally decomposes these pathways, revealing that increased test volume accounts for the majority of the LOS effect (indirect effect = 0.207, $p < 0.001$). This confirms that the ``mechanical" component the reviewer identifies—waiting for additional tests—is indeed a key mechanism resulting from the discretionary early batching decision.
 
-The reviewer raises an important concern about whether LOS can serve as a clean post-treatment outcome given that test completion times mechanically contribute to its measurement. We acknowledge this concern but emphasize that this relationship is not a confounder—it is precisely the causal pathway our study seeks to identify.
-
-Our treatment is the \textit{decision} to batch, and LOS captures the total consequences of that decision. When physicians choose to batch tests upfront, they set in motion a cascade of operational consequences: patients wait for multiple tests to complete, radiologists must interpret multiple images, physicians must cognitively process all results simultaneously, and clinical decisions must integrate potentially conflicting or incidental findings. These are not simultaneity biases but rather the mediating mechanisms through which early batching decisions affect patient flow.
-
-Our mediation analysis (Section 4.3) formally decomposes these pathways, revealing that increased test volume accounts for the majority of the LOS effect (indirect effect $= 0.207, p < 0.001$). This confirms that the ``mechanical" component the reviewer identifies—waiting for additional tests—is indeed a key mechanism, but one that results from the discretionary early batching decision rather than confounding it.
-
-Furthermore, to separate clinical decision-making time from test completion time, we examine ``time to disposition"—the duration until physicians make admission/discharge decisions, excluding post-decision boarding. The persistence of large effects (123\% increase) demonstrates that early batching affects not just mechanical waiting but also clinical processing efficiency. This addresses the reviewer's concern about entangled causality: even when excluding post-disposition time (where no testing occurs), the early batching decision substantially delays clinical decision-making.
+Furthermore, to separate clinical decision-making time from test completion time, we examine "time to disposition"—the duration until physicians make admission/discharge decisions, excluding post-decision boarding. The persistence of large effects (123\% increase) demonstrates that early batching affects not just mechanical waiting but also clinical processing efficiency. Even when excluding post-disposition time (where no testing occurs), the early discretionary batching decision substantially delays clinical decision-making.
 
 We appreciate the reviewer's careful attention to these temporal dynamics, which has prompted us to more clearly articulate that our study evaluates the full operational consequences of discretionary early batching decisions—precisely the parameter ED managers need to understand when considering protocols to influence physician ordering behavior.
 \color{black}
@@ -829,20 +741,11 @@ We appreciate the reviewer's careful attention to these temporal dynamics, which
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 7  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{quote2}
 \textbf{R2 Wrote (Definition of batching):}  
-“The definition of batching is also narrowly defined to be 2+
-tests ordered within the 5 first minutes. The study equates batch ordering with
-guaranteed test completion and additive imaging volume. However, in practice, test
-results may return asynchronously, and physicians may update their diagnostic plans
-based on early results—even for batched orders. For example, even if the physicians
-initially batch ordered the tests, they could cancel some of these as they review the
-results. The paper would benefit from clarifying how often batched tests were actually
-completed and whether sequential result review modified downstream test execution.
-Without this, the causal link between batch ordering and increased imaging intensity
-may be overstated.” 
+``The definition of batching is also narrowly defined to be 2+ tests ordered within the 5 first minutes. The study equates batch ordering with guaranteed test completion and additive imaging volume. However, in practice, test results may return asynchronously, and physicians may update their diagnostic plans based on early results—even for batched orders. For example, even if the physicians initially batch ordered the tests, they could cancel some of these as they review the results. The paper would benefit from clarifying how often batched tests were actually completed and whether sequential result review modified downstream test execution. Without this, the causal link between batch ordering and increased imaging intensity may be overstated.” 
 \end{quote2}
 
 \noindent\textbf{Response:} \color{blue}
-We thank the reviewer for this important clarification question. Our outcome measure counts imaging tests actually performed, not merely ordered. This critical distinction strengthens our causal interpretation: the 1.4 additional tests per marginally batched patient represent completed imaging studies that consumed resources and time, not provisional orders subsequently cancelled.
+We thank the reviewer for this important clarification question. Our outcome measures count imaging tests actually performed, not merely ordered. This critical distinction strengthens our causal interpretation: the 1.4 additional tests per marginally batched patient represent completed imaging studies that consumed resources and time, not provisional orders subsequently cancelled.
 
 Based on consultation with our physician coauthor at Mayo Clinic, test cancellations after batch ordering face substantial operational barriers. Once the radiology department acknowledges an order, cancellation requires physicians to physically call and request the department to "push back" the imaging order. Furthermore, radiology departments often coordinate between modalities (e.g., CT and ultrasound) so patients move directly from one scanner to another. With radiologist read times averaging 60 minutes, patients typically complete all batched imaging before initial results become available for physician review. While cancellations occasionally occur (e.g., a CT scan revealing appendicitis leading to a cancelled pelvic ultrasound), the operational friction makes these exceptions rather than the standard practice.
 
@@ -852,7 +755,7 @@ Importantly, even if some batched orders were cancelled, this would render our e
 
 We have clarified the distinction between ordered and performed tests in multiple sections:
 
-Section 3.2.2 (Dependent Variables): Revised to state: 
+Section 3.2.2 (Dependent Variables): 
 \begin{quote}
 ``Beyond time-based metrics, we examine resource utilization through the number of distinct imaging tests performed during each ED encounter. This count variable helps us understand how batch ordering practices influence the diagnostic workload."
 \end{quote}
@@ -864,7 +767,7 @@ Section 4.2 (Results): Added clarification:
 
 Table 4: Added footnote: 
 \begin{quote}
-``Test counts represent performed imaging studies with documented results, not ordered tests. The persistence of increased test volume under batching indicates that cancellations are insufficiently common to offset the  effect."
+``Test counts represent performed imaging studies with documented results, not ordered tests. The persistence of increased test volume under batching suggests cancellations do not substantially offset the effect."
 \end{quote}
 
 Section 5.3 (Limitations): Added: 
@@ -880,12 +783,7 @@ These clarifications ensure that readers understand our analysis captures actual
 \begin{quote2}
 \textbf{R2 Wrote (Role of laboratory results):}  
 
-\noindent``While the study restricts its scope to imaging due to
-its operational constraints, it does not address the interplay and potential dependencies
-between imaging and other diagnostic inputs—particularly lab results. One can imagine
-that in practice, lab results often arrive earlier and may prompt physicians to reassess
-imaging decisions, even when tests are initially batched. Could this potentially overstate
-the causal impact of batching on downstream outcomes?” 
+\noindent``While the study restricts its scope to imaging due to its operational constraints, it does not address the interplay and potential dependencies between imaging and other diagnostic inputs—particularly lab results. One can imagine that in practice, lab results often arrive earlier and may prompt physicians to reassess imaging decisions, even when tests are initially batched. Could this potentially overstate the causal impact of batching on downstream outcomes?” 
 \end{quote2}
 
 \noindent\textbf{Response:} \color{blue}
@@ -893,7 +791,7 @@ We thank the reviewer for raising this important concern about whether earlier-a
 
 The reviewer correctly notes that lab results often arrive before imaging results (typically 30-60 minutes for basic labs versus 90-165 minutes for imaging). Based on consultation with our physician co-author at the Mayo Clinic, normal lab results typically do not lead to imaging cancellation. Cancellation occurs only in rare, extreme cases: when labs provide a definitive diagnosis (e.g., severe anemia fully explaining dyspnea, thereby eliminating the need for a chest CT) or when results indicate instability precluding imaging (e.g., severe hyperkalemia requiring immediate dialysis). More commonly, abnormal lab results might modify the imaging type—for instance, switching from contrast to non-contrast CT for acute kidney injury—but do not eliminate the need for imaging. Importantly, even these modifications require physicians to call the radiology department, creating a significant workflow barrier that discourages treating batch orders as provisional.
 
-Given these operational realities, if physicians were to cancel certain imaging based on lab results, our estimate of the impact of discretionary batching on performed imaging tests would be a strict lower bound of the effect on total imaging orders. We find 1.4 additional performed imaging tests per marginally batched patient, suggesting that imaging pathways, once initiated through discretionary batching, proceed to completion often enough to lead to increased testing. 
+Given these operational realities, imaging cancellations based on lab results are rare.  Our outcome measures count performed tests, not ordered tests, so any cancellations  that do occur would make our estimates conservative—we would be understating the  initial commitment to imaging that batching represents. The fact that we observe 1.4  additional performed imaging tests per marginally batched patient demonstrates that  batched imaging pathways, once initiated, proceed to completion despite the theoretical possibility of modification based on lab results.
 
 To empirically test whether lab results moderate our batching effects, we examined specifications progressively adding controls. Following concerns from Reviewers 1 and 3 about potential exclusion restriction violations, we first added physician characteristics to ensure our instrument captures batching behavior specifically rather than other physician attributes. We then added lab ordering to test for lab-imaging interactions:
 
@@ -938,7 +836,8 @@ We observe modest attenuation when controlling for laboratory ordering, with the
 
 \textbf{Manuscript changes:}
 
-\textit{Section 4.8 (Robustness):} Added Table A.Z with the above specifications and discussion:
+\textit{Section 4.8 (Robustness):} Added Table A.Z with the above specifications and 
+discussion addressing this concern:
 \begin{quote}
 ``To address concerns about lab-imaging interactions, we examined whether controlling for laboratory ordering affects our estimates of discretionary batching (Table A.Z). The modest attenuation when adding lab controls (e.g., log time to disposition: 0.822 to 0.771) indicates that some portion of our estimated batching effect reflects correlation with general diagnostic intensity—physicians who batch imaging also tend to order more laboratory tests. By controlling for lab ordering, we isolate the imaging-specific component of the batching effect. Importantly, even after decoupling this correlation, we find large, persistent impacts in processing times and imaging volume. This demonstrates that discretionary imaging batching creates substantial operational burdens distinct from broader diagnostic thoroughness. Clinical evidence supports this independence: normal lab results rarely lead to imaging cancellation, as modifications require calling radiology departments—a significant workflow barrier. The persistence of large effects after controlling for laboratory utilization confirms that discretionary batching commits patients to imaging pathways that proceed independently once initiated."
 \end{quote}
@@ -953,21 +852,21 @@ We appreciate the reviewer highlighting this potential concern, as addressing it
 \begin{quote2}
 \textbf{R2 Wrote (Limited scope of patient conditions):}  
  
-\noindent``The study excludes many complaints where
-imaging is rarely ordered or batching is infeasible (e.g., dermatologic issues, urinary complaints). The results may not apply to low-acuity patient populations or fast-track EDs. Therefore, the study is more narrowly defined.” 
+\noindent``The study excludes many complaints where imaging is rarely ordered or batching is infeasible (e.g., dermatologic issues, urinary complaints). The results may not apply to low-acuity patient populations or fast-track EDs. Therefore, the study is more narrowly defined.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \color{blue}{We thank the reviewer for highlighting the focused nature of our sample. The reviewer is correct that we exclude complaints where imaging is rarely ordered or batching is uncommon (occurring $<5\%$ of the time). This exclusion was necessary for two reasons: First, our instrumental variables approach requires sufficient variation in batching behavior to identify effects. Complaints that are rarely batched would lead to weak instrument problems. 
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for highlighting the focused nature of our sample. The reviewer is correct that we exclude complaints where imaging is rarely ordered or batching is uncommon (occurring less than 5\% of the time). This exclusion was necessary for both statistical and substantive reasons.
 
-Importantly, including rarely-batched complaints would distort our LATE estimate. The IV estimate is essentially a weighted average of complaint-specific effects, where weights depend on the first-stage relationship. For complaints where batching never occurs, the complaint-specific effect is undefined, while for rarely-batched complaints, the effect is estimated with high variance. Including these would produce a LATE averaged over: (1) complaints where batching represents a meaningful choice with identifiable effects, and (2) complaints contributing mainly noise and of less interest to ED physicians. This would yield a less interpretable and potentially biased estimate of the batching effect where it actually matters.
+Statistically, our instrumental variables approach requires sufficient variation in batching behavior to identify effects. Including complaints where batching rarely occurs time would create weak instrument problems and yield unreliable estimates. For these rarely batched complaints, physicians have effectively determined that batching is clinically inappropriate—there is no discretionary decision to be made.
 
-The random assignment of patients to physicians at Mayo Clinic allows us to restrict our sample to complaints where batching is a relevant operational decision without introducing selection bias. This focused approach provides clear, actionable insights for specific clinical scenarios—trauma, neurological complaints, abdominal pain—where batching decisions are debated and meaningfully impact ED operations. These complaints represent approximately 25\% of ED volume but account for 41\% of imaging resource utilization in our data.
+Substantively, the random assignment of patients to physicians at Mayo Clinic allows us to restrict our sample to complaints where batching is a relevant operational decision without introducing selection bias. This focused approach provides clear, actionable insights for specific clinical scenarios—trauma, neurological complaints, abdominal pain—where batching decisions are actively debated among emergency physicians and meaningfully impact ED operations. These complaints represent approximately 25\% of the ED volume but account for 41\% of imaging resource utilization in our data, underscoring their operational significance.
 
-We agree this makes our study ``more narrowly defined," but view this as ensuring our estimates are both statistically identified and operationally relevant. We have added text to the limitations section explicitly stating: 
+We agree that this narrows the scope of our study. However, this focus ensures our estimates are both statistically identified and operationally relevant for the clinical contexts where batching represents a genuine debated practice choice. We have added text to the limitations section explicitly acknowledging this scope:
 
 \begin{quote}
-    ``Our findings apply to moderate-to-high acuity patients with complaints commonly requiring multiple imaging studies. The effects of batching in low-acuity or fast-track settings, where imaging is less common, remain unexplored."
+``Our findings apply to moderate-to-high acuity patients with complaints commonly requiring multiple imaging studies. The effects of batching in low-acuity or fast-track settings, where imaging is less common, remain unexplored."
 \end{quote}
+
 
 \color{black}
 
@@ -982,20 +881,17 @@ does this difference manifest itself particularly in EDs with significant staffi
 or mid-level providers?” 
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}{We appreciate the reviewer raising this important point about staffing differences across EDs. The reviewer is correct that Mayo Clinic's physician-only ordering policy differs from many EDs where nurse practitioners, physician assistants, and residents participate in ordering decisions.
+\noindent\textbf{Response:} \color{blue}We appreciate the reviewer raising this important point about staffing differences across EDs. The reviewer is correct that Mayo Clinic's physician-only ordering policy differs from many EDs, where nurse practitioners, physician assistants, and residents participate in ordering decisions.
 
-Our replication at MGH—where mid-level providers participate under attending supervision—demonstrates that our findings generalize across different staffing models. As shown in Table 7, the effects at MGH (44.3\% increase in LOS, 1.8 additional tests) are directionally similar and statistically indistinguishable from those at Mayo, suggesting the batching phenomenon transcends staffing configurations.
+However, our replication at MGH addresses this concern of generalizability directly. MGH employs a mixed staffing model where mid-level providers participate under attending supervision—more representative of typical US emergency departments. As shown in Table 7, the effects at MGH (a 44.3\% increase in LOS and 1.8 additional tests) are directionally similar and statistically indistinguishable from those at Mayo, demonstrating that the batching phenomenon persists across different staffing configurations.
 
-Moreover, Mayo's physician-only ordering strengthens our causal inference in several ways. First, it reduces potential confounding from provider-type variation (e.g., systematic differences in ordering patterns between NPs and MDs). Second, it ensures that all ordering decisions reflect the clinical judgment of fully-trained emergency physicians, minimizing noise from training-related variation. Third, the random assignment mechanism at Mayo is cleaner because patients cannot be triaged to different provider types based on acuity or complaint.
+Mayo's physician-only setting provides methodological advantages for causal identification by eliminating potential confounding from provider-type variation (e.g., systematic differences in ordering patterns between nurse practitioners and attending physicians) and ensuring all decisions reflect experienced clinical judgment. The random assignment mechanism is also simpler because patients cannot be triaged to different provider types based on acuity or complaint. The consistency of results at MGH—despite its more complex staffing environment—validates that batching effects persist when mid-level providers participate in care delivery.
 
-We view Mayo's setting as providing an ideal ``laboratory" to isolate the pure effect of batching behavior among experienced clinicians. The consistency of results at MGH—with its more complex staffing environment—validates that these effects persist when mid-level providers are involved in care delivery. Our physician coauthors at both sites confirm that while ordering processes differ, the fundamental trade-offs of batching versus sequential testing remain similar across settings.
-
-We acknowledge that EDs with significant mid-level provider staffing may face additional complexities not fully captured in our analysis, such as handoff effects or supervision requirements that could interact with batching decisions. We have added text to Section 4.6, noting:
+Our physician co-authors at both sites confirm that, while ordering processes differ, the fundamental trade-offs of batching versus sequential testing remain similar across settings. That said, we acknowledge that EDs with predominantly mid-level staffing may face additional dynamics not fully captured in our analysis, such as supervision requirements or handoff patterns that could interact with batching decisions. We have added text to Section 4.6:
 
 \begin{quote}
-    ``While Mayo Clinic's physician-only ordering differs from many EDs, this provides cleaner identification of batching effects. Our replication at MGH—with its mixed staffing model including mid-level providers—demonstrates that these effects persist across different provider configurations, though the specific dynamics in EDs with predominantly mid-level staffing warrant future research."
+``While Mayo Clinic's physician-only ordering differs from many EDs, this provides cleaner identification of batching effects. Our replication at MGH—with its mixed staffing model including mid-level providers—demonstrates that these effects persist across different provider configurations, though the specific dynamics in EDs with predominantly mid-level staffing warrant future research."
 \end{quote}
-
 \color{black}
 
 
@@ -1003,27 +899,26 @@ We acknowledge that EDs with significant mid-level provider staffing may face ad
 \begin{quote2}
 \textbf{R2 Wrote (Sensitivity of results – Table 4):}  
 
-\noindent``I would urge the authors to discuss the difference in results between column 4
-and 5 of Table 4, specifically with regards to sensitivity to influential controls, since the
-results before and after adding controls differ significantly.” 
+\noindent``I would urge the authors to discuss the difference in results between column 4 and 5 of Table 4, specifically with regards to sensitivity to influential controls, since the results before and after adding controls differ significantly."
 \end{quote2}
 
-\noindent\textbf{***Response:} \color{blue}
-We thank the reviewer for drawing attention to the comparison between columns 4 and 5 in Table 4. Upon careful examination, we find that adding baseline controls (column 5) actually demonstrates the robustness of our results rather than sensitivity to influential controls.
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for drawing attention to the comparison between columns 4 and 5 in Table 4. Upon careful examination, we find that adding baseline controls (column 5) demonstrates the robustness of our results rather than problematic sensitivity to influential controls.
 
-Specifically, the point estimates remain remarkably stable across specifications:
+Specifically, the point estimates remain consistently large and positive across specifications:
 \begin{itemize}
-    \item Log time to disposition: 0.627 → 0.804 (both indicating large positive effects)
-    \item Log LOS: 0.690 → 0.837 (both indicating large positive effects)  
-    \item Number of imaging tests: 1.395 → 1.414 (virtually identical)
+    \item Log time to disposition: 0.627 (SE: 0.460) → 0.804 (SE: 0.349)
+    \item Log LOS: 0.690 (SE: 0.299) → 0.837 (SE: 0.299)  
+    \item Number of imaging tests: 1.395 (SE: 0.220) → 1.414 (SE: 0.220)
     \item 72hr return with admission: -0.015 → -0.012 (both near zero and insignificant)
 \end{itemize}
 
-The primary change between columns 4 and 5 is improved statistical precision. Adding controls reduces standard errors by accounting for patient heterogeneity (age, vital signs, chief complaint severity) and temporal variation, allowing us to more precisely estimate the batching effect. For instance, the standard error for log time to disposition decreases from 0.460 to 0.349, moving the estimate from marginally significant to clearly significant at conventional levels.
+In each case, point estimates remain economically significant with confidence intervals that substantially overlap. The primary change is an improvement in statistical precision. Adding controls reduces standard errors by accounting for patient heterogeneity (including age, vital signs, and severity of chief complaint) and temporal variation, allowing us to estimate the batching effect more precisely. For instance, the standard error for log time to disposition decreases from 0.460 to 0.349, moving the estimate from marginally significant to clearly significant at conventional levels.
 
-This pattern—stable point estimates with improved precision—is exactly what we would expect when adding relevant covariates that explain outcome variation but are orthogonal to our instrument (due to random assignment). The controls are not ``influential" in the sense of dramatically changing our estimates; rather, they reduce residual variance and sharpen our ability to detect the true effect.
+The slightly larger changes in time-based outcomes (a 20-28\% increase in point estimates) compared to test counts (a 1\% change) likely reflect that time outcomes have more residual variance that controls can explain. Patient characteristics, such as age and vital signs, directly affect how long processing takes, but have less impact on the discrete decision of how many imaging modalities to order. This differential sensitivity is expected, given the nature of the outcomes, and does not change our substantive conclusions—batching increases both processing time and test volume across all specifications.
 
-We have added a footnote to Table 4 clarifying this interpretation: ``The stability of point estimates between columns 4 and 5 demonstrates robustness to control variables, while the improvement in precision reflects reduced residual variance from accounting for patient heterogeneity."
+This pattern—stable direction and magnitude with improved precision—is precisely what we expect when adding relevant covariates that explain outcome variation but are orthogonal to our instrument (due to random assignment). The controls are not "influential" in the sense of dramatically changing our estimates; instead, they reduce residual variance and sharpen our ability to detect the actual effect.
+
+We have added a footnote to Table 4 clarifying this interpretation: ``The consistency of point estimates between columns 4 and 5 demonstrates robustness, while the improvement in precision for time-based outcomes reflects that patient characteristics explain substantial residual variance in processing times."
 \color{black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 12  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1051,12 +946,10 @@ translation.”
 \noindent\textbf{***Response:} \textcolor{blue}{We thank the reviewer for this encouraging assessment of our work's policy relevance and execution. We agree that the key contribution lies not in methodological innovation per se, but in applying rigorous causal inference methods to an important operational decision in emergency medicine that has long been debated. We are grateful that the reviewer sees the potential for our findings to inform practical interventions such as decision support tools and physician feedback systems. In response to this and other reviewers' suggestions, we have strengthened the policy implications section to provide more concrete guidance for ED managers considering interventions to optimize diagnostic test ordering practices.}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % End of Reviewer 2 responses
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-
 
 
 
