@@ -43,30 +43,28 @@ for (col in rel_cols) {
 
 data$admit <- ifelse(data$ED_DISPOSITION == 'Admit', 1, 0)
 
-data <- data %>%
-  mutate(
-    dispo_time = case_when(
-      !is.na(ED_DISCHARGE_DT_REL) ~ ED_DISCHARGE_DT_REL,
-      !is.na(ADMIT_OBS_ORD_DTTM_REL) ~ ADMIT_OBS_ORD_DTTM_REL,
-      !is.na(ADMIT_INP_ORD_DTTM_REL) ~ ADMIT_INP_ORD_DTTM_REL,
-      TRUE ~ NA_real_
-    )
-  )
+# create a dispo time that is the rowwise min of the three possible dispo times
+data$dispo_time <- pmin(data$ED_DISCHARGE_DT_REL,
+                        data$ADMIT_OBS_ORD_DTTM_REL,
+                        data$ADMIT_INP_ORD_DTTM_REL,
+                        na.rm = TRUE)
+
+summary(data$dispo_time)
+#data <- data %>%
+#  mutate(
+#    dispo_time = case_when(
+#     !is.na(ED_DISCHARGE_DT_REL) ~ ED_DISCHARGE_DT_REL,
+#     !is.na(ADMIT_OBS_ORD_DTTM_REL) ~ ADMIT_OBS_ORD_DTTM_REL,
+#      !is.na(ADMIT_INP_ORD_DTTM_REL) ~ ADMIT_INP_ORD_DTTM_REL,
+#      TRUE ~ NA_real_
+#    )
+#  )
 
 # create time to disposition variable
 data$time_to_dispo <- data$dispo_time - data$ARRIVAL_DTTM_REL
 data$time_to_dispo <- ifelse(data$time_to_dispo < 0, NA, data$time_to_dispo)
 data$time_to_dispo <- ifelse(data$time_to_dispo > data$ED_LOS, 
                              data$ED_LOS, data$time_to_dispo)
-
-# Filter data for correct times
-data <- data %>%
-  filter(!is.na(time_to_dispo),
-         time_to_dispo > 0,
-         ED_LOS <= 2880,
-         ED_LOS > 0,
-         !is.na(ED_LOS))
-
 
 # create waiting time variable
 data$wait_time <- data$TRIAGE_COMPLETED_REL - data$ARRIVAL_DTTM_REL
@@ -91,6 +89,13 @@ data <- data %>%
       TRUE ~ "Normal Operations"
     )
   )
+
+data <- data %>%
+  filter(!is.na(time_to_dispo),
+         time_to_dispo > 0,
+         ED_LOS <= 1440,
+         ED_LOS > 0,
+         !is.na(ED_LOS))
 
 #=========================================================================
 # Determine batching
@@ -270,7 +275,6 @@ data$observation = ifelse(data$ED_DISPOSITION == 'Observation', 1, 0)
 # Create Table 1
 source('src/tables/summary_statistics_mayo.R')
 
-
 #=========================================================================
 # Create Final Dataset ---------------------------------------------------
 #=========================================================================
@@ -385,31 +389,22 @@ data <- data %>%
 
 source('src/figures/fig1_batch_rates.R')
 
-
 ### Create the instrument
 data$residual_batch <- resid(
-  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
-)
-
-data$residual_labtests <- resid(
-  felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + age  
+  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF 
        | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
 data$residual_admit <- resid(
-  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age  
-       | dayofweekt + month_of_year +  complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
+
 
 # Step 2: get batch tendency for each provider
 data <- data %>%
   group_by(ED_PROVIDER) %>%
   mutate(Sum_Resid=sum(residual_batch, na.rm=T),
          batch.tendency = (Sum_Resid - residual_batch) / (n() - 1),
-         
-         Sum_Resid=sum(residual_labtests, na.rm=T),
-         lab.tendency = (Sum_Resid - residual_labtests) / (n() - 1),
          
          Sum_Resid=sum(residual_admit, na.rm=T),
          admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)) %>%
@@ -430,10 +425,11 @@ final <- data %>%
   ungroup() %>% 
   filter(batchmean > 0.05, imaging == 1)
 
-data$ln_ED_LOS <- log(data$ED_LOS)
-data$ln_disp_time <- log(data$time_to_dispo)
+final$ln_ED_LOS <- log(final$ED_LOS)
+final$ln_disp_time <- log(final$time_to_dispo)
 
-data$capacity_level <- factor(data$capacity_level,
+
+final$capacity_level <- factor(final$capacity_level,
                               levels = c('Normal Operations', 
                                          'Minor Overcapacity', 
                                          'Major Overcapacity'))

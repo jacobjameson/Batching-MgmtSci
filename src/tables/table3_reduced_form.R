@@ -12,41 +12,41 @@ rf_model_disp <- feols(
   ln_disp_time ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
-    capacity_level + LAB_PERF + # ED variables
-    EXPERIENCE + PROVIDER_SEX | # physician variables
+    capacity_level + # ED variables
+    EXPERIENCE + PROVIDER_SEX + LAB_PERF + admit.tendency | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = data)
+  cluster = ~ED_PROVIDER, data = final)
 
 rf_model_los <- feols(
   ln_ED_LOS ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
-    capacity_level + LAB_PERF + # ED variables
+    capacity_level + LAB_PERF + admit.tendency + # ED variables
     EXPERIENCE + PROVIDER_SEX | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = data)
+  cluster = ~ED_PROVIDER, data = final)
 
 rf_model_img <- feols(
   imgTests ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + LAB_PERF + # ED variables
-    EXPERIENCE + PROVIDER_SEX | # physician variables
+    EXPERIENCE + PROVIDER_SEX + admit.tendency | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = data)
+  cluster = ~ED_PROVIDER, data = final)
 
 rf_model_ra <- feols(
   RTN_72_HR_ADMIT ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + LAB_PERF + # ED variables
-    EXPERIENCE + PROVIDER_SEX | # physician variables
+    EXPERIENCE + PROVIDER_SEX + admit.tendency | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = data)
+  cluster = ~ED_PROVIDER, data = final)
 
 # ------------------------------------------------------------------------------
 

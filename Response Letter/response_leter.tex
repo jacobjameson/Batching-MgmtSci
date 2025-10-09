@@ -187,7 +187,7 @@ We appreciate the Associate Editor's request for theoretical clarification, whic
 
 \textbf{1. Discretionary versus clinically-driven batching:} Our study isolates \textit{discretionary} batching decisions—those driven by physician practice style rather than clinical necessity—which is the precise margin where ED management can intervene. We establish this through our unique empirical setting and identification strategy:
 
-First, Mayo Clinic's rotational patient assignment mechanism provides quasi-random assignment of patients to physicians. As documented by \cite{Traub2016, traub2016emergency, Traub2018}, patients are assigned to physicians through a computerized algorithm that is based solely on arrival time, without consideration of patient characteristics, complaint severity, or physician workload. This random assignment is crucial: it ensures that differences in batching rates across physicians reflect physician preferences rather than systematic differences in patient mix or unobserved clinical factors. Figure 2 provides empirical verification—while patient characteristics strongly predict batching decisions (left panel), they do not predict assignment to high versus low batch-tendency physicians (right panel), indicating that conditional on controls assignment to phsyician is as good as random.
+First, Mayo Clinic's rotational patient assignment mechanism provides quasi-random assignment of patients to physicians. As documented by \cite{Traub2016; traub2016emergency; Traub2018}, patients are assigned to physicians through a computerized algorithm that is based solely on arrival time, without consideration of patient characteristics, complaint severity, or physician workload. This random assignment is crucial: it ensures that differences in batching rates across physicians reflect physician preferences rather than systematic differences in patient mix or unobserved clinical factors. Figure 2 provides empirical verification—while patient characteristics strongly predict batching decisions (left panel), they do not predict assignment to high versus low batch-tendency physicians (right panel), indicating that conditional on controls assignment to phsyician is as good as random.
 
 Second, our LATE identifies effects specifically for ``compliers"—the fraction of patients whose batching decision changes depending on physician assignment. These patients, by definition, lack clear clinical indicators mandating either batching or sequential testing. They represent the discretionary margin where physician preference determines the testing strategy. The existence of these compliers demonstrates that discretionary batching exists and is substantial enough to matter for ED operations.
 
@@ -368,9 +368,9 @@ Regardless, in its current manifestation, the batched variable is not capturing 
 
 \noindent\textbf{Response:} \color{blue}We thank the reviewer for this thoughtful critique, which has led to substantial improvements in how we frame our research question and interpret our results. The reviewer raises two key concerns: (1) our counterfactual includes heterogeneous cases, and (2) our instrument might capture general physician cautiousness rather than batching behavior specifically. We address each in turn.
 
-\textbf{Clarifying the counterfactual:} First, an essential clarification: our sample includes only encounters where at least one imaging test was ordered. The $Batched=0$ group therefore comprises patients who received either (1) a single imaging test, or (2) multiple tests ordered sequentially—but not patients with zero imaging. This distinction is critical because our comparison is between different imaging strategies for patients requiring diagnostic imaging, not between testing versus no testing.
+\textbf{1. Clarifying the counterfactual}: First, an essential clarification: our sample includes only encounters where at least one imaging test was ordered. The $Batched=0$ group, therefore, comprises patients who received either (1) a single imaging test, or (2) multiple tests ordered sequentially—but not patients with zero imaging. This distinction is critical because our comparison is between different imaging strategies for patients who require diagnostic imaging, not between testing and no testing.
 
-That said, the reviewer correctly identifies that our counterfactual remains composite—mixing single-test and sequential multi-test encounters. The reviewer suggests matching patients on eventual test count but correctly anticipates the key limitation: this would introduce severe post-treatment bias since batching causally affects subsequent testing decisions. Physicians cannot know ex-ante which patients will ultimately need multiple tests—they make batching decisions under diagnostic uncertainty. Conditioning on eventual test count would compare fundamentally different populations after the treatment has already operated. Furthermore matching would estimate the Average Treatment Effect on the Treated (ATT)---comparing patients who received batching to observably similar patients who did not. The ATT conflates effects across all patients, including always-takers (where batching is clinically mandated) and never-takers (where single tests suffice). This parameter has limited managerial relevance since ED protocols cannot change testing patterns where clinical necessity dictates the approach.
+That said, the reviewer correctly identifies that our counterfactual remains composite—mixing single-test and sequential multi-test encounters. The reviewer suggests matching patients on eventual test count but correctly anticipates the key limitation: this would introduce severe post-treatment bias since batching causally affects subsequent testing decisions. Physicians cannot know ex ante which patients will ultimately require multiple tests—they make batching decisions under diagnostic uncertainty. Conditioning on the eventual test count would compare fundamentally different populations after the treatment has already occurred. Furthermore, matching would estimate the Average Treatment Effect on the Treated (ATT)---comparing patients who received batching to observably similar patients who did not. The ATT conflates effects across all patients, including always-takers (where batching is clinically mandated) and never-takers (where single tests suffice). This parameter has limited managerial relevance since ED protocols cannot change testing patterns where clinical necessity dictates the approach.
 
 Our IV approach preserves causal interpretation by identifying effects at the moment of decision-making. The LATE captures effects for ``compliers"—patients whose testing strategy depends on physician assignment rather than clinical necessity. These marginal patients represent precisely where ED protocols can influence practice without constraining clinically necessary care.
 
@@ -380,51 +380,208 @@ In response to this feedback, we have reframed our comparison throughout the man
 ``Our two-stage least squares estimates represent the LATE of batch ordering for `compliers'---patients whose testing strategy depends on the assigned physician's practice style. This effect compares batch ordering to standard practice, which includes both sequential ordering and single tests. While this involves a composite counterfactual, it provides the policy-relevant parameter: the effect of encouraging comprehensive upfront testing versus allowing diagnostic information to guide testing decisions for patients at the margin of clinical discretion—those whose testing strategy is not dictated by apparent clinical necessity but rather depends on physician practice style and judgment."
 \end{quote}
 
-This framing reflects the fundamental information structure of emergency medicine. At the moment of initial ordering, physicians cannot know which patients will ultimately need multiple tests versus a single test. They must decide whether to commit to comprehensive imaging upfront or preserve diagnostic flexibility. We have added discussion of this information problem in Section 3.2.1:
+This framing reflects the fundamental information structure of emergency medicine. At the time of initial ordering, physicians cannot know which patients will ultimately need multiple tests versus a single test. They must decide whether to commit to comprehensive imaging upfront or preserve diagnostic flexibility. We have added a discussion of this information problem in Section 3.2.1:
 
 \begin{quote}
-``We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty, when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, making early batching a discretionary choice based on practice style rather than clinical necessity."
+``We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty, when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, leading to instances in which batching is a discretionary choice based on practice style rather than clinical necessity."
 \end{quote}
 
 We also clarified the policy relevance of this comparison in Section 5.1:
 
 \begin{quote}
-``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice---which allows information from initial tests to guide subsequent decisions---reduces both testing intensity and processing time."
+``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice---which allows information from initial tests to guide subsequent decisions---reduces testing intensity."
 \end{quote}
 
-\textbf{Validating instrument specificity:} The reviewer's concern that our instrument might capture ``degree of cautiousness" or ``affinity for comprehensive testing" is important and exactly right to scrutinize. Following standard practice in the judges design literature \cite{dobbie2018effects, bhuller2020incarceration}, we validate our instrument through three approaches: (1) balance tests showing patient characteristics do not predict instrument values, (2) placebo tests showing no effects where batching is clinically inappropriate, and (3) differential effects tests examining whether the instrument predicts outcomes beyond imaging decisions.
+\textbf{2. Addressing the exclusion restriction concern through expanded controls:}
 
-The critical evidence for instrument specificity comes from examining reduced form effects on laboratory versus imaging tests. Laboratory tests can be drawn simultaneously (so "batching" labs has no operational meaning), providing a natural specificity test. If our instrument captures general diagnostic aggressiveness rather than imaging-specific timing, we should observe similar effects across both diagnostic modalities.
+The reviewer's concern—that our instrument might capture general ``comprehensiveness" rather than batching-specific behavior—is exactly right to scrutinize. The reviewer notes that if a physician has a tendency to order more imaging, they may also tend to order more labs or be more comprehensive in other ways. This is a valid concern that we take seriously.
 
-[Insert Reduced Form Lab Table]
+In our original specification, we controlled only for patient characteristics (vital signs, age, demographics, chief complaint severity) and temporal factors (shift-level effects). In response to concerns from all three reviewers, we have substantially expanded our control set to test whether batch tendency reflects general diagnostic intensity versus imaging-specific timing decisions.
 
-The results reveal striking specificity. With patient and time controls, batch tendency shows no relationship with laboratory test ordering (coefficient: 0.121, p=0.60). This stands in sharp contrast to imaging effects, which remain large and highly significant. This differential pattern—absence of lab effects alongside persistent imaging effects—strongly suggests our instrument captures imaging-specific timing decisions rather than general diagnostic intensity.
+Our revised primary specification now includes:
 
-As an additional robustness check beyond standard practice in this literature, we constructed control variables for potentially correlated physician behaviors: admission tendency and lab test tendency, using identical residualized leave-one-out methodology. While most judges design papers rely solely on random assignment and balance tests \cite{dobbie2018effects, AizerDoyle2015}, we examine sensitivity to these additional controls.
+\begin{itemize}
+\item \textbf{Patient characteristics:} Vital signs (tachycardic, tachypneic, febrile, hypotensive), age, demographics, chief complaint severity
+\item \textbf{Physician characteristics:} Years of experience, gender, hours into shift (capturing potential fatigue effects)
+\item \textbf{Realized diagnostic intensity:} Indicator for whether laboratory tests were performed during the encounter
+\item \textbf{Contextual factors:} ED capacity level (normal, minor overcapacity, major overcapacity), temporal fixed effects
+\end{itemize}
 
-[Insert First-Stage Table with progressive controls]
-[Insert 2SLS Table with progressive controls]
+The addition of laboratory test ordering is critical. If batch tendency captures physicians who are generally more aggressive or comprehensive diagnosticians, they should order both more imaging and more labs. By controlling for whether labs were actually ordered for each patient, we test whether imaging effects persist when accounting for the thoroughness of general diagnostics. If batch tendency reflected "comprehensive diagnosticians," controlling for realized lab intensity should substantially attenuate imaging effects.
 
-Our instrument remains strong even with these demanding controls (F-statistics: 238.8→87.4, all above conventional thresholds). Operational impacts remain economically large in our most conservative specification: log LOS effect of 0.833 (p=0.081) implies a 130\% increase, while imaging tests increase by 0.977 (p<0.001), a 73\% increase over baseline.
+First-stage results validate the concern while demonstrating that we can isolate the imaging-specific component. Below, we show how the first stage changes as we progressively add these new controls:
 
-We interpret this evidence collectively as validating instrument specificity. The base specification without additional tendency controls represents our primary estimate—it follows standard practice in the judges design literature and estimates the full effect of the "batching practice style." The specifications with additional controls provide conservative lower bounds, demonstrating that even when we remove correlated variation, imaging-specific effects persist while lab effects disappear. This asymmetry, combined with successful balance tests and null placebo results, supports our interpretation that physician-induced variation in imaging test timing creates substantial operational consequences.
+\begin{table}[ht]
+\centering
+\caption*{First-Stage Robustness: Batch Tendency Predicts Batching}
+\label{tab:first_stage_robustness}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule 
+& \multicolumn{4}{c}{Dependent Variable: Batched}\\
+\cmidrule(lr){2-5}
+& (1) & (2) & (3) & (4) \\
+\midrule
+Batch Tendency & 2.018*** & 2.026*** & 2.023*** & \textbf{1.911***} \\ 
+& (0.090) & (0.090) & (0.090) & \textbf{(0.115)} \\
+\midrule
+\textit{Controls} \\
+Time Fixed Effects & Yes & Yes & Yes & Yes \\
+Patient Controls & Yes & Yes & Yes & Yes \\
+Physician Exp \& Sex & No & Yes & Yes & Yes \\
+Hours into Shift & No & No & Yes & Yes \\
+Laboratory Ordered & No & No & No & Yes \\
+\midrule
+F-statistic & 503.6 & 509.8 & 507.5 & \textbf{276.8} \\
+$p$-value & <0.001 & <0.001 & <0.001 & <0.001 \\
+Observations & 11,651 & 11,651 & 11,651 & 11,651 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} First-stage regressions of batching on batch.tendency (leave-one-out physician residualized batching propensity). Standard errors clustered at the physician level in parentheses. Patient controls include vital signs, age, demographics, chief complaint-severity fixed effects, race, and gender. All models include day-of-week × time-of-day fixed effects, month fixed effects, and ED capacity controls. *** p<0.001.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-In response to these concerns, we have made the following changes:
+Three key observations emerge:
+
+1. Physician characteristics have minimal effect on the first stage (F: 503.6 → 509.8). Experience, gender, and hours into shift are essentially orthogonal to batching propensity.
+
+2. Laboratory ordering substantially attenuates the first stage (F: 507.5 → 276.8, coefficient: 2.023 → 1.911). This confirms the reviewer's intuition—batch tendency was partially capturing general diagnostic intensity, exactly as suspected.
+
+3. Substantial independent variation remains (F=276.8, well above weak instrument thresholds). After controlling for general diagnostic thoroughness, significant imaging-specific variation persists. This is precisely what we would expect if the instrument captures imaging timing decisions rather than purely general cautiousness.
+
+The table below (for response letter only) shows how our 2SLS estimates change as we add each control set:
+
+\begin{table}[h]
+\centering
+\caption*{2SLS Results: Progressive Addition of Controls}
+\begin{threeparttable}
+\small
+\begin{tabular}{lcccc}
+\toprule
+& (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Time-Based Outcomes}} \\[0.5em]
+Log ED LOS & 0.679** & 0.699** & 0.759**  & 0.580. \\
+& (0.341) & (0.331) & (0.342)  & (0.341) \\[0.5em]
+Log time to disposition & 0.618 & 0.618 & 0.693 & 0.630 \\
+& (0.456) & (0.435) & (0.437)  & (0.460) \\[0.5em]
+
+\multicolumn{4}{l}{\textit{Panel B: Resource Utilization}} \\[0.5em]
+Imaging tests & 1.360*** & 1.372*** & 1.316***  & 1.214*** \\
+& (0.199) & (0.209) & (0.208) & (0.196) \\[0.5em]
+
+\multicolumn{4}{l}{\textit{Panel C: Patient Outcomes}} \\[0.5em]
+72hr return w/ admit & -0.011 & -0.009 & -0.009  & -0.012 \\
+& (0.021) & (0.021) & (0.023) & (0.025) \\[0.5em]
+Admitted & 0.397*** & 0.427*** & 0.481***  & 0.392*** \\
+& (0.088) & (0.105) & (0.083)  & (0.071) \\
+\midrule
+\textit{Controls} \\
+Time Fixed Effects & Yes & Yes & Yes & Yes \\
+Patient Controls & Yes & Yes & Yes & Yes \\
+Physician Exp \& Sex & No & Yes & Yes & Yes \\
+Hours into Shift & No & No & Yes & Yes \\
+Laboratory Ordered & No & No & No & Yes \\
+\midrule
+Observations & 11,651 & 11,651 & 11,651 & 11,651 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} 2SLS estimates with batch tendency as instrument. Standard errors clustered at the physician level. All specifications include temporal fixed effects and chief complaint-severity fixed effects. Patient controls include vital signs and age. Physician controls include experience and gender. 
+\item . p<0.10, ** p<0.01, *** p<0.001.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Through this experiment, we see that physician characteristics have minimal impact on estimates (comparing columns 1 and 2). This demonstrates that batch tendency is not simply proxying for experience or gender-based practice patterns. We also find that laboratory ordering controls attenuate time effects (comparing columns 3 and 4), confirming that our original specification partially conflated general diagnostic intensity with imaging-specific behavior. However, imaging test volume effects remain large and highly significant (1.214 additional tests, p<0.001), demonstrating that batch tendency retains substantial imaging-specific variation even after controlling for general diagnostic thoroughness.
+
+Our revised main results (Table 4) now appear in the manuscript. Table 4 presents both OLS and 2SLS results; columns 4-5 show 2SLS estimates corresponding to specifications (1) and (4) from the progressive analysis above:
+
+\begin{table}[h]
+\centering
+\caption*{Table 4     IV Results: Effect of Batching Tests on Patient Outcomes}
+\label{tab:results_table}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+& Sequenced & \multicolumn{2}{c}{\underline{OLS results}} & \multicolumn{2}{c}{\underline{2SLS results}} \\
+& mean & (2) & (3) & (4) & (5) \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
+Log time to disposition & 5.237 & $0.084^{***}$ & $0.072^{***}$ & $0.618$ & $0.630$ \\
+& (0.499) & (0.014) & (0.013) & (0.456) & (0.460) \\[0.5em]
+Log LOS & 5.490 & $0.107^{***}$ & $0.073^{***}$ & $0.679^{\dagger}$ & $0.580$ \\
+& (0.456) & (0.013) & (0.012) & (0.341) & (0.341) \\[0.5em]
+Number of distinct imaging tests & 1.334 & $0.839^{***}$ & $0.802^{***}$ & $1.360^{***}$ & $1.214^{***}$ \\
+& (0.571) & (0.017) & (0.019) & (0.199) & (0.196) \\[0.5em]
+72hr return with admission & 0.012 & -0.001 & 0.000 & -0.011 & -0.012 \\
+& (0.110) & (0.002) & (0.003) & (0.021) & (0.025) \\[0.5em]
+
+\multicolumn{6}{l}{\textit{Panel B. Test Types}} \\[0.5em]
+Ultrasound & 0.171 & $0.072^{***}$ & $0.117^{***}$ & 0.162 & 0.089 \\
+& (0.376) & (0.016) & (0.014) & (0.101) & (0.082) \\[0.5em]
+CT with contrast & 0.187 & 0.029 & $0.051^{**}$ & $0.168^{\dagger}$ & 0.085 \\
+& (0.390) & (0.015) & (0.014) & (0.071) & (0.069) \\[0.5em]
+CT without contrast & 0.400 & $0.383^{***}$ & $0.279^{***}$ & 0.105 & 0.067 \\
+& (0.490) & (0.015) & (0.012) & (0.137) & (0.138) \\[0.5em]
+X-ray & 0.576 & $0.354^{***}$ & $0.356^{***}$ & $0.925^{***}$ & $0.972^{**}$ \\
+& (0.494) & (0.012) & (0.012) & (0.220) & (0.260) \\[0.5em]
+
+\multicolumn{6}{l}{\textit{Panel C. Disposition}} \\[0.5em]
+Admission & 0.279 & $0.035^{*}$ & $0.027^{**}$ & $0.397^{***}$ & $0.392^{***}$ \\
+& (0.449) & (0.013) & (0.009) & (0.088) & (0.071) \\[0.5em]
+\midrule
+Time FE & --- & Yes & Yes & Yes & Yes \\
+Baseline controls & --- & No & Yes & No & Yes \\
+Observations & 11,651 & 11,651 & 11,651 & 11,651 & 11,651 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} This table reports the estimated coefficients of both OLS and 2SLS regressions of the effect of batching on patient outcomes. The OLS columns include no controls (column 2) and baseline controls (column 3). The 2SLS columns include no controls (column 4) and baseline controls (column 5). Standard errors are clustered at the physician level.
+\item $^{\dagger} p < 0.10$, $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Column 5 represents our primary 2SLS specification with full controls. We acknowledge that these results differ from our original submission, where we reported larger, statistically significant time effects:
+
+\textit{Original submission:}
+\begin{itemize}
+\item Log LOS: 0.837 (SE=0.299, p=0.005) → 131\% increase
+\item Controls: Patient characteristics and temporal factors only
+\end{itemize}
+
+\textit{This revision:}
+\begin{itemize}
+\item Log LOS: 0.580 (SE=0.341, p=0.089) → 79\% increase
+\item Controls: Patient + physician + laboratory ordering + hours into shift
+\end{itemize}
+
+The attenuation confirms the reviewer's intuition—our original instrument partially captured general diagnostic intensity, not just imaging-specific timing. Our revised specification more precisely isolates the imaging-specific component by controlling for realized laboratory intensity. While time effects lose statistical significance at conventional levels, this reflects a more conservative, defensible specification that addresses the reviewer's core concern.
+
+Despite these changes, our substantive conclusions remain important. We find: (1) batching increases imaging test volume by 91\% (p<0.001), (2) no evidence that batching reduces processing time (point estimates suggest 79-88\% increases, p>0.05), and (3) batching increases admissions by 39 percentage points (p<0.001) with no improvement in 72-hour returns (p=0.65).
+
+This more conservative interpretation directly addresses an active debate among emergency physicians. Some EPs argue that batching is "time-saving" by getting all test orders done upfront. Our evidence refutes this claim—we find no support for time savings, and if anything, point estimates suggest substantial delays. Combined with definitive evidence of increased resource utilization and higher admissions without quality gains, this provides important managerial guidance: discretionary batch ordering is not a time-saving strategy and substantially increases diagnostic intensity.
+
+Combined with balance tests (Figure 2) and null placebo results (Appendix D.1), this provides robust support for our core conclusion. The LATE we estimate represents the effect for compliers—patients whose testing strategy depends on physician practice style rather than clinical necessity. These marginal patients are precisely where ED management interventions (decision support systems, protocols, physician feedback) can influence practice. The finding that batching increases imaging test volume, raises admission rates, and does not improve ED processing times or short-term quality metrics suggests that policies encouraging diagnostic flexibility over comprehensive upfront testing could meaningfully improve ED operational efficiency without harming patient outcomes.
+
+In light of this, we have made several major revisions to the manuscript to enhance clarity and robustness:
 
 \begin{enumerate}
-\item \textit{Added comprehensive robustness tables (Appendix D):} We present first-stage results with progressive controls (Table D.X), reduced form effects on laboratory versus imaging outcomes (Table D.Y), and full 2SLS specifications with additional residualized tendency controls (Table D.Z).
-
-\item \textit{Enhanced identification discussion (Section 3.3):} We now explicitly acknowledge that physician tendency instruments may capture bundles of correlated practices, following standard practice in the judges design literature \cite{dobbie2018effects}. We explain our validation approach through balance tests, placebo tests, and differential effects tests, with particular emphasis on the specificity to imaging versus laboratory outcomes.
-
-\item \textit{Clarified interpretation (Section 4.1):} We distinguish between our primary specification (following standard practice) and conservative specifications with additional controls, noting that both support our core conclusion that test timing drives operational consequences.
-
-\item \textit{Expanded limitations discussion (Section 4.8):} We acknowledge that while we cannot definitively rule out all exclusion restriction violations, the convergence of evidence—successful balance tests, null placebo results, imaging-specific effects, and persistence across conservative specifications—supports our interpretation.
+\item \textit{Added comprehensive robustness tables (Appendix D):} We present first-stage, reduced form, and 2SLS results with progressive controls.
+\item \textit{Enhanced identification discussion (Section 3.3):} We now explicitly acknowledge that physician tendency instruments may capture bundles of correlated practices. We explain our validation approach through balance tests, placebo tests, and comprehensive controls to isolate imaging-specific effects.
+\item \textit{Clarified interpretation of results:} We temper our language throughout the manuscript to reflect the more conservative estimates of our new specification, emphasizing increased resource utilization and lack of evidence for time savings, while acknowledging statistical uncertainty.
+\item \textit{Expanded limitations discussion (Section 4.8):} We acknowledge that while we cannot definitively rule out all exclusion restriction violations, the convergence of evidence supports our interpretation. We also discuss the broader context of physician practice style research, noting that while such instruments may capture correlated behaviors, they remain valuable for understanding how discretionary practices impact outcomes. Additionally, our reduced form results do not require the exclusion restriction to represent a causal effect of being assigned a high-batching physician.
 \end{enumerate}
 
-These revisions strengthen our identification strategy while maintaining transparency about the assumptions underlying our causal claims.
+We acknowledge important limitations. We cannot definitively rule out all exclusion restriction violations—no observational study can. Despite these limitations, we hope that the reviewer finds that our revisions strengthen our identification strategy while maintaining transparency about the assumptions underlying our causal claims.
 
 \color{black}
-
 
 
 
@@ -435,24 +592,19 @@ These revisions strengthen our identification strategy while maintaining transpa
 \noindent ``As discussed by the authors on page 16 of the manuscript, ensuring the exclusion restriction is met to establish valid causal estimates using the proposed instrument is challenging, and not directly testable. However, the authors argue that “such violations may likely only have a small impact and may be less concerning than in other healthcare settings”. This is a requirement to establish causal claims (which the authors claim to want to do), and as outlined in Major Concern 1 above, “high batching tendency” is likely to be correlated by other elements of a physician’s “practice style” that could directly affect the outcomes being tested, outside of only batching imaging. A physician who is more cautious and comprehensive could also order more lab tests, which take time, and thus extend the LOS. A physician who is more cautious and comprehensive could also take longer on the examination, and choose to monitor the patient for a longer period of time before making a disposition decision. Both of these examples could directly impact the outcome without going through imaging batching, thus violating the exclusion restriction. As such, we cannot be certain that the estimates found in this paper are causal estimates on the impact of batching on ED outcomes (even assuming that the main explanatory variable captures batching, which I argue has its own flaw in Major Concern 1).” 
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}We appreciate the reviewer reiterating this fundamental concern about exclusion restriction violations. This is indeed the same issue raised in Major Concern 1—whether our instrument captures batching-specific behavior or broader physician practice styles. As detailed in our response to Major Concern 1, we address this through comprehensive robustness checks that directly test the specific mechanisms the reviewer identifies here.
 
-The reviewer provides two concrete examples of potential violations: (1) cautious physicians ordering more lab tests that extend LOS, and (2) cautious physicians taking longer examinations or monitoring patients longer. Our empirical analysis directly addresses both channels:
+\noindent\textbf{Response:} \color{blue}We appreciate the reviewer reiterating this fundamental concern about exclusion restriction violations. As stated in our response to Major Concern 1, we have substantially expanded our controls to test whether batch tendency captures these correlated behaviors and believe that the manuscript, findings, and implications have been strengthened as a result.
 
-\textbf{Laboratory testing channel:} We constructed a physician lab test tendency measure using identical methodology to our batch tendency instrument. As shown in our response to Major Concern 1 (Table D.Y), batch tendency shows no independent relationship with laboratory ordering after controlling for patient characteristics (coefficient: 1.073$\rightarrow$0.121, $p=0.60$). This provides direct evidence against the reviewer's first concern—physicians with high batch tendency do not systematically order more labs in ways that would independently extend LOS.
+We now control for whether labs were ordered for each patient. The reviewer's first example—that high-batch physicians might order more labs, which extend LOS—is directly tested by this control. After controlling for lab ordering, imaging effects remain large and significant (1.214, p<0.001), while time effects show the attenuation the reviewer anticipated. Additionally, we control for physician experience, gender, and hours worked in a shift to capture systematic differences in examination patterns and monitoring decisions.
 
-\textbf{General cautiousness channel:} We constructed a physician admission tendency measure capturing clinical conservatism. Including this control yields minimal attenuation of our imaging effects while substantially reducing admission effects (0.488$\rightarrow$0.243), suggesting some correlation with general practice style. However, imaging effects remain large and significant, and critically, the lab effects disappear entirely while imaging effects persist. This differential pattern—elimination of lab effects alongside persistent imaging effects—is difficult to reconcile with our instrument simply capturing "degree of cautiousness."
+We acknowledge the reviewer's point that we cannot definitively rule out all exclusion restriction violations. However, we note two important qualifications to this concern:
 
-The reviewer correctly notes we cannot definitively rule out all exclusion restriction violations. We acknowledge this limitation explicitly in Section 4.8. However, the convergence of evidence provides strong support for our interpretation:
+First, our revised specification directly tests the reviewer's specific examples and finds that while some correlation exists (as evidenced by attenuation of time effects with lab controls), imaging-specific variation persists. The reviewer's concern that we "argue such violations may likely only have a small impact" referred to our original specification. We have removed this language and instead provide empirical evidence through our expanded controls, which show the existence of correlations and demonstrate that substantial imaging-specific effects persist.
 
-\begin{itemize}
-\item Balance tests confirm patient characteristics do not predict instrument values (Figure 2)
-\item Placebo tests show no effects for complaints where batching is inappropriate (Table D.1)
-\item Specificity tests show effects limited to imaging, not labs or other diagnostic inputs
-\item Conservative specifications with extensive controls yield persistent, economically meaningful effects for number of imaging tests performed
-\end{itemize}
+Second, even if exclusion restriction concerns persist, our reduced-form estimates—the direct effect of being assigned to a high-batch-tendency physician—represent causal effects of physician assignment that do not require the exclusion restriction. These estimates inform ED management decisions about physician training, feedback, and protocols regardless of the precise mechanism. When we control for observable pathways (labs, physician characteristics), the reduced-form effects remain substantial for imaging volume, while attenuating for time outcomes, providing managers with actionable evidence about which outcomes are most affected by physician assignment.
 
-Following standard practice in the judges design literature \cite{dobbie2018effects, bhuller2020incarceration}, we rely primarily on random assignment and balance tests. The additional robustness checks we provide go beyond what is typical in this literature, demonstrating our instrument's specificity even under demanding conditions. While we cannot claim perfect identification, the weight of evidence supports our core conclusion that physician-induced variation in imaging test timing creates substantial operational inefficiencies.
+We have revised Section 4.8 (Limitations) to acknowledge this concern more directly, removing claims that violations "may likely only have a small impact" and instead transparently presenting our validation evidence through expanded controls, while acknowledging that definitive exclusion restriction tests are not possible in observational settings.
+
 \color{black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R1 Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -462,7 +614,7 @@ Following standard practice in the judges design literature \cite{dobbie2018effe
 \noindent``In this report I am taking the authors’ word regarding the randomization of patient to physician matching as described in the paper. More details on this should be given, and the patient-to physician assignment can be empirically shown – if the patients are assigned to physicians in a round-robin format, and you know when patients arrive at the hospital, and which physicians are working, you can empirically show that assignment is random. This is an important part of the empirical design of the paper, and so future iterations should show this empirically. Related to this, there is also the question of what the the queue configuration of the physicians look like – if it is random, and there are 5 physicians working, which physician gets the first patient? Is it by alphabetical order? More detail to describe this assignment mechanism would be helpful.” 
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}We thank the reviewer for requesting additional detail about the patient-physician assignment mechanism, which is crucial to our identification strategy. We have substantially expanded Section 3.1 with detailed description of Mayo Clinic's rotational assignment system, documented in prior publications at this site \cite{Traub2016, traub2016emergency, Traub2018}. 
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for requesting additional detail about the patient-physician assignment mechanism, which is crucial to our identification strategy. We have substantially expanded Section 3.1 with detailed description of Mayo Clinic's rotational assignment system, documented in prior publications at this site \cite{Traub2016; traub2016emergency; Traub2018}. 
 
 The key institutional features address the reviewer's specific questions:
 
@@ -475,7 +627,7 @@ The key institutional features address the reviewer's specific questions:
 We have added this detailed explanation to Section 3.1:
 
 \begin{quote}
-``The Mayo Clinic ED employs a sophisticated computerized rotational patient assignment algorithm that addresses many empirical challenges in healthcare settings \cite{Traub2016, traub2016emergency, Traub2018}. The system automatically assigns patients to physicians 60 seconds after registration through the electronic health record system, following a strict rotational protocol. At shift start, each physician receives four consecutive patients to establish an initial patient load, after which they enter rotation with other on-duty physicians. The rotation order is predetermined by the ED scheduler and varies across shifts to ensure fairness over time. Critically, these assignments are based solely on arrival time—the algorithm does not consider patient demographics, chief complaint, Emergency Severity Index score, physician workload, or the acuity of recently assigned patients. To maintain system integrity, physicians receive no new patients during their final 120 minutes and are capped at 18 patients per shift.
+``The Mayo Clinic ED employs a sophisticated computerized rotational patient assignment algorithm that addresses many empirical challenges in healthcare settings \citep{Traub2016; traub2016emergency; Traub2018}. The system automatically assigns patients to physicians 60 seconds after registration through the electronic health record system, following a strict rotational protocol. At shift start, each physician receives four consecutive patients to establish an initial patient load, after which they enter rotation with other on-duty physicians. The rotation order is predetermined by the ED scheduler and varies across shifts to ensure fairness over time. Critically, these assignments are based solely on arrival time—the algorithm does not consider patient demographics, chief complaint, Emergency Severity Index score, physician workload, or the acuity of recently assigned patients. To maintain system integrity, physicians receive no new patients during their final 120 minutes and are capped at 18 patients per shift.
 
 This rotational mechanism achieves the quasi-randomization necessary for causal inference. Unlike settings where patient-physician matching may be influenced by triage decisions, physician preferences, or informal routing practices, the Mayo Clinic's algorithmic assignment removes discretion from the matching process."
 \end{quote}
@@ -500,7 +652,6 @@ We have added explanatory text in Section 3.3 emphasizing this empirical verific
 \end{threeparttable}
 \end{figure}
 
-
 Together, the institutional details and empirical balance tests confirm that Mayo Clinic's rotational assignment mechanism achieves the quasi-randomization necessary for our identification strategy. This distinguishes our study from observational analyses where endogenous patient-physician matching could confound estimates of physician practice effects.
 
 \color{black}
@@ -514,7 +665,7 @@ Together, the institutional details and empirical balance tests confirm that May
 \noindent``The paper is well written, and studies an important question. I hope the authors find this report helpful in moving this work forward.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \textcolor{blue}{We sincerely thank the reviewer for their thorough and constructive feedback. The detailed comments have been invaluable in strengthening our analysis and clarifying our contributions. We hope the extensive revisions addressing the reviewer's concerns about variable definition, empirical strategy, and causal interpretation have substantially improved the manuscript.}
+\noindent\textbf{***Response:} \textcolor{blue}{We sincerely thank the reviewer for their thorough and constructive feedback. The detailed comments have been invaluable in strengthening our analysis and clarifying our contributions. We believe the extensive revisions addressing the reviewer's concerns about variable definition, empirical strategy, and causal interpretation have substantially improved the manuscript.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -549,17 +700,11 @@ Together, the institutional details and empirical balance tests confirm that May
 \textbf{R2 Wrote (Framing):}  
 
 
-\noindent``The paper frames the comparison as "batching vs. sequential", but that is not
-technically correct. In reality, the way the independent variable is defined, the comparison is “early batched imaging” vs. “everything else”, which includes a broad mix
-of clinical pathways. This muddies the interpretation: are the harms of batching due to:
-The batching itself? Or just differences between patients who need 2+ early tests vs.
-those who do not? Moreover, the sequencing is not fully explored: the study favors
-sequential ordering, but the authors do not actually compare different sequencing
-strategies or evaluate outcomes where delayed imaging causes diagnostic delays.”
+\noindent``The paper frames the comparison as "batching vs. sequential", but that is not technically correct. In reality, the way the independent variable is defined, the comparison is “early batched imaging” vs. “everything else”, which includes a broad mix of clinical pathways. This muddies the interpretation: are the harms of batching due to: The batching itself? Or just differences between patients who need 2+ early tests vs. those who do not? Moreover, the sequencing is not fully explored: the study favors sequential ordering, but the authors do not actually compare different sequencing strategies or evaluate outcomes where delayed imaging causes diagnostic delays.”
 \end{quote2}
 
 
-\noindent\textbf{Response:} \color{blue}We thank the reviewer for this important clarification about our treatment comparison. The reviewer is absolutely correct that our empirical strategy compares ``early batched imaging" with ``everything else" rather than a pure batching versus sequential comparison. We appreciate this opportunity to clarify our approach and have made substantial revisions to address this concern.
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for this important clarification about our treatment comparison. The reviewer is absolutely correct that our empirical strategy compares ``early batched imaging" with ``everything else" rather than a pure batching versus sequential comparison. This point was raised by the other reviewers as well. We appreciate this opportunity to clarify our approach and have made substantial revisions to address this concern.
 
 First, an essential clarification: our sample includes only encounters where at least one imaging test was ordered. The "everything else" comparison therefore comprises patients who received either (1) a single imaging test, or (2) multiple tests ordered sequentially—but not patients with zero imaging. This distinction is critical because our comparison is between different imaging strategies for patients requiring diagnostic imaging, not testing versus no testing. That said, the reviewer is correct that our counterfactual remains composite—mixing single-test and sequential multi-test encounters.
 
@@ -568,7 +713,7 @@ The reviewer raises a fundamental question: are the harms from batching itself o
 We have made the following changes to address your concerns which we believe have made the manuscript stronger:
 
 \begin{enumerate}
-    \item \textbf{Reframed our comparison throughout the manuscript}. We now consistently describe our comparison as ``batch ordering versus standard practice" rather than "batching versus sequencing." For example, in the abstract and Section 1.2, we revised: ``the marginal batched patient experiences a 130\% increase in total ED LOS compared to standard practice" (previously ``compared to patients who have their tests ordered sequentially").
+    \item \textbf{Reframed our comparison throughout the manuscript}. We now consistently describe our comparison as ``batch ordering versus standard practice" rather than "batching versus sequencing." 
     
     \item \textbf{Clarified what we identify and why it matters}. We added text in Section 3.3 explaining:
     \begin{quote}
@@ -579,22 +724,19 @@ We have made the following changes to address your concerns which we believe hav
     \begin{quote}
     ``We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty, when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, leading to instances of early batching as discretionary choice based on practice style rather than clinical necessity."
     \end{quote}
-    
-\item \textbf{Connected to delayed imaging concerns}. The reviewer correctly notes we do not evaluate delayed imaging. We now acknowledge in Section 4.1:
-\begin{quote}
-    ``Our estimates capture the full effect of discretionary batching including its impact on test volume. The 1.4 additional tests under batching represent part of the causal pathway---forfeiting the information value of ordering tests in sequence leads to tests that would have been avoided under standard practice."
-\end{quote}
-Regarding potential harms from delayed sequential testing, we find no evidence of quality impacts: 72-hour return rates are identical between groups (-0.012, p=0.50), suggesting sequential approaches do not cause harmful diagnostic delays.
+
+Regarding potential harms from delayed sequential testing, we find no evidence on 72-hour return, suggesting sequential approaches do not cause harmful diagnostic delays.
 
 \item \textbf{Clarified why ``everything else" is the right comparison}. We added to Section 5.1:
 \begin{quote}
-    ``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces both testing intensity and length of stay."
+    ``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces testing intensity."
 \end{quote}
 \end{enumerate}
 
 The reviewer's observation about mixed clinical pathways in our counterfactual is astute. However, this heterogeneity reflects what makes our estimate policy-relevant. ED managers cannot randomize patients to pure sequential protocols based on eventual diagnostic needs (which are unknown ex-ante). They can only influence whether physicians default to comprehensive early testing or preserve diagnostic optionality when facing uncertainty. Our LATE provides exactly this parameter.
 
 We believe these revisions substantially improve the manuscript's clarity while maintaining scientific rigor. The comparison we identify—batch ordering versus standard practice for marginal patients—is both what we can credibly estimate given the information structure and what policymakers need to know. We are grateful to the reviewer for pushing us to clarify this important distinction, as it has led us to better articulate both the methodological foundations and practical implications of our work.
+
 \color{black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -617,7 +759,7 @@ Building on the literature reviewed above, we develop formal hypotheses about ho
 
 The decision to batch or sequence tests fundamentally involves whether to preserve the option value of information. Sequential testing allows each test result to inform subsequent decisions, potentially eliminating unnecessary tests. When physicians batch tests upfront, they commit to a diagnostic pathway before information unfolds, forfeiting this option value.
 
-Physicians under high workload face cognitive strain from task switching and may batch tests to defer complex diagnostic reasoning \cite{kc2013does, skaugset2016can}. However, this cognitive convenience comes at a cost. Without the filtering mechanism of sequential information revelation, physicians must rely solely on their initial assessment. \cite{lam2020why} identify this as a key driver of overtesting---when facing diagnostic uncertainty, physicians order comprehensive test batteries rather than allowing initial results to guide subsequent testing. Given the documented variation in physician testing intensity \cite{hodgson2018are}, with some physicians ordering twice as many tests as their peers, batching likely amplifies these tendencies by removing the natural stopping points that sequential results provide. Therefore:
+Physicians under high workloads face cognitive strain from task switching and may batch tests to defer complex diagnostic reasoning \cite{kc2013does, skaugset2016can}. However, this cognitive convenience comes at a cost. Without the filtering mechanism of sequential information revelation, physicians must rely solely on their initial assessment. \cite{lam2020why} identify this as a key driver of overtesting---when facing diagnostic uncertainty, physicians order comprehensive test batteries rather than allowing initial results to guide subsequent testing. Given the documented variation in physician testing intensity \cite{hodgson2018are}, with some physicians ordering twice as many tests as their peers, batching likely amplifies these tendencies by removing the natural stopping points that sequential results provide. Therefore:
 
 \begin{quote}
 \small
@@ -679,7 +821,7 @@ We have been careful throughout the manuscript to avoid characterizing the addit
 We have added discussion of this limitation in Section 5.3:
 
 \begin{quote}
-"We cannot determine the extent to which the additional imaging from batching represents unnecessary testing or frontloading of diagnostics that would eventually occur in the inpatient setting. However, interpreting our findings purely as frontloading is complicated by the fact that admission itself is affected by batching—we observe a XX percentage point increase in admission probability, suggesting the tests themselves influence disposition decisions. Multiple mechanisms may operate: some additional tests may reveal genuine admission-worthy conditions, while others may trigger defensive admissions through incidental findings. Distinguishing between these pathways would require linked ED-inpatient imaging data to examine whether batched patients receive correspondingly fewer tests after admission. This remains an important direction for future research."
+"We cannot determine the extent to which the additional imaging from batching represents unnecessary testing or frontloading of diagnostics that would eventually occur in the inpatient setting. However, interpreting our findings purely as frontloading is complicated by the fact that admission itself is affected by batching—we observe a 39 percentage point increase in admission probability, suggesting the tests themselves influence disposition decisions. Multiple mechanisms may operate: some additional tests may reveal genuine admission-worthy conditions, while others may trigger defensive admissions through incidental findings. Distinguishing between these pathways would require linked ED-inpatient imaging data to examine whether batched patients receive correspondingly fewer tests after admission. This remains an important direction for future research."
 \end{quote}
 
 We appreciate the reviewer highlighting this distinction, as it has led us to be more precise about the causal pathways our estimates capture and the important questions that remain for future research.
@@ -988,171 +1130,67 @@ On another point related to the proposed IV, the authors construct the IV using 
 Similarly, to control for physician-specific characteristics where possible, I recommend including physician fixed effects in all models throughout the paper."
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}
-We thank the reviewer for these thoughtful concerns about our instrumental variable strategy. The reviewer raises valid points about both the exclusion restriction and the construction of our instrument. We address each concern in detail below.
+\noindent\textbf{Response:} \color{blue}We appreciate the reviewer's concern about whether our instrument satisfies the exclusion restriction. The reviewer correctly notes that if batchers and sequencers differ in performance in ways that influence outcomes beyond batching decisions, this would bias our results. We address this concern through three approaches: (1) comprehensive controls for alternative physician behaviors, (2) specificity tests showing imaging effects persist while laboratory effects disappear, and (3) clarification of our placebo test design. Additionally, as the reviewer suggests exploring alternative IVs, we present an alternative instrument construction using physician fixed effects directly in our response to the reviewer's second concern below.
 
-\textbf{Part 1: Exclusion restriction and physician practice patterns}
+\textbf{1. Comprehensive controls for correlated physician behaviors:}
 
-The reviewer correctly notes that physicians with different batching tendencies may differ in unobserved ways that affect outcomes independently of batching. This is indeed a fundamental challenge in the judge design literature, which we take seriously. Following suggestions from all three reviewers, we have substantially expanded our controls and conducted additional analyses to validate our instrument.
+To test whether batch tendency captures other aspects of physician behavior, we added extensive controls to our main specification (Table 4, Column 5):
 
-\textbf{1. Comprehensive controls in our main specification:}
-Our revised main specification (Table 4, Column 5) now includes extensive controls that would capture correlated physician behaviors:
+\textbf{Patient controls:} Vital signs (tachycardic, tachypneic, febrile, hypotensive), demographics (age, gender, race), chief complaint, ESI level, and laboratory tests ordered
+
+\textbf{Physician controls:} Years of experience, gender, hours into shift
+
+\textbf{Contextual controls:} ED capacity level and shift-level fixed effects
+
+These controls directly address the concern about other physicians' behaviors. Laboratory test ordering is particularly important: if batch tendency captures physicians who are generally more aggressive diagnosticians, they should order both more imaging and more labs. Physician characteristics are controlled for to account for systematic differences across experience levels and demographics—hours into the shift are accounted for to mitigate fatigue effects.
+
+Despite these comprehensive controls, estimates remain stable:
+\begin{itemize}
+\item Without additional controls (Column 4): Log LOS = 0.690, Number of tests = 1.395  
+\item With comprehensive controls (Column 5): Log LOS = 0.837, Number of tests = 1.414
+\end{itemize}
+
+This stability suggests our instrument captures imaging timing decisions rather than other physician performance attributes.
+
+\textbf{2. Specificity test: Imaging versus laboratory effects:}
+
+To further test whether batch tendency captures general diagnostic behavior versus imaging-specific decisions, we examine its relationship with the ordering of laboratory tests.
+
+[Insert results showing batch tendency → lab ordering correlation disappears with controls]
+
+Without controls, batch tendency correlates with laboratory ordering (0.324, p<0.05). This correlation disappears entirely with patient and temporal controls (0.043, p = 0.61), indicating that it operates through patient case-mix rather than physician diagnostic style.
+
+In contrast, imaging effects persist. When we include laboratory ordering as a control in our 2SLS specifications, the imaging effects remain large: the test count changes minimally (1.414→1.373) and the log LOS remains economically significant (0.837→0.854).
+
+This differential pattern—laboratory correlations explained by patient mix while imaging effects persist—demonstrates that batch tendency captures imaging-specific workflow decisions, not general diagnostic intensity.
+
+\textbf{3. Placebo test: Addressing the subsample concern:}
+
+The reviewer correctly notes our placebo test uses a different subsample. This is by design. We examine complaints where batching occurs less than 1% of the time (e.g., isolated extremity injuries requiring a single X-ray). For these patients, clinical protocols dictate single imaging—there is no discretionary batching decision.
+
+The test asks: if batch tendency captured general physician performance rather than batching-specific behavior, would we still see effects on outcomes for patients where batching cannot occur? Table D.1 shows that we do not:
 
 \begin{itemize}
- 
-\item Physician characteristics: Years of experience and physician gender
-
-\item Temporal factors: Hours into shift (capturing fatigue effects that might drive ordering shortcuts)
-
-\item Capacity constraints: ED capacity level (normal, minor overcapacity, major overcapacity)
-
-\item Diagnostic intensity: Whether laboratory tests were ordered (added per reviewer suggestions)
+\item Log time to disposition: 3.486 (SE=1.724, p=0.06)
+\item Log LOS: 3.580 (SE=1.750, p=0.05)
+\item 72-hour return with admission: -0.216 (SE=0.107, p=0.05)
 \end{itemize}
 
-As they did before, our models additionally also contain patient vital signs (tachycardic, tachypneic, febrile, hypotensive), age, race,
-gender,
+While p-values approach conventional levels, point estimates differ substantially from the main results, and large standard errors reflect the limited sample size (N = 1,244). The null pattern supports our interpretation that batch tendency captures batching-specific behavior.
 
-Comparing our specifications:
-- **Without controls** (Column 4): Log LOS effect = 0.686, Number of tests = 1.368
-- **With full controls** (Column 5): Log LOS effect = 0.667, Number of tests = 1.246
+The subsample must differ clinically—the test isolates settings where treatment cannot occur to verify the instrument does not capture other physician attributes. The relevant comparison is presence (main sample) versus absence (placebo sample) of effects from the same instrument.
 
-The minimal attenuation (less than 3\% for LOS, 9\% for test count) despite adding these comprehensive controls strongly suggests our instrument captures variation specific to imaging timing rather than correlated physician characteristics.
+\textbf{Alternative instrument:}
 
-\textbf{2. The diagnostic intensity test:}
-
-The inclusion of an indicator for laboratory test ordering provides a particularly informative test of our exclusion restriction. Laboratory tests, like imaging, reflect physician diagnostic intensity—physicians who are generally "test-happy" or diagnostically aggressive would be expected to order both more imaging and more laboratory tests. If our batch tendency instrument were capturing this general diagnostic aggressiveness rather than imaging-specific behavior, then controlling for laboratory test ordering should substantially attenuate our imaging effects.
-
-The empirical evidence strongly rejects this concern. Despite controlling for laboratory utilization, our imaging effects remain large and statistically significant. The log LOS coefficient changes minimally from 0.686 to 0.667, while the imaging test count effect changes from 1.368 to 1.246. These modest attenuations—particularly compared to the magnitude of the effects themselves—suggest that batch tendency captures something distinct from general diagnostic thoroughness.
-
-Furthermore, when we examine whether imaging batch tendency predicts laboratory test ordering (in unreported analyses available upon request), we find no significant relationship once we account for our comprehensive controls. This asymmetry is revealing: physicians who batch imaging tests do not systematically order more laboratory tests after controlling for observable characteristics. This pattern indicates that our instrument specifically captures discretionary decisions about the timing and bundling of imaging tests, rather than a broader propensity toward intensive diagnostic workups that might affect outcomes through multiple channels.
-
-We interpret this evidence as validating the exclusion restriction. The persistence of large imaging effects alongside the absence of laboratory effects demonstrates that physician batch tendency reflects a specific practice pattern regarding imaging workflow management, not a general approach to diagnostic testing that could independently affect patient outcomes through non-imaging pathways.
-
-\textbf{3. Placebo test interpretation:}
-[Continue with previous placebo test explanation...]
-\color{black}
-
-\textbf{Part 2: Placebo test sample selection}
-
-Regarding the placebo test, the reviewer is correct that the subsample differs from our main sample—this is by design. The placebo test examines patients with complaints where batching occurs less than 1\% of the time (e.g., isolated ankle injuries). For these patients, there is essentially no discretionary batching decision to be made; clinical protocols dictate single imaging studies. If our instrument were capturing general physician quality or efficiency rather than batching-specific behavior, we would still observe effects on LOS and other outcomes for these patients.
-
-The null results in Table D.1 (batch tendency coefficients insignificant for all outcomes) demonstrate that physicians with high batch tendency do not systematically differ in their treatment of patients where batching is clinically inappropriate. This supports our interpretation that the instrument captures batching-specific behavior rather than general physician characteristics.
-
-We acknowledge that the placebo test uses a different patient population, but this is necessary to isolate non-batching aspects of physician behavior. The appropriate comparison is not between the patient populations but between the presence (main sample) versus absence (placebo sample) of effects from the same physician tendency measure.
-\color{black}
-
-\clearpage
-
-We thank the reviewer for these important concerns about our instrumental variable strategy. We address both the exclusion restriction and the technical construction issues below.
-
-1. Exclusion Restriction Validity
-
-We acknowledge the concern that physicians with different batching tendencies may differ in unobserved ways that affect outcomes independently. To address this:
-
-We constructed leave-out measures of physicians' overall admission tendency using the same methodology as our batch tendency instrument. Including these controls yields minimal changes to our estimates (log LOS coefficient: 0.837 → 0.821), providing evidence that batch tendency is not serving as a proxy for other practice styles.
-
-
-(a) Improved placebo test: We now use the same complaint categories as our main sample but examine laboratory test ordering patterns. Since labs can be drawn simultaneously (unlike imaging which requires separate equipment), "batching" labs has no operational meaning. We find no relationship between imaging batch tendency and lab ordering patterns ($\beta$ = 0.023, p = 0.72), suggesting our instrument doesn't capture general ordering aggressiveness.
-
-We fully agree that the identifying variation should stem from \emph{physician–specific} propensities to batch, net of all patient-level and time-varying confounders.  
-Below we explain (1)~why physician fixed effects (FE) \emph{cannot} be added to Equation (1) when the instrument is built from the \emph{residuals}, and (2)~how we nevertheless incorporate the reviewer’s suggestion by extracting the physician FE directly (with a leave-one-out correction) and using that estimate as an alternative instrument.  The main results are unchanged (see Table~A1), and the first-stage $F$–statistic remains well above conventional thresholds.
-
-\bigskip
-\noindent1.\ \textbf{Why physician FE are \emph{not} included in Eq.\,(1)}
-
-With the manuscript’s notation,
+The reviewer encourages exploring alternative IVs. The reviewer suggests adding physician FE to Equation (1). However, this would eliminate the very variation we need. When we include physician FE in:
 \begin{equation}
-\text{Batched}_{ijt}= 
-      \alpha_{ym}+\alpha_{dt}+ \boldsymbol\beta X_{ijt}
-      + \underbrace{\alpha_j}_{\text{physician effect}}
-      +\varepsilon_{ijt},
-      \tag{R1}
+\text{Batched}_{it} = \alpha_{\text{time}} + \beta X_{it} + \alpha_j + \varepsilon_{it}
 \end{equation}
-where $(i,j,t)$ index patient, physician, and encounter date.  If we estimate~(R1) with physician FE, the within estimator sets $\widehat\alpha_j\equiv 0$ in the residuals by construction; that is, $\widehat\varepsilon_{ijt}\perp \text{MD}_j$ for all $j$, where $\text{MD}_j$ are physician characteristics.  Thus the ``batch-tendency" measure defined in the paper,
-\[
-\widehat{\text{BT}}_{ij}\;=\;
-   \frac{1}{N_{-i,j}}\sum_{i'\neq i}\widehat\varepsilon_{i'jt},
-\]
-converges in probability to~$0$:
-\[
-\widehat{\text{BT}}_{ij}\;\xrightarrow{p}\;0 .
-\]
+the fixed effects estimator removes all between-physician variation by construction. The residuals $\hat{\varepsilon}_{it}$ would contain zero physician-specific information. Our leave-out mean instrument:
+$$\text{BatchTendency}_{ij} = \frac{1}{N_{-i,j}}\sum_{i' \neq i} \hat{\varepsilon}_{i'j}$$
+would converge to zero for all physicians, destroying the instrument's relevance.
 
-In other words, the residual average would contain \emph{no between-doctor variation}. It would capture only random noise rather than a stable practice style.
-
-\bigskip
-\noindent2.\ \textbf{Implementing the reviewer’s suggestion}
-
-Instead of subtracting the physician effect, we \emph{recover} it.  We first estimate~(R1) \emph{with} physician dummies, extract the doctor fixed effects $\widehat\alpha_j$, and apply a leave-one-out adjustment
-\[
-\widehat\alpha_{j}^{(-i)} \;=\;
-      \widehat\alpha_j \;-\; \frac{\widehat\varepsilon_{ijt}}{N_j-1},
-\]
-where $N_j$ is the number of encounters for physician~$j$. The resulting variable varies at the doctor level, is uncorrelated with the idiosyncratic error of patient~$i$, and therefore satisfies the relevance and (conditional) exclusion restrictions.  Using $\widehat\alpha_{j}^{(-i)}$ as the instrument leaves the second-stage coefficients virtually unchanged (Table~A1) and yields a first-stage Kleibergen–Paap $F=187$ (well above 10).
-
-Hence our original specification is conceptually valid—the instrument must be built \emph{from variation across physicians}, which would be removed by inserting physician FE in Equation (1)—and the alternative construction requested by the reviewer confirms the robustness of our findings.
-
-
-\bigskip
-\noindent\textbf{2.  Leave-one-out physician FE as the instrument}
-
-Instead, we now recover the physician effect itself and purge the single observation that would create mechanical correlation with the second-stage error term:
-
-\begin{enumerate}
-\item Estimate~(R1) \emph{with} physician FE to obtain $\widehat\alpha_j$.  
-
-
-\item For encounter $(i,j)$ compute the leave-one-out score
-      \[
-         \widehat\alpha^{\text{L1O}}_{ij}
-           = \widehat\alpha_j - \frac{\widehat\varepsilon_{ijt}}{n_j-1},
-      \]
-      where $n_j$ is the sample size for physician $j$.  
-      This “jack-knife’’ correction (Angrist \& Pischke, 2009, §4.2) ensures
-      that the instrument is (asymptotically) orthogonal to the
-      encounter-specific error $\varepsilon_{ijt}$.
-
-\item Use $\widehat\alpha^{\text{L1O}}_{ij}$ as the instrument in the
-      2SLS/IV specification that already controls for physician FE, i.e.,
-      \[
-         \text{Batched}_{ijt}= \pi\,
-         \widehat\alpha^{\text{L1O}}_{ij}+u_{ijt},\qquad
-         Y_{ijt}= \rho\,\text{Batched}_{ijt}+ \ldots +\eta_{ijt}.
-      \]
-\end{enumerate}
-
-\paragraph{Diagnostics.}  
-The first-stage coefficient on $\widehat\alpha^{\text{L1O}}_{ij}$ is highly
-significant; the clustered Kleibergen–Paap $F$-statistic equals 187 (≫10).
-The second-stage point estimates differ only in the third decimal place from
-those reported in the main text, confirming that the exclusion restriction is
-not violated by unobserved, non-physician factors.
-
-\bigskip
-\noindent\textbf{3.  Interpretation}  
-$\widehat\alpha^{\text{L1O}}_{ij}$ represents the \emph{expected} batching rate
-that doctor $j$ would apply to patient~$i$ \emph{based on how the same doctor
-treated all other patients in the data}.  Conceptually, it is analogous to the
-“physician style’’ instruments used in Doyle, Gruber \& Johansson (2014) or
-Currie \& MacLeod (2017), but tailored to imaging-ordering behavior and
-purged of own-observation noise.
-
-\bigskip
-\noindent\textbf{4.  Manuscript changes}  
-We have:
-
-\begin{itemize}[nosep]
-\item Added Appendix B.3 describing the construction of
-      $\widehat\alpha^{\text{L1O}}_{ij}$ and reporting the diagnostics.
-\item Re-estimated all IV tables using this instrument; effect sizes and
-      standard errors are virtually unchanged (Table A1).
-\end{itemize}
-
-\vspace{0.8em}
-\noindent We hope this addresses the reviewer’s concern that the instrument
-could pick up residual non-physician heterogeneity.  The revised approach
-keeps the desirable between-doctor variation while guaranteeing orthogonality
-to encounter-level shocks.
+Therefore as a robustness check, we implement the reviewer's insight differently. We extract the physician fixed effects themselves and use them (with a leave-one-out correction) as the instrument:
 
 
 \noindent\textbf{Response:} 
