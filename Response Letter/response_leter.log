@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  9 OCT 2025 20:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  9 OCT 2025 22:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -431,10 +431,14 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-<../outputs/figures/fig2_panel_batched_standardized.png, id=10, 867.24pt x 433.62pt>
+
+[2
+
+]
+<../outputs/figures/fig2_panel_batched_standardized.png, id=16, 867.24pt x 433.62pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 196.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 201.
 (pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
 
 
@@ -442,36 +446,34 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[2
-
-]
-
-[3 <../outputs/figures/fig2_panel_batched_standardized.png>]
+[3]
 <../outputs/figures/heterogeneity_by_complaint.png, id=20, 1011.78pt x 289.08pt>
 File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
 <use ../outputs/figures/heterogeneity_by_complaint.png>
-Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 218.
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 223.
 (pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
 
 
-[4 <../outputs/figures/heterogeneity_by_complaint.png>]
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5]
+
+
+[4 <../outputs/figures/fig2_panel_batched_standardized.png>]
+
+[5 <../outputs/figures/heterogeneity_by_complaint.png>]
 
 [6]
 
 [7]
-
-[8]
-
-[9
-
-]
-Overfull \hbox (11.99466pt too wide) in paragraph at lines 422--423
-[]\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
+Overfull \hbox (22.53171pt too wide) in paragraph at lines 339--340
+\T1/cmr/m/n/10.95 in Panel B of Ta-ble 4, which ex-am-ines spe-cific test types. We clar-i-fied that our IV ap-proach^^Vinstrumenting
  []
 
 
+
+[8]
+
+[9]
 
 [10]
 
@@ -479,9 +481,12 @@ Overfull \hbox (11.99466pt too wide) in paragraph at lines 422--423
 
 [12]
 
-[13]
+[13
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+]
+Overfull \hbox (11.99466pt too wide) in paragraph at lines 469--470
+[]\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
+ []
 
 
 
@@ -492,10 +497,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [16]
 
 [17]
-File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
-<use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 684.
-(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 
 [18]
@@ -504,35 +508,35 @@ Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png 
 
 [20]
 
-[21
+[21]
+File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
+<use ../outputs/figures/fig2_panel_batched_standardized.png>
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 731.
+(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
 
-]
 
 [22]
 
 [23]
 
 [24]
-Overfull \hbox (7.39651pt too wide) in paragraph at lines 842--843
-[]\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
- []
 
+[25
 
-
-[25]
+]
 
 [26]
 
 [27]
 
 [28]
-
-[29]
-Overfull \hbox (2.58746pt too wide) in paragraph at lines 976--978
-\T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
+Overfull \hbox (7.39651pt too wide) in paragraph at lines 889--890
+[]\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
 
+
+[29]
 
 [30]
 
@@ -541,14 +545,9 @@ Overfull \hbox (2.58746pt too wide) in paragraph at lines 976--978
 [32]
 
 [33]
-! Undefined control sequence.
-l.1074 \ite
-            \textbf{Quality metrics unchanged:} 72-hour returns show identic...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+Overfull \hbox (2.58746pt too wide) in paragraph at lines 1023--1025
+\T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
+ []
 
 
 
@@ -556,9 +555,7 @@ and I'll forget about whatever was undefined.
 
 [35]
 
-[36
-
-]
+[36]
 
 [37]
 
@@ -566,7 +563,9 @@ and I'll forget about whatever was undefined.
 
 [39]
 
-[40]
+[40
+
+]
 
 [41]
 
@@ -575,54 +574,49 @@ and I'll forget about whatever was undefined.
 [43]
 
 [44]
-<../outputs/figures/combined_tests.png, id=169, 722.7pt x 433.62pt>
-File: ../outputs/figures/combined_tests.png Graphic file (type png)
-<use ../outputs/figures/combined_tests.png>
-Package pdftex.def Info: ../outputs/figures/combined_tests.png  used on input line 1451.
-(pdftex.def)             Requested size: 381.5874pt x 228.95074pt.
-
 
 [45]
 
-[46 <../outputs/figures/combined_tests.png>]
+[46]
 
 [47]
-Overfull \hbox (13.07736pt too wide) in paragraph at lines 1530--1531
+
+[48]
+<../outputs/figures/combined_tests.png, id=181, 722.7pt x 433.62pt>
+File: ../outputs/figures/combined_tests.png Graphic file (type png)
+<use ../outputs/figures/combined_tests.png>
+Package pdftex.def Info: ../outputs/figures/combined_tests.png  used on input line 1496.
+(pdftex.def)             Requested size: 381.5874pt x 228.95074pt.
+
+
+[49]
+
+[50 <../outputs/figures/combined_tests.png>]
+
+[51]
+Overfull \hbox (13.07736pt too wide) in paragraph at lines 1575--1576
 []\T1/cmr/m/n/10.95 To ad-dress this con-cern, we ex-am-ined whether con-trol-ling for physi-cian ad-mis-sion ten-dency^^Vconstructed
  []
 
 
 
-[48]
-
-[49]
-
-[50]
-
-[51]
-<../outputs/figures/CONSORT.png, id=193, 514.5624pt x 433.62pt>
-File: ../outputs/figures/CONSORT.png Graphic file (type png)
-<use ../outputs/figures/CONSORT.png>
-Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1675.
-(pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
-
-
-[52 <../outputs/figures/CONSORT.png>]
+[52]
 
 [53]
 
 [54]
 
 [55]
+<../outputs/figures/CONSORT.png, id=206, 514.5624pt x 433.62pt>
+File: ../outputs/figures/CONSORT.png Graphic file (type png)
+<use ../outputs/figures/CONSORT.png>
+Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1720.
+(pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
 
-[56]
+
+[56 <../outputs/figures/CONSORT.png>]
 
 [57]
-File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
-<use ../outputs/figures/heterogeneity_by_complaint.png>
-Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 1869.
-(pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
-
 
 [58]
 
@@ -631,12 +625,25 @@ Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used
 [60]
 
 [61]
+File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
+<use ../outputs/figures/heterogeneity_by_complaint.png>
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 1914.
+(pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
 
-[62] (./response_leter.bbl
 
-[63])
+[62]
 
-[64] (./response_leter.aux)
+[63]
+
+[64]
+
+[65]
+
+[66] (./response_leter.bbl
+
+[67])
+
+[68] (./response_leter.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -648,8 +655,8 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 1976 ({)
-### simple group (level 1) entered at line 1947 ({)
+### simple group (level 2) entered at line 2033 ({)
+### simple group (level 1) entered at line 2004 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  7713 strings out of 469686
@@ -660,10 +667,10 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  67i,13n,77p,1579b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on response_leter.pdf (64 pages, 1267580 bytes).
+Output written on response_leter.pdf (68 pages, 1280219 bytes).
 PDF statistics:
- 885 PDF objects out of 1000 (max. 8388607)
- 239 compressed objects within 3 object streams
+ 899 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -429,7 +429,7 @@ final <- data %>%
 final$ln_ED_LOS <- log(final$ED_LOS)
 final$ln_disp_time <- log(final$time_to_dispo)
 final$ln_treat_time <- log(final$treatment_time)
-
+final$ln_test_time <- log(final$total_testing_time + 1) 
 
 final$capacity_level <- factor(final$capacity_level,
                               levels = c('Normal Operations', 

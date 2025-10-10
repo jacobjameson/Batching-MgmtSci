@@ -120,8 +120,6 @@
 \baselineskip=16pt
 \noindent\underline{\textbf{I. General Response to the Entire Review Team}}
 
-
-
 \noindent We would like to thank the Associate Editor (AE) and the three referees for the constructive and detailed feedback provided in their reports. We are also grateful for the opportunity to address the reviewers' comments, and for the revision decision.
 
 We have carefully revised the paper to address all the comments, and the paper has benefited greatly from the suggested revisions. We first briefly summarize the main changes and then provide individual responses.
@@ -164,7 +162,14 @@ We hope the review team finds our various efforts in extending our results, and 
 However, the referees have raised significant concerns regarding theory and methodology. In its current form, the paper does not sufficiently develop the theoretical foundation necessary to support its empirical strategy or claims of contribution.” 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+\noindent\textbf{Response:} \color{blue}We sincerely thank the Associate Editor for recognizing the importance and innovation of our research question. We appreciate the constructive guidance provided alongside the three referees' detailed feedback, which has substantially strengthened our manuscript.
+
+In response to the reviewers' and Associate Editor's suggestions, we have enhanced our empirical strategy by expanding our control set to directly test concerns about whether our instrument captures imaging-specific behavior versus general diagnostic intensity. This enhancement both validates the importance of these controls and demonstrates that substantial imaging-specific variation persists—precisely the parameter relevant for ED protocols. We have also clarified our theoretical framework to articulate better how our identification strategy isolates discretionary batching decisions, added multiple robustness checks, including alternative instrument construction, and conducted heterogeneity analysis across complaint types.
+
+These revisions have yielded more conservative but highly credible estimates. Our revised specification shows imaging volume effects remain large and highly significant (91\% increase, p<0.001), while time effects, though economically substantial (79\% increase), are measured with less precision (p=0.089). Combined with substantial admission increases (39pp, p<0.001) and no quality improvements, our findings provide important evidence that discretionary batching increases resource utilization without demonstrable benefits, with clear operational implications for patients at the margin of clinical discretion.
+
+These enhancements strengthen the manuscript's theoretical foundation, empirical rigor, and practical relevance. We are grateful for the opportunity to improve our work and hope the Associate Editor and reviewers find that our revisions address their concerns while advancing our contribution to understanding physician decision-making in emergency departments.
+\color{black}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{quote2}
@@ -276,9 +281,9 @@ The Associate Editor is correct that the 130\% effect could be due in part to vi
 This enhancement directly addresses the confounding concern. Our revised estimates show:
 
 \begin{itemize}
-\item Log ED LOS: 0.580 (SE=0.341, p=0.089) — 79\% increase, no longer statistically significant
-\item Imaging tests: 1.214 (SE=0.196, p<0.001) — 91\% increase, remains highly significant
-\item Admission: 0.392 (SE=0.071, p<0.001) — 39pp increase, remains highly significant
+\item Log ED LOS: 0.580 (SE=0.341, p=0.089)
+\item Imaging tests: 1.214 (SE=0.196, p<0.001)
+\item Admission: 0.392 (SE=0.071, p<0.001)
 \end{itemize}
 
 The attenuation of time effects confirms the Associate Editor's intuition about confounding. Our original specification partially captured general diagnostic intensity. However, the persistence of large imaging effects after comprehensive controls demonstrates that substantial imaging-specific variation remains, which is the parameter relevant for ED protocols.
@@ -329,7 +334,18 @@ We hope that this reframing directly addresses the Reviewer and Associate Editor
 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+\noindent\textbf{Response:} \color{blue}We have substantially enhanced our analysis to address each concern the Associate Editor raises.
+
+Regarding intermediate outcomes and mechanisms, Reviewer 3 raised concerns about reverse causality in Panel B of Table 4, which examines specific test types. We clarified that our IV approach—instrumenting batching with physician tendency calculated from other patients—breaks the endogeneity between patient-specific test needs and batching decisions. The results reveal that discretionary batching nearly universally adds X-rays (97pp increase, p<0.01), while having more minor, non-significant effects on other forms of imaging. This pattern indicates physicians construct comprehensive workups by adding quick, low-cost tests rather than selectively ordering expensive imaging.
+
+Reviewer 2 raised the identical question about whether additional tests represent overuse or appropriate care. While we cannot determine whether specific individual tests are clinically unnecessary, our complier analysis provides definitive evidence of discretionary ordering: 13\% of patients receive different testing strategies based solely on physician assignment. For these marginal patients, batching generates 1.2 additional imaging tests (91\% increase, p<0.001) without improving quality outcomes (72-hour returns: -0.012, p=0.65). This pattern—increased resource utilization without measurable clinical benefits—suggests that at the margin where physicians exercise discretion, additional tests do not provide commensurate value.
+
+The Associate Editor correctly notes that ED LOS captures multiple processes beyond physician decision-making. Following Reviewer 3's suggestion, we added treatment time (time from physician assessment to disposition) as an alternative outcome that excludes both waiting room delays and post-disposition boarding. The results (Appendix D) show nearly identical patterns: 94\% increase (p=0.17) for treatment time versus 88\% increase (p=0.17) for time to disposition. This consistency demonstrates that batching affects clinical processing time, not just mechanical delays.
+
+Our enhanced specification directly addresses the factors the Associate Editor identifies as problematic. For patient heterogeneity, we control for vital signs, age, demographics, chief complaint severity, ESI level, and laboratory testing—comprehensive controls for case mix, with Figure 2 confirming these characteristics do not predict assignment to different physician types. For workload fluctuations, we include ED capacity level indicators (normal, minor overcapacity, major overcapacity) and comprehensive temporal fixed effects (day-of-week × time-of-day, month-of-year) to account for systematic demand patterns. For staffing variability, we control for physician experience, gender, and hours into shift to capture systematic differences in practice patterns and potential fatigue effects.
+
+The robustness of imaging effects (1.214 tests, p<0.001) across these comprehensive controls provides confidence that we capture genuine physician practice variation rather than confounding from operational factors. Together, these enhancements—test-type mechanisms, multiple time measures, and comprehensive controls—address the Associate Editor's concerns about outcome measurement while providing convergent evidence that discretionary batching increases resource utilization without improving efficiency or quality.
+\color{black}
 
 \begin{quote2}
 \textbf{AE Wrote (Comment – Relevance):} 
@@ -341,8 +357,18 @@ We hope that this reframing directly addresses the Reviewer and Associate Editor
 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+\noindent\textbf{Response:} \color{blue}We have addressed both suggestions to strengthen the practical relevance of our findings.
 
+Regarding patient subsets and refined outcomes, our revisions directly explain the initially reported large effect size. First, our enhanced control set (adding laboratory ordering, physician characteristics, and hours into shift) reveals that the original 130\% LOS increase was partially driven by general diagnostic intensity rather than imaging-specific batching behavior. Our revised estimate of 79\% (p=0.089) provides a more accurate and credible magnitude, though we acknowledge the effect remains imprecisely estimated.
+
+Second, following Reviewer 3's suggestion, we conducted a heterogeneity analysis across seven chief complaint categories, which vary in clinical complexity and batching prevalence (Figure 4). This exploratory analysis reveals consistent patterns—increased imaging without time savings or quality improvements—across all complaint types, from simple presentations (fevers, extremity complaints) to complex polytrauma cases. The consistency across subgroups strengthens confidence in our main findings while demonstrating that effects do not depend on specific patient populations.
+
+Third, we refined our time-based outcomes by adding treatment time (Reviewer 3's suggestion), which excludes both waiting room delays and post-disposition boarding to isolate physician processing time. The similar patterns across time to disposition (88\% increase) and treatment time (94\% increase) confirm that batching affects clinical decision-making processes, not just mechanical delays. We also compared excluded versus included encounters (Reviewer 3's request), demonstrating that our analytical sample appropriately focuses on moderate-to-high acuity patients where imaging decisions are both consequential and discretionary.
+
+Regarding cost-benefit analysis, Reviewer 2 made this identical suggestion. [NOTE FOR SOROUSH: I am currently in the process of wrapping this comment up for R2. You will notice it is the only one I still need to answer.]
+
+These enhancements—explaining the effect magnitude through enhanced controls, demonstrating consistency across patient subsets, refining outcome measures, and developing cost-benefit implications—substantially strengthen the practical relevance of our findings for ED management.
+\color{black}
 
 \begin{quote2}
 \textbf{AE Wrote (Comment – Additional suggestions):} 
@@ -359,8 +385,30 @@ We hope that this reframing directly addresses the Reviewer and Associate Editor
 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+\noindent\textbf{Response:} \color{blue}We have addressed each of these suggestions through substantial revisions responding to the three reviewers.
 
+\textbf{1. Definition of the treatment variable}
+
+Reviewers 1 and 2 raised identical concerns that our comparison was not pure "batching versus sequencing." We have reframed our treatment throughout the manuscript as "batch ordering versus standard practice" and clarified that our counterfactual includes both sequential multi-test encounters and single-test encounters. Section 3.3 now explicitly explains that this composite counterfactual reflects the policy-relevant parameter: the effect of encouraging comprehensive upfront testing versus allowing diagnostic information to guide testing decisions for patients at the margin of clinical discretion—those whose testing strategy is not dictated by apparent clinical necessity but rather depends on physician practice style and judgment. This reframing directly addresses Reviewer 3's concerns about treatment definition precision.
+
+\textbf{2. Independence from prior tests and workload}
+
+Reviewer 2 raised this concern. Our focus on early batching (within 5 minutes of encounter initiation) ensures that no prior test results have returned, ruling out adaptive responses. We document that late batching following initial tests occurs in only 1.9\% of multi-test encounters. For workload conditions, our enhanced specification includes ED capacity level indicators (normal, minor overcapacity, major overcapacity) and comprehensive temporal fixed effects. Additionally, our control for laboratory test ordering directly tests whether imaging decisions are independent of general diagnostic intensity—the persistence of imaging effects (1.214 tests, p<0.001) after this control demonstrates imaging-specific variation.
+
+\textbf{3. Sample representativeness}
+
+Third, Reviewer 3 explicitly requested analysis of sample representativeness. We have added a detailed CONSORT flow diagram (Appendix Figure A2) showing exact exclusion counts at each step and a comprehensive comparison table of excluded versus included encounters (Appendix Table A). The comparison reveals that our analytical sample appropriately focuses on higher-acuity patients presenting with complaints requiring imaging—precisely the population where batching decisions have operational consequences. Section 3.2 now includes an expanded discussion of why this focused sample strengthens rather than limits our contribution.
+
+\textbf{4. Physician fixed effects and model selection}
+
+Reviewer 3 suggested constructing an alternative instrument using physician fixed effects, which we implemented. Appendix D presents results using leave-one-out corrected physician fixed effects as the instrument, yielding virtually identical estimates (imaging: 1.219*** vs 1.214***, LOS: 0.571 vs 0.580). This robustness check validates our main approach. Reviewer 3 also questioned our use of linear models for binary and count outcomes. We have added to Appendix D, which shows that OLS estimates using logit (for binary outcomes) and negative binomial (for count outcomes) yield similar average marginal effects, confirming that functional form does not drive our results. We retain linear 2SLS throughout because nonlinear IV specifications create fundamental econometric problems (the "forbidden regression"), as documented in our response to Reviewer 3.
+
+\textbf{4. Alternative outcomes}
+
+Reviewer 3 suggested treatment time as an alternative to ED LOS that excludes waiting room delays and post-disposition boarding. We have added this measure (Appendix D), which shows consistent patterns: a 94\% increase in treatment time, an 88\% increase in time to disposition, and a 79\% increase in total LOS. The consistency across multiple time measures—all capturing different aspects of operational flow—strengthens confidence in our findings. We maintain multiple time-based outcomes in Table 4 rather than selecting a single primary metric, as each captures different policy-relevant aspects of ED efficiency.
+
+These revisions—clarifying treatment definition, establishing test order independence, documenting sample representativeness, implementing alternative empirical specifications, and expanding outcome measures—directly address all five suggestions while maintaining consistency with the three reviewers' detailed feedback.
+\color{black}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -391,8 +439,7 @@ could save lives, and also enhance our understanding of the impact of “work be
 preferences” on operational outcomes.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \textcolor{blue}{We sincerely appreciate the reviewer's recognition of the importance and clarity of our research question. We share your view that emergency departments represent uniquely high-stakes environments where operational improvements can have life-saving implications. Your framing of our work as contributing to the understanding of how ``work behavior/preferences" affect operational outcomes perfectly captures what we hope to achieve—bridging the gap between individual physician decision-making and system-level performance. We are grateful for your thorough engagement with our manuscript and have carefully addressed your methodological concerns to ensure our findings can meaningfully contribute to improving ED operations and patient care.}
-
+\noindent\textbf{Response:} \textcolor{blue}{We sincerely appreciate the reviewer's recognition of the importance and clarity of our research question. Emergency departments represent uniquely high-stakes environments where operational improvements can have significant implications for patient care. We share the reviewer's view that understanding how physician work behavior affects operational outcomes can bridge individual decision-making and system-level performance. We have strengthened our analysis in response to the methodological concerns raised, and believe the revisions substantially improve the manuscript's rigor and contribution.}
 
 \begin{quote2}
 \textbf{R1 Wrote (Major Concern 1):}  
@@ -738,7 +785,7 @@ Together, the institutional details and empirical balance tests confirm that May
 \noindent``The paper’s research question is clear. The main contribution is to provide causal evidence that batch ordering of advanced imaging tests in emergency departments (EDs) — commonly assumed to be efficient — increases patient length of stay (LOS), test volume, and admission rates. EDs are under constant pressure to improve throughput, and advanced imaging is a major driver of delays, costs and overcrowding in the EDs. The paper does have the potential to make a significant and novel contribution by causally examining the impact of diagnostic batch ordering in emergency departments. While prior research has explored physician-driven variation in testing and the operational burden of imaging, this study uniquely isolates the effect of batching behavior using a quasi-randomized design.”
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{We appreciate the reviewer's recognition of our contribution to understanding diagnostic test ordering in emergency departments. We agree that challenging the conventional wisdom about batch ordering efficiency is important given the operational pressures EDs face. The reviewer's acknowledgment that our quasi-randomized design uniquely isolates batching effects validates our empirical approach. Following the reviewer's and other referees' suggestions, we have further clarified how our findings differ from prior work on physician practice variation by specifically focusing on the timing and sequencing of test orders rather than just testing intensity.}
+\noindent\textbf{Response:} \textcolor{blue}{We appreciate the reviewer's recognition of our contribution to understanding diagnostic test ordering in emergency departments. We agree that challenging conventional assumptions about batch ordering efficiency is important given the operational pressures EDs face. The reviewer's constructive feedback has substantially strengthened our empirical approach and helped us clarify how our quasi-randomized design isolates batching effects from other aspects of physician practice variation.}
 
 \begin{quote2}
 \textbf{R2 Wrote (Framing):}  
@@ -882,7 +929,7 @@ imaging cost burdens. Do the authors have any data they could use to conduct suc
 analysis?” 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+[PLACEHOLDER I WANT TO CHECK WITH SOROUSH FIRST]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{quote2}
@@ -949,7 +996,7 @@ Section 3.2.2 (Dependent Variables):
 
 Section 4.2 (Results): Added clarification: 
 \begin{quote}
-``Discretionary batching also leads to more intensive diagnostic testing. Specifically, the marginal batched patient receives 1.4 more distinct imaging tests (completed studies with documented results), representing a 105\% increase from the mean for sequentially tested patients."
+``Discretionary batching also leads to more intensive diagnostic testing. Specifically, the marginal batched patient receives 1.2 more distinct imaging tests (completed studies with documented results), representing a 91\% increase from the mean for standard care patients."
 \end{quote}
 
 Table 4: Added footnote: 
@@ -1071,7 +1118,7 @@ We thank the reviewer for this important observation. In response to concerns fr
 \item \textbf{Imaging volume effects persist:} 1.360*** → 1.214*** (both p<0.001). The mechanism remains highly significant and economically large despite comprehensive controls.
 \item \textbf{Time effects attenuate:} Log LOS changes from 0.679** (p<0.05) to 0.580 (p=0.089).
 \item \textbf{Admission effects stable:} 0.397*** → 0.392*** (both p<0.001). The disposition effects remain highly significant and virtually unchanged in magnitude.
-\ite \textbf{Quality metrics unchanged:} 72-hour returns show identical null effects across specifications.
+\item \textbf{Quality metrics unchanged:} 72-hour returns show identical null effects across specifications.
 \end{itemize}
 We have added a discussion of this specification sensitivity in Section 4.1 (Results), and our response to Reviewer 1 provides detailed progressive control tables showing how estimates change as each control set is added (Appendix D).
 \color{black}
@@ -1094,7 +1141,7 @@ We thank the reviewer for catching this labeling error. We have corrected the ta
 \noindent``The insights are policy-relevant, as they directly inform how EDs might design decision support tools, diagnostic protocols, or physician feedback systems to reduce overuse and streamline care. While the methodological innovation (a quasi-experimental IV strategy using random physician assignment) may not be groundbreaking in design, its application to clinical operations and diagnostic behavior is well-executed, adding credibility and potential for translation.” 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}
+\noindent\textbf{Response:} \color{blue}
 We thank the reviewer for this encouraging assessment of our work's policy relevance and execution. We agree that the key contribution lies not in methodological innovation per se, but in applying rigorous causal inference methods to an important operational decision in emergency medicine that has long been debated. We are grateful that the reviewer sees the potential for our findings to inform practical interventions such as decision support tools and physician feedback systems. In response to this and other reviewers' suggestions, we have strengthened the policy implications section to provide more concrete guidance for ED managers considering interventions to optimize diagnostic test ordering practices.
 \color{black}
 
@@ -1124,9 +1171,7 @@ We thank the reviewer for this encouraging assessment of our work's policy relev
 \end{quote2}
 
 \noindent\textbf{Response:} \color{blue}
-We sincerely appreciate the reviewer's recognition of our paper's relevance to emergency medicine management and the important problem of overdiagnosis in contributing to ED overcrowding. Your characterization of emergency physicians as "cowboy doctors" whose individualistic decision-making requires empirical scrutiny perfectly captures the motivation for our study. We agree that while implementing strict protocols in dynamic ED settings is challenging, providing rigorous evidence about the consequences of different practice patterns can inform better decision-making.
-
-We are grateful for your detailed methodological comments, which have substantially strengthened our work. In response to your concerns about the empirical strategy, we have: (1) implemented physician fixed effects as an alternative instrument construction as you suggested, (2) addressed reverse causality concerns in our test-type analysis, (3) added robustness checks using alternative model specifications, (4) provided detailed sample selection documentation, and (5) included heterogeneity analyses by complaint complexity. We believe these revisions, detailed in our responses below, now provide the robust empirical foundation necessary to support our findings. We hope you find the strengthened methodology addresses your concerns and allows the paper to make the meaningful contribution to emergency medicine practice that you envision.
+We sincerely appreciate the reviewer's recognition of our paper's relevance to emergency medicine management and the important problem of overdiagnosis in contributing to ED overcrowding. We are grateful for your detailed methodological comments, which have substantially strengthened our work. In response to your concerns about the empirical strategy, we have: (1) implemented physician fixed effects as an alternative instrument construction as you suggested, (2) added additional physician level controls to our main specification, (3) added robustness checks using alternative model specifications, (4) provided detailed sample selection documentation, and (5) included heterogeneity analyses by complaint. We believe these revisions, detailed in our responses below, now provide the robust empirical foundation necessary to support our findings. We hope you find the strengthened methodology addresses your concerns.
 \color{black}
 
 \color{black}
@@ -1357,7 +1402,7 @@ This approach isolates physician-specific batching propensity while avoiding mec
 
 \textbf{Results with alternative instrument:}
 
-Table D.X in Appendix D presents results using this physician FE-based instrument with our full control set (patient characteristics, physician characteristics, lab ordering, hours into shift):
+Appendix D presents results using this physician FE-based instrument with our full control set (patient characteristics, physician characteristics, lab ordering, hours into shift):
 
 \begin{table}[H]
 \centering
@@ -1527,7 +1572,7 @@ This pattern makes clinical sense: when physicians choose to batch, they nearly 
 
 The reviewer correctly notes that the 39.2 percentage point admission increase (Column 5) is substantial. In our original submission, this effect was even larger, raising valid concerns about whether the instrument might capture physician admission propensity independent of imaging decisions.
 
-To address this concern, we examined whether controlling for physician admission tendency—constructed using the same leave-one-out residualization approach as our batch tendency instrument—would attenuate the effect. We present these results in Appendix Table D.Z:
+To address this concern, we examined whether controlling for physician admission tendency—constructed using the same leave-one-out residualization approach as our batch tendency instrument—would attenuate the effect. We present these results in Appendix D:
 
 \begin{table}[h]
 \centering
@@ -1572,7 +1617,7 @@ We acknowledge this interpretation in our revised limitations section (Section 4
 
 \begin{enumerate}
 \item Updated Table 4 to reflect enhanced specification with full controls
-\item Added Appendix Table D.Z showing sensitivity to admission tendency control
+\item Added to Appendix D showing sensitivity to admission tendency control
 \item Revised discussion of admission effects (Section 4.2) to acknowledge potential for correlated physician behaviors while emphasizing the imaging volume mechanism
 \item Enhanced limitations section (Section 4.8) discussing the causal pathway interpretation
 \end{enumerate}
@@ -1832,7 +1877,7 @@ Observations & 11,651 & 11,651 \\
 \end{threeparttable}
 \end{table}
 
-The results remain statistically insignificant for both measures (p=0.648 and p=0.250), with point estimates suggesting no adverse quality effects. If anything, both measures show negative point estimates, suggesting batch ordering does not increase (and may slightly decrease) return rates, though the effects are imprecise and statistically indistinguishable from zero. We have added this robustness check to Appendix Table D.
+The results remain statistically insignificant for both measures (p=0.648 and p=0.250), with point estimates suggesting no adverse quality effects. If anything, both measures show negative point estimates, suggesting batch ordering does not increase (and may slightly decrease) return rates, though the effects are imprecise and statistically indistinguishable from zero. We have added this robustness check to Appendix D.
 
 \textbf{3. Measurement for admitted patients:}
 
@@ -1841,8 +1886,8 @@ For patients admitted during their index visit, the 72-hour window begins at hos
 \textbf{Manuscript changes:}
 
 \begin{enumerate}
-\item Added treatment time analysis (Appendix Table D.ZZ)
-\item Added any 72-hour return analysis (Appendix Table D.ZZ)
+\item Added treatment time analysis (Appendix D)
+\item Added any 72-hour return analysis (Appendix D)
 \item Clarified 72-hour return measurement for admitted patients (Section 3.2.2)
 \end{enumerate}
 
@@ -1893,11 +1938,9 @@ We appreciate this suggestion, which strengthens our finding that discretionary 
 \textbf{R3 Wrote (Major concern -  Results interpretation):}  
 
 \noindent``The argument regarding heterogeneity based on ED capacity status is not valid and requires closer examination. Although the effect magnitudes reported in Table 5 differ across occupancy levels, a closer look at the standard errors indicates that these differences are not statistically significant."
-
-
 \end{quote2}
 
-
+[PLACEHOLDER WANT TO TALK TO SOROUSH BEFORE I WRITE]
 
 \color{black}
 
@@ -1915,8 +1958,22 @@ We appreciate this suggestion, which strengthens our finding that discretionary 
 
 \end{quote2}
 
-\noindent\textbf{Response:} \textcolor{blue}{[Your response here]}
+\noindent\textbf{Response:} \color{blue}We thank the reviewer for these constructive suggestions about manuscript organization, which have substantially improved clarity and flow.
 
+Regarding Section 1.1, we have condensed the empirical challenges discussion into a single paragraph in the Introduction, which briefly previews our quasi-experimental approach. We have moved all technical details to Section 3, where they can be developed systematically alongside our identification strategy. This revision allows the Introduction to focus on motivating the research question and contribution without prematurely diving into methodological details.
+
+Regarding Section 3.3, we have completely restructured this section to follow the logical progression the reviewer suggests:
+\begin{enumerate}
+\item We now begin by presenting the second-stage equation (Equation 4) that defines our estimand
+\item We then explicitly discuss the endogeneity problem—that batching decisions correlate with unobserved patient complexity
+\item We introduce our instrumental variable (physician batch tendency) as the solution, explaining how random assignment creates exogenous variation in treatment
+\item We conclude with identification assumptions and validation tests
+\end{enumerate}
+
+This reorganization makes the IV strategy immediately clear, eliminating the need for readers to work through preliminary material before understanding the core identification approach. We have also added subheadings throughout Section 3 to improve navigation and added transitional sentences between subsections to maintain narrative flow.
+
+We appreciate these suggestions.
+\color{black}
 
 
 \begin{quote2}
