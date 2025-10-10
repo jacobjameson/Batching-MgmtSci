@@ -10,6 +10,7 @@ library(stringr)
 library(lfe)
 library(lubridate)
 library(ggthemes)
+
 source("src/utils.R")
 
 
@@ -37,7 +38,7 @@ for (col in rel_cols) {
       across(all_of(c(paste0(col, "_hrs"), paste0(col, "_mins"))), as.numeric),
       !!col := get(paste0(col, "_hrs")) * 60 + get(paste0(col, "_mins"))
     ) %>%
-    select(-matches(paste0(col, "_hrs|", col, "_mins")))
+    dplyr::select(-matches(paste0(col, "_hrs|", col, "_mins")))
 }
 
 
@@ -49,16 +50,6 @@ data$dispo_time <- pmin(data$ED_DISCHARGE_DT_REL,
                         data$ADMIT_INP_ORD_DTTM_REL,
                         na.rm = TRUE)
 
-summary(data$dispo_time)
-#data <- data %>%
-#  mutate(
-#    dispo_time = case_when(
-#     !is.na(ED_DISCHARGE_DT_REL) ~ ED_DISCHARGE_DT_REL,
-#     !is.na(ADMIT_OBS_ORD_DTTM_REL) ~ ADMIT_OBS_ORD_DTTM_REL,
-#      !is.na(ADMIT_INP_ORD_DTTM_REL) ~ ADMIT_INP_ORD_DTTM_REL,
-#      TRUE ~ NA_real_
-#    )
-#  )
 
 # create time to disposition variable
 data$time_to_dispo <- data$dispo_time - data$ARRIVAL_DTTM_REL
@@ -67,28 +58,35 @@ data$time_to_dispo <- ifelse(data$time_to_dispo > data$ED_LOS,
                              data$ED_LOS, data$time_to_dispo)
 
 # create waiting time variable
-data$wait_time <- data$TRIAGE_COMPLETED_REL - data$ARRIVAL_DTTM_REL
-data <- filter(data, wait_time >= 0)
 
+data$wait_time <- data$FIRST_CONTACT_DTTM_REL - data$ARRIVAL_DTTM_REL
+data <- filter(data, wait_time > 0)
+
+# determine occupancy levels
 calculate_waiting_patients <- function(time, arrivals, first_contacts) {
   sum(arrivals <= time & first_contacts > time, na.rm = TRUE)
 }
 
 data <- data %>%
+  group_by(date = floor_date(as.POSIXct("2018-10-06", tz = "UTC") + 
+                               minutes(ARRIVAL_DTTM_REL), "hour")) %>%
   mutate(
-    # number of patients waiting at this patient's arrival time
+    # Calculate waiting patients at each arrival time
     patients_waiting = map_dbl(
-      ARRIVAL_DTTM_REL,
-      ~calculate_waiting_patients(.x, ARRIVAL_DTTM_REL, TRIAGE_COMPLETED_REL)
+      ARRIVAL_DTTM_REL, 
+      ~calculate_waiting_patients(
+        .x, ARRIVAL_DTTM_REL, FIRST_CONTACT_DTTM_REL)
     ),
-    # classify capacity state
+    
     capacity_level = case_when(
-      wait_time > 90 | patients_waiting > 20 ~ "Major Overcapacity",
-      (wait_time >= 21 & wait_time <= 90) | patients_waiting >= 10 ~ "Minor Overcapacity",
-      wait_time < 20 & patients_waiting < 10 ~ "Normal Operations",
+      wait_time < 20 ~ "Normal Operations",
+      wait_time >= 90 | wait_time > 20 ~ "Major Overcapacity",
+      wait_time >= 21 | wait_time >= 10 ~ "Minor Overcapacity",
       TRUE ~ "Normal Operations"
     )
-  )
+  ) %>%
+  ungroup()
+
 
 data <- data %>%
   filter(!is.na(time_to_dispo),
@@ -116,6 +114,7 @@ data$max_time <- pmax(data$CT_WITHOUT_CONTR_RESULT_DTTM_REL,
 
 data$total_testing_time <- data$max_time - data$min_time
 data$treatment_time <- data$time_to_dispo - data$wait_time 
+data$treatment_time <- ifelse(data$treatment_time <= 0, 1, data$treatment_time)
 
 # determine turnaround times for each test
 data$CT_WITHOUT_CONTR_TAT <- ifelse(!is.na(data$CT_WITHOUT_CONTR_ORDER_DTTM_REL) & 
@@ -390,15 +389,16 @@ data <- data %>%
 source('src/figures/fig1_batch_rates.R')
 
 ### Create the instrument
-data$residual_batch <- resid(
-  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF 
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
-)
 
 data$residual_admit <- resid(
   felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
+
+data$residual_batch <- resid(
+  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF 
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
 
 # Step 2: get batch tendency for each provider
 data <- data %>%
@@ -412,6 +412,7 @@ data <- data %>%
 
 
 rm(list = setdiff(ls(), c("data")))
+
 
 source('src/figures/fig2_randomization.R')
 
@@ -427,6 +428,7 @@ final <- data %>%
 
 final$ln_ED_LOS <- log(final$ED_LOS)
 final$ln_disp_time <- log(final$time_to_dispo)
+final$ln_treat_time <- log(final$treatment_time)
 
 
 final$capacity_level <- factor(final$capacity_level,
@@ -437,9 +439,8 @@ final$capacity_level <- factor(final$capacity_level,
 
 source('src/tables/table2_first_stage.R')
 source('src/figures/fig3_firststage.R')
-
 source('src/tables/table3_reduced_form.R')
-
-
+source('src/tables/placebo.R')
+source('src/tables/heterogeneous_analysis.R')
 
 

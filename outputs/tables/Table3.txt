@@ -1,12 +1,12 @@
-Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 26.8, p-value < 2.2e-16, on 11 and 11,315 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 93.7, p-value < 2.2e-16, on 11 and 11,315 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 222.2, p-value < 2.2e-16, on 11 and 11,315 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 12.9, p-value < 2.2e-16, on 11 and 11,315 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: 5.26006686704782"
-[1] "ln_disp_time sd: 0.492547553023617"
-[1] "ln_ED_LOS mean: 5.51222731427498"
-[1] "ln_ED_LOS sd: 0.462217887428646"
-[1] "imgTests mean: 1.44600526777875"
-[1] "imgTests sd: 0.621863858071511"
-[1] "RTN_72_HR_ADMIT mean: 0.011764705882353"
-[1] "RTN_72_HR_ADMIT sd: 0.107830044113573"
+Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 73.0, p-value < 2.2e-16, on 12 and 11,555 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 95.0, p-value < 2.2e-16, on 12 and 11,555 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 195.8, p-value < 2.2e-16, on 12 and 11,555 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 4.57485, p-value = 1.972e-7, on 12 and 11,555 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
+[1] "ln_disp_time sd: NA"
+[1] "ln_ED_LOS mean: NA"
+[1] "ln_ED_LOS sd: NA"
+[1] "imgTests mean: 0.979596179307737"
+[1] "imgTests sd: 0.768965840868491"
+[1] "RTN_72_HR_ADMIT mean: 0.0135946661622848"
+[1] "RTN_72_HR_ADMIT sd: 0.115802280933719"

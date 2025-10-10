@@ -35,3 +35,5 @@ print(paste('Sample sd:', sd(data$batched)))
 quantile(data$batch.tendency, probs = seq(0, 1, 0.1))[c(2,10)]
 
 sink()
+
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  8 OCT 2025 23:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  9 OCT 2025 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,7 +327,17 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count325
-) (./response_leter.aux)
+) (./response_leter.aux
+
+LaTeX Warning: Label `tab:first_stage_robustness' multiply defined.
+
+
+LaTeX Warning: Label `tab:results_table' multiply defined.
+
+
+LaTeX Warning: Label `tab:results_table' multiply defined.
+
+)
 \openout1 = `response_leter.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
@@ -405,13 +415,8 @@ Package caption Info: changepage package is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
-
-
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 106.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 121.
-(/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 121.
@@ -426,12 +431,14 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 [1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
+<../outputs/figures/fig2_panel_batched_standardized.png, id=10, 867.24pt x 433.62pt>
+File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
+<use ../outputs/figures/fig2_panel_batched_standardized.png>
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 196.
+(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
 
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 153.
 
-
-Package natbib Warning: Citation `Traub2016; traub2016emergency; Traub2018' on page 2 undefined on input line 190.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
@@ -439,19 +446,15 @@ Package natbib Warning: Citation `Traub2016; traub2016emergency; Traub2018' on p
 
 ]
 
-[3]
-
-[4]
-
-Package natbib Warning: Citation `Traub2016' on page 5 undefined on input line 234.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 5 undefined on input line 234.
+[3 <../outputs/figures/fig2_panel_batched_standardized.png>]
+<../outputs/figures/heterogeneity_by_complaint.png, id=20, 1011.78pt x 289.08pt>
+File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
+<use ../outputs/figures/heterogeneity_by_complaint.png>
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 218.
+(pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
 
 
-Package natbib Warning: Citation `Traub2018' on page 5 undefined on input line 234.
-
-
+[4 <../outputs/figures/heterogeneity_by_complaint.png>]
 
 [5]
 
@@ -459,21 +462,16 @@ Package natbib Warning: Citation `Traub2018' on page 5 undefined on input line 2
 
 [7]
 
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 336.
+[8]
 
-
-
-[8
+[9
 
 ]
-Overfull \hbox (11.99466pt too wide) in paragraph at lines 380--381
+Overfull \hbox (11.99466pt too wide) in paragraph at lines 422--423
 []\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
  []
 
 
-
-[9]
 
 [10]
 
@@ -481,99 +479,45 @@ Overfull \hbox (11.99466pt too wide) in paragraph at lines 380--381
 
 [12]
 
+[13]
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-
-[13]
 
 [14]
 
 [15]
 
-Package natbib Warning: Citation `Traub2016; traub2016emergency; Traub2018' on page 16 undefined on input line 630.
-
-
-
 [16]
-<../outputs/figures/fig2_panel_batched_standardized.png, id=67, 867.24pt x 433.62pt>
+
+[17]
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 647.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 684.
 (pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
 
 
-[17]
-
-[18 <../outputs/figures/fig2_panel_batched_standardized.png>]
+[18]
 
 [19]
 
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 683.
+[20]
 
-
-
-[20
+[21
 
 ]
 
-[21]
-
 [22]
-
-Package natbib Warning: Citation `kc2013does' on page 23 undefined on input line 771.
-
-
-Package natbib Warning: Citation `skaugset2016can' on page 23 undefined on input line 771.
-
-
-Package natbib Warning: Citation `lam2020why' on page 23 undefined on input line 771.
-
-
-Package natbib Warning: Citation `hodgson2018are' on page 23 undefined on input line 771.
-
-
-Package natbib Warning: Citation `Fowler2022' on page 23 undefined on input line 780.
-
-
-Package natbib Warning: Citation `Jessome2020' on page 23 undefined on input line 780.
-
-
-Package natbib Warning: Citation `kc2013does' on page 23 undefined on input line 782.
-
-
 
 [23]
 
-Package natbib Warning: Citation `coen2022clinical; featherston2020decision' on page 24 undefined on input line 791.
-
-
-Package natbib Warning: Citation `lumbreras2010incidental' on page 24 undefined on input line 791.
-
-
-Package natbib Warning: Citation `berlin2011incidentaloma' on page 24 undefined on input line 791.
-
-
-Package natbib Warning: Citation `rao2012overuse' on page 24 undefined on input line 791.
-
-
-Package natbib Warning: Citation `lam2020why' on page 24 undefined on input line 791.
-
-
-Package natbib Warning: Citation `kuntz2014stress' on page 24 undefined on input line 800.
-
-
-Package natbib Warning: Citation `kc2009impact' on page 24 undefined on input line 800.
-
-
-Overfull \hbox (7.39651pt too wide) in paragraph at lines 807--808
+[24]
+Overfull \hbox (7.39651pt too wide) in paragraph at lines 842--843
 []\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
 
-
-[24]
 
 [25]
 
@@ -582,15 +526,11 @@ Overfull \hbox (7.39651pt too wide) in paragraph at lines 807--808
 [27]
 
 [28]
-Overfull \hbox (2.58746pt too wide) in paragraph at lines 940--942
-\T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
- []
-
-
 
 [29]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (2.58746pt too wide) in paragraph at lines 976--978
+\T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
+ []
 
 
 
@@ -601,15 +541,20 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [32]
 
 [33]
+! Undefined control sequence.
+l.1074 \ite
+            \textbf{Quality metrics unchanged:} 72-hour returns show identic...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
 
 [34]
 
 [35]
-
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is useless.
-(fancyhdr)                Please consider using the `twoside' option on input line 1110.
-
-
 
 [36
 
@@ -621,115 +566,104 @@ Package fancyhdr Warning: \fancyhead's `E' option without twoside option is usel
 
 [39]
 
-LaTeX Warning: File `combined_tests.png' not found on input line 1273.
-
-
-! Package pdftex.def Error: File `combined_tests.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1273 ...width=0.8\textwidth]{combined_tests.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-
 [40]
 
 [41]
 
-Package natbib Warning: Citation `Hausman1975' on page 42 undefined on input line 1329.
-
-
-Package natbib Warning: Citation `Hausman1978' on page 42 undefined on input line 1329.
-
-
-
 [42]
-
-LaTeX Warning: File `mayo.png' not found on input line 1358.
-
-
-! Package pdftex.def Error: File `mayo.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1358 ...egraphics[width=0.8\textwidth]{mayo.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
 
 [43]
 
 [44]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+<../outputs/figures/combined_tests.png, id=169, 722.7pt x 433.62pt>
+File: ../outputs/figures/combined_tests.png Graphic file (type png)
+<use ../outputs/figures/combined_tests.png>
+Package pdftex.def Info: ../outputs/figures/combined_tests.png  used on input line 1451.
+(pdftex.def)             Requested size: 381.5874pt x 228.95074pt.
 
 
 [45]
 
-[46]
+[46 <../outputs/figures/combined_tests.png>]
 
 [47]
+Overfull \hbox (13.07736pt too wide) in paragraph at lines 1530--1531
+[]\T1/cmr/m/n/10.95 To ad-dress this con-cern, we ex-am-ined whether con-trol-ling for physi-cian ad-mis-sion ten-dency^^Vconstructed
+ []
+
+
 
 [48]
 
-Package natbib Warning: Citation `su2025crisis' on page 49 undefined on input line 1562.
+[49]
 
-
-Package natbib Warning: Citation `jameson2024variation' on page 49 undefined on input line 1562.
-
-
-
-[49] (./response_leter.bbl
-
-[50])
-
-Package natbib Warning: There were undefined citations.
-
-
+[50]
 
 [51]
+<../outputs/figures/CONSORT.png, id=193, 514.5624pt x 433.62pt>
+File: ../outputs/figures/CONSORT.png Graphic file (type png)
+<use ../outputs/figures/CONSORT.png>
+Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1675.
+(pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
 
-[52] (./response_leter.aux
 
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
+[52 <../outputs/figures/CONSORT.png>]
 
-)
+[53]
+
+[54]
+
+[55]
+
+[56]
+
+[57]
+File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
+<use ../outputs/figures/heterogeneity_by_complaint.png>
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 1869.
+(pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
+
+
+[58]
+
+[59]
+
+[60]
+
+[61]
+
+[62] (./response_leter.bbl
+
+[63])
+
+[64] (./response_leter.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
- )
-(\end occurred inside a group at level 4)
 
-### simple group (level 4) entered at line 1553 ({)
-### simple group (level 3) entered at line 1524 ({)
-### simple group (level 2) entered at line 1353 ({)
-### simple group (level 1) entered at line 225 ({)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ )
+(\end occurred inside a group at level 2)
+
+### simple group (level 2) entered at line 1976 ({)
+### simple group (level 1) entered at line 1947 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7732 strings out of 469686
- 125653 string characters out of 5474629
- 540172 words of memory out of 5000000
- 36047 multiletter control sequences out of 15000+600000
+ 7713 strings out of 469686
+ 125714 string characters out of 5474629
+ 540981 words of memory out of 5000000
+ 36028 multiletter control sequences out of 15000+600000
  649630 words of font info for 99 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 67i,13n,77p,1579b,720s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on response_leter.pdf (52 pages, 746879 bytes).
+ 67i,13n,77p,1579b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on response_leter.pdf (64 pages, 1267580 bytes).
 PDF statistics:
- 826 PDF objects out of 1000 (max. 8388607)
- 210 compressed objects within 3 object streams
+ 885 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

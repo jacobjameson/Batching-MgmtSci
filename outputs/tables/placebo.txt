@@ -1,0 +1,12 @@
+Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
+ stat = 50.2, p-value < 2.2e-16, on 11 and 2,686 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
+ stat = 76.3, p-value < 2.2e-16, on 11 and 2,686 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 195.8, p-value < 2.2e-16, on 12 and 11,555 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 3.04364, p-value = 2.851e-4, on 12 and 2,685 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
+[1] "ln_disp_time sd: NA"
+[1] "ln_ED_LOS mean: NA"
+[1] "ln_ED_LOS sd: NA"
+[1] "imgTests mean: 0.979596179307737"
+[1] "imgTests sd: 0.768965840868491"
+[1] "RTN_72_HR_ADMIT mean: 0.0135946661622848"
+[1] "RTN_72_HR_ADMIT sd: 0.115802280933719"

@@ -78,11 +78,12 @@ run_models <- function(data, y_var) {
   )
 }
 
+run_models(final, "ln_treat_time")
 run_models(final, "ln_disp_time")
 run_models(final, "ln_ED_LOS")
 run_models(final, "imgTests")
 run_models(final, "RTN_72_HR_ADMIT")
-#run_models(final, "RTN_72_HR")
+run_models(final, "RTN_72_HR")
 run_models(final, "PLAIN_XRAY")
 run_models(final, "US_PERF")
 run_models(final, "NON_CON_CT_PERF")

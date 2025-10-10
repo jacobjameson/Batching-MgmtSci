@@ -1,5 +1,5 @@
 [1] "First-Stage Results: Batch Tendency and Batching"
 Wald test, H0: nullity of batch.tendency
- stat = 1,016.8, p-value < 2.2e-16, on 1 and 42,488 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: nullity of batch.tendency
- stat = 3,320.1, p-value < 2.2e-16, on 1 and 42,402 DoF, VCOV: Clustered (ED_PROVIDER).[1] "Sample mean: 0.0563393528969159"
-[1] "Sample sd: 0.230578577418791"
+ stat = 702.7, p-value < 2.2e-16, on 1 and 11,590 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: nullity of batch.tendency
+ stat = 191.0, p-value < 2.2e-16, on 1 and 11,556 DoF, VCOV: Clustered (ED_PROVIDER).[1] "Sample mean: 0.0563173822583712"
+[1] "Sample sd: 0.230536312243455"

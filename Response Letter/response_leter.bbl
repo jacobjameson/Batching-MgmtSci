@@ -1,16 +1,47 @@
 \begin{thebibliography}{}
 
+\bibitem[Angrist and Pischke, 2009]{angrist2009mostly}
+Angrist, J.~D. and Pischke, J.-S. (2009).
+\newblock {\em Mostly Harmless Econometrics: An Empiricist’s Companion}.
+\newblock Princeton University Press, Princeton, NJ.
+\newblock Accessed 9 Oct. 2025.
+
 \bibitem[Berlin, 2011]{berlin2011incidentaloma}
 Berlin, L. (2011).
 \newblock The incidentaloma: a medicolegal dilemma.
 \newblock {\em Radiologic Clinics of North America}, 49(2):245--255.
+
+\bibitem[Bhuller et~al., 2020]{bhuller2020incarceration}
+Bhuller, M., Dahl, G.~B., L{\o}ken, K.~V., and Mogstad, M. (2020).
+\newblock Incarceration, recidivism, and employment.
+\newblock {\em Journal of Political Economy}, 128(4):1269--1324.
+
+\bibitem[Coen et~al., 2022]{coen2022clinical}
+Coen, M., Sader, J., Junod-Perron, N., Aud{\'e}tat, M.-C., and Nendaz, M. (2022).
+\newblock Clinical reasoning in dire times: Analysis of cognitive biases in clinical cases during the covid-19 pandemic.
+\newblock {\em Internal and Emergency Medicine}, 17(4):979--988.
+
+\bibitem[Dobbie et~al., 2018]{dobbie2018effects}
+Dobbie, W., Goldin, J., and Yang, C.~S. (2018).
+\newblock The effects of pretrial detention on conviction, future crime, and employment: Evidence from randomly assigned judges.
+\newblock {\em American Economic Review}, 108(2):201--240.
+
+\bibitem[Eichmeyer and Zhang, 2022]{Eichmeyer2022}
+Eichmeyer, S. and Zhang, J. (2022).
+\newblock Pathways into opioid dependence: Evidence from practice variation in emergency departments.
+\newblock {\em American Economic Journal: Applied Economics}, 14(4):271--300.
+
+\bibitem[Featherston et~al., 2020]{featherston2020decision}
+Featherston, R., Downie, L.~E., Vogel, A.~P., and Galvin, K.~L. (2020).
+\newblock Decision making biases in the allied health professions: A systematic scoping review.
+\newblock {\em PLoS ONE}, 15(10):e0240716.
 
 \bibitem[Fowler and Mönch, 2022]{Fowler2022}
 Fowler, J.~W. and Mönch, L. (2022).
 \newblock A survey of scheduling with parallel batch (p-batch) processing.
 \newblock {\em European Journal of Operational Research}, 298(1):1--24.
 
-\bibitem[Hausman, 1975]{Hausman1975}
+\bibitem[Hausman, 1975]{hausman1975}
 Hausman, J.~A. (1975).
 \newblock An instrumental variable approach to full information estimators for linear and certain nonlinear econometric models.
 \newblock {\em Econometrica}, 43(4):727--738.
