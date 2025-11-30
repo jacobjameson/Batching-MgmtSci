@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  5 OCT 2025 17:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  30 NOV 2025 13:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Manuscript.tex
 (./Manuscript.tex
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-09-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-14>
 (./informs.cls
 
 LaTeX Warning: You have requested document class `informs',
@@ -13,7 +13,7 @@ LaTeX Warning: You have requested document class `informs',
 
 Document Class: informs4 2015/03/09 v0.97 LaTeX document class for articles submitted to INFORMS
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2025/06/16 v2.17y AMS math features
+Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip49
 For additional information on amsmath, use the `?' option.
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -73,8 +73,8 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \multlinegap=\skip50
 \multlinetaggap=\skip51
 \mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2949.
-LaTeX Info: Redefining \] on input line 2950.
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -114,7 +114,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen159
 \ar@mcellbox=\box55
 \extrarowheight=\dimen160
@@ -551,7 +551,7 @@ LaTeX Info: Redefining \addtolength on input line 87.
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
 Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
 ))) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2024-12-18 v4.23 Multi-page Table package (DPC)
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTleft=\skip60
 \LTright=\skip61
 \LTpre=\skip62
@@ -604,10 +604,11 @@ Package caption Info: threeparttable package is loaded.
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks43
 \XKV@tempa@toks=\toks44
+\XKV@tempb@toks=\toks45
 )
 \XKV@depth=\count363
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
@@ -654,12 +655,12 @@ Package: placeins 2005/04/18  v 2.2
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-09-02 L3 programming layer (loader) 
+Package: expl3 2025-11-14 L3 programming layer (loader) 
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count366
 ))
-Package: xparse 2024-08-16 L3 Experimental document command parser
+Package: xparse 2025-10-09 L3 Experimental document command parser
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/zref/zref-abspage.sty
 Package: zref-abspage 2025-06-08 v2.36 Module abspage for zref (HO)
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/zref/zref-base.sty
@@ -824,12 +825,12 @@ LaTeX Font Info:    ... okay on input line 71.
 \scratchbox=\box93
 \nofMPsegments=\count405
 \nofMParguments=\count406
-\everyMPshowfont=\toks45
+\everyMPshowfont=\toks46
 \MPscratchCnt=\count407
 \MPscratchDim=\dimen345
 \MPnumerator=\count408
 \makeMPintoPDFobject=\count409
-\everyMPtoPDFconversion=\toks46
+\everyMPtoPDFconversion=\toks47
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -843,182 +844,110 @@ Package hyperref Info: Link coloring OFF on input line 71.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-
-
 [1
 
 {/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
+LaTeX Warning: Reference `fig: Variation' on page 2 undefined on input line 224.
+
 [2]
-<../outputs/figures/fig1_boxplot.png, id=218, 722.7pt x 433.62pt>
+<../outputs/figures/fig1_boxplot.png, id=211, 722.7pt x 433.62pt>
 File: ../outputs/figures/fig1_boxplot.png Graphic file (type png)
 <use ../outputs/figures/fig1_boxplot.png>
-Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 275.
+Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 236.
 (pdftex.def)             Requested size: 469.75499pt x 281.85628pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \vbox (badness 1325) has occurred while \output is active []
 
+[3 <../outputs/figures/fig1_boxplot.png>] [4]
 
+LaTeX Warning: Text page 5 contains only floats.
 
-[3]
-
-[4 <../outputs/figures/fig1_boxplot.png>]
-
-[5]
-
-[6]
-
-[7]
-
-[8]
-
-[9]
-
-[10]
-
-[11]
-
-[12]
-
-[13]
-<../outputs/figures/fig2_panel_batched_standardized.png, id=458, 867.24pt x 433.62pt>
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14]
+<../outputs/figures/fig2_panel_batched_standardized.png, id=462, 867.24pt x 433.62pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 873.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 882.
 (pdftex.def)             Requested size: 469.75499pt x 234.87912pt.
-
-
-[14 <../outputs/figures/fig2_panel_batched_standardized.png>]
-<../outputs/figures/Fig3_firststage.png, id=467, 578.16pt x 433.62pt>
+<../outputs/figures/Fig3_firststage.png, id=465, 578.16pt x 433.62pt>
 File: ../outputs/figures/Fig3_firststage.png Graphic file (type png)
 <use ../outputs/figures/Fig3_firststage.png>
-Package pdftex.def Info: ../outputs/figures/Fig3_firststage.png  used on input line 893.
+Package pdftex.def Info: ../outputs/figures/Fig3_firststage.png  used on input line 902.
 (pdftex.def)             Requested size: 305.33788pt x 229.00368pt.
-
-
-[15 <../outputs/figures/Fig3_firststage.png>]
-
-[16]
-
-[17]
-
-[18]
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1235.
+[15] [16 <../outputs/figures/fig2_panel_batched_standardized.png>] [17 <../outputs/figures/Fig3_firststage.png>] [18] [19] [20] [21]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1365.
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <11> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1235.
-
-
-[19]
-<figures/dag.png, id=530, 960.81503pt x 540.5629pt>
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1365.
+[22] [23]
+<figures/dag.png, id=558, 960.81503pt x 540.5629pt>
 File: figures/dag.png Graphic file (type png)
 <use figures/dag.png>
-Package pdftex.def Info: figures/dag.png  used on input line 1304.
+Package pdftex.def Info: figures/dag.png  used on input line 1434.
 (pdftex.def)             Requested size: 469.75499pt x 264.28426pt.
-
-
-[20]
-
-[21 <./figures/dag.png>]
-
-[22]
+[24] [25 <./figures/dag.png>] [26]
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1453.
+(Font)              size <6> substituted on input line 1583.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1453.
+(Font)              size <6> substituted on input line 1583.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1453.
+(Font)              size <6> substituted on input line 1583.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1453.
+(Font)              size <6> substituted on input line 1583.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1453.
+(Font)              size <6> substituted on input line 1583.
 
+[27] [28] [29] [30] [31] [32] [33] (./Manuscript.bbl [34
 
-
-[23]
-
-[24]
-
-[25]
-
-[26]
-
-[27]
-
-[28]
-
-[29]
-
-[30]
-
-[31]
-
-[32]
-
-[33]
-
-[34] (./Manuscript.bbl
-
-[35
-
-]
-
-[36]
-Underfull \hbox (badness 1314) in paragraph at lines 112--113
+] [35]
+Underfull \hbox (badness 1314) in paragraph at lines 115--116
 []\OT1/cmr/m/n/10 Juliusson G, Thor-valds-dot-tir B, Krist-jans-son JM, Han-nes-son P (2019) Diag-nos-tic imag-ing trends
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 112--113
+Underfull \hbox (badness 2221) in paragraph at lines 115--116
 \OT1/cmr/m/n/10 in the emer-gency depart-ment: an exten-sive single-center expe-ri-ence. \OT1/cmr/m/it/10 Acta Radi-o-log-ica Open
  []
 
-
-
-[37]
-
-[38]
-
-[39]
-
-[40])
-
-[41] (./Manuscript.aux)
+[36] [37] [38] [39]) [40] (./Manuscript.aux)
  ***********
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-09-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-14>
  ***********
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 7CF0BB95A3A574EC29446E1185D7FDE9;5966.
+(rerunfilecheck)             Checksum: C3224ACED198B7E9BBBEAECBF152AAB1;6127.
  ) 
 Here is how much of TeX's memory you used:
- 29301 strings out of 469686
- 575757 string characters out of 5474629
- 981609 words of memory out of 5000000
- 57094 multiletter control sequences out of 15000+600000
+ 29318 strings out of 469476
+ 576229 string characters out of 5467215
+ 952708 words of memory out of 5000000
+ 57318 multiletter control sequences out of 15000+600000
  648854 words of font info for 117 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 84i,17n,91p,643b,1324s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,104p,637b,1321s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Manuscript.pdf (41 pages, 1424619 bytes).
+Output written on Manuscript.pdf (40 pages, 1449685 bytes).
 PDF statistics:
- 927 PDF objects out of 1000 (max. 8388607)
- 825 compressed objects within 9 object streams
- 179 named destinations out of 1000 (max. 500000)
- 273 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 936 PDF objects out of 1000 (max. 8388607)
+ 835 compressed objects within 9 object streams
+ 181 named destinations out of 1000 (max. 500000)
+ 281 words of extra memory for PDF output out of 10000 (max. 10000000)
 

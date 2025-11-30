@@ -13,7 +13,7 @@ placebo <- data %>%
   group_by(complaint_esi) %>%
   mutate(batchmean = mean(batched)) %>%
   ungroup() %>% 
-  filter(batchmean < 0.01)
+  filter(imgTests == 0)
 
 placebo$ln_ED_LOS <- log(placebo$ED_LOS)
 placebo$ln_disp_time <- log(placebo$time_to_dispo)
@@ -24,7 +24,6 @@ placebo$capacity_level <- factor(placebo$capacity_level,
                                           'Minor Overcapacity', 
                                           'Major Overcapacity'))
 
-nrow(placebo)
 # ------------------------------------------------------------------------------
 
 rf_model_disp <- feols(
@@ -32,35 +31,34 @@ rf_model_disp <- feols(
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + # ED variables
-    EXPERIENCE + PROVIDER_SEX + LAB_PERF  | # physician variables
+    LAB_PERF + EXPERIENCE  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = placebo)
+  data = placebo, vcov = "HC1")
 
 rf_model_los <- feols(
   ln_ED_LOS ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
-    capacity_level + LAB_PERF  + # ED variables
-    EXPERIENCE + PROVIDER_SEX | # physician variables
+    capacity_level + # ED variables
+    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = placebo)
+  data = placebo, vcov = "HC1")
 
 rf_model_ra <- feols(
   RTN_72_HR_ADMIT ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
-    capacity_level + LAB_PERF + admit + # ED variables
-    EXPERIENCE + PROVIDER_SEX  | # physician variables
+    capacity_level + # ED variables
+    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  cluster = ~ED_PROVIDER, data = placebo)
+  data = placebo, vcov = "HC1")
 
 # ------------------------------------------------------------------------------
 
 etable(rf_model_disp, rf_model_los, rf_model_ra, 
-       cluster = "ED_PROVIDER", se = "cluster", 
        keep = c("batch.tendency"))
 
 

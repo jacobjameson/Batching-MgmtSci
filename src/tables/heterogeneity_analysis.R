@@ -36,7 +36,7 @@ run_heterogeneity_by_complaint <- function(data, outcome_var) {
           "dayofweekt + month_of_year + race + ESI + GENDER + PROVIDER_SEX + capacity_level | ",
           "batched ~ batch.tendency"
         )),
-        cluster = ~ED_PROVIDER,
+        vcov = 'HC1',
         data = complaint_data
       )
     }, error = function(e) {
@@ -80,8 +80,8 @@ return_results <- run_heterogeneity_by_complaint(final, "RTN_72_HR_ADMIT")
 # Combine all results
 all_results <- bind_rows(
   los_results %>% mutate(outcome_label = "Log ED LOS"),
-  tests_results %>% mutate(outcome_label = "Imaging Tests"),
-  return_results %>% mutate(outcome_label = "72hr Return w/ Admit")
+  tests_results %>% mutate(outcome_label = "Imaging Tests Performed"),
+  return_results %>% mutate(outcome_label = "72hr Return with Admission")
 )
 
 # Print summary
@@ -158,18 +158,19 @@ plot_combined <- ggplot(all_results,
   coord_flip() +
   facet_wrap(~outcome_label, scales = "free_x", ncol = 3) +
   labs(
-    x = "Chief Complaint (Batching Rate)",
+    x = "Chief Complaint (Batching Rate)\n",
     y = "2SLS Coefficient (95% CI)"
   ) +
   theme_bw(base_size = 14) +
   theme(
-    panel.grid.major.y = element_blank(),
-    axis.title = element_text(size = 13),
-    axis.text = element_text(size = 12, color = "black"),
-    strip.text = element_text(size = 14, face = "bold"),
-    legend.position = "right")
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 14, color = "black"),
+    plot.title = element_text(size = 18, face = "bold", hjust = 0.5),
+    plot.caption = element_text(size = 12, hjust = 0),
+    strip.text = element_text(size = 14, face = "bold"))
 
 print(plot_combined)
+
 ggsave("outputs/figures/heterogeneity_by_complaint.png", 
        plot_combined, width = 14, height = 4)
 

@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.5)  9 OCT 2025 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.21)  30 NOV 2025 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **response_leter.tex
 (./response_leter.tex
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-09-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-06>
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/base/size11.clo
@@ -49,11 +49,11 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks19
 \inpenc@posthook=\toks20
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2025/06/16 v2.17y AMS math features
+Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
@@ -114,8 +114,8 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \multlinegap=\skip52
 \multlinetaggap=\skip53
 \mathdisplay@stack=\toks25
-LaTeX Info: Redefining \[ on input line 2949.
-LaTeX Info: Redefining \] on input line 2950.
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -223,7 +223,7 @@ Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@dima=\skip59
 \bigstrutjot=\dimen199
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen256
 \ar@mcellbox=\box57
 \extrarowheight=\dimen257
@@ -325,17 +325,29 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 \c@corollary=\count323
 \c@proposition=\count324
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count325
 ) (./response_leter.aux
 
-LaTeX Warning: Label `tab:first_stage_robustness' multiply defined.
+LaTeX Warning: Label `tab:first_stage_two_models' multiply defined.
 
 
-LaTeX Warning: Label `tab:results_table' multiply defined.
+LaTeX Warning: Label `tab:results_iv_ujive' multiply defined.
 
 
-LaTeX Warning: Label `tab:results_table' multiply defined.
+LaTeX Warning: Label `fig:conley_sensitivity' multiply defined.
+
+
+LaTeX Warning: Label `tab:first_stage_two_models' multiply defined.
+
+
+LaTeX Warning: Label `tab:results_iv_ujive' multiply defined.
+
+
+LaTeX Warning: Label `fig:conley_sensitivity' multiply defined.
+
+
+LaTeX Warning: Label `tab:results_time_ujive' multiply defined.
 
 )
 \openout1 = `response_leter.aux'.
@@ -426,227 +438,174 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 121.
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
+) [1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-[1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+] [2] [3
 
-]
+] [4]
 
-[2
+! LaTeX Error: Unicode character ≈ (U+2248)
+               not set up for use with LaTeX.
 
-]
-<../outputs/figures/fig2_panel_batched_standardized.png, id=16, 867.24pt x 433.62pt>
-File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
-<use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 201.
-(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[3]
-<../outputs/figures/heterogeneity_by_complaint.png, id=20, 1011.78pt x 289.08pt>
-File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
-<use ../outputs/figures/heterogeneity_by_complaint.png>
-Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 223.
-(pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.201 ...0.447 increase in log treatment time (≈
+                                                  56\%)
+You may provide a definition with
+\DeclareUnicodeCharacter 
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+! LaTeX Error: Unicode character ≈ (U+2248)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.202 ... increase in log time to disposition (≈
+                                                  68\%)
+You may provide a definition with
+\DeclareUnicodeCharacter 
 
 
+! LaTeX Error: Unicode character ≈ (U+2248)
+               not set up for use with LaTeX.
 
-[4 <../outputs/figures/fig2_panel_batched_standardized.png>]
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.203 \item 0.503 increase in log LOS (≈
+                                          65\%)
+You may provide a definition with
+\DeclareUnicodeCharacter 
 
-[5 <../outputs/figures/heterogeneity_by_complaint.png>]
 
-[6]
+! LaTeX Error: Unicode character ≈ (U+2248)
+               not set up for use with LaTeX.
 
-[7]
-Overfull \hbox (22.53171pt too wide) in paragraph at lines 339--340
-\T1/cmr/m/n/10.95 in Panel B of Ta-ble 4, which ex-am-ines spe-cific test types. We clar-i-fied that our IV ap-proach^^Vinstrumenting
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.204 \item 1.174 additional imaging tests (≈
+                                               88\%)
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+Overfull \hbox (19.31139pt too wide) in paragraph at lines 207--208
+[]\T1/cmr/m/n/10.95 The align-ment be-tween 2SLS and UJIVE^^Vtwo es-ti-ma-tors with dis-tinct iden-ti-fy-ing as-sump-tions^^Vprovides
  []
 
-
-
-[8]
-
-[9]
-
-[10]
-
-[11]
-
-[12]
-
-[13
+[5
 
 ]
-Overfull \hbox (11.99466pt too wide) in paragraph at lines 469--470
+<../outputs/figures/fig1_boxplot.png, id=25, 722.7pt x 433.62pt>
+File: ../outputs/figures/fig1_boxplot.png Graphic file (type png)
+<use ../outputs/figures/fig1_boxplot.png>
+Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 240.
+(pdftex.def)             Requested size: 476.98244pt x 286.19008pt.
+<../outputs/figures/fig2_panel_batched_standardized.png, id=26, 867.24pt x 433.62pt>
+File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
+<use ../outputs/figures/fig2_panel_batched_standardized.png>
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 253.
+(pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
+ [6] [7 <../outputs/figures/fig1_boxplot.png>] [8 <../outputs/figures/fig2_panel_batched_standardized.png>] [9] [10] [11]
+<../outputs/figures/conley_sensitivity_ujive.png, id=53, 578.16pt x 361.35pt>
+File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
+<use ../outputs/figures/conley_sensitivity_ujive.png>
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 527.
+(pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
+ [12] [13] [14 <../outputs/figures/conley_sensitivity_ujive.png>] [15] [16] [17] [18] [19] [20] [21
+
+]
+Overfull \hbox (11.99466pt too wide) in paragraph at lines 759--760
 []\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
  []
 
-
-
-[14]
-
-[15]
-
-[16]
-
-[17]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[18]
-
-[19]
-
-[20]
-
-[21]
+[22] [23] [24] [25]
+File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
+<use ../outputs/figures/conley_sensitivity_ujive.png>
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 984.
+(pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
+ [26] [27] [28] [29]
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 731.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 1062.
 (pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
+ [30] [31] [32]
+
+Package natbib Warning: Citation `GoldsmithPinkhamHullKolesarLeniencyManual' on page 33 undefined on input line 1101.
 
 
-[22]
+Package natbib Warning: Citation `Kolesar2013Late' on page 33 undefined on input line 1101.
 
-[23]
 
-[24]
+Package natbib Warning: Citation `Kolesar2013Late' on page 33 undefined on input line 1124.
 
-[25
+
+Package natbib Warning: Citation `GoldsmithPinkhamHullKolesarLeniencyManual' on page 33 undefined on input line 1140.
+
+[33
 
 ]
 
-[26]
+Package natbib Warning: Citation `Kolesar2013Late' on page 34 undefined on input line 1158.
 
-[27]
 
-[28]
-Overfull \hbox (7.39651pt too wide) in paragraph at lines 889--890
+Package natbib Warning: Citation `GoldsmithPinkhamHullKolesarLeniencyManual' on page 34 undefined on input line 1184.
+
+[34] [35
+
+] [36] [37] [38]
+Overfull \hbox (7.39651pt too wide) in paragraph at lines 1315--1316
 []\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
-
-
-[29]
-
-[30]
-
-[31]
-
-[32]
-
-[33]
-Overfull \hbox (2.58746pt too wide) in paragraph at lines 1023--1025
+[39] [40] [41] [42] [43]
+Overfull \hbox (2.58746pt too wide) in paragraph at lines 1443--1445
 \T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
  []
 
-
-
-[34]
-
-[35]
-
-[36]
-
-[37]
-
-[38]
-
-[39]
-
-[40
-
-]
-
-[41]
-
-[42]
-
-[43]
-
 [44]
-
-[45]
-
-[46]
-
-[47]
-
-[48]
-<../outputs/figures/combined_tests.png, id=181, 722.7pt x 433.62pt>
-File: ../outputs/figures/combined_tests.png Graphic file (type png)
-<use ../outputs/figures/combined_tests.png>
-Package pdftex.def Info: ../outputs/figures/combined_tests.png  used on input line 1496.
-(pdftex.def)             Requested size: 381.5874pt x 228.95074pt.
-
-
-[49]
-
-[50 <../outputs/figures/combined_tests.png>]
-
-[51]
-Overfull \hbox (13.07736pt too wide) in paragraph at lines 1575--1576
-[]\T1/cmr/m/n/10.95 To ad-dress this con-cern, we ex-am-ined whether con-trol-ling for physi-cian ad-mis-sion ten-dency^^Vconstructed
+Overfull \hbox (12.96484pt too wide) in paragraph at lines 1448--1449
+[]\T1/cmr/m/n/10.95 If batch ten-dency sim-ply re-flected physi-cians who or-der com-pre-hen-sive di-ag-nos-tics across all modalities---
  []
 
+[45] [46] [47] [48] [49] [50
 
+] [51] [52] [53]
+File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
+<use ../outputs/figures/conley_sensitivity_ujive.png>
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 1906.
+(pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
+ [54] [55]
 
-[52]
+Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 56 undefined on input line 1959.
 
-[53]
-
-[54]
-
-[55]
-<../outputs/figures/CONSORT.png, id=206, 514.5624pt x 433.62pt>
+[56] [57] [58]
+<../outputs/figures/CONSORT.png, id=214, 514.5624pt x 433.62pt>
 File: ../outputs/figures/CONSORT.png Graphic file (type png)
 <use ../outputs/figures/CONSORT.png>
-Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1720.
+Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 2094.
 (pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
-
-
-[56 <../outputs/figures/CONSORT.png>]
-
-[57]
-
-[58]
-
-[59]
-
-[60]
-
-[61]
+ [59] [60 <../outputs/figures/CONSORT.png>] [61] [62] [63] [64]
+<../outputs/figures/heterogeneity_by_complaint.png, id=235, 1011.78pt x 289.08pt>
 File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
 <use ../outputs/figures/heterogeneity_by_complaint.png>
-Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 1914.
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 2323.
 (pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
+ [65 <../outputs/figures/heterogeneity_by_complaint.png>] [66] [67] [68] [69] [70] (./response_leter.bbl [71])
 
+Package natbib Warning: There were undefined citations.
 
-[62]
-
-[63]
-
-[64]
-
-[65]
-
-[66] (./response_leter.bbl
-
-[67])
-
-[68] (./response_leter.aux)
+[72] (./response_leter.aux)
  ***********
-LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-09-02>
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-11-06>
  ***********
 
 
@@ -655,22 +614,22 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 2033 ({)
-### simple group (level 1) entered at line 2004 ({)
+### simple group (level 2) entered at line 2449 ({)
+### simple group (level 1) entered at line 2420 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7713 strings out of 469686
- 125714 string characters out of 5474629
- 540981 words of memory out of 5000000
- 36028 multiletter control sequences out of 15000+600000
- 649630 words of font info for 99 fonts, out of 8000000 for 9000
+ 7726 strings out of 469476
+ 126235 string characters out of 5467215
+ 546764 words of memory out of 5000000
+ 36252 multiletter control sequences out of 15000+600000
+ 649293 words of font info for 98 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  67i,13n,77p,1579b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on response_leter.pdf (68 pages, 1280219 bytes).
+ </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on response_leter.pdf (72 pages, 1619776 bytes).
 PDF statistics:
- 899 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
+ 905 PDF objects out of 1000 (max. 8388607)
+ 249 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

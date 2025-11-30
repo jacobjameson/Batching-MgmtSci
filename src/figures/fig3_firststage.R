@@ -1,13 +1,13 @@
 
 
-max_density <- max(density(data$batch.tendency)$y)
+max_density <- max(density(final$batch.tendency)$y)
 
-ggplot(data, aes(x = batch.tendency)) +
+ggplot(final, aes(x = batch.tendency)) +
   geom_histogram(aes(y = after_stat(density)), 
                  fill = "grey", color = "black", 
                  bins = 10, alpha = 0.7) +
   geom_smooth(aes(y = batched * max(density(batch.tendency)$y) * (100/30)), 
-              method = "loess", span = 0.7,
+              method = "loess", span = 0.82,
               linetype = "solid", size = 1, color = "#d8031c", fill ='#d8031c') +
   labs(
     x = "Batch Tendency"

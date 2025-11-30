@@ -58,35 +58,28 @@ data$time_to_dispo <- ifelse(data$time_to_dispo > data$ED_LOS,
                              data$ED_LOS, data$time_to_dispo)
 
 # create waiting time variable
+data$wait_time <- data$PATIENT_ROOMED_IN_ED_REL - data$ARRIVAL_DTTM_REL
+data$wait_time <- ifelse(data$wait_time <= 0, 1, data$wait_time)
 
-data$wait_time <- data$FIRST_CONTACT_DTTM_REL - data$ARRIVAL_DTTM_REL
-data <- filter(data, wait_time > 0)
-
-# determine occupancy levels
 calculate_waiting_patients <- function(time, arrivals, first_contacts) {
   sum(arrivals <= time & first_contacts > time, na.rm = TRUE)
 }
 
 data <- data %>%
-  group_by(date = floor_date(as.POSIXct("2018-10-06", tz = "UTC") + 
-                               minutes(ARRIVAL_DTTM_REL), "hour")) %>%
   mutate(
-    # Calculate waiting patients at each arrival time
+    # number of patients waiting at this patient's arrival time
     patients_waiting = map_dbl(
-      ARRIVAL_DTTM_REL, 
-      ~calculate_waiting_patients(
-        .x, ARRIVAL_DTTM_REL, FIRST_CONTACT_DTTM_REL)
+      ARRIVAL_DTTM_REL,
+      ~calculate_waiting_patients(.x, ARRIVAL_DTTM_REL, FIRST_CONTACT_DTTM_REL)
     ),
-    
+    # classify capacity state
     capacity_level = case_when(
-      wait_time < 20 ~ "Normal Operations",
-      wait_time >= 90 | wait_time > 20 ~ "Major Overcapacity",
-      wait_time >= 21 | wait_time >= 10 ~ "Minor Overcapacity",
+      wait_time > 90 | patients_waiting > 20 ~ "Major Overcapacity",
+      (wait_time >= 21 & wait_time <= 90) | patients_waiting >= 10 ~ "Minor Overcapacity",
+      wait_time < 20 & patients_waiting < 10 ~ "Normal Operations",
       TRUE ~ "Normal Operations"
     )
-  ) %>%
-  ungroup()
-
+  )
 
 data <- data %>%
   filter(!is.na(time_to_dispo),
@@ -390,13 +383,20 @@ source('src/figures/fig1_batch_rates.R')
 
 ### Create the instrument
 
+data$ln_ED_LOS <- log(data$ED_LOS)
+
 data$residual_admit <- resid(
-  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age 
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
-
 data$residual_batch <- resid(
-  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age + LAB_PERF 
+  felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age 
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
+
+data$residual_los <- resid(
+  felm(ln_ED_LOS ~ tachycardic + tachypneic + febrile + hypotensive + age 
        | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
@@ -429,7 +429,12 @@ final <- data %>%
 final$ln_ED_LOS <- log(final$ED_LOS)
 final$ln_disp_time <- log(final$time_to_dispo)
 final$ln_treat_time <- log(final$treatment_time)
-final$ln_test_time <- log(final$total_testing_time + 1) 
+
+# if total_testing_time > 1440 (24 hours), set to 1440
+final$total_testing_time <- ifelse(final$total_testing_time > 1440, 
+                                   1440, final$total_testing_time)
+
+final$ln_total_testing_time <- log(final$total_testing_time)
 
 final$capacity_level <- factor(final$capacity_level,
                               levels = c('Normal Operations', 
@@ -444,3 +449,195 @@ source('src/tables/placebo.R')
 source('src/tables/heterogeneous_analysis.R')
 
 
+
+
+#=========================================================================
+# UJIVE Analysis (following Goldsmith-Pinkham et al. 2024)
+#=========================================================================
+
+# Install if needed (only run once)
+library(ManyIV)
+
+# Create physician ID mapping using the full 'data' dataset
+physician_map <- data.frame(
+  ED_PROVIDER = unique(data$ED_PROVIDER),
+  physician_id = as.numeric(factor(unique(data$ED_PROVIDER)))
+)
+
+# Add physician IDs to final dataset
+final <- final %>%
+  left_join(physician_map, by = "ED_PROVIDER")
+
+# Function to prepare data for UJIVE
+prepare_ujive_data <- function(data, outcome_var) {
+  # Create physician dummy matrix (instruments)
+  # Using physician indicators as instruments (not batch.tendency)
+  Z_matrix <- model.matrix(~ factor(physician_id) - 1, data = data)
+  # Remove one column to avoid collinearity
+  Z_matrix <- Z_matrix[, -1]
+  
+  # Create control matrix
+  W_matrix <- model.matrix(
+    ~ factor(dayofweekt) + factor(month_of_year) + 
+      factor(complaint_esi) + factor(race) + 
+      factor(GENDER) + factor(capacity_level) +
+      tachycardic + tachypneic + febrile + hypotensive + LAB_PERF +
+      age + EXPERIENCE + factor(PROVIDER_SEX) + hrs_in_shift - 1, 
+    data = data
+  )
+  
+  # Prepare outcome and treatment
+  y <- data[[outcome_var]]
+  x <- data$batched
+  
+  return(list(y = y, x = x, Z = Z_matrix, W = W_matrix))
+}
+
+compare_ujive_2sls <- function(data, outcome_var) {
+  cat("\n=== Results for", outcome_var, "===\n")
+  
+  # Create physician dummies (same as before)
+  physicians <- sort(unique(data$ED_PROVIDER))
+  physicians <- physicians[-1]
+  
+  for(p in physicians) {
+    data[[paste0("phys_", which(physicians == p))]] <- ifelse(data$ED_PROVIDER == p, 1, 0)
+  }
+  
+  instrument_vars <- paste0("phys_", 1:length(physicians))
+  control_vars <- c("tachycardic", "tachypneic", "febrile", "hypotensive",
+                    "age", "EXPERIENCE", "hrs_in_shift")
+  
+  # Build formula
+  ujive_formula <- as.formula(paste(
+    outcome_var, "~",
+    "batched +", paste(control_vars, collapse = " + "), "+",
+    "factor(dayofweekt) + factor(month_of_year) + LAB_PERF + factor(complaint_esi) +",
+    "factor(race) + factor(GENDER) + factor(PROVIDER_SEX) + factor(capacity_level) |",
+    paste(instrument_vars, collapse = " + "), "+",
+    paste(control_vars, collapse = " + "), "+",
+    "factor(dayofweekt) + factor(month_of_year) + factor(complaint_esi) +",
+    "factor(race) + factor(GENDER) + factor(PROVIDER_SEX) + factor(capacity_level)"
+  ))
+  
+  # Run UJIVE
+  ujive_result <- ujive(formula = ujive_formula, data = data)
+  
+  # Extract results from the estimate dataframe
+  estimates <- ujive_result$estimate
+  
+  # Your current 2SLS
+  tsls_result <- feols(
+    as.formula(paste(
+      outcome_var,
+      "~ tachycardic + tachypneic + febrile + hypotensive + 
+       hrs_in_shift + EXPERIENCE + age + LAB_PERF |
+       dayofweekt + month_of_year + complaint_esi + race + GENDER + 
+       PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+    )),
+    vcov = 'HC1',
+    data = data
+  )
+  
+  # Compare results
+  cat("\n=== Comparison of Estimates ===\n")
+  cat("OLS:", estimates["ols", "estimate"], 
+      "(SE:", estimates["ols", "se_hte"], ")\n")
+  cat("2SLS (physician dummies):", estimates["tsls", "estimate"], 
+      "(SE:", estimates["tsls", "se_hte"], ")\n")
+  cat("UJIVE:", estimates["ujive", "estimate"], 
+      "(SE:", estimates["ujive", "se_hte"], ")\n")
+  cat("Your 2SLS (batch.tendency):", coef(tsls_result)["fit_batched"], 
+      "(SE:", se(tsls_result)["fit_batched"], ")\n")
+  
+  cat("\n=== Key Insights ===\n")
+  cat("1. UJIVE vs your 2SLS difference:", 
+      round(estimates["ujive", "estimate"] - coef(tsls_result)["fit_batched"], 3), "\n")
+  cat("2. Finite-sample bias (2SLS vs UJIVE):", 
+      round(estimates["tsls", "estimate"] - estimates["ujive", "estimate"], 3), "\n")
+  cat("3. Selection bias (OLS vs UJIVE):", 
+      round(estimates["ols", "estimate"] - estimates["ujive", "estimate"], 3), "\n")
+  
+  return(list(
+    all_estimates = estimates,
+    your_2sls = tsls_result
+  ))
+}
+
+# Run it
+results_ln_ED_LOS <- compare_ujive_2sls(final, "ln_ED_LOS")
+results_ln_ED_LOS <- compare_ujive_2sls(final, "admit")
+results_ln_ED_LOS <- compare_ujive_2sls(final, "ln_disp_time")
+results_ln_ED_LOS <- compare_ujive_2sls(final, "ln_treat_time")
+
+
+
+run_models(final, "ln_treat_time")
+run_models(final, "ln_disp_time")
+run_models(final, "ln_ED_LOS")
+run_models(final, "imgTests")
+run_models(final, "RTN_72_HR_ADMIT")
+run_models(final, "RTN_72_HR")
+run_models(final, "PLAIN_XRAY")
+run_models(final, "US_PERF")
+run_models(final, "NON_CON_CT_PERF")
+run_models(final, "CON_CT_PERF")
+
+run_models(final, "admit")
+
+
+
+###############################################
+# UJIVE USING ED_PROVIDER AS MANY INSTRUMENTS
+###############################################
+
+library(ManyIV)
+library(dplyr)
+
+run_ujive <- function(data, outcome_var) {
+  
+  # Assignment controls 
+  W_assign <- "factor(dayofweekt) + factor(month_of_year)"
+  
+  # Precision controls
+  W_precise <- paste(
+    "factor(complaint_esi)",
+    "factor(race)",
+    "factor(GENDER)",
+    "factor(PROVIDER_SEX)",
+    "factor(capacity_level)",
+    "tachycardic", "tachypneic", "febrile", "hypotensive",
+    "LAB_PERF", "age", "EXPERIENCE", "hrs_in_shift",
+    sep = " + "
+  )
+  
+  # Build full formula for UJIVE
+  ujive_formula <- as.formula(paste0(
+    outcome_var, " ~ batched + ",
+    W_assign, " + ", W_precise, " | ",
+    "factor(ED_PROVIDER) + ",
+    W_assign, " + ", W_precise
+  ))
+  
+  # Run UJIVE
+  fit <- ujive(
+    formula = ujive_formula,
+    data = data,
+    dropleverage = TRUE  # recommended for many instruments
+  )
+  
+  print(paste("UJIVE for", outcome_var))
+  print(fit$estimate)
+  
+  return(fit)
+}
+
+###############################################
+# RUN MODELS
+###############################################
+
+fit_LOS   <- run_ujive(final, "ln_ED_LOS")
+fit_disp  <- run_ujive(final, "ln_disp_time")
+fit_treat <- run_ujive(final, "ln_treat_time")
+fit_admit <- run_ujive(final, "admit")

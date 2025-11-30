@@ -1,0 +1,15 @@
+# A tibble: 1 × 6
+  tachycardic tachypneic febrile hypotensive ESI_median ESI_IQR
+        <dbl>      <dbl>   <dbl>       <dbl>      <int> <chr>  
+1        19.1       9.13    2.31        1.49          3 [2, 3] 
+# A tibble: 1 × 6
+   male race_white race_black race_asian age_median age_IQR 
+  <dbl>      <dbl>      <dbl>      <dbl>      <dbl> <chr>   
+1  46.4       88.8       4.02       2.94         62 [45, 75]
+# A tibble: 1 × 24
+  xray_perf us_perf noncon_ct_perf con_ct_perf labs_ordered wait_median wait_iqr los_median los_iqr    discharged
+      <dbl>   <dbl>          <dbl>       <dbl>        <dbl>       <dbl> <chr>         <int> <chr>           <dbl>
+1      46.6    11.5           20.9        19.0         77.1          13 [6, 35]         229 [159, 309]       64.9
+# ℹ 14 more variables: admitted <dbl>, observation <dbl>, rtn_72_any <dbl>, rtn_72_admit <dbl>,
+#   tat_xray_median <dbl>, tat_xray_iqr <chr>, tat_us_median <dbl>, tat_us_iqr <chr>, tat_ct_noncon_median <dbl>,
+#   tat_ct_noncon_iqr <chr>, tat_ct_con_median <dbl>, tat_ct_con_iqr <chr>, tat_lab_median <dbl>, tat_lab_iqr <chr>
