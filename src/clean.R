@@ -172,6 +172,8 @@ data$age <- as.numeric(data$age)
 data <- data %>% 
   filter(ARRIVAL_AGE_DI >= 18)
 
+# get IQR median for treatment time
+summary(data$treatment_time)
 #=========================================================================
 # Clean Chief Complaint --------------------------------------------------
 #=========================================================================

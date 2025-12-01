@@ -198,10 +198,10 @@ First, we strengthened the empirical strategy by expanding the control set to di
 Second, we added the Unbiased Jackknife IV Estimator (UJIVE), which is well-suited to settings with many heterogeneous providers. UJIVE addresses the core concern raised by the AE and referees---unobserved provider-level heterogeneity correlated with batching propensity. Across all outcomes, UJIVE estimates closely match our 2SLS results under the preferred full-control specification:
 
 \begin{itemize}
-\item 0.447 increase in log treatment time (≈56\%)
-\item 0.522 increase in log time to disposition (≈68\%)
-\item 0.503 increase in log LOS (≈65\%)
-\item 1.174 additional imaging tests (≈88\%)
+\item 0.447 increase in log treatment time ($\approx$ 56\%)
+\item 0.522 increase in log time to disposition ($\approx$ 68\%)
+\item 0.503 increase in log LOS ($\approx$ 65\%)
+\item 1.174 additional imaging tests ($\approx$ 88\%)
 \end{itemize}
 
 The alignment between 2SLS and UJIVE—two estimators with distinct identifying assumptions—provides strong evidence that our results are not driven by unobserved provider-level confounding.
@@ -337,7 +337,6 @@ First-stage results validate the concern while demonstrating that we can isolate
 \begin{table}[t!]
 \centering
 \caption*{First-Stage Robustness: Batch Tendency Strongly Predicts Batching}
-\label{tab:first_stage_two_models}
 \begin{threeparttable}
 \begin{tabular}{lcc}
 \toprule 
@@ -374,7 +373,6 @@ Our revised results (Table 4) show close agreement between 2SLS and UJIVE---both
 \begin{table}[t!]
 \centering
 \caption*{Table 4: Effect of Batching Tests on Patient Outcomes}
-\label{tab:results_iv_ujive}
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -486,7 +484,7 @@ Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 \end{threeparttable}
 \end{table}
 
-The attenuation in the 2SLS estimates after adding precision controls confirms the AE’s intuition that our original instrument may have contained some correlation with general diagnostic intensity. At the same time, the close agreement between the 2SLS and UJIVE estimates---both before and after adjustment---provides strong evidence that any remaining correlation between a physician’s overall comprehensiveness and patient outcomes is too small to materially bias the results. Because UJIVE explicitly removes provider-level average outcome differences, its convergence with the 2SLS estimates strengthens confidence that our revised specification isolates batching-specific effects rather than broader diagnostic style. 
+The attenuation in the 2SLS estimates after adding precision controls confirms the AE's intuition that our original instrument may have contained some correlation with general diagnostic intensity. At the same time, the close agreement between the 2SLS and UJIVE estimates---both before and after adjustment---provides strong evidence that any remaining correlation between a physician’s overall comprehensiveness and patient outcomes is too small to materially bias the results. Because UJIVE explicitly removes provider-level average outcome differences, its convergence with the 2SLS estimates strengthens confidence that our revised specification isolates batching-specific effects rather than broader diagnostic style. 
 
 Additionally, following an approach outlined by Conley et al. (2012), we test how our estimates change in our 2SLS results if we relax the exclusion restriction by allowing batch tendency to have a direct effect on outcomes. Under standard IV assumptions, the structural equation is
 
@@ -523,7 +521,6 @@ The figure below (now included in Appendix D) presents sensitivity analyses show
 \begin{figure}[t!]
 \centering
 \caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
-\label{fig:conley_sensitivity}
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
 \footnotesize
@@ -586,7 +583,6 @@ The AE correctly notes that ED LOS captures multiple processes beyond physician 
 \begin{table}[t!]
 \centering
 \caption*{Robustness: Treatment Time and Time to Disposition}
-\label{tab:results_time_ujive}
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -794,7 +790,7 @@ First-stage results validate the concern while demonstrating that we can isolate
 \begin{table}[t!]
 \centering
 \caption*{First-Stage Robustness: Batch Tendency Strongly Predicts Batching}
-\label{tab:first_stage_two_models}
+
 \begin{threeparttable}
 \begin{tabular}{lcc}
 \toprule 
@@ -825,12 +821,12 @@ First-stage F-stat & 171.9 & 171.9 \\
 
 We see that even when controlling for this comprehensive set of precision controls, substantial independent variation remains (F=171.9, well above weak instrument thresholds). This is precisely what we would expect if the instrument captures batching-specific propensity rather than general cautiousness.
 
-Our revised main results (Table 4) now incorporate the expanded controls and respond to Reviewer 3’s suggestion to employ methods that are more robust to physician-level unobserved heterogeneity. In addition to our standard 2SLS estimates using batch tendency as the instrument, Table 4 includes estimates from the Unbiased Jackknife Instrumental Variables Estimator (UJIVE). UJIVE uses provider identifiers as many instruments and removes provider-level confounding through jackknife bias correction; this makes it robust to heterogeneous, provider-specific violations of the exclusion restriction---precisely the type of violation the reviewer is concerned about (e.g., that more ``comprehensive" physicians might keep patients longer for reasons unrelated to batching).
+Our revised main results (Table 4) now incorporate the expanded controls and respond to Reviewer 3’s suggestion to employ methods that are more robust to physician-level unobserved heterogeneity. In addition to our standard 2SLS estimates using batch tendency as the instrument, Table 4 includes estimates from the Unbiased Jackknife Instrumental Variables Estimator (UJIVE). 
 
 \begin{table}[t!]
 \centering
 \caption*{Table 4: Effect of Batching Tests on Patient Outcomes}
-\label{tab:results_iv_ujive}
+
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -980,7 +976,7 @@ The figure below (now included in Appendix D) presents sensitivity analyses show
 \begin{figure}[t!]
 \centering
 \caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
-\label{fig:conley_sensitivity}
+
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
 \footnotesize
@@ -1060,10 +1056,10 @@ This rotational mechanism achieves the quasi-randomization necessary for causal 
 \caption*{Figure 2: Batch Tendency by Patient Characteristics}
 \begin{threeparttable}
 \includegraphics[width=\textwidth]{../outputs/figures/fig2_panel_batched_standardized.png}
-    \begin{tablenotes}
-        \small
-        \item \textit{Notes:} This figure plots a test for quasi-random assignment of patients to physicians in the Mayo Clinic ED. The left panel shows how patient characteristics predict batching decisions. The right panel shows these same characteristics do not predict assignment to physicians with different batch tendencies. Residualization fixed effects include hospital-year-month, hospital-day of week-time of day. Robust standard errors are clustered at the physician level.
-    \end{tablenotes}
+\begin{tablenotes}
+\small
+\item \textit{Notes:} This figure plots a test for quasi-random assignment of patients to physicians in the Mayo Clinic ED. The left panel shows how patient characteristics predict batching decisions. The right panel shows these same characteristics do not predict assignment to physicians with different batch tendencies. Residualization fixed effects include hospital-year-month, hospital-day of week-time of day. Robust standard errors are clustered at the physician level.
+\end{tablenotes}
 \end{threeparttable}
 \end{figure}
 
@@ -1092,102 +1088,6 @@ Together, the institutional details and empirical balance tests confirm that May
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % End of Reviewer 1 responses
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\clearpage
-
-\subsection*{Unbiased Jackknife Instrumental Variables (UJIVE) for Leniency Designs}
-
-Our empirical setting fits the canonical ``leniency design'' or ``judge design'' framework
-\citep[e.g.,][]{GoldsmithPinkhamHullKolesarLeniencyManual,Kolesar2013Late}. Emergency
-department (ED) physicians differ in their propensity to order batched advanced imaging
-tests. Let $j \in \{1,\dots,K\}$ index ED providers and $i$ index patient encounters. We
-denote by $x_i \in \{0,1\}$ an indicator for whether encounter $i$ receives batched imaging,
-by $y_i$ an outcome of interest (e.g., log length of stay), and by $w_i$ a vector of
-covariates (triage characteristics, presenting complaint, time-of-day and calendar fixed
-effects, etc.). Let $z_i$ be a $K$-vector of provider indicators (one provider omitted for
-collinearity). The outcome and first-stage equations are
-\begin{align}
-  y_i &= \beta x_i + w_i' \gamma + \varepsilon_i, \label{eq:struct}\\
-  x_i &= z_i' \pi + w_i' \delta + \nu_i. \label{eq:firststage}
-\end{align}
-We interpret $\beta$ as the causal effect of batched (vs.\ sequential) imaging on $y_i$ for a
-suitably defined complier population.
-
-A natural approach is two-stage least squares (2SLS) using the provider indicators $z_i$ as
-instruments in \eqref{eq:struct}. However, when there are many providers and rich
-controls $w_i$, conventional 2SLS suffers from the well-known many-instrument bias: the
-constructed first-stage fitted values mechanically reuse each observation's own treatment
-status, creating a small-sample correlation between the instrument and the structural error
-$\varepsilon_i$. This bias can be substantial even when the first-stage F-statistic is
-moderate.
-
-The unbiased jackknife instrumental variables estimator (UJIVE) of \citet{Kolesar2013Late}
-is designed to address precisely this issue in leniency designs. Let $W$ denote the $n \times
-L$ matrix stacking the covariates $w_i$, and $Z$ the $n \times K$ matrix stacking the
-provider indicators $z_i$. Define the residualized instruments and treatment by
-\[
-  \tilde Z = M_W Z, \qquad \tilde x = M_W x,
-  \qquad M_W = I_n - W(W'W)^{-1}W',
-\]
-so that we partial out the necessary assignment controls $w_i$ from both $x_i$ and $z_i$.
-Consider the population regression of $\tilde x$ on $\tilde Z$,
-\[
-  \tilde x_i = \tilde z_i' \pi + v_i,
-\]
-where $\tilde z_i$ is the $i$th row of $\tilde Z$. If $\pi$ were known, the ideal
-\emph{relative leniency} instrument would be $\tilde \ell_i = \tilde z_i' \pi$, which measures
-how lenient the assigned provider is relative to other providers who could have treated
-patient $i$ \citep{GoldsmithPinkhamHullKolesarLeniencyManual}. Under random (or
-as-good-as-random) provider assignment conditional on $w_i$ and standard exclusion
-restrictions, using $\tilde \ell_i$ as an instrument in \eqref{eq:struct} yields an approximately
-unbiased IV estimator even with many providers.
-
-In practice $\pi$ is unknown. A naïve plug-in approach estimates $\pi$ by OLS and uses
-the in-sample fitted values $\hat \ell_i = \tilde z_i' \hat \pi$ as the instrument. This is
-numerically equivalent to conventional 2SLS with the full set of provider dummies and
-suffers from many-instrument bias, because $\hat \ell_i$ is partially constructed from $x_i$
-itself. UJIVE replaces $\hat \ell_i$ with a leave-one-out (jackknife) estimate that omits
-observation $i$ from the first stage:
-\[
-  \hat \ell_{-i} = \tilde z_i' \hat \pi_{-i},
-\]
-where $\hat \pi_{-i}$ is the OLS coefficient from regressing $\tilde x$ on $\tilde Z$ using all
-observations $j \neq i$. Under independent sampling, $\hat \pi_{-i}$ is unbiased for $\pi$
-and, crucially, is independent of the pair $(\tilde z_i, \varepsilon_i)$, so that $\hat \ell_{-i}$ is
-approximately uncorrelated with the structural error $\varepsilon_i$ even when there are
-many providers. As shown by \citet{Kolesar2013Late}, this eliminates the leading
-many-instrument bias term while preserving consistency for a convex combination of local
-average treatment effects.
-
-Computationally, the leave-one-out fitted values can be obtained without re-estimating the
-first-stage regression $n$ times. Let $\hat \pi$ be the full-sample OLS coefficient from
-regressing $\tilde x$ on $\tilde Z$, and let $\hat v_i$ and $h_{ii}$ denote the corresponding
-residual and diagonal element of the projection (hat) matrix,
-\[
-  \hat v = \tilde x - \tilde Z \hat \pi, \qquad
-  H = \tilde Z(\tilde Z'\tilde Z)^{-1}\tilde Z', \qquad h_{ii} = H_{ii}.
-\]
-Then the leave-one-out prediction for $\tilde x_i$ has the standard jackknife form
-\[
-  \hat \ell_{-i}
-  = \tilde z_i' \hat \pi_{-i}
-  = \tilde x_i - \frac{\hat v_i}{1 - h_{ii}}.
-\]
-We use $\hat \ell_{-i}$ as a single scalar instrument in a just-identified IV regression of
-$y_i$ on $x_i$ with the same covariates $w_i$ as in \eqref{eq:struct}. In practice, we
-implement this by: (i) residualizing $x_i$ and the provider indicators $z_i$ with respect to
-the assignment controls $w_i$, (ii) computing $\hat \ell_{-i}$ via the leave-one-out formula
-above, and (iii) estimating $\beta$ by just-identified IV with $x_i$ instrumented by
-$\hat \ell_{-i}$ and including $w_i$ as regressors. We report heteroskedasticity-robust (HC1)
-standard errors, which are typically appropriate in leniency designs when patient-level
-observations are independent conditional on assignment controls
-\citep{GoldsmithPinkhamHullKolesarLeniencyManual}.
-
-In summary, UJIVE allows us to exploit quasi-random variation in provider ``batching
-tendency'' without incurring the many-judge bias associated with conventional 2SLS using a
-large set of provider dummies. This makes it a natural and robust estimator for our ED
-leniency design with many physicians and rich time and case-mix controls.
-
 
 \clearpage
 
@@ -1717,7 +1617,7 @@ First-stage results validate the concern while demonstrating that we can isolate
 \begin{table}[t!]
 \centering
 \caption*{First-Stage Robustness: Batch Tendency Strongly Predicts Batching}
-\label{tab:first_stage_two_models}
+
 \begin{threeparttable}
 \begin{tabular}{lcc}
 \toprule 
@@ -1753,7 +1653,7 @@ Our revised main results (Table 4) now incorporate the expanded controls and res
 \begin{table}[t!]
 \centering
 \caption*{Table 4: Effect of Batching Tests on Patient Outcomes}
-\label{tab:results_iv_ujive}
+
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -1902,7 +1802,7 @@ The figure below (now included in Appendix D) presents sensitivity analyses show
 \begin{figure}[t!]
 \centering
 \caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
-\label{fig:conley_sensitivity}
+
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
 \footnotesize
@@ -2194,7 +2094,6 @@ We have therefore added this analysis using treatment time (defined as the time 
 \begin{table}[t!]
 \centering
 \caption*{Robustness: Treatment Time and Time to Disposition}
-\label{tab:results_time_ujive}
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -2247,7 +2146,6 @@ Nevertheless, we acknowledge the reviewer's point about statistical power and co
 \begin{table}[t!]
 \centering
 \caption*{Robustness: Effect of Batching on 72-Hour Return Outcomes}
-\label{tab:rtn_ujive}
 \begin{threeparttable}
 \begin{tabular}{lcccccc}
 \toprule
@@ -2417,11 +2315,12 @@ The updated Table 1 now comprehensively displays all ED performance metrics exam
 ``Please clarify how you calculate the percentage increase in duration outcomes from the estimates presented in the results tables."
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}{We thank the reviewer for requesting this clarification. Since our outcome variables are log-transformed (ln(ED LOS), ln(time to disposition), ln(treatment time)), the coefficients represent log-point changes. To convert these to percentage changes, we use the standard transformation for log-linear models: $(\exp(\beta) - 1) \times 100\%$.
+\noindent\textbf{Response:} \color{blue} We thank the reviewer for requesting this clarification. Since our outcome variables are log-transformed (ln(ED LOS), ln(time to disposition), ln(treatment time)), the coefficients represent log-point changes. To convert these to percentage changes, we use the standard transformation for log-linear models: $(\exp(\beta) - 1) \times 100\%$.
 
 We have added footnotes to Tables 4 and 5 clarifying the interpretation of coefficients presented.
 
 \color{black}
+
  \begin{quote2}
 ``Please provide details on how you adjust the IV to account for the non-random assignment in Section 4.6. This clarification is critical because the estimates may be biased if this issue is not properly addressed."
 \end{quote2}
@@ -2446,7 +2345,7 @@ We have also added a footnote explicitly stating: ``The MGH estimates should be 
 ``Do the authors observe any instances where the attending physician begins the diagnostic process with a single test, followed by a batch of tests? If so, how do they account for this mixed strategy in their analysis?"
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}{Yes, we observe mixed strategies (single test followed by batch) in 189 encounters, representing 1.91\% of multi-test encounters.
+\noindent\textbf{Response:} \color{blue} Yes, we observe mixed strategies (single test followed by batch) in 189 encounters, representing 1.91\% of multi-test encounters.
 
 We classify these as sequential ordering based on clinical guidance from our physician coauthors at both sites. Once a physician orders an initial test, they have begun sequential information gathering — even if subsequent tests are ordered simultaneously. True batching requires all tests to be ordered simultaneously without any interim diagnostic process.
 

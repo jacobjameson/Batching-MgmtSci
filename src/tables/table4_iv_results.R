@@ -234,6 +234,11 @@ run_models_iv(subset(final, capacity_level=='Major Overcapacity') , "imgTests")
 run_models_iv(subset(final, capacity_level=='Major Overcapacity') , "RTN_72_HR_ADMIT")
 
 
+feols(batched ~ capacity_level + EXPERIENCE + PROVIDER_SEX + age + hrs_in_shift | tachycardic + tachypneic + febrile +
+        hypotensive + LAB_PERF + complaint_esi + race + GENDER, final, vcov = 'HC1')
+
+feols(imgTests ~ capacity_level + EXPERIENCE + PROVIDER_SEX + age + hrs_in_shift | tachycardic + tachypneic + febrile +
+        hypotensive + LAB_PERF + complaint_esi + race + GENDER, final, vcov = 'HC1')
 library(fixest)
 
 final$capacity <- factor(final$capacity_level,
