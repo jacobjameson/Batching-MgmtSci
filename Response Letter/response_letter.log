@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  30 NOV 2025 21:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.12.7)  29 DEC 2025 12:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -420,110 +420,109 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 ] [2] [3
 
-] [4]
-Overfull \hbox (19.31139pt too wide) in paragraph at lines 207--208
-[]\T1/cmr/m/n/10.95 The align-ment be-tween 2SLS and UJIVE^^Vtwo es-ti-ma-tors with dis-tinct iden-ti-fy-ing as-sump-tions^^Vprovides
- []
-
-[5
+] [4] [5
 
 ]
 <../outputs/figures/fig1_boxplot.png, id=26, 722.7pt x 433.62pt>
 File: ../outputs/figures/fig1_boxplot.png Graphic file (type png)
 <use ../outputs/figures/fig1_boxplot.png>
-Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 240.
+Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 239.
 (pdftex.def)             Requested size: 476.98244pt x 286.19008pt.
 <../outputs/figures/fig2_panel_batched_standardized.png, id=27, 867.24pt x 433.62pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 253.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 252.
 (pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
  [6] [7 <../outputs/figures/fig1_boxplot.png>] [8 <../outputs/figures/fig2_panel_batched_standardized.png>] [9] [10] [11]
 <../outputs/figures/conley_sensitivity_ujive.png, id=53, 578.16pt x 361.35pt>
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
-Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 524.
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 523.
 (pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
  [12] [13] [14 <../outputs/figures/conley_sensitivity_ujive.png>] [15] [16] [17] [18] [19] [20] [21
 
 ]
-Overfull \hbox (11.99466pt too wide) in paragraph at lines 755--756
+Overfull \hbox (11.99466pt too wide) in paragraph at lines 750--751
 []\T1/cmr/m/n/10.95 ``Our two-stage least squares es-ti-mates rep-re-sent the LATE of batch or-der-ing for `compliers'---
  []
 
-[22] [23] [24]
+[22] [23] [24] [25]
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
-Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 980.
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 974.
 (pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
- [25] [26] [27] [28] [29]
+ [26] [27] [28] [29]
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 1058.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 1052.
 (pdftex.def)             Requested size: 476.98244pt x 238.49173pt.
  [30] [31] [32] [33
 
 ] [34] [35] [36]
-Overfull \hbox (7.39651pt too wide) in paragraph at lines 1215--1216
+Overfull \hbox (7.39651pt too wide) in paragraph at lines 1209--1210
 []\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
-[37] [38] [39] [40] [41]
-Overfull \hbox (2.58746pt too wide) in paragraph at lines 1343--1345
+[37] [38] [39] [40] [41] [42]
+Overfull \hbox (2.58746pt too wide) in paragraph at lines 1337--1339
 \T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
  []
 
-[42]
-Overfull \hbox (12.96484pt too wide) in paragraph at lines 1348--1349
+
+Overfull \hbox (12.96484pt too wide) in paragraph at lines 1342--1343
 []\T1/cmr/m/n/10.95 If batch ten-dency sim-ply re-flected physi-cians who or-der com-pre-hen-sive di-ag-nos-tics across all modalities---
  []
 
-[43] [44] [45] [46] [47] [48
+[43] [44] [45] [46] [47] [48] [49
 
-] [49] [50] [51]
+] [50] [51] [52]
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
-Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 1806.
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 1800.
 (pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
- [52] [53]
+ [53] [54]
 
-Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 54 undefined on input line 1859.
+Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 55 undefined on input line 1853.
 
-[54] [55] [56]
-<../outputs/figures/CONSORT.png, id=208, 514.5624pt x 433.62pt>
+[55] [56] [57]
+<../outputs/figures/CONSORT.png, id=211, 514.5624pt x 433.62pt>
 File: ../outputs/figures/CONSORT.png Graphic file (type png)
 <use ../outputs/figures/CONSORT.png>
-Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1994.
+Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 1988.
 (pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
- [57] [58 <../outputs/figures/CONSORT.png>] [59] [60] [61] [62]
-<../outputs/figures/heterogeneity_by_complaint.png, id=229, 1011.78pt x 289.08pt>
+ [58] [59 <../outputs/figures/CONSORT.png>] [60] [61] [62] [63]
+<../outputs/figures/heterogeneity_by_complaint.png, id=232, 1011.78pt x 289.08pt>
 File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
 <use ../outputs/figures/heterogeneity_by_complaint.png>
-Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 2221.
+Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 2215.
 (pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
- [63 <../outputs/figures/heterogeneity_by_complaint.png>] [64] [65] [66] [67] [68] (./response_letter.bbl [69])
+ [64 <../outputs/figures/heterogeneity_by_complaint.png>] [65] [66] [67] [68] [69] (./response_letter.bbl [70])
 
 Package natbib Warning: There were undefined citations.
 
-[70] (./response_letter.aux)
+[71] (./response_letter.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-14>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
  7716 strings out of 469476
- 126053 string characters out of 5467215
+ 126053 string characters out of 5467216
  546335 words of memory out of 5000000
  36242 multiletter control sequences out of 15000+600000
  649293 words of font info for 98 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 67i,13n,77p,1580b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on response_letter.pdf (70 pages, 1603532 bytes).
+ 67i,13n,77p,1580b,469s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on response_letter.pdf (71 pages, 1607018 bytes).
 PDF statistics:
- 881 PDF objects out of 1000 (max. 8388607)
- 245 compressed objects within 3 object streams
+ 884 PDF objects out of 1000 (max. 8388607)
+ 247 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
