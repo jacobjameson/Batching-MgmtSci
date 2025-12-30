@@ -41,74 +41,70 @@ header-includes:
 
 \clearpage
 
-
-\begin{table}[ht]
+\begin{table}[htbp]
 \centering
-\caption{Internal Guidelines for Activation of Overcapacity and Saturation Plans for the Emergency Department (ED)}
+\caption{Internal Guidelines for ED Overcapacity and Saturation Activation}
 \label{tab:ed_capacity_guidelines}
 \begin{threeparttable}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|p{7cm}|p{9cm}|}
-\hline
-\textbf{Capacity} & \textbf{Conditions} & \textbf{Actions} \\ \hline
-\textbf{Normal Operations} & 
-1. Patients in the waiting room for less than 20 minutes \newline
-
-2. Number of patients in the ED is less than available ED beds & 
-
-1. No utilization of Rapid Medical Assessment (RMA) resources or waiting room evaluations unless the patient will not require a treatment room. \newline
-
-2. No laboratory tests to be done from the waiting room as patients are being roomed immediately. \newline
-
-3. Nurse-initiated protocols to be entered by the throughput nurse (TN) or bedside RN 30 minutes after patient arrival, regardless of patient location. \\ \hline
-
-\textbf{Minor Overcapacity} & 
-1. Waiting room time 21--90 minutes OR \newline
-
-2. Waiting room with 10 patients OR \newline
-
-3. Number of ED patients exceeds available ED beds by 10 (e.g., admitted patients waiting for a bed assignment) OR \newline
-
-4. Team Lead (TL) discretion & 
-1. All actions for Normal Operations plus: \newline
-
-2. Laboratory testing to be initiated in the ED waiting room by ED staff. \newline
-
-3. RMA workflow activation with dedicated staff for management of waiting room patients. \newline
-
-4. All zones available for placement of patients for all providers. \newline
-
-5. TN communicates with consulting providers to expedite care. \\ \hline
-
-\textbf{Major Overcapacity} & 
-1. Waiting room time greater than 90 minutes OR \newline
-
-2. Waiting room with more than 20 patients OR \newline
-
-3. More than 40 new patient arrivals in 2 hours OR \newline
-
-4. Number of ED patients exceeds available ED beds by 20 OR \newline
-
-5. TL discretion & 
-1. All actions for Normal Operations and Minor Overcapacity plus: \newline
-
-2. TL to consider placing ED on diversion. \newline
-
-3. Activation of RMA workflow with a second RMA if capacity allows. \newline
-
-4. External/hospital-wide levers activated (e.g., pop-ups by house supervisor, transport crisis, expedited bed assignments, priority placement of ED patients). \newline
-
-5. Activation of Obs Unit APPs to ED if observation duties allow. \newline
-
-6. Activation of on-call ED Physician if physician cap criteria is met. \\ \hline
-\end{tabular}
-}
+\begin{tabular}{l p{7cm} p{9cm}}
+\toprule
+\textbf{Capacity Level} & \textbf{Conditions} & \textbf{Actions} \\
+\midrule
+Normal Operations &
+\begin{itemize}\setlength\itemsep{0.2em}
+\item Waiting room time $<$ 20 minutes
+\item ED census below staffed bed capacity
+\end{itemize}
+&
+\begin{itemize}\setlength\itemsep{0.2em}
+\item No RMA or waiting-room evaluations unless treatment room unnecessary
+\item No waiting-room laboratory testing
+\item Nurse-initiated protocols entered 30 minutes after arrival
+\end{itemize}
+\\
+\midrule
+Minor Overcapacity &
+\begin{itemize}\setlength\itemsep{0.2em}
+\item Waiting room time 21--90 minutes
+\item $\geq$10 patients waiting
+\item ED census exceeds beds by $\leq$10 patients
+\item Team Lead discretion
+\end{itemize}
+&
+\begin{itemize}\setlength\itemsep{0.2em}
+\item All normal-operations actions
+\item Waiting-room lab initiation
+\item RMA activation with dedicated staff
+\item Expanded zone placement
+\item Expedited consulting communication
+\end{itemize}
+\\
+\midrule
+Major Overcapacity &
+\begin{itemize}\setlength\itemsep{0.2em}
+\item Waiting room time $>$ 90 minutes
+\item $>$20 patients waiting
+\item $>$40 arrivals in 2 hours
+\item ED census exceeds beds by $\geq$20 patients
+\item Team Lead discretion
+\end{itemize}
+&
+\begin{itemize}\setlength\itemsep{0.2em}
+\item All minor-overcapacity actions
+\item Consider diversion
+\item Second RMA activation if feasible
+\item Hospital-wide throughput escalation
+\item Activation of observation APPs and on-call ED physician
+\end{itemize}
+\\
+\bottomrule
+\end{tabular}}
 \end{threeparttable}
 \end{table}
 
-
-
 \clearpage
+
 
 \begin{figure}[ht]
 \centering
@@ -224,7 +220,7 @@ This moment is calculated by computing the share of compliers for the subsample 
 \subsection*{C. Mediation Analysis: SEM Results}
 
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \caption{Mediation Analysis of the Effect of Batching on ED Length of Stay (LOS) via Imaging and Admission Decisions}
 \label{tab:mediation_analysis}
@@ -267,11 +263,10 @@ Total Indirect Effect & 0.256 & 0.020 & $<$0.001 \\
 Total Effect & 0.288 & 0.073 & $<$0.001 \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}
+\begin{flushleft}
 \footnotesize
-\item \textit{Notes:} This table presents the results of a structural equation model (SEM) investigating the relationships between batching, the number of imaging tests, admission decisions, and ED length of stay (LOS). To address potential confounding from fixed effects (e.g., complaint type and time of month), all variables were residualized by regressing them on the fixed effects prior to the SEM. This residualization ensures that the estimates reflect associations net of the fixed effects.
-\item This analysis is exploratory, aiming to understand the mechanism by which batching influences ED operational outcomes. While the directions and significance of these associations align with hypothesized pathways, these results should not be interpreted as causal mediation but rather as an exploratory investigation of plausible mechanisms. The findings suggest that increased diagnostic intensity is a key pathway by which batching extends LOS, with admissions playing a secondary role.
-\end{tablenotes}
+\textit{Notes:} This table presents the results of a structural equation model (SEM) investigating the relationships between batching, the number of imaging tests, admission decisions, and ED length of stay (LOS). To address potential confounding from fixed effects (e.g., complaint type and time of month), all variables were residualized by regressing them on the fixed effects prior to the SEM. This residualization ensures that the estimates reflect associations net of the fixed effects.
+\end{flushleft}
 \end{threeparttable}
 \end{table}
 
