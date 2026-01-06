@@ -938,3 +938,349 @@ for (complaint in complaint_categories) {
   cat(sprintf("%-38s %6.3f         %6.3f           %5.3f\n",
               complaint_short, result["p_x"], result["p_x_complier"], result["ratio"]))
 }
+
+
+
+
+
+
+### CBA
+
+#=========================================================================
+# COST-BENEFIT ANALYSIS OF DISCRETIONARY BATCH ORDERING
+#=========================================================================
+
+#=========================================================================
+# STEP 1: Establish the key parameters
+#=========================================================================
+
+# Complier shares (from our analysis above)
+pi_c <- 0.203   # 20.3% compliers
+pi_a <- 0.067   # 6.7% always-takers
+pi_n <- 0.730   # 73% never-takers
+
+# Sample sizes
+n_total <- nrow(final)
+n_batched <- sum(final$batched)
+
+# Counts by type
+n_compliers <- round(n_total * pi_c)
+n_always_takers <- round(n_total * pi_a)
+n_never_takers <- round(n_total * pi_n)
+
+# Batched compliers = total batched - always takers
+# These are the patients whose batching could have been avoided
+n_batched_compliers <- n_batched - n_always_takers
+
+cat("=== STEP 1: SAMPLE COMPOSITION ===\n")
+cat("Total encounters in analytical sample:", n_total, "\n")
+cat("Total batched encounters:", n_batched, "(", round(n_batched/n_total*100, 1), "%)\n")
+cat("\nBy compliance type:\n")
+cat("  Compliers:", n_compliers, "(", round(pi_c*100, 1), "%)\n")
+cat("  Always-takers:", n_always_takers, "(", round(pi_a*100, 1), "%)\n")
+cat("  Never-takers:", n_never_takers, "(", round(pi_n*100, 1), "%)\n")
+cat("\nPolicy-relevant subset:\n")
+cat("  Batched compliers (avoidable):", n_batched_compliers, "\n")
+cat("  As % of total sample:", round(n_batched_compliers/n_total*100, 1), "%\n")
+cat("  As % of all batched:", round(n_batched_compliers/n_batched*100, 1), "%\n")
+
+#=========================================================================
+# STEP 2: Effect sizes from our UJIVE estimates (Table 4, Column 5)
+#=========================================================================
+
+# Primary effects
+effect_LOS_log <- 0.503           # log points
+effect_disp_log <- 0.522          # log points  
+effect_imaging <- 1.174           # additional tests
+
+# By modality
+effect_xray <- 0.959
+effect_us <- 0.087
+effect_ct_no <- 0.053
+effect_ct_yes <- 0.075
+
+# Baseline values (sequenced patients, Column 1 of Table 4)
+baseline_LOS_log <- 5.490
+baseline_LOS_min <- exp(baseline_LOS_log)
+
+baseline_disp_log <- 5.237
+baseline_disp_min <- exp(baseline_disp_log)
+
+# Calculate actual changes
+LOS_pct_increase <- exp(effect_LOS_log) - 1
+LOS_min_increase <- baseline_LOS_min * LOS_pct_increase
+LOS_hrs_increase <- LOS_min_increase / 60
+
+cat("\n=== STEP 2: EFFECT SIZES (UJIVE, Full Controls) ===\n")
+cat("\nTime effects:\n")
+cat("  Baseline LOS (sequenced):", round(baseline_LOS_min), "minutes\n")
+cat("  LOS increase:", round(LOS_pct_increase*100, 1), "%\n")
+cat("  LOS increase:", round(LOS_min_increase), "minutes =", round(LOS_hrs_increase, 2), "hours\n")
+cat("\nImaging effects:\n")
+cat("  Additional tests per batched complier:", round(effect_imaging, 2), "\n")
+cat("    - X-rays:", round(effect_xray, 3), "\n")
+cat("    - Ultrasound:", round(effect_us, 3), "\n")
+cat("    - CT without contrast:", round(effect_ct_no, 3), "\n")
+cat("    - CT with contrast:", round(effect_ct_yes, 3), "\n")
+
+#=========================================================================
+# STEP 3: Cost parameters (from literature/Medicare fee schedules)
+#=========================================================================
+
+# Imaging costs (Medicare Physician Fee Schedule 2024, professional + facility)
+# Source: CMS Fee Schedule Search Tool
+cost_xray <- c(low = 60, mean = 80, high = 100)
+cost_us <- c(low = 150, mean = 200, high = 250)
+cost_ct <- c(low = 300, mean = 400, high = 500)  # applies to both contrast and non
+
+# ED bed-hour costs (from literature)
+# Sources: Bamezai et al. 2005, Caldwell et al. 2013, Lee et al. 2012
+cost_bedhour <- c(low = 75, mean = 100, high = 125)
+
+cat("\n=== STEP 3: COST PARAMETERS ===\n")
+cat("\nImaging costs (Medicare 2024, professional + facility):\n")
+cat("  X-ray: $", cost_xray["low"], "- $", cost_xray["high"], " (mean $", cost_xray["mean"], ")\n")
+cat("  Ultrasound: $", cost_us["low"], "- $", cost_us["high"], " (mean $", cost_us["mean"], ")\n")
+cat("  CT scan: $", cost_ct["low"], "- $", cost_ct["high"], " (mean $", cost_ct["mean"], ")\n")
+cat("\nED operational costs:\n")
+cat("  Bed-hour: $", cost_bedhour["low"], "- $", cost_bedhour["high"], " (mean $", cost_bedhour["mean"], ")\n")
+
+#=========================================================================
+# STEP 4: Calculate per-patient costs
+#=========================================================================
+
+# Excess imaging cost per batched complier
+calc_imaging_cost <- function(cost_level) {
+  effect_xray * cost_xray[cost_level] +
+    effect_us * cost_us[cost_level] +
+    (effect_ct_no + effect_ct_yes) * cost_ct[cost_level]
+}
+
+imaging_cost_low <- calc_imaging_cost("low")
+imaging_cost_mean <- calc_imaging_cost("mean")
+imaging_cost_high <- calc_imaging_cost("high")
+
+# Excess capacity cost per batched complier
+capacity_cost_low <- LOS_hrs_increase * cost_bedhour["low"]
+capacity_cost_mean <- LOS_hrs_increase * cost_bedhour["mean"]
+capacity_cost_high <- LOS_hrs_increase * cost_bedhour["high"]
+
+# Total cost per batched complier
+total_cost_low <- imaging_cost_low + capacity_cost_low
+total_cost_mean <- imaging_cost_mean + capacity_cost_mean
+total_cost_high <- imaging_cost_high + capacity_cost_high
+
+cat("\n=== STEP 4: PER-PATIENT COSTS ===\n")
+cat("\nExcess imaging cost per batched complier:\n")
+cat("  Low: $", round(imaging_cost_low), "\n")
+cat("  Mean: $", round(imaging_cost_mean), "\n")
+cat("  High: $", round(imaging_cost_high), "\n")
+cat("\nExcess capacity cost per batched complier:\n")
+cat("  Additional bed-hours:", round(LOS_hrs_increase, 2), "\n")
+cat("  Low: $", round(capacity_cost_low), "\n")
+cat("  Mean: $", round(capacity_cost_mean), "\n")
+cat("  High: $", round(capacity_cost_high), "\n")
+cat("\nTOTAL cost per batched complier:\n")
+cat("  Low: $", round(total_cost_low), "\n")
+cat("  Mean: $", round(total_cost_mean), "\n")
+cat("  High: $", round(total_cost_high), "\n")
+
+#=========================================================================
+# STEP 5: Scale to study site (Mayo Clinic)
+#=========================================================================
+
+# Study period: October 2018 - December 2019 = 15 months
+# Annualize: multiply by 12/15
+annualization_factor <- 12/15
+
+# Total ED volume during study period
+total_ed_volume_study <- 48854  # from Table 1
+
+# Annual equivalents
+annual_ed_volume <- total_ed_volume_study * annualization_factor
+annual_imaging_encounters <- n_total * annualization_factor
+annual_batched_compliers <- n_batched_compliers * annualization_factor
+
+# Annual costs
+annual_cost_low <- annual_batched_compliers * total_cost_low
+annual_cost_mean <- annual_batched_compliers * total_cost_mean
+annual_cost_high <- annual_batched_compliers * total_cost_high
+
+cat("\n=== STEP 5: ANNUAL COSTS (MAYO CLINIC) ===\n")
+cat("\nStudy period: 15 months\n")
+cat("Total ED encounters (study period):", format(total_ed_volume_study, big.mark=","), "\n")
+cat("Imaging-relevant encounters (study period):", format(n_total, big.mark=","), "\n")
+cat("  (", round(n_total/total_ed_volume_study*100, 1), "% of total)\n")
+cat("\nAnnualized figures:\n")
+cat("  Annual ED volume:", format(round(annual_ed_volume), big.mark=","), "\n")
+cat("  Annual imaging-relevant encounters:", format(round(annual_imaging_encounters), big.mark=","), "\n")
+cat("  Annual batched compliers:", format(round(annual_batched_compliers), big.mark=","), "\n")
+cat("\nANNUAL COST OF DISCRETIONARY BATCHING:\n")
+cat("  Low: $", format(round(annual_cost_low), big.mark=","), "\n")
+cat("  Mean: $", format(round(annual_cost_mean), big.mark=","), "\n")
+cat("  High: $", format(round(annual_cost_high), big.mark=","), "\n")
+
+#=========================================================================
+# STEP 6: Scale to different ED sizes (following Feizi et al. 2025)
+#=========================================================================
+
+# Share of encounters that are imaging-relevant
+imaging_share <- n_total / total_ed_volume_study
+
+# Share of imaging encounters that are batched compliers
+batched_complier_share <- n_batched_compliers / n_total
+
+# ED size categories (annual volumes)
+ed_sizes <- data.frame(
+  Type = c("Small (Rural/Community)", "Medium (Suburban)", "Large (Urban)", "Mayo Clinic (Study Site)"),
+  Annual_Volume = c(20000, 40000, 60000, round(annual_ed_volume))
+)
+
+# Calculate for each ED size
+ed_sizes$Imaging_Encounters <- round(ed_sizes$Annual_Volume * imaging_share)
+ed_sizes$Batched_Compliers <- round(ed_sizes$Imaging_Encounters * batched_complier_share)
+ed_sizes$Cost_Low <- ed_sizes$Batched_Compliers * total_cost_low
+ed_sizes$Cost_Mean <- ed_sizes$Batched_Compliers * total_cost_mean
+ed_sizes$Cost_High <- ed_sizes$Batched_Compliers * total_cost_high
+
+cat("\n=== STEP 6: ANNUAL COSTS BY ED SIZE ===\n")
+cat("\nAssumptions:\n")
+cat("  Imaging-relevant share:", round(imaging_share*100, 1), "% of ED encounters\n")
+cat("  Batched complier share:", round(batched_complier_share*100, 1), "% of imaging encounters\n")
+cat("\n")
+
+# Print table
+cat(sprintf("%-30s %10s %12s %15s %20s\n", 
+            "ED Type", "Annual Vol", "Imaging Enc", "Batched Compl", "Annual Cost (Mean)"))
+cat(paste(rep("-", 90), collapse=""), "\n")
+for (i in 1:nrow(ed_sizes)) {
+  cat(sprintf("%-30s %10s %12s %15s %20s\n",
+              ed_sizes$Type[i],
+              format(ed_sizes$Annual_Volume[i], big.mark=","),
+              format(ed_sizes$Imaging_Encounters[i], big.mark=","),
+              format(ed_sizes$Batched_Compliers[i], big.mark=","),
+              paste0("$", format(round(ed_sizes$Cost_Mean[i]), big.mark=","))))
+}
+
+#=========================================================================
+# STEP 7: Create summary table for manuscript
+#=========================================================================
+
+cat("\n\n=== TABLE FOR MANUSCRIPT ===\n")
+cat("Table X: Estimated Annual Cost of Discretionary Batch Ordering by ED Size\n\n")
+
+summary_table <- data.frame(
+  ED_Type = ed_sizes$Type,
+  Annual_Volume = format(ed_sizes$Annual_Volume, big.mark=","),
+  Imaging_Relevant = format(ed_sizes$Imaging_Encounters, big.mark=","),
+  Batched_Compliers = format(ed_sizes$Batched_Compliers, big.mark=","),
+  Cost_Mean = paste0("$", format(round(ed_sizes$Cost_Mean), big.mark=",")),
+  Cost_Range = paste0("($", format(round(ed_sizes$Cost_Low), big.mark=","), 
+                      " - $", format(round(ed_sizes$Cost_High), big.mark=","), ")")
+)
+
+print(summary_table, row.names = FALSE)
+
+#=========================================================================
+# STEP 8: Additional metrics for discussion
+#=========================================================================
+
+cat("\n\n=== ADDITIONAL METRICS ===\n")
+
+# Bed-hours freed if batching eliminated
+annual_bedhours_freed <- annual_batched_compliers * LOS_hrs_increase
+cat("\nCapacity implications (Mayo Clinic annually):\n")
+cat("  Bed-hours freed if discretionary batching eliminated:", 
+    format(round(annual_bedhours_freed), big.mark=","), "\n")
+
+# Additional visits that could be served (using baseline LOS)
+additional_visits <- annual_bedhours_freed / (baseline_LOS_min / 60)
+cat("  Potential additional visits served:", format(round(additional_visits), big.mark=","), "\n")
+cat("  Capacity improvement:", round(additional_visits / annual_ed_volume * 100, 2), "%\n")
+
+# Imaging tests avoided
+annual_tests_avoided <- annual_batched_compliers * effect_imaging
+cat("\nResource utilization:\n")
+cat("  Imaging tests avoided annually:", format(round(annual_tests_avoided), big.mark=","), "\n")
+
+# Cost per percentage point reduction in batching
+cat("\nCost-effectiveness:\n")
+cat("  Cost per batched complier: $", round(total_cost_mean), "\n")
+cat("  If intervention reduces discretionary batching by 50%:\n")
+cat("    Patients affected:", round(annual_batched_compliers * 0.5), "\n")
+cat("    Annual savings: $", format(round(annual_cost_mean * 0.5), big.mark=","), "\n")
+
+
+
+#=========================================================================
+# REVISED COST ANALYSIS: X-RAY ONLY (statistically significant effect)
+#=========================================================================
+
+# Only X-ray effect (statistically significant)
+effect_xray <- 0.959
+
+# X-ray costs (Medicare 2024)
+cost_xray <- c(low = 60, mean = 80, high = 100)
+
+# Revised imaging costs (X-ray only)
+imaging_cost_low <- effect_xray * cost_xray["low"]
+imaging_cost_mean <- effect_xray * cost_xray["mean"]
+imaging_cost_high <- effect_xray * cost_xray["high"]
+
+cat("=== REVISED IMAGING COSTS (X-Ray Only) ===\n")
+cat("Effect: 0.959 additional X-rays (p < 0.001)\n")
+cat("  Low: $", round(imaging_cost_low), "\n")
+cat("  Mean: $", round(imaging_cost_mean), "\n")
+cat("  High: $", round(imaging_cost_high), "\n")
+
+# Capacity costs remain the same
+cat("\n=== CAPACITY COSTS (unchanged) ===\n")
+cat("  Low: $", round(capacity_cost_low), "\n")
+cat("  Mean: $", round(capacity_cost_mean), "\n")
+cat("  High: $", round(capacity_cost_high), "\n")
+
+# Revised total costs
+total_cost_low <- imaging_cost_low + capacity_cost_low
+total_cost_mean <- imaging_cost_mean + capacity_cost_mean
+total_cost_high <- imaging_cost_high + capacity_cost_high
+
+cat("\n=== REVISED TOTAL COST PER BATCHED COMPLIER ===\n")
+cat("  Low: $", round(total_cost_low), "\n")
+cat("  Mean: $", round(total_cost_mean), "\n")
+cat("  High: $", round(total_cost_high), "\n")
+
+# Revised annual costs
+annual_cost_low <- annual_batched_compliers * total_cost_low
+annual_cost_mean <- annual_batched_compliers * total_cost_mean
+annual_cost_high <- annual_batched_compliers * total_cost_high
+
+cat("\n=== REVISED ANNUAL COSTS (MAYO CLINIC) ===\n")
+cat("  Low: $", format(round(annual_cost_low), big.mark=","), "\n")
+cat("  Mean: $", format(round(annual_cost_mean), big.mark=","), "\n")
+cat("  High: $", format(round(annual_cost_high), big.mark=","), "\n")
+
+# Revised table by ED size
+ed_sizes$Cost_Low <- ed_sizes$Batched_Compliers * total_cost_low
+ed_sizes$Cost_Mean <- ed_sizes$Batched_Compliers * total_cost_mean
+ed_sizes$Cost_High <- ed_sizes$Batched_Compliers * total_cost_high
+
+cat("\n=== REVISED TABLE BY ED SIZE ===\n")
+summary_table <- data.frame(
+  ED_Type = ed_sizes$Type,
+  Annual_Volume = format(ed_sizes$Annual_Volume, big.mark=","),
+  Batched_Compliers = format(ed_sizes$Batched_Compliers, big.mark=","),
+  Cost_Mean = paste0("$", format(round(ed_sizes$Cost_Mean), big.mark=",")),
+  Cost_Range = paste0("($", format(round(ed_sizes$Cost_Low), big.mark=","), 
+                      " - $", format(round(ed_sizes$Cost_High), big.mark=","), ")")
+)
+print(summary_table, row.names = FALSE)
+
+# Comparison
+cat("\n=== COMPARISON: ALL TESTS vs X-RAY ONLY ===\n")
+cat("Imaging cost per complier:\n")
+cat("  All tests (point estimates): $145\n")
+cat("  X-ray only (significant):    $", round(imaging_cost_mean), "\n")
+cat("\nTotal cost per complier:\n")
+cat("  All tests: $409\n")
+cat("  X-ray only: $", round(total_cost_mean), "\n")
+cat("\nNote: Capacity cost ($264) dominates in both cases\n")

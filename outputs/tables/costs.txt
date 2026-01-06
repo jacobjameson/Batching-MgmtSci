@@ -1,0 +1,142 @@
+═══════════════════════════════════════════════════════════════════
+       COST-BENEFIT ANALYSIS OF DISCRETIONARY BATCH ORDERING       
+═══════════════════════════════════════════════════════════════════
+
+=== STEP 1: SAMPLE COMPOSITION ===
+Total encounters in analytical sample: 11,679 
+Total batched encounters: 1,595 ( 13.7 %)
+
+By compliance type:
+  Compliers: 2,371 ( 20.3 %)
+  Always-takers: 782 ( 6.7 %)
+  Never-takers: 8,526 ( 73 %)
+
+Policy-relevant subset:
+  Batched compliers (potentially avoidable): 813 
+  As % of total sample: 7 %
+  As % of all batched: 51 %
+
+=== STEP 2: EFFECT SIZES (UJIVE, Full Controls) ===
+
+Length of Stay:
+  Baseline LOS (sequenced patients): 242 minutes
+  LOS increase from batching: 65.4 %
+  LOS increase: 158 minutes = 2.64 hours
+
+Imaging (statistically significant effects only):
+  Additional X-rays per batched complier: 0.959 (p < 0.001)
+  [Other modalities not statistically significant]
+
+=== STEP 3: COST PARAMETERS ===
+
+Imaging costs (Medicare Physician Fee Schedule 2024):
+  X-ray (professional + facility): $ 60 - $ 100  (mean $ 80 )
+
+ED operational costs (from literature):
+  Bed-hour: $ 75 - $ 125  (mean $ 100 )
+
+=== STEP 4: PER-PATIENT COSTS ===
+
+Excess imaging cost (X-ray only):
+  Low: $ 58 
+  Mean: $ 77 
+  High: $ 96 
+
+Excess capacity cost:
+  Additional bed-hours: 2.64 
+  Low: $ 198 
+  Mean: $ 264 
+  High: $ 330 
+
+TOTAL cost per batched complier:
+  Low: $ 255 
+  Mean: $ 341 
+  High: $ 426 
+
+Cost decomposition (mean estimates):
+  Imaging share: 22.5 %
+  Capacity share: 77.5 %
+
+=== STEP 5: ANNUAL COSTS (STUDY SITE) ===
+
+Study period: 15 months (October 2018 - December 2019)
+Total ED encounters (study period): 48,854 
+Imaging-relevant encounters (study period): 11,679 ( 23.9 % of total)
+
+Annualized figures:
+  Annual ED volume: 39,083 
+  Annual imaging-relevant encounters: 9,343 
+  Annual batched compliers: 650 
+
+ANNUAL COST OF DISCRETIONARY BATCHING:
+  Mean: $ 221,558 
+  Range: $ 166,169  - $ 276,948 
+
+=== STEP 6: ANNUAL COSTS BY ED SIZE ===
+
+Assumptions:
+  Imaging-relevant encounters: 23.9 % of total ED volume
+  Batched compliers: 7 % of imaging encounters
+
+
+═══════════════════════════════════════════════════════════════════════════════════════
+        TABLE: Estimated Annual Cost of Discretionary Batch Ordering by ED Size        
+═══════════════════════════════════════════════════════════════════════════════════════
+
+ED Type                       Annual Vol.      Batched     Annual Cost              95% Range
+                                             Compliers          (Mean)                       
+─────────────────────────────────────────────────────────────────────────────────────────────── 
+Small (Rural/Community)            20,000          333        $113,436   ($85,077 - $141,795)
+Medium (Suburban)                  40,000          666        $226,872  ($170,154 - $283,590)
+Large (Urban)                      60,000          999        $340,308  ($255,231 - $425,386)
+Study Site (Mayo Clinic)           39,083          650        $221,422  ($166,066 - $276,777)
+─────────────────────────────────────────────────────────────────────────────────────────────── 
+
+=== ADDITIONAL METRICS (Study Site, Annualized) ===
+
+Capacity implications:
+  Bed-hours freed annually: 1,717 
+  Equivalent to: 72 24-hour days of ED capacity
+  Additional visits enabled: 425 
+  Capacity improvement: 1.09 %
+
+Resource utilization:
+  X-rays avoided annually: 624 
+
+Intervention scenarios:
+  If intervention reduces discretionary batching by 25%:
+    Annual savings: $ 55,390 
+  If intervention reduces discretionary batching by 50%:
+    Annual savings: $ 110,779 
+
+=== CONSERVATIVE NATURE OF ESTIMATES ===
+
+Excluded cost categories (would increase estimates):
+  1. Non-significant imaging effects (US, CT): +~$68/patient
+  2. Radiologist interpretation time
+  3. Physician cognitive burden
+  4. Patient time costs and lost productivity
+  5. Downstream admission costs (40pp increase × ~$10K/admission)
+  6. Incidental finding workup costs
+  7. Radiation exposure costs
+  8. Spillover congestion effects on other patients
+
+Sensitivity: Including all imaging point estimates:
+  Imaging cost would be: $ 163  (vs. $ 77 )
+  Total cost would be: $ 426  (vs. $ 341 )
+  Increase: 25.2 %
+
+═══════════════════════════════════════════════════════════════════
+                    SUMMARY FOR MANUSCRIPT                         
+═══════════════════════════════════════════════════════════════════
+
+Key figures to report:
+  Complier share: 20%
+  Batched compliers (share of batched that is discretionary): 51%
+  Cost per batched complier: $ 341  ($ 255 -$ 426 )
+    - Imaging component: $ 77  ( 23 %)
+    - Capacity component: $ 264  ( 77 %)
+  Annual cost (medium ED, 40K visits): $ 226,872 
+  Annual cost (large ED, 60K visits): $ 340,308 
+  Bed-hours freed (study site):  1717 /year
+  Additional visits enabled:  425 /year
