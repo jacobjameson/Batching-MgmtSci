@@ -370,7 +370,7 @@ data$imaging <- ifelse(data$imgTests > 0, 1, 0)
 
 # keep complaints that appear more than 1000 times
 complaint_counts <- table(data$CHIEF_COMPLAINT)
-complaints_less_than_500 <- names(complaint_counts[complaint_counts < 1000])
+complaints_less_than_500 <- names(complaint_counts[complaint_counts < 500])
 data <- data[!(data$CHIEF_COMPLAINT %in% complaints_less_than_500), ]
 
 data <- data %>%

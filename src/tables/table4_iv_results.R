@@ -88,6 +88,7 @@ run_models(final, "admit")
 
 
 
+
 ## START HERE JACOB
 
 
@@ -215,6 +216,9 @@ run_models_iv(final, "US_PERF")
 run_models_iv(final, "NON_CON_CT_PERF")
 run_models_iv(final, "CON_CT_PERF")
 run_models_iv(final, "admit")
+
+
+run_models_iv(subset(final, discharge==1), "imgTests")
 
 
 

@@ -144,5 +144,5 @@ ggplot(panels, aes(x = reorder(var, coef),
   labs(y = "Standardized Coefficient Estimate (95% CI)", x = NULL) 
 
 ggsave("outputs/figures/fig2_panel_batched_standardized.png", width = 12, 
-       height = 6, units = "in", bg = "white")
+       height = 7, units = "in", bg = "white")
 

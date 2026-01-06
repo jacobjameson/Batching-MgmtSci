@@ -352,7 +352,7 @@ Precision Controls & No & Yes \\
 \midrule
 Observations & 11{,}679 & 11{,}679 \\
 R$^2$ & 0.02248 & 0.07359 \\
-First-stage F-stat & 171.9 & 171.9 \\
+First-stage F-stat & 177.5 & 171.9 \\
 \bottomrule
 \end{tabular}
 \begin{flushleft}
@@ -802,7 +802,7 @@ Precision Controls & No & Yes \\
 Observations & 11{,}679 & 11{,}679 \\
 R$^2$ & 0.02248 & 0.07359 \\
 Within R$^2$ & 0.01939 & 0.03521 \\
-First-stage F-stat & 171.9 & 171.9 \\
+First-stage F-stat & 177.5 & 171.9 \\
 \bottomrule
 \end{tabular}
 \begin{flushleft}
@@ -1075,7 +1075,7 @@ Together, the institutional details and empirical balance tests confirm that May
 \noindent``The paper is well written, and studies an important question. I hope the authors find this report helpful in moving this work forward.” 
 \end{quote2}
 
-\noindent\textbf{***Response:} \textcolor{blue}{We sincerely thank the reviewer for their thorough and constructive feedback. The detailed comments have been invaluable in strengthening our analysis and clarifying our contributions. We believe the extensive revisions addressing the reviewer's concerns about variable definition, empirical strategy, and causal interpretation have substantially improved the manuscript.}
+\noindent\textbf{Response:} \textcolor{blue}{We sincerely thank the reviewer for their thorough and constructive feedback. The detailed comments have been invaluable in strengthening our analysis and clarifying our contributions. We believe the extensive revisions addressing the reviewer's concerns about variable definition, empirical strategy, and causal interpretation have substantially improved the manuscript.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1222,11 +1222,59 @@ This new section provides the theoretical foundation that motivates our empirica
 
 \noindent\textbf{Response:} \color{blue}We thank the reviewer for this important distinction between overuse and frontloading of diagnostics. The reviewer is correct that we cannot definitively determine whether the additional imaging represents unnecessary testing or simply shifts testing from inpatient to ED settings. This is an important limitation of our study.
 
-Our medical collaborators have identified disagreements in test ordering between ED physicians and hospital inpatient unit physicians (i.e., after the patient is discharged from the ED and moved to an inpatient unit) as a major issue outside the scope of this study. Our focus is on ED operations, and we do not have access to data outside THE ED. However, it is also important to note that the majority of ED patients (X\% in Mayo Clinic] are discharged after their ED visits. Thus, our findings have important consequences, even though they focus solely on tests ordered by ED physicians. 
+Our medical collaborators have identified disagreements in test ordering between ED physicians and hospital inpatient unit physicians (i.e., after the patient is discharged from the ED and moved to an inpatient unit) as a major issue outside the scope of this study. Our focus is on ED operations, and we do not have access to data outside the ED. However, it is also important to note that the majority of ED patients (66.8\% in Mayo Clinic) are discharged after their ED visits. Thus, our findings have important consequences, even though they focus solely on tests ordered by ED physicians. 
 
 However, interpreting our findings purely as frontloading faces a conceptual challenge. Frontloading would imply that batched patients receive ED tests that would have been ordered during a predetermined hospitalization. Yet admission itself is a downstream consequence of the testing strategy in our data---we find that batching increases admission probability by increasing the number of imaging tests performed. This suggests that at least some of the additional tests are driving new admissions rather than frontloading diagnostics for patients who would have been admitted regardless of their ED imaging results. That is, the tests themselves are creating admissions, not being ordered because admission was already determined.
 
 That said, we acknowledge that multiple causal pathways may occur simultaneously. Some batched patients may receive tests that reveal admission-worthy conditions, which would have been discovered later. Others may be admitted defensively due to incidental findings from comprehensive imaging that are not pursued with sequential testing. Without linked inpatient imaging records, we cannot empirically separate these mechanisms.
+
+To directly address this concern, we re-estimated our main specifications restricting the sample to patients who were ultimately discharged from the ED. This subsample analysis is informative because these patients, by construction, do not receive subsequent inpatient diagnostic workups, eliminating the possibility that ED imaging merely substitutes for tests that would have occurred during hospitalization. As shown in the table below, the estimated effect of batching on the number of distinct imaging tests remains large, positive, and statistically significant across UJIVE and 2SLS specifications, with magnitudes comparable to those in the full sample.
+
+\begin{table}[t!]
+\centering
+\caption*{Effect of Batching on Imaging Tests Among Discharged Patients}
+\label{tab:imaging_discharged}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& (1) & (2) & (3) & (4) \\
+\midrule
+
+Number of distinct imaging tests
+& $1.516^{***}$ & $1.447^{***}$
+& $1.497^{***}$ & $1.415^{***}$ \\
+& (0.122) & (0.124)
+& (0.135) & (0.133) \\[0.75em]
+
+\midrule
+Necessary controls & Yes & Yes & Yes & Yes \\
+Precision controls & No & Yes & No & Yes \\
+Observations 
+& 6{,}306 
+& 6{,}305 
+& 6{,}306 
+& 6{,}305 \\
+Adj.\ $R^2$
+& 0.0305 
+& 0.0952 
+& 0.0305 
+& 0.0952 \\
+\bottomrule
+\end{tabular}
+
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} This table reports instrumental-variables estimates of the effect of batching on the number of distinct imaging tests among patients discharged from the emergency department. 
+Columns (1)–(2) report 2SLS estimates using physician batch tendency as the instrument. 
+Columns (3)–(4) report UJIVE estimates using ED provider identifiers as many weak instruments. 
+$^{***} p < 0.001$.
+\end{flushleft}
+
+\end{threeparttable}
+\end{table}
+
+We emphasize that this discharged-only analysis should be interpreted with caution, as discharge status is itself a downstream outcome potentially affected by ED imaging decisions. Conditioning on discharge therefore risks post-treatment selection and may attenuate or otherwise distort causal estimates. For this reason, we do not treat this subsample analysis as a primary causal estimate. Rather, it serves as a robustness check demonstrating that the positive association between batching and imaging intensity is not driven solely by patients who are ultimately admitted and receive further inpatient testing. We report this analysis in Appendix D and reference it here solely to clarify interpretation of our findings in response to the reviewer’s concern about frontloading.
 
 We have been careful throughout the manuscript to avoid characterizing the additional tests as ``waste'' or ``overuse,'' as our LATE identifies effects for marginal patients whose testing decisions vary by physician preference—these tests may have clinical value regardless of timing. However, even if batching represents frontloading rather than overuse, it has operational consequences worth noting. Based on discussions with our physician coauthors at both study sites, ED imaging resources are typically more constrained than inpatient resources; frontloading increases ED congestion and delays care for other ED patients; and inpatient teams often prefer to direct their own diagnostic approach based on evolving clinical information.
 
@@ -1631,7 +1679,7 @@ Precision Controls & No & Yes \\
 Observations & 11{,}679 & 11{,}679 \\
 R$^2$ & 0.02248 & 0.07359 \\
 Within R$^2$ & 0.01939 & 0.03521 \\
-First-stage F-stat & 171.9 & 171.9 \\
+First-stage F-stat & 177.5 & 171.9 \\
 \bottomrule
 \end{tabular}
 \begin{flushleft}
