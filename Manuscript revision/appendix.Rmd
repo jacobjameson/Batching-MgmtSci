@@ -150,58 +150,138 @@ Major Overcapacity &
 
 \subsection{B. Complier, Always-Taker, and Never-Taker Classification}\label{sec:complier}
 
+This section describes the method used to calculate the share of compliers, always-takers, and never-takers in the context of batch ordering in the emergency department (ED). Our approach follows \cite{Dahl2014}, \cite{dobbie2018effects}, and \cite{eichmeyer2022pathways}.
 
-In this section, we describe the method used to calculate the share of compliers (as well as always-takers and never-takers) in the context of batch ordering in the emergency department (ED). The method follows [@Dahl2014, @dobbie2018effects, and @eichmeyer2022pathways].
+\subsubsection*{Overview}
 
-First, compliers are defined as patients who would not have had their imaging tests ordered in a batch if they had been seen by a sequencer (low-batching physician) but would have had their imaging tests batched if they had been seen by a batcher (high-batching physician):
-
-$$
-    \pi_{\text{complier}} = P(B_{\bar{z}i} > B_{\underline{z}i}) = \mathbb{E}(B_{\bar{z}i} - B_{\underline{z}i}) = P(B_i | Z_i = \bar{z}) - P(B_i | Z_i = \underline{z})
-$$
-
-where $B_i$ represents the batch ordering decision for patient $i$, $Z_i$ represents the batch tendency of patient $i$'s physician, and $\bar{z}$ and $z$ represent the highest and lowest batch tendency physicians, respectively.
-
-Similarly, always-takers are patients whose imaging tests would be batched regardless of which physician they see:
+Compliers are defined as patients who would not have had their imaging tests ordered in a batch if they had been seen by a low-batch-tendency physician ("sequence") but would have had their imaging tests batched if they had been seen by a high-batch-tendency physician ("batcher"):
 
 $$
-    \pi_{\text{always-taker}} = P(B_{\bar{z}i} = B_{\underline{z}i} = 1) = P(B_{\underline{z}i} = 1)
+\pi_{\text{complier}} = P(B_i = 1 | Z_i = \bar{z}) - P(B_i = 1 | Z_i = \underline{z}) = P(B_{\bar{z}i} > B_{\underline{z}i})
+$$
+where $B_i$ represents the batch ordering decision for patient $i$, $Z_i$ represents the batch tendency of patient $i$'s assigned physician, and $\bar{z}$ and $\underline{z}$ represent the maximum and minimum values of our batch tendency instrument (the highest and lowest batch tendency physicians), respectively.
+
+Always-takers are patients whose imaging tests would be batched regardless of which physician they see. Because of the monotonicity and independence assumptions, the fraction of always-takers is given by the probability of being batched by the most conservative (lowest batch tendency) physician:
+$$
+\pi_{\text{always-taker}} = P(B_i = 1 | Z_i = \underline{z}) = P(B_{\bar{z}i} = B_{\underline{z}i} = 1)
 $$
 
-where the last step follows from the monotonicity assumption. Conversely, never-takers are patients whose imaging tests would never be batched regardless of which physician they see:
-
+Finally, never-takers are patients whose imaging tests would never be batched regardless of which physician they see, with the fraction of never-takers given by the probability of not being batched by the most aggressive (highest batch tendency) physician:
 $$
-    \pi_{\text{never-taker}} = P(B_{\bar{z}i} = 0)
-$$
-
-To estimate these proportions, we define the most aggressive batch-ordering physicians ($\bar{z}$) as those in the top percentile of batch tendency and the most conservative batch-ordering physicians ($\underline{z}$) as those in the bottom percentile. We then compute the share of compliers, always-takers, and never-takers using first-stage moments. Specifically, we fit a local linear regression of $\textit{Batched}_i$ on physician batch tendency, take the share of patients who receive batched imaging under the top percentile of batch tendency, and subtract the share of patients who receive batched imaging under the bottom percentile.
-
-Additionally, we can characterize our compliers based on observable characteristics. For example, we can calculate the share of patients with specific clinical or demographic features who are compliers. In particular, we can compute:
-
-$$
-    P(X_i = x | \text{complier})
+\pi_{\text{never-taker}} = P(B_i = 0 | Z_i = \bar{z}) = P(B_{\bar{z}i} = B_{\underline{z}i} = 0)
 $$
 
-This framework allows us to understand which patients are most likely to be affected by variation in physician batching behavior and how batch ordering decisions propagate through ED operational processes.
+\subsubsection*{Number of Compliers}
 
- 
-$$
-    P(X_i = x | \text{complier}) = P(X_i = x | B_{\bar{z}i} > B_{\underline{z}i})
-$$
+We calculate the shares of patients in each category by examining batch ordering rates for patients assigned to physicians at different points in the batch tendency distribution. Following \cite{Dahl2014}, we define the "most aggressive" batch-ordering physicians ($\bar{z}$) as those at the top 1 percentile of batch tendency and the "most conservative" batch-ordering physicians ($\underline{z}$) as those at the bottom 1 percentile.
 
-$$
-    = \frac{P(X_i = x \cap B_{\bar{z}i} > B_{zi})}{P(B_i | Z_i = \bar{z}) - P(B_i | Z_i = \underline{z})}
-$$
+In the first three columns of Table \ref{tab:compliance_type}, we estimate a local linear regression of $\textit{Batched}_i$ on our residualized measure of physician batch tendency. Under this more flexible analog to our first-stage equation, we find that approximately 20 percent of our sample are compliers, 73 percent are never-takers, and 7 percent are always-takers.
 
-$$
-    = \frac{P(B_{\bar{z}i} > B_{\underline{z}i} | X_i = x) P(X_i = x)}{\pi_{\text{complier}}}
-$$
+In the last three columns of Table \ref{tab:compliance_type}, we estimate our linear specification of the first stage, given by Equation (4). Under this specification, we can recover $\pi_c$ as $\hat{\alpha}_1 (\bar{z} - \underline{z})$, $\pi_a$ as $\hat{\alpha}_0 + \hat{\alpha}_1 \underline{z}$, and $\pi_n$ as $1 - \hat{\alpha}_0 - \hat{\alpha}_1 \bar{z}$, where $\hat{\alpha}_0$ and $\hat{\alpha}_1$ are the estimated first-stage coefficients. Under this linear specification, we find that 21 percent of our sample are compliers, 72 percent are never-takers, and 7 percent are always-takers. We also explore the sensitivity of the estimated share of compliers, always-takers, and never-takers to the exact choice of cutoff for the most aggressive and most conservative physicians. As shown in Table \ref{tab:compliance_type}, our results are robust to the particular model specification and cutoff.
 
-$$
-    = \frac{\pi_{c|x} P(X_i = x)}{\pi_c}
-$$
+\begin{table}[htbp]
+\centering
+\caption{Sample Share by Compliance Type}
+\label{tab:compliance_type}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{Local Linear Model} & \multicolumn{3}{c}{Linear Model} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Batch Tendency Cutoff: & 1\% & 1.5\% & 2\% & 1\% & 1.5\% & 2\% \\
+\midrule
+Compliers & 0.20 & 0.20 & 0.20 & 0.21 & 0.21 & 0.21 \\
+Never-Takers & 0.73 & 0.73 & 0.73 & 0.72 & 0.72 & 0.72 \\
+Always-Takers & 0.07 & 0.07 & 0.07 & 0.07 & 0.07 & 0.07 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} This table presents the estimated share of compliers, never-takers, and always-takers under different model specifications and batch tendency cutoffs. The local linear model estimates a loess regression of batching on batch tendency. The linear model estimates Equation (4) in the main text. Cutoffs define the percentiles used to identify the most aggressive (top percentile) and most conservative (bottom percentile) batch-ordering physicians.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-This moment is calculated by computing the share of compliers for the subsample where $X_i = x$ (i.e., checking the moments of the first stage for that subsample) and scaling it by the unconditional share of that subsample, divided by the overall share of compliers. 
+\subsubsection*{Characteristics of Compliers}
 
+We also characterize our population of compliers by observable characteristics, which can be recovered by calculating the fraction of compliers in different subsamples \citep{abadie2003economic, Dahl2014}. For any binary characteristic $X_i$, we compute:
+$$
+P(X_i = x | \text{complier}) = \frac{\pi_{c|x} \cdot P(X_i = x)}{\pi_c}
+$$
+where $\pi_{c|x}$ is the complier share estimated within the subsample where $X_i = x$, and $\pi_c$ is the overall complier share. The ratio $P(X_i = x | \text{complier}) / P(X_i = x)$ indicates whether compliers are over-represented (ratio $> 1$) or under-represented (ratio $< 1$) among patients with characteristic $X_i = x$.
+
+Table \ref{tab:complier_characteristics} presents the sample distribution, complier distribution, and relative likelihood for different patient subgroups. Several patterns emerge. Compliers are significantly more likely to be female (ratio = 1.21) and to have normal vital signs at presentation (ratio = 1.13). Compliers are less likely to be tachycardic (ratio = 0.57) or to have any abnormal vital sign (ratio = 0.79). Compliers are also more likely to have laboratory tests ordered (ratio = 1.13) but less likely to present without laboratory orders (ratio = 0.49).
+
+These patterns suggest that compliers---patients at the margin of physician discretion---tend to present with less acute clinical pictures. Patients with abnormal vital signs or without laboratory workups may have more obvious clinical trajectories that dictate a particular imaging strategy regardless of physician preference. In contrast, patients with normal vitals and standard laboratory workups represent the diagnostic ``gray zone'' where physician practice style most influences testing decisions.
+
+\begin{table}[htbp]
+\centering
+\caption{Characteristics of Marginal Patients (Compliers)}
+\label{tab:complier_characteristics}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+& $P[X = x]$ & $P[X = x | \text{complier}]$ & $\frac{P[X = x | \text{complier}]}{P[X = x]}$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Demographics}} \\
+\quad Male & 0.477 & 0.407 & 0.853 \\
+\quad Female & 0.523 & 0.633 & 1.211 \\
+\quad White & 0.898 & 0.918 & 1.022 \\
+\quad Non-White & 0.102 & 0.120 & 1.181 \\
+\\
+\multicolumn{4}{l}{\textit{Age}} \\
+\quad Age $<$ 50 & 0.230 & 0.204 & 0.887 \\
+\quad Age $\geq$ 50 & 0.770 & 0.834 & 1.082 \\
+\\
+\multicolumn{4}{l}{\textit{Acuity}} \\
+\quad High Acuity (ESI 1--2) & 0.486 & 0.478 & 0.984 \\
+\quad Lower Acuity (ESI 3--5) & 0.514 & 0.560 & 1.090 \\
+\\
+\multicolumn{4}{l}{\textit{Vital Signs}} \\
+\quad Tachycardic & 0.201 & 0.115 & 0.569 \\
+\quad Any Abnormal Vital & 0.280 & 0.222 & 0.793 \\
+\quad Normal Vitals & 0.720 & 0.817 & 1.134 \\
+\\
+\multicolumn{4}{l}{\textit{Laboratory Testing}} \\
+\quad Labs Ordered & 0.780 & 0.877 & 1.125 \\
+\quad No Labs Ordered & 0.220 & 0.108 & 0.492 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} This table presents the sample distribution, complier distribution, and relative likelihood for different patient subgroups. Column 1 reports the unconditional probability of each characteristic in the full sample. Column 2 reports the probability of each characteristic among compliers, estimated following \cite{abadie2003economic}. Column 3 reports the ratio of the complier probability to the sample probability, indicating whether compliers are over-represented (ratio $> 1$) or under-represented (ratio $< 1$) among patients with each characteristic.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Table \ref{tab:complier_complaints} presents analogous results by chief complaint category. Compliers are substantially over-represented among patients presenting with Falls, Motor Vehicle Accidents, Assaults, and Trauma (ratio = 1.66) and Neurological Issues (ratio = 1.24). Compliers are under-represented among patients with Abdominal Complaints (ratio = 0.62) and Fevers, Sweats, or Chills (ratio = 0.62). This pattern is consistent with clinical intuition: trauma and neurological presentations often involve diagnostic uncertainty about the extent of injury, creating opportunities for physician discretion in imaging strategy. In contrast, abdominal pain and fever presentations may have more standardized imaging protocols that reduce the influence of individual physician preference.
+
+\begin{table}[htbp]
+\centering
+\caption{Complier Characteristics by Chief Complaint}
+\label{tab:complier_complaints}
+\begin{threeparttable}
+\begin{tabular}{lccc}
+\toprule
+Chief Complaint & $P[X = x]$ & $P[X = x | \text{complier}]$ & $\frac{P[X = x | \text{complier}]}{P[X = x]}$ \\
+\midrule
+Neurological Issue & 0.208 & 0.259 & 1.241 \\
+Falls, MVA, Assaults, Trauma & 0.171 & 0.284 & 1.656 \\
+Extremity Complaints & 0.228 & 0.199 & 0.870 \\
+Dizziness/Lightheadedness/Syncope & 0.106 & 0.094 & 0.882 \\
+Fatigue and Weakness & 0.103 & 0.091 & 0.887 \\
+Abdominal Complaints & 0.100 & 0.062 & 0.623 \\
+Fevers, Sweats, or Chills & 0.083 & 0.052 & 0.623 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} This table presents the sample distribution, complier distribution, and relative likelihood for each chief complaint category. Compliers are patients whose batching decision depends on the assigned physician's batch tendency. See notes to Table \ref{tab:complier_characteristics} for estimation details.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Together, these complier characteristics help interpret our LATE estimates. Our instrumental variables analysis identifies the effect of batch ordering for the approximately 20 percent of patients whose imaging strategy depends on physician preference rather than clinical necessity. These marginal patients tend to be older, female, with normal vital signs and standard laboratory workups, and are disproportionately likely to present with trauma or neurological complaints. This population represents exactly the "gray zone" where ED operational interventions could influence practice patterns without constraining clinically necessary care.
 
 \clearpage
 
