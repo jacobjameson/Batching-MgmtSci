@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.30)  30 NOV 2025 20:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 11:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Manuscript.tex
 (./Manuscript.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-14>
+L3 programming layer <2025-12-29>
 (./informs.cls
 
 LaTeX Warning: You have requested document class `informs',
@@ -655,7 +655,7 @@ Package: placeins 2005/04/18  v 2.2
 ) (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/mdframed/mdframed.sty
 Package: mdframed 2013/07/01 1.9b: mdframed
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-11-14 L3 programming layer (loader) 
+Package: expl3 2025-12-29 L3 programming layer (loader) 
 (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count366
@@ -861,11 +861,11 @@ Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line
 LaTeX Warning: Text page 5 contains only floats.
 
 [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
-<../outputs/figures/fig2_panel_batched_standardized.png, id=476, 867.24pt x 433.62pt>
+<../outputs/figures/fig2_panel_batched_standardized.png, id=476, 867.24pt x 505.89pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
 Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 906.
-(pdftex.def)             Requested size: 469.75499pt x 234.87912pt.
+(pdftex.def)             Requested size: 469.75499pt x 274.02563pt.
 
 LaTeX Warning: Reference `fig: tendency' on page 16 undefined on input line 915.
 
@@ -874,53 +874,53 @@ File: ../outputs/figures/Fig3_firststage.png Graphic file (type png)
 <use ../outputs/figures/Fig3_firststage.png>
 Package pdftex.def Info: ../outputs/figures/Fig3_firststage.png  used on input line 926.
 (pdftex.def)             Requested size: 305.33788pt x 229.00368pt.
-[16 <../outputs/figures/fig2_panel_batched_standardized.png>] [17 <../outputs/figures/Fig3_firststage.png>] [18] [19] [20] [21] [22] [23]
-<figures/dag.png, id=565, 960.81503pt x 540.5629pt>
+[16 <../outputs/figures/fig2_panel_batched_standardized.png>] [17 <../outputs/figures/Fig3_firststage.png>] [18] [19] [20] [21] [22] [23] [24]
+<figures/dag.png, id=574, 960.81503pt x 540.5629pt>
 File: figures/dag.png Graphic file (type png)
 <use figures/dag.png>
-Package pdftex.def Info: figures/dag.png  used on input line 1449.
+Package pdftex.def Info: figures/dag.png  used on input line 1458.
 (pdftex.def)             Requested size: 469.75499pt x 264.28426pt.
-[24] [25 <./figures/dag.png>] [26]
+[25 <./figures/dag.png>] [26] [27]
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1599.
+(Font)              size <6> substituted on input line 1608.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1599.
+(Font)              size <6> substituted on input line 1608.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1599.
+(Font)              size <6> substituted on input line 1608.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1599.
+(Font)              size <6> substituted on input line 1608.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1599.
+(Font)              size <6> substituted on input line 1608.
 
-[27] [28] [29] [30] [31]
+[28] [29] [30] [31] [32]
 
-LaTeX Warning: Reference `fig:heterogeneity' on page 32 undefined on input line 1896.
+LaTeX Warning: Reference `fig:heterogeneity' on page 33 undefined on input line 1905.
 
-[32] [33] [34] (./Manuscript.bbl [35
+[33] [34] (./Manuscript.bbl [35
 
 ] [36]
-Underfull \hbox (badness 1314) in paragraph at lines 118--119
+Underfull \hbox (badness 1314) in paragraph at lines 115--116
 []\OT1/cmr/m/n/10 Juliusson G, Thor-valds-dot-tir B, Krist-jans-son JM, Han-nes-son P (2019) Diag-nos-tic imag-ing trends
  []
 
 
-Underfull \hbox (badness 2221) in paragraph at lines 118--119
+Underfull \hbox (badness 2221) in paragraph at lines 115--116
 \OT1/cmr/m/n/10 in the emer-gency depart-ment: an exten-sive single-center expe-ri-ence. \OT1/cmr/m/it/10 Acta Radi-o-log-ica Open
  []
 
 [37] [38] [39] [40]) [41] (./Manuscript.aux)
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-11-14>
+L3 programming layer <2025-12-29>
  ***********
 
 LaTeX Font Warning: Size substitutions with differences
@@ -933,18 +933,18 @@ Package rerunfilecheck Info: File `Manuscript.out' has not changed.
 (rerunfilecheck)             Checksum: C3224ACED198B7E9BBBEAECBF152AAB1;6127.
  ) 
 Here is how much of TeX's memory you used:
- 29311 strings out of 469476
- 576143 string characters out of 5467215
- 957838 words of memory out of 5000000
- 57310 multiletter control sequences out of 15000+600000
+ 29307 strings out of 469476
+ 576066 string characters out of 5467217
+ 957773 words of memory out of 5000000
+ 57307 multiletter control sequences out of 15000+600000
  648854 words of font info for 117 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 84i,20n,104p,740b,1323s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,20n,104p,740b,1321s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Manuscript.pdf (41 pages, 1450832 bytes).
+Output written on Manuscript.pdf (41 pages, 1445573 bytes).
 PDF statistics:
- 953 PDF objects out of 1000 (max. 8388607)
- 851 compressed objects within 9 object streams
- 185 named destinations out of 1000 (max. 500000)
+ 956 PDF objects out of 1000 (max. 8388607)
+ 854 compressed objects within 9 object streams
+ 184 named destinations out of 1000 (max. 500000)
  281 words of extra memory for PDF output out of 10000 (max. 10000000)
 

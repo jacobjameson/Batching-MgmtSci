@@ -3,8 +3,27 @@ title: "Appendix"
 output:
   pdf_document:
     citation_package: natbib
+    number_sections: true
 bibliography: references.bib
 header-includes:
+  - \setcounter{secnumdepth}{2}  % <-- ensures \section is numbered
+  - \usepackage{caption}
+
+  # Section numbering: EC.1, EC.2, ...
+  - \renewcommand{\thesection}{EC.\arabic{section}}
+
+  # One shared exhibit counter per section; figures+tables share it
+  - \newcounter{exhibit}[section]
+  - \renewcommand{\theexhibit}{\thesection.\arabic{exhibit}}
+
+  - \makeatletter
+  - \let\c@figure\c@exhibit
+  - \let\thefigure\theexhibit
+  - \let\c@table\c@exhibit
+  - \let\thetable\theexhibit
+  - \makeatother
+
+  # Your other packages (keep as needed)
   - \usepackage{booktabs}
   - \usepackage{tabularx}
   - \usepackage{graphicx}
@@ -15,21 +34,15 @@ header-includes:
   - \usepackage{longtable}
   - \usepackage{natbib}
   - \usepackage{threeparttable}
-  - \usepackage{natbib}
-  - \usepackage{caption}
   - \usepackage{adjustbox}
   - \usepackage{multirow}
-  - \usepackage[]{mdframed}
+  - \usepackage{mdframed}
 ---
 
-\subsection*{A. ED Arrival Patterns and Capacity}
+\setcounter{section}{0}
 
+\section{ED Arrival Patterns}
 
-\renewcommand{\thetable}{A\arabic{table}}
-\renewcommand{\thefigure}{A\arabic{figure}}
-
-\setcounter{table}{0}
-\setcounter{figure}{0}
 
 \begin{figure}[h]
 \centering
@@ -41,7 +54,9 @@ header-includes:
 
 \clearpage
 
-\begin{table}[htbp]
+\section{ED Capacity}
+
+\begin{table}[h]
 \centering
 \caption{Internal Guidelines for ED Overcapacity and Saturation Activation}
 \label{tab:ed_capacity_guidelines}
@@ -105,50 +120,64 @@ Major Overcapacity &
 
 \clearpage
 
+\section{Sample Selection} \label{app:sample}
 
-\begin{figure}[ht]
+This appendix documents our sample selection process and compares characteristics of included versus excluded encounters. Our analytical sample focuses on encounters where imaging decisions are both consequential and discretionary---the population where our instrumental variables approach can identify meaningful policy-relevant effects.
+
+Figure \ref{fig:consort} displays the sequential exclusion criteria applied to arrive at our analytical sample. Starting with 48,854 adult patient encounters during the study period (October 2018--December 2019), we exclude: (1) encounters with non-full-time providers, (2) rare complaints with fewer than 500 total encounters, (3) complaints where batching occurs in less than 5\% of encounters, and (4) encounters without any imaging ordered. These restrictions yield an analytical sample of 11,659 encounters (23.9\% of the original sample).
+
+\begin{figure}[htbp]
 \centering
+\includegraphics[width=\textwidth]{figures/CONSORT.png}
 \caption{CONSORT Flow Diagram for Sample Selection}
-\begin{threeparttable}
-    \includegraphics[width=\textwidth]{figures/CONSORT.png}
-    \label{fig:consort}
-    \begin{tablenotes}
-        \small
-        \item \textit{Notes:} This figure displays the sample selection process for the Mayo Clinic ED data. Starting with 48,854 patient encounters during the study period (October 2018 - December 2019), we apply sequential exclusion criteria to arrive at our analytical sample of 11,404 encounters. Exclusions are necessary to ensure sufficient variation in batching behavior for instrumental variable identification. Rare complaints are those with fewer than 1,000 total encounters. Low-batching complaints are those where batching occurs in less than 5\% of encounters.
-    \end{tablenotes}
-\end{threeparttable}
+\label{fig:consort}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Sample selection for Mayo Clinic ED encounters (October 2018--December 2019). Rare complaints are those with fewer than 500 total encounters. Low-batching complaints are those where batching occurs in less than 5\% of encounters.
+\end{flushleft}
 \end{figure}
 
-\clearpage
+Table \ref{tab:sample_comparison} compares patient characteristics and outcomes between excluded and included encounters. The analytical sample differs from excluded encounters in clinically expected ways: included patients are older (62.9 vs. 57.5 years), higher acuity (ESI 2.52 vs. 2.87), and more likely to present with abnormal vital signs. These differences reflect appropriate sample definition rather than selection bias---our sample comprises the population where imaging decisions matter most and where physicians face genuine uncertainty about optimal testing strategy.
 
-\begin{figure}[ht]
+\begin{table}[htbp]
 \centering
-\caption{Distribution of imaging test combinations and batching rates}
+\caption{Comparison of Excluded vs. Included Encounters}
+\label{tab:sample_comparison}
 \begin{threeparttable}
-    \includegraphics[width=\textwidth]{figures/combined_tests.png}
-    \begin{tablenotes}
-        \small
-        \item \textit{Notes:} 
-    \end{tablenotes}
+\begin{tabular}{lccc}
+\toprule
+& Excluded & Included & \\
+& Encounters & (Analytical Sample) & p-value \\
+\midrule
+\textit{Demographics} \\
+\quad Age (years) & 57.5 (19.6) & 62.9 (18.3) & $<$0.001 \\[0.5em]
+\textit{Acuity} \\
+\quad ESI Level (mean) & 2.87 (0.64) & 2.52 (0.59) & $<$0.001 \\[0.5em]
+\textit{Vital Signs} \\
+\quad Tachycardic (\%) & 18.8 & 20.1 & 0.001 \\
+\quad Tachypneic (\%) & 9.1 & 9.2 & 0.567 \\
+\quad Febrile (\%) & 1.4 & 4.6 & $<$0.001 \\
+\quad Hypotensive (\%) & 1.2 & 2.3 & $<$0.001 \\[0.5em]
+\textit{Outcomes} \\
+\quad ED LOS (minutes) & 238.3 (135.0) & 272.0 (133.5) & $<$0.001 \\
+\quad Admission rate (\%) & 17.0 & 28.4 & $<$0.001 \\[0.5em]
+\midrule
+N & 37,195 & 11,659 & \\
+\% of total sample & 76.1\% & 23.9\% & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Standard deviations in parentheses for continuous variables. ESI (Emergency Severity Index) ranges from 1 (highest acuity) to 5 (lowest acuity). P-values from two-sample t-tests for continuous variables and proportion tests for binary variables.
+\end{tablenotes}
 \end{threeparttable}
-\end{figure}
+\end{table}
 
-
+These sample restrictions serve two purposes standard in the instrumental variables literature. First, our IV approach requires sufficient variation in batching behavior to generate a strong first stage; including complaints where batching rarely occurs would create weak instrument problems. Second, our research question concerns discretionary decisions---we identify the Local Average Treatment Effect for patients whose testing strategy depends on physician preference rather than clinical necessity. While our results apply to approximately 24\% of ED visits, this population consumes 41\% of imaging resources and represents the margin where ED management interventions can meaningfully influence practice.
 \clearpage
 
 
-\renewcommand{\thetable}{B\arabic{table}}
-\renewcommand{\thefigure}{B\arabic{figure}}
-\renewcommand{\thesection}{B\arabic{section}}
-\renewcommand{\thesubsection}{B\arabic{subsection}}
-
-
-\setcounter{table}{0}
-\setcounter{figure}{0}
-\setcounter{section}{0}
-\setcounter{subsection}{0}
-
-\subsection{B. Complier, Always-Taker, and Never-Taker Classification}\label{sec:complier}
+\section{Complier, Always-Taker, and Never-Taker Classification}\label{sec:complier}
 
 This section describes the method used to calculate the share of compliers, always-takers, and never-takers in the context of batch ordering in the emergency department (ED). Our approach follows \cite{Dahl2014}, \cite{dobbie2018effects}, and \cite{eichmeyer2022pathways}.
 
@@ -179,7 +208,7 @@ In the first three columns of Table \ref{tab:compliance_type}, we estimate a loc
 
 In the last three columns of Table \ref{tab:compliance_type}, we estimate our linear specification of the first stage, given by Equation (4). Under this specification, we can recover $\pi_c$ as $\hat{\alpha}_1 (\bar{z} - \underline{z})$, $\pi_a$ as $\hat{\alpha}_0 + \hat{\alpha}_1 \underline{z}$, and $\pi_n$ as $1 - \hat{\alpha}_0 - \hat{\alpha}_1 \bar{z}$, where $\hat{\alpha}_0$ and $\hat{\alpha}_1$ are the estimated first-stage coefficients. Under this linear specification, we find that 21 percent of our sample are compliers, 72 percent are never-takers, and 7 percent are always-takers. We also explore the sensitivity of the estimated share of compliers, always-takers, and never-takers to the exact choice of cutoff for the most aggressive and most conservative physicians. As shown in Table \ref{tab:compliance_type}, our results are robust to the particular model specification and cutoff.
 
-\begin{table}[htbp]
+\begin{table}[h]
 \centering
 \caption{Sample Share by Compliance Type}
 \label{tab:compliance_type}
@@ -202,12 +231,14 @@ Always-Takers & 0.07 & 0.07 & 0.07 & 0.07 & 0.07 & 0.07 \\
 \end{threeparttable}
 \end{table}
 
-\subsubsection*{Characteristics of Compliers}
+\subsubsection{Characteristics of Compliers}
 
 We also characterize our population of compliers by observable characteristics, which can be recovered by calculating the fraction of compliers in different subsamples \citep{abadie2003economic, Dahl2014}. For any binary characteristic $X_i$, we compute:
+
 $$
 P(X_i = x | \text{complier}) = \frac{\pi_{c|x} \cdot P(X_i = x)}{\pi_c}
 $$
+
 where $\pi_{c|x}$ is the complier share estimated within the subsample where $X_i = x$, and $\pi_c$ is the overall complier share. The ratio $P(X_i = x | \text{complier}) / P(X_i = x)$ indicates whether compliers are over-represented (ratio $> 1$) or under-represented (ratio $< 1$) among patients with characteristic $X_i = x$.
 
 Table \ref{tab:complier_characteristics} presents the sample distribution, complier distribution, and relative likelihood for different patient subgroups. Several patterns emerge. Compliers are significantly more likely to be female (ratio = 1.21) and to have normal vital signs at presentation (ratio = 1.13). Compliers are less likely to be tachycardic (ratio = 0.57) or to have any abnormal vital sign (ratio = 0.79). Compliers are also more likely to have laboratory tests ordered (ratio = 1.13) but less likely to present without laboratory orders (ratio = 0.49).
@@ -256,7 +287,7 @@ These patterns suggest that compliers---patients at the margin of physician disc
 
 Table \ref{tab:complier_complaints} presents analogous results by chief complaint category. Compliers are substantially over-represented among patients presenting with Falls, Motor Vehicle Accidents, Assaults, and Trauma (ratio = 1.66) and Neurological Issues (ratio = 1.24). Compliers are under-represented among patients with Abdominal Complaints (ratio = 0.62) and Fevers, Sweats, or Chills (ratio = 0.62). This pattern is consistent with clinical intuition: trauma and neurological presentations often involve diagnostic uncertainty about the extent of injury, creating opportunities for physician discretion in imaging strategy. In contrast, abdominal pain and fever presentations may have more standardized imaging protocols that reduce the influence of individual physician preference.
 
-\begin{table}[htbp]
+\begin{table}[h]
 \centering
 \caption{Complier Characteristics by Chief Complaint}
 \label{tab:complier_complaints}
@@ -286,18 +317,7 @@ Together, these complier characteristics help interpret our LATE estimates. Our 
 \clearpage
 
 
-\renewcommand{\thetable}{C\arabic{table}}
-\renewcommand{\thefigure}{C\arabic{figure}}
-\renewcommand{\thesection}{C\arabic{section}}
-\renewcommand{\thesubsection}{C\arabic{subsection}}
-
-
-\setcounter{table}{0}
-\setcounter{figure}{0}
-\setcounter{section}{0}
-\setcounter{subsection}{0}
-
-\subsection*{C. Mediation Analysis: SEM Results}
+\section{Mediation Analysis: SEM Results}
 
 
 \begin{table}[h]
@@ -352,7 +372,7 @@ Total Effect & 0.288 & 0.073 & $<$0.001 \\
 
 \clearpage
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \caption{Mediation Analysis of the Effect of Batching on Time to Disposition}
 \label{tab:mediation_disp_time}
@@ -397,21 +417,77 @@ Total Effect & -0.015 & 0.081 & 0.855 \\
 \clearpage
 
 
-\renewcommand{\thetable}{D\arabic{table}}
-\renewcommand{\thefigure}{D\arabic{figure}}
-\renewcommand{\thesection}{D\arabic{section}}
-\renewcommand{\thesubsection}{D\arabic{subsection}}
+
+\clearpage
+
+\section{Cost-Benefit Analysis of Discretionary Batch Ordering} \label{app:costbenefit}
+
+This appendix details our cost-benefit analysis quantifying the operational and financial burden of discretionary batch ordering. We adopt a societal perspective using Medicare-allowed amounts as proxies for resource costs, following standard health economics practice.
+
+Our analysis focuses on two cost components where we have direct causal evidence: (1) excess imaging from additional tests and (2) excess ED capacity consumed from extended length of stay. Let $C_i$ denote the total incremental cost per batched complier:
+
+\begin{equation}
+C_i = C_i^{\text{imaging}} + C_i^{\text{capacity}} = \underbrace{(\Delta \text{X-rays}_i) \cdot p^{\text{xray}}}_{\text{imaging}} + \underbrace{(\Delta \text{Hours}_i) \cdot p^{\text{bed}}}_{\text{capacity}}
+\end{equation}
+
+where $\Delta \text{X-rays}_i$ is the causal increase in X-rays from our UJIVE estimates, $p^{\text{xray}}$ is the Medicare-allowed reimbursement per radiograph, $\Delta \text{Hours}_i$ is the increase in bed-hours, and $p^{\text{bed}}$ is the cost per ED bed-hour.
+
+For imaging costs, we use Medicare-allowed reimbursement for diagnostic radiography in the ED setting. For a two-view chest radiograph (CPT 71046), \cite{dabus2025practice} report the technical component under HOPPS is \$98.53, with an additional \$30--40 for the professional component, yielding $p^{\text{xray}} \approx \$130$ (range \$100--160). Our UJIVE estimates indicate $\Delta \text{X-rays} = 0.959$ ($p < 0.001$), while effects on ultrasound and CT are not statistically significant. To maintain conservative estimates, we include only X-rays:
+
+\begin{equation}
+C_i^{\text{imaging}} = 0.959 \times \$130 = \$125 \quad (\$96\text{--}\$153)
+\end{equation}
+
+For capacity costs, we draw on time-driven activity-based costing studies. \cite{schreyer2017economics} report ED personnel costs of \$58.20 per bed-hour (2010--2011 data; approximately \$83 inflation-adjusted), while \cite{canellas2024measurement} find daily ED boarding costs of \$1,856, implying approximately \$77 per hour. We use $p^{\text{bed}} = \$85$ (range \$75--100). Our UJIVE estimates indicate discretionary batching increases LOS by 65\%, translating to $\Delta \text{Hours} = 2.64$ additional hours relative to baseline LOS of 243 minutes:
+
+\begin{equation}
+C_i^{\text{capacity}} = 2.64 \times \$85 = \$224 \quad (\$198\text{--}\$264)
+\end{equation}
+
+Combining these components yields total incremental costs of $C_i = \$349$ (\$294--417) per batched complier, with capacity costs accounting for 64\% of the total.
+
+To scale these estimates to annual ED operations, we identify the affected population. Our complier analysis (Appendix \ref{sec:complier}) indicates that approximately 20\% of patients are compliers---those whose batching status depends on physician assignment rather than clinical necessity. Among batched patients, roughly 51\% are compliers whose batching reflects physician discretion. Let $N^{\text{ED}}$ denote annual ED volume and $\phi$ denote the share of imaging-relevant encounters (23.9\% in our data). The number of batched compliers is:
+
+\begin{equation}
+N^{\text{compliers}} = N^{\text{ED}} \times \phi \times \pi_c \times P(\text{Batched} | \text{Complier}) \approx N^{\text{ED}} \times 0.0167
+\end{equation}
+
+where $\pi_c = 0.20$ is the complier share and $P(\text{Batched} | \text{Complier}) \approx 0.35$. Table \ref{tab:annual_costs} presents annual cost estimates by ED size.
+
+\begin{table}[h]
+\centering
+\caption{Estimated Annual Cost of Discretionary Batch Ordering by ED Size}
+\label{tab:annual_costs}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+ED Type & Annual Volume & Batched Compliers & Annual Cost & Range \\
+\midrule
+Small (Rural/Community) & 20,000 & 333 & \$116,000 & (\$98,000--\$139,000) \\
+Medium (Suburban) & 40,000 & 666 & \$232,000 & (\$196,000--\$278,000) \\
+Large (Urban) & 60,000 & 999 & \$349,000 & (\$294,000--\$417,000) \\
+Study Site (Mayo Clinic) & 39,083 & 650 & \$227,000 & (\$191,000--\$271,000) \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Annual costs calculated as $N^{\text{compliers}} \times C_i$. Range reflects uncertainty in imaging (\$100--160 per X-ray) and bed-hour (\$75--100 per hour) cost parameters.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+For our study site, eliminating discretionary batching would free approximately 1,717 bed-hours annually---equivalent to 72 days of ED capacity---enabling approximately 425 additional patient visits (a 1.1\% capacity improvement). A 50\% reduction in discretionary batching would save approximately \$113,000 annually while freeing 850 bed-hours.
+
+These estimates represent conservative lower bounds. We exclude: (i) non-significant imaging modalities (including ultrasound and CT point estimates would increase costs by 17\%), (ii) radiologist interpretation time, (iii) physician cognitive burden from processing simultaneous results, (iv) patient time costs, (v) downstream admission costs (the 40 percentage point increase in admission probability, at \$10,000--15,000 per inpatient stay, would dwarf our direct cost estimates), and (vi) spillover congestion effects on other ED patients. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies.
+
+\clearpage
 
 
-\setcounter{table}{0}
-\setcounter{figure}{0}
-\setcounter{section}{0}
-\setcounter{subsection}{0}
 
-\section{D. Robustness Checks} \label{app:robustness}
+\section{Monotonicity} \label{app:mono}
 
 
-\begin{figure}[htbp]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{figures/monotonicity.png}
 \caption{Testing the Monotonicity Assumption}
@@ -426,14 +502,15 @@ Total Effect & -0.015 & 0.081 & 0.855 \\
 
 \clearpage
 
-\subsection{Placebo Exercise}\label{sec:placebo}
+\section{Placebo Exercise} \label{app:placebo}
+
 
 We investigate whether the reduced-form effects observed in Section 4.1 are due to differences in batch ordering rates across physicians or due to other provider differences correlated with batching tendency. We examine this by studying reduced-form effects among patients with conditions that rarely require multiple imaging tests, as a falsification check. For example, consider a patient who arrives at the ED with an isolated ankle injury—a condition for which multiple imaging tests are rarely ordered. For such patients, we should expect to see no impact of physician batch tendency if "batchers" and "sequencers" do not systematically differ in other dimensions of care relevant to patient outcomes.
 
 We restrict attention to ED visits for conditions which batching occurs less than 1 percent of the time, as a placebo check. We estimate reduced-form regressions of each main outcome on physician batch tendency for this subsample and the results are presented in Table \ref{tab:placebo}. The results show no significant association between physician batch tendency and patient outcomes for this subsample, providing evidence that the reduced-form effects observed in the main analysis are not driven by unobserved physician differences correlated with batching tendency.
 
 
-\begin{table}[t]
+\begin{table}[h]
 \centering
 \caption{Placebo Check: Batch Tendency and Patient Outcomes}
 \label{tab:placebo}
@@ -467,40 +544,195 @@ Observations & 1,244 & 1,244 & 1,244 \\
 
 This placebo analysis supports our identification strategy by suggesting that batch tendency is not systematically correlated with other physician practice patterns that might affect patient outcomes. However, we recognize that given the multidimensionality of physician behavior, we also present reduced-form results and maintain focus on imaging-related outcomes, for which such concerns are less pronounced.
 
+
 \clearpage
 
-\begin{table}[t]
+\section{Sensitivity to Exclusion Restriction Violations} \label{app:conley}
+
+A core identifying assumption in our instrumental variables strategy is that physician batch tendency affects patient outcomes only through its effect on the batching decision (the exclusion restriction). This appendix presents sensitivity analyses following \cite{conley2012plausibly} to assess how our estimates change under plausible violations of this assumption.
+
+Under standard IV assumptions, the structural equation is:
+\begin{equation}
+Y_i = \beta \cdot \text{Batched}_i + X_i'\lambda + \varepsilon_i
+\end{equation}
+which assumes that batch tendency affects outcomes only through its effect on $\text{Batched}_i$. The Conley et al. approach relaxes this assumption by allowing the instrument to have a direct effect on outcomes:
+
+\begin{equation}
+Y_i = \beta \cdot \text{Batched}_i + \underbrace{\delta \cdot \text{BatchTendency}_i}_{\text{\small violation}}
+ + X_i'\lambda + u_i
+\end{equation}
+
+where $\delta$ captures any exclusion restriction violation. Such violations could arise through multiple channels: direct effects (e.g., physicians with higher batch tendency may systematically differ in how they manage patients in ways that directly affect LOS) or backdoor paths (e.g., batch tendency may reflect broader physician aggressiveness or thoroughness that independently affects outcomes).
+
+Under this framework, we can no longer point-identify the treatment effect $\beta$, but we can trace out how $\hat{\beta}(\delta)$ varies as we consider different magnitudes of the violation parameter $\delta$. For a given value of $\delta$, we compute:
+\begin{equation}
+\hat{\beta}(\delta) = \hat{\beta}^{IV} - \delta \cdot \frac{\text{Cov}(Z_i, Y_i)}{\text{Cov}(Z_i, \text{Batched}_i)}
+\end{equation}
+where $\hat{\beta}^{IV}$ is the standard IV estimate and $Z_i$ denotes the instrument. Confidence intervals are constructed using heteroskedasticity-robust standard errors.
+
+Figure \ref{fig:conley} presents sensitivity analyses for our primary outcomes. We consider $\delta \in [-0.2, 0.2]$, which spans a range where a one percentage point increase in batch tendency directly changes the outcome by up to 0.2 units (in addition to any indirect effect through batching). Across all outcomes, the treatment effect remains statistically significant throughout this range. For log LOS, the 95\% confidence interval excludes zero for all values of $\delta$ considered. Similar robustness holds for log time to disposition, number of imaging tests, and admission probability.
+
+\begin{figure}[h]
 \centering
-\caption{Robustness Check for Main 2SLS Results}
-\label{tab:results_panelA}
+\caption{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
+\includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
+\label{fig:conley}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} This figure displays UJIVE estimates under different assumptions about direct effects ($\delta$) of physician batch tendency on outcomes. The x-axis represents the magnitude of the exclusion restriction violation: $\delta = 0$ corresponds to the standard IV assumption, while $\delta \neq 0$ allows batch tendency to directly affect outcomes. Black points indicate baseline estimates ($\delta = 0$). Shaded areas show 95\% confidence intervals using heteroskedasticity-robust standard errors following \cite{conley2012plausibly}.
+\end{flushleft}
+\end{figure}
+
+The stability of our estimates across this range of $\delta$ values provides evidence that our conclusions are not sensitive to moderate violations of the exclusion restriction. While we cannot definitively rule out all such violations---no observational study can---these results suggest that any direct effect of batch tendency on outcomes would need to be implausibly large to overturn our main findings.
+
+\clearpage
+
+\section{Robustness to Nonlinear Outcome Models} \label{app:nonlinear}
+
+Our primary analysis uses linear models for all outcome variables, including binary outcomes (admission, 72-hour return) and count outcomes (number of imaging tests). While nonlinear models such as logit for binary outcomes and Poisson for counts may seem more appropriate given the outcome distributions, the linear 2SLS estimator provides a well-defined Local Average Treatment Effect (LATE) for compliers under the standard monotonicity and independence assumptions. Nonlinear second-stage models would require strong assumptions about the entire joint distribution of errors and generally lack the transparent LATE interpretation that gives our estimates clear policy relevance. The linear probability model, while potentially producing predictions outside $[0,1]$ for individual observations, yields consistent estimates of the average marginal effect for compliers—exactly the parameter of interest in our quasi-experimental setting.
+
+To verify that functional form assumptions do not drive our results, we estimate nonlinear outcome models while retaining a linear first stage. Specifically, we estimate logit models for binary outcomes and Poisson models for count outcomes using a control-function (two-stage residual inclusion) approach, and compute average marginal effects (AMEs) for comparison with our 2SLS estimates. Table \ref{tab:nonlinear} presents these results.
+
+\begin{table}[h]
+\centering
+\caption{Robustness of Estimates to Outcome Model Specification}
+\label{tab:nonlinear}
 \begin{threeparttable}
-\begin{tabular}{lcc}
+\begin{tabular}{lccc}
 \toprule
-& (1) & (2) \\
+Outcome & Model & 2SLS & Nonlinear (AME) \\
 \midrule
-\multicolumn{3}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
-Log time to disposition & $0.923^{*}$ & $0.753^{\dagger}$ \\
-& (0.358) & (0.368) \\[0.5em]
-Log LOS & $0.783^{*}$ & $0.656^{*}$ \\
-& (0.300) & (0.296) \\[0.5em]
-Number of distinct imaging tests & $1.271^{***}$ & $1.307^{***}$ \\
-& (0.218) & (0.213) \\[0.5em]
-72hr return with admission & -0.005 & -0.015 \\
-& (0.018) & (0.021) \\[0.5em]
-\midrule
-Time FE & Yes & Yes \\
-Baseline controls & Yes & Yes \\
-Admit & Yes & No \\
-Testing tendency & No & Yes \\
-Observations & 11,404 & 11,404 \\
+72-hour return with admission & Logit & $-0.015$ & $-0.015$ \\
+& & $(0.020)$ & $(0.023)$ \\[0.75em]
+Admission & Logit & $0.404^{***}$ & $0.377^{***}$ \\
+& & $(0.088)$ & $(0.075)$ \\[0.75em]
+Number of imaging tests & Poisson & $1.241^{***}$ & $1.197^{***}$ \\
+& & $(0.116)$ & $(0.241)$ \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} This table reports the 2SLS estimates of the effect of batching on patient outcomes, using specifications that include the additional controls of admitting status and testing tendency. 
-\item $^{\dagger} p < 0.1$, $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
+\item \textit{Notes:} This table compares 2SLS estimates (linear second stage) with average marginal effects from nonlinear outcome models (logit for binary outcomes, Poisson for counts). Both approaches use physician batch tendency as the instrument with a linear first stage and include the full control set. Standard errors for nonlinear AMEs are delta-method estimates. $^{***}p<0.001$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
+The nonlinear specifications yield estimates that closely match our primary 2SLS results. For admission, the logit AME (0.377) is within one standard error of the 2SLS estimate (0.404). For number of imaging tests, the Poisson AME (1.197) is nearly identical to the 2SLS estimate (1.241). The 72-hour return estimates remain small and statistically insignificant under both specifications. This consistency across model specifications reinforces confidence that our substantive conclusions are not artifacts of functional form assumptions.
+
+
+\clearpage
+
+\section{Robustness to Alternative Outcome Measures} \label{app:outcomes}
+
+This appendix presents robustness checks using alternative definitions of our primary outcome measures. We examine (1) treatment time as an alternative measure of ED efficiency, and (2) any 72-hour ED revisit as an alternative measure of care quality.
+
+Our primary time-based outcomes---LOS and time to disposition---may capture variation unrelated to physician decision-making, such as waiting room delays or post-disposition boarding. Treatment time, defined as the period from first physician contact to disposition decision, isolates the clinical processing phase and provides a cleaner measure of how batching affects physician workflow. Table \ref{tab:treatment_time} presents estimates using this alternative specification alongside time to disposition for comparison.
+
+\begin{table}[htbp]
+\centering
+\caption{Robustness: Treatment Time and Time to Disposition}
+\label{tab:treatment_time}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+& Sequenced & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
+& mean & (2) & (3) & (4) & (5) \\
+\midrule
+Log treatment time
+& 5.180 & $0.556^{***}$ & $0.628^{***}$ & $0.438^{**}$ & $0.447^{**}$ \\
+& (0.462) & (0.120) & (0.123) & (0.216) & (0.210) \\[0.75em]
+Log time to disposition
+& 5.237 & $0.659^{***}$ & $0.651^{***}$ & $0.583^{***}$ & $0.522^{***}$ \\
+& (0.499) & (0.103) & (0.101) & (0.189) & (0.177) \\
+\midrule
+Necessary controls & --- & Yes & Yes & Yes & Yes \\
+Precision controls & --- & No & Yes & No & Yes \\
+Observations & 11,659 & 11,659 & 11,659 & 11,659 & 11,659 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates using physician batch tendency as the instrument. Columns 4--5 report UJIVE estimates using ED provider identifiers as instruments. Precision controls include patient vitals, demographics, complaint-severity fixed effects, physician characteristics, laboratory ordering, hours into shift, and ED capacity. $^{**}p<0.01$, $^{***}p<0.001$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The estimates for treatment time closely track those for time to disposition. Under the full-control specification, the 2SLS estimate for log treatment time (0.628) implies a 87\% increase, while UJIVE yields 0.447 (56\% increase). The consistency across these measures confirms that batching affects clinical processing time, not merely waiting room or boarding delays.
+
+For care quality, our primary measure is 72-hour ED revisit resulting in hospital admission. We focused on this measure based on guidance from our physician coauthors, who noted that many ED revisits are planned (e.g., wound checks, suture removal) or reflect intentional ``watchful waiting'' strategies rather than quality failures. Returns requiring admission more reliably indicate missed diagnoses or inadequate initial treatment. Nevertheless, we also estimated effects on any 72-hour revisit for comparability with prior literature. Table \ref{tab:returns} presents both measures.
+
+\begin{table}[htbp]
+\centering
+\caption{Robustness: Effect of Batching on 72-Hour Return Outcomes}
+\label{tab:returns}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+& Sequenced & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
+& mean & (2) & (3) & (4) & (5) \\
+\midrule
+72-hr return with admission 
+& 0.012 & $-0.014$ & $-0.015$ & $-0.008$ & $-0.004$ \\
+& (0.110) & (0.018) & (0.020) & (0.020) & (0.022) \\[0.75em]
+72-hr return (any reason)
+& 0.030 & $-0.051$ & $-0.054$ & $-0.044$ & $-0.040$ \\
+& (0.170) & (0.029) & (0.031) & (0.032) & (0.034) \\
+\midrule
+Necessary controls & --- & Yes & Yes & Yes & Yes \\
+Precision controls & --- & No & Yes & No & Yes \\
+Observations & 11,659 & 11,659 & 11,659 & 11,659 & 11,659 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates; Columns 4--5 report UJIVE estimates. Standard errors are heteroskedasticity-robust. For patients admitted during the index visit, the 72-hour window begins at hospital discharge.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Both quality measures yield small, negative, and statistically insignificant effects across all specifications. The point estimates for any 72-hour return are slightly larger in magnitude than those for returns with admission, but neither approaches statistical significance. These results reinforce our main finding: discretionary batching does not improve short-term quality outcomes, regardless of how returns are measured.
+
+
+
+\clearpage
+
+\section{Subsample Analysis of Discharged Patients} \label{app:frontloading}
+
+A potential alternative interpretation of our findings is that batching does not represent overuse but rather frontloads diagnostics that would eventually occur during hospitalization. Under this interpretation, the additional ED imaging simply shifts testing from the inpatient setting to the ED without increasing total resource utilization. This appendix presents a subsample analysis to address this concern.
+
+Interpreting our findings purely as frontloading faces a conceptual challenge. Frontloading would imply that batched patients receive ED tests that would have been ordered during a predetermined hospitalization. Yet admission itself is a downstream consequence of the testing strategy---we find that batching increases admission probability by approximately 40 percentage points. This suggests that at least some additional tests are driving new admissions rather than frontloading diagnostics for patients whose admission was already determined. That is, the tests themselves influence disposition decisions, not the reverse.
+
+To empirically investigate this concern, we re-estimated our main specifications restricting the sample to patients who were ultimately discharged from the ED. This subsample is informative because discharged patients, by construction, do not receive subsequent inpatient diagnostic workups. If the additional imaging from batching merely substituted for tests that would have occurred during hospitalization, we would expect attenuated effects among discharged patients. Table \ref{tab:discharged} presents these results.
+
+\begin{table}[h]
+\centering
+\caption{Effect of Batching on Imaging Tests Among Discharged Patients}
+\label{tab:discharged}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
+& (1) & (2) & (3) & (4) \\
+\midrule
+Number of distinct imaging tests
+& $1.516^{***}$ & $1.447^{***}$ & $1.497^{***}$ & $1.415^{***}$ \\
+& (0.122) & (0.124) & (0.135) & (0.133) \\
+\midrule
+Necessary controls & Yes & Yes & Yes & Yes \\
+Precision controls & No & Yes & No & Yes \\
+Observations & 6,306 & 6,305 & 6,306 & 6,305 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \textit{Notes:} Sample restricted to patients discharged from the ED (66.8\% of analytical sample). Columns 1--2 report 2SLS estimates using physician batch tendency as the instrument. Columns 3--4 report UJIVE estimates. $^{***}p<0.001$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The estimated effect of batching on imaging tests remains large, positive, and statistically significant among discharged patients, with magnitudes comparable to or exceeding those in the full sample (1.42--1.52 additional tests versus 1.17--1.24 in the full sample). This pattern is inconsistent with a pure frontloading interpretation, as these patients by definition do not receive subsequent inpatient imaging.
+
+This analysis should be interpreted with caution. Discharge status is itself a downstream outcome affected by ED imaging decisions; conditioning on discharge therefore risks post-treatment selection bias and may attenuate or inflate causal estimates. We do not treat this subsample analysis as a primary causal estimate. Rather, it demonstrates that the positive association between batching and imaging intensity is not driven solely by patients who are admitted and might receive further inpatient testing.
+
+We note that multiple causal pathways may operate simultaneously. Some additional tests may reveal genuinely admission-worthy conditions that would have been discovered later. Others may trigger defensive admissions through incidental findings. Without linked ED-inpatient imaging records, we cannot empirically separate these mechanisms. Distinguishing between frontloading and overuse remains an important direction for future research.
 \clearpage

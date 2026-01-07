@@ -160,7 +160,7 @@ Regarding the large effect size, we have clarified that the large magnitude of t
 
 Regarding a more granular story and mechanisms, we have added several analyses. Our mediation analysis (Section 4.3) demonstrates that the effect of batching on LOS operates primarily through increased imaging volume and higher admission probability—not through the batching process itself. Our heterogeneity analysis by chief complaint (Figure 4) shows consistent patterns across seven clinical categories, from simple presentations (fevers, extremity complaints) to complex polytrauma cases. Our analysis of determinants (Table 6) reveals that batching decreases as physicians progress through their shifts and during major overcapacity, suggesting that time pressure and resource constraints induce more selective ordering.
 
-Regarding subsamples where identification assumptions are most likely satisfied, our complier analysis (Appendix B) characterizes the approximately 20\% of patients whose testing strategy depends on physician assignment—precisely the margin where our assumptions hold by construction. The close agreement between our 2SLS estimates (using a single batch tendency instrument) and the newly added UJIVE estimates (using the complete set of provider indicators with leave-one-out bias correction) provides strong validation. These two approaches rely on different constructions of identifying variation, yet yield similar results, increasing confidence that many-instrument bias is not driving our findings and that the underlying source of variation is robust to alternative estimation strategies. Finally, our replication at our second partner hospital (MGH)---a completely different institutional setting with non-random assignment---shows directionally similar and statistically indistinguishable effects, demonstrating external validity beyond results obtained at our other partner hospital (Mayo Clinic) within its specific operational context.
+Regarding subsamples where identification assumptions are most likely satisfied, our complier analysis (EC.4) characterizes the approximately 20\% of patients whose testing strategy depends on physician assignment—precisely the margin where our assumptions hold by construction. The close agreement between our 2SLS estimates (using a single batch tendency instrument) and the newly added UJIVE estimates (using the complete set of provider indicators with leave-one-out bias correction) provides strong validation. These two approaches rely on different constructions of identifying variation, yet yield similar results, increasing confidence that many-instrument bias is not driving our findings and that the underlying source of variation is robust to alternative estimation strategies. Finally, our replication at our second partner hospital (MGH)---a completely different institutional setting with non-random assignment---shows directionally similar and statistically indistinguishable effects, demonstrating external validity beyond results obtained at our other partner hospital (Mayo Clinic) within its specific operational context.
 
 These revisions provide the granular mechanistic evidence and robust identification that the DE requested, while maintaining transparency about the limitations inherent in any observational study. We hope the DE and the entire review team find our efforts to carefully address the comments we received to their satisfaction.
 
@@ -253,7 +253,7 @@ Our empirical strategy isolates the discretionary component of batching—variat
 \end{threeparttable}
 \end{figure}
 
-Second, our Local Average Treatment Effect (LATE) identifies effects for ``compliers''---patients whose testing strategy depends on physician assignment rather than clinical protocols. These patients, by definition, represent the discretionary margin where physician preference determines whether their tests are batched. Our complier analysis in Appendix B reveals approximately 20\% of patients fall into this category---lacking clear clinical indicators mandating either batching or non-batching.
+Second, our Local Average Treatment Effect (LATE) identifies effects for ``compliers''---patients whose testing strategy depends on physician assignment rather than clinical protocols. These patients, by definition, represent the discretionary margin where physician preference determines whether their tests are batched. Our complier analysis in EC.4 reveals approximately 20\% of patients fall into this category---lacking clear clinical indicators mandating either batching or non-batching.
 
 \textbf{2. Are tests medically necessary or preemptively ordered?}
 
@@ -332,7 +332,7 @@ First-stage results validate the concern while demonstrating that we can isolate
 
 \begin{table}[t!]
 \centering
-\caption*{First-Stage Robustness: Batch Tendency Strongly Predicts Batching}
+\caption*{Table 2: First-Stage Results: Batch Tendency and Batching}
 \begin{threeparttable}
 \begin{tabular}{lcc}
 \toprule 
@@ -512,11 +512,11 @@ where \(\delta\) captures any exclusion restriction violation, including
 
 We then estimate \(\beta(\delta)\) for a range of plausible values of \(\delta\) to assess how sensitive our conclusions are to such violations.
 
-The figure below (now included in Appendix D) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
+The figure below (now included in EC.9) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
 
 \begin{figure}[t!]
 \centering
-\caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
+\caption*{Figure EC.9.1: Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
 \footnotesize
@@ -574,11 +574,11 @@ Regarding intermediate outcomes and mechanisms, Reviewer 3 raised concerns about
 
 Reviewer 2 raised the identical question about whether additional tests represent overuse or appropriate care. While we cannot determine whether specific individual tests are clinically unnecessary, our complier analysis provides definitive evidence of discretionary ordering: 20\% of patients receive different testing strategies based solely on physician assignment. For these marginal patients, batching leads to 1.2 additional imaging tests performed without improving quality outcomes as measured by 72 hour returns with admission. This pattern—increased resource utilization without measurable clinical benefits—suggests that at the margin where physicians exercise discretion, additional tests do not provide commensurate value.
 
-The AE correctly notes that ED LOS captures multiple processes beyond physician decision-making. Following Reviewer 3's suggestion, we added treatment time (time from physician assessment to disposition) as an alternative outcome that excludes both waiting room delays and post-disposition boarding. The results (included below and in Appendix D) show nearly identical patterns. This consistency demonstrates that batching affects clinical processing time, not just mechanical delays.
+The AE correctly notes that ED LOS captures multiple processes beyond physician decision-making. Following Reviewer 3's suggestion, we added treatment time (time from physician assessment to disposition) as an alternative outcome that excludes both waiting room delays and post-disposition boarding. The results (included below and in EC.11) show nearly identical patterns. This consistency demonstrates that batching affects clinical processing time, not just mechanical delays.
 
 \begin{table}[t!]
 \centering
-\caption*{Robustness: Treatment Time and Time to Disposition}
+\caption*{EC.11.1: Robustness: Treatment Time and Time to Disposition}
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -645,7 +645,7 @@ Second, following Reviewer 3's suggestion, we conducted a heterogeneity analysis
 
 Third, we refined our time-based outcomes by adding treatment time (Reviewer 3's suggestion), which excludes both waiting room delays and post-disposition boarding to isolate physician processing time. The similar patterns across time to disposition and treatment time confirm that batching affects clinical decision-making processes, not just mechanical delays. We also compared excluded versus included encounters (Reviewer 3's request), demonstrating that our analytical sample appropriately focuses on moderate-to-high acuity patients where imaging decisions are both consequential and discretionary.
 
-Regarding cost-benefit analysis, we developed a cost-benefit analysis quantifying the operational and financial burden of discretionary batching (detailed in our response to Reviewer 2 and Appendix E). Under deliberately conservative assumptions, which include include only statistically significant imaging effects and excluding downstream costs from increased admissions, discretionary batching imposes approximately \$349 in direct costs per affected patient: \$125 from excess imaging and \$224 from excess ED capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits). These costs arise from the approximately 20\% of patients whose batching decisions reflect physician preference rather than clinical necessity, with no offsetting benefits in 72-hour return rates. Even a 50\% reduction in discretionary batching would save approximately \$113,000 annually while freeing 850 bed-hours of capacity.
+Regarding cost-benefit analysis, we developed a cost-benefit analysis quantifying the operational and financial burden of discretionary batching (detailed in our response to Reviewer 2 and EC.6). Under deliberately conservative assumptions, which include include only statistically significant imaging effects and excluding downstream costs from increased admissions, discretionary batching imposes approximately \$349 in direct costs per affected patient: \$125 from excess imaging and \$224 from excess ED capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits). These costs arise from the approximately 20\% of patients whose batching decisions reflect physician preference rather than clinical necessity, with no offsetting benefits in 72-hour return rates. Even a 50\% reduction in discretionary batching would save approximately \$113,000 annually while freeing 850 bed-hours of capacity.
 
 These enhancements explaining the effect magnitude through enhanced controls, demonstrating consistency across patient subsets, refining outcome measures, and developing cost-benefit implications—substantially strengthen the practical relevance of our findings for ED management.
 
@@ -678,17 +678,17 @@ Reviewer 2 raised concerns about whether batching reflects adaptive responses to
 
 \textbf{3. Sample representativeness}
 
-Reviewer 3 asked for a clearer discussion of representativeness. We now provide a CONSORT-style flow diagram (Appendix Figure A2) detailing all exclusion steps. Appendix Table A compares included and excluded encounters on key demographics, vital signs, and complaint categories. As discussed in Section 3.2, the analytic sample appropriately focuses on higher-acuity patients whose presenting complaints plausibly require imaging. This is the clinically meaningful population where discretionary batch ordering has operational consequences. We characterize representativeness in that domain rather than for the ED population as a whole, which we now state explicitly.
+Reviewer 3 asked for a clearer discussion of representativeness. We now provide a CONSORT-style flow diagram (Figure EC.3.1) detailing all exclusion steps. Table EC.3.2 compares included and excluded encounters on key demographics, vital signs, and complaint categories. As discussed in Section 3.2, the analytic sample appropriately focuses on higher-acuity patients whose presenting complaints plausibly require imaging. This is the clinically meaningful population where discretionary batch ordering has operational consequences. We characterize representativeness in that domain rather than for the ED population as a whole, which we now state explicitly. We additionally characterize compliers in EC.4, confirming that they span a broad range of demographics and complaint types, enhancing external validity.
 
 \textbf{4. Physician fixed effects and model selection}
 
 The AE and Reviewer 3 both raised the need for robustness to unobserved provider characteristics. As noted earlier, we now incorporate the Unbiased Jackknife Instrumental Variables Estimator (UJIVE) into our main robustness analysis. UJIVE uses the full set of physician identifiers as instruments and eliminates the many-instrument bias that arises when 2SLS constructs estimated leniency partly from each patient's own treatment status. The close agreement between our 2SLS and UJIVE estimates—despite their very different constructions—indicates that many-instrument bias is not driving our findings. Our expanded controls and Conley sensitivity analysis address the exclusion restriction concerns highlighted by the AE directly. With full controls, the UJIVE estimates are slightly attenuated but remain large and precise (e.g., log LOS: 0.503; time to disposition: 0.522; treatment time: 0.447), reinforcing that the effects we identify are not artifacts of unobserved provider heterogeneity.
 
-We also addressed the concerns about model selection raised by Reviewer 3. Appendix D now includes logit models for binary outcomes and negative binomial models for count outcomes. Across all outcomes, the resulting average marginal effects align closely with those from our linear IV specifications. We retain linear 2SLS in the main text because nonlinear IV models violate core econometric requirements (the ``forbidden regression''), a point we clarify in our detailed response to Reviewer 3. The combination of (i) FE-based IV, (ii) UJIVE estimation, and (iii) nonlinear outcome models provides strong evidence that our findings are robust to alternative estimators and modeling choices.
+We also addressed the concerns about model selection raised by Reviewer 3. EC.10 now includes logit models for binary outcomes and negative binomial models for count outcomes. Across all outcomes, the resulting average marginal effects align closely with those from our linear IV specifications. We retain linear 2SLS in the main text because nonlinear IV models violate core econometric requirements (the ``forbidden regression''), a point we clarify in our detailed response to Reviewer 3. The combination of (i) FE-based IV, (ii) UJIVE estimation, and (iii) nonlinear outcome models provides strong evidence that our findings are robust to alternative estimators and modeling choices.
 
 \textbf{4. Alternative outcomes}
 
-We now additionally examine outcomes reflecting more proximate process measures: treatment time (provider contact to decision) and time to disposition (provider contact to disposition decision). These outcomes remove waiting room delays and post-disposition boarding. Appendix D reports that the pattern remains consistent across all three measures: batch ordering increases treatment time by 56\%, time to disposition by 69\%, and total LOS by 65\%. Because each metric captures a distinct operational stage of the encounter, we retain all of them in Table 4 and Appendix D to provide a more complete characterization of the effects.
+We now additionally examine outcomes reflecting more proximate process measures: treatment time (provider contact to decision) and time to disposition (provider contact to disposition decision). These outcomes remove waiting room delays and post-disposition boarding. EC.11.1 reports that the pattern remains consistent across all three measures: batch ordering increases treatment time by 56\%, time to disposition by 69\%, and total LOS by 65\%. Because each metric captures a distinct operational stage of the encounter, we retain all of them in Table 4 and EC.11 to provide a more complete characterization of the effects.
 
 Together, these revisions—clarifying treatment definition, demonstrating independence from prior information, explicitly documenting sample representativeness, adding robustness to unobserved provider factors, and expanding outcome measures—address all five AE suggestions and align the manuscript with the methodological guidance in the referenced literature.
 \color{black}
@@ -962,11 +962,11 @@ where \(\delta\) captures any exclusion restriction violation, including
 
 We then estimate \(\beta(\delta)\) for a range of plausible values of \(\delta\) to assess how sensitive our conclusions are to such violations.
 
-The figure below (now included in Appendix D) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
+The figure below (now included in EC.9) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
 
 \begin{figure}[t!]
 \centering
-\caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
+\caption*{Figure EC.9.1: Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
 
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
@@ -1011,7 +1011,7 @@ First, our revised specification directly tests the reviewer's specific examples
 
 Second, even if exclusion restriction concerns persist, our reduced-form estimates—the direct effect of being assigned to a high-batch-tendency physician—represent causal effects of physician assignment that do not require the exclusion restriction. These estimates inform ED management decisions about physician training, feedback, and protocols regardless of the precise mechanism. When we control for observable pathways (labs, physician characteristics), the reduced-form effects remain substantial for imaging volume, while attenuating for time outcomes, providing managers with actionable evidence about which outcomes are most affected by physician assignment.
 
-Third, as mentioned earlier, we have added formal sensitivity analysis to rigorously test the potential impact the violation of exclusion restriction might have on our main findings (Appendix D). Finally, have revised Section 4.8 (Limitations) to acknowledge this concern more directly, removing claims that violations ``may likely only have a small impact'' and instead transparently presenting our validation evidence through expanded controls, while acknowledging that definitive exclusion restriction tests are not possible in observational settings.
+Third, as mentioned earlier, we have added formal sensitivity analysis to rigorously test the potential impact the violation of exclusion restriction might have on our main findings (EC.9). Finally, have revised Section 4.8 (Limitations) to acknowledge this concern more directly, removing claims that violations ``may likely only have a small impact'' and instead transparently presenting our validation evidence through expanded controls, while acknowledging that definitive exclusion restriction tests are not possible in observational settings.
 
 \color{black}
 
@@ -1226,11 +1226,11 @@ However, interpreting our findings purely as frontloading faces a conceptual cha
 
 That said, we acknowledge that multiple causal pathways may occur simultaneously. Some batched patients may receive tests that reveal admission-worthy conditions, which would have been discovered later. Others may be admitted defensively due to incidental findings from comprehensive imaging that are not pursued with sequential testing. Without linked inpatient imaging records, we cannot empirically separate these mechanisms.
 
-To directly address this concern, we re-estimated our main specifications restricting the sample to patients who were ultimately discharged from the ED. This subsample analysis is informative because these patients, by construction, do not receive subsequent inpatient diagnostic workups, eliminating the possibility that ED imaging merely substitutes for tests that would have occurred during hospitalization. As shown in the table below, the estimated effect of batching on the number of distinct imaging tests remains large, positive, and statistically significant across UJIVE and 2SLS specifications, with magnitudes comparable to those in the full sample.
+To directly address this concern, we re-estimated our main specifications restricting the sample to patients who were ultimately discharged from the ED. This subsample analysis is informative because these patients, by construction, do not receive subsequent inpatient diagnostic workups, eliminating the possibility that ED imaging merely substitutes for tests that would have occurred during hospitalization. As shown in the table below (Table EC.12.1), the estimated effect of batching on the number of distinct imaging tests remains large, positive, and statistically significant across UJIVE and 2SLS specifications, with magnitudes comparable to those in the full sample.
 
 \begin{table}[t!]
 \centering
-\caption*{Effect of Batching on Imaging Tests Among Discharged Patients}
+\caption*{Table EC.12.1: Effect of Batching on Imaging Tests Among Discharged Patients}
 \label{tab:imaging_discharged}
 \begin{threeparttable}
 \begin{tabular}{lcccc}
@@ -1272,7 +1272,7 @@ $^{***} p < 0.001$.
 \end{threeparttable}
 \end{table}
 
-We emphasize that this discharged-only analysis should be interpreted with caution, as discharge status is itself a downstream outcome potentially affected by ED imaging decisions. Conditioning on discharge therefore risks post-treatment selection and may attenuate or otherwise distort causal estimates. For this reason, we do not treat this subsample analysis as a primary causal estimate. Rather, it serves as a robustness check demonstrating that the positive association between batching and imaging intensity is not driven solely by patients who are ultimately admitted and receive further inpatient testing. We report this analysis in Appendix D and reference it here solely to clarify interpretation of our findings in response to the reviewer’s concern about frontloading.
+We emphasize that this discharged-only analysis should be interpreted with caution, as discharge status is itself a downstream outcome potentially affected by ED imaging decisions. Conditioning on discharge therefore risks post-treatment selection and may attenuate or otherwise distort causal estimates. For this reason, we do not treat this subsample analysis as a primary causal estimate. Rather, it serves as a robustness check demonstrating that the positive association between batching and imaging intensity is not driven solely by patients who are ultimately admitted and receive further inpatient testing. We report this analysis in EC.12 and reference it here solely to clarify interpretation of our findings in response to the reviewer’s concern about frontloading.
 
 We have been careful throughout the manuscript to avoid characterizing the additional tests as ``waste'' or ``overuse,'' as our LATE identifies effects for marginal patients whose testing decisions vary by physician preference—these tests may have clinical value regardless of timing. However, even if batching represents frontloading rather than overuse, it has operational consequences worth noting. Based on discussions with our physician coauthors at both study sites, ED imaging resources are typically more constrained than inpatient resources; frontloading increases ED congestion and delays care for other ED patients; and inpatient teams often prefer to direct their own diagnostic approach based on evolving clinical information.
 
@@ -1298,19 +1298,19 @@ We appreciate the reviewer highlighting this distinction, as it has led us to be
 
 Our analysis focuses on two cost components where we have direct causal evidence: (1) excess imaging costs from additional tests and (2) excess ED capacity consumed from extended length of stay. We deliberately adopt conservative assumptions throughout, excluding several additional cost categories---including physician time, radiologist interpretation burden, patient time costs, downstream costs from increased admissions, and spillover congestion effects---making our estimates lower bounds on the true cost of discretionary batching.
 
-A key input to our analysis is identifying the population affected by discretionary batching. Our complier analysis (Appendix B) indicates that approximately 20\% of patients in our analytical sample are ``compliers''---patients whose batching status depends on physician assignment rather than clinical necessity. Among the 1,595 batched patients in our sample, roughly half (51\%) are compliers whose batching reflects physician discretion rather than clinical indication. These 813 ``batched compliers'' in our 15-month sample (650 annualized) represent the patients who would benefit from interventions targeting discretionary batching.
+A key input to our analysis is identifying the population affected by discretionary batching. Our complier analysis (EC.4) indicates that approximately 20\% of patients in our analytical sample are ``compliers''---patients whose batching status depends on physician assignment rather than clinical necessity. Among the 1,595 batched patients in our sample, roughly half (51\%) are compliers whose batching reflects physician discretion rather than clinical indication. These 813 ``batched compliers'' in our 15-month sample (650 annualized) represent the patients who would benefit from interventions targeting discretionary batching.
 
 We estimate imaging costs using Medicare-allowed reimbursement for diagnostic radiography in the ED setting. For a two-view chest radiograph (CPT 71046), the technical component under HOPPS is \$98.53, with an additional \$30--40 for the professional component, yielding total Medicare-allowed reimbursement of approximately \$120--140 per study \citep{dabus2025practice}. Our UJIVE estimates (Table 4, Panel B) indicate that discretionary batching significantly increases X-ray utilization (0.96 additional tests, $p < 0.001$), while effects on other modalities (ultrasound, CT) are not statistically significant. To maintain a conservative approach, we include only the statistically significant X-ray effect in our primary analysis. Using a range of \$100--160 per X-ray (mean \$130), we estimate excess imaging costs of \textbf{\$125} (\$96--153) per batched complier.
 
 To value the excess ED bed-hours consumed by discretionary batching, we draw on published estimates of ED operational costs using time-driven activity-based costing. \citet{schreyer2017economics} report ED personnel costs of \$58.20 per bed-hour (2010--2011 data; approximately \$83 inflation-adjusted to 2024), while \citet{canellas2024measurement} find daily ED boarding costs of \$1,856, implying approximately \$77 per hour. Based on these estimates, we use a range of \$75--100 per bed-hour (mean \$85). Our UJIVE estimates indicate discretionary batching increases LOS by 65\% (Table \ref{tab:results_table}), translating to 158 additional minutes (2.64 hours) relative to baseline LOS of 242 minutes for patients receiving standard care. At \$75--100 per bed-hour, this yields \textbf{\$224} (\$198--264) in excess capacity costs per batched complier.
 
-Table XX summarizes our findings. Combining imaging and capacity costs, discretionary batching imposes an estimated \textbf{\$349} (\$294--417) in direct costs per affected patient. Capacity costs account for 64\% of the total, reflecting the substantial LOS increase we document.
+Table EC.6.1 summarizes our findings. Combining imaging and capacity costs, discretionary batching imposes an estimated \textbf{\$349} (\$294--417) in direct costs per affected patient. Capacity costs account for 64\% of the total, reflecting the substantial LOS increase we document.
 
 Scaling to annual ED operations, discretionary batching costs approximately \textbf{\$232,000 per year} for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (60,000 visits). For our study site, the annual cost is approximately \$227,000. These costs translate to meaningful operational impacts: eliminating discretionary batching would free approximately 1,700 bed-hours annually at our study site---equivalent to 72 additional 24-hour days of ED capacity---enabling approximately 425 additional patient visits (a 1.1\% capacity improvement).
 
 \begin{table}[t!]
 \centering
-\caption*{Estimated Annual Cost of Discretionary Batch Ordering by ED Size}
+\caption*{Table EC.6.1: Estimated Annual Cost of Discretionary Batch Ordering by ED Size}
 \label{tab:costbenefit}
 \begin{threeparttable}
 \begin{tabular}{lcccc}
@@ -1334,10 +1334,10 @@ Even under conservative assumptions, discretionary batch ordering imposes meanin
 
 These estimates suggest that relatively modest interventions---such as decision support tools encouraging sequential ordering when clinically appropriate, or providing physicians with feedback on their batching rates relative to peers---could yield meaningful cost savings. A 50\% reduction in discretionary batching would save approximately \$113,000 annually while freeing 850 bed-hours. Given that compliers represent patients at the margin of physician discretion (not those with clear clinical indications for comprehensive imaging), interventions targeting this group are unlikely to compromise care quality while offering substantial operational benefits.
 
-We have added a detailed cost analysis in Appendix E, including the above table and discussion. We believe this addition substantially enhances the practical relevance of our findings for ED administrators considering policies to influence physician batching behavior. We thank the reviewer for prompting us to include this important analysis and have referenced it in the main text (Section 4.7), included here for posterity:
+We have added a detailed cost analysis in EC.4, including the above table and discussion. We believe this addition substantially enhances the practical relevance of our findings for ED administrators considering policies to influence physician batching behavior. We thank the reviewer for prompting us to include this important analysis and have referenced it in the main text (Section 4.7), included here for posterity:
 
 \begin{quote}
-``To quantify the financial burden of discretionary batching—where providers intentionally group multiple diagnostic orders rather than placing them individually---we combine our causal estimates with published cost parameters (see Appendix EC.X for details). Adopting a societal perspective, we use Medicare-allowed reimbursement of \$130 per ED radiograph \citep{dabus2025practice} and ED bed-hour costs of \$85 based on time-driven activity-based costing studies \citep{schreyer2017economics, canellas2024measurement}.
+``To quantify the financial burden of discretionary batching—where providers intentionally group multiple diagnostic orders rather than placing them individually---we combine our causal estimates with published cost parameters (see EC.4 for details). Adopting a societal perspective, we use Medicare-allowed reimbursement of \$130 per ED radiograph \citep{dabus2025practice} and ED bed-hour costs of \$85 based on time-driven activity-based costing studies \citep{schreyer2017economics, canellas2024measurement}.
 
 Under deliberately conservative assumptions, discretionary batching imposes at least \$349 in direct costs per batched complier: \$125 from excess imaging and \$224 from excess capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (Table EC.X). These estimates represent conservative lower bounds, include only statistically significant imaging effects (excluding ultrasound and CT point estimates), value bed-hours at operational cost rather than throughput value, and exclude downstream costs from the 40 percentage point increase in admission probability. Inpatient stays cost \$10,000–15,000, which would dwarf our direct cost estimates. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies. Even under these conservative assumptions, a 50\% reduction in discretionary batching would save about \$113,000 annually while freeing 850 bed-hours of capacity.''
 \end{quote}
@@ -1683,7 +1683,7 @@ On another point related to the proposed IV, the authors construct the IV using 
 Similarly, to control for physician-specific characteristics where possible, I recommend including physician fixed effects in all models throughout the paper.''
 \end{quote2}
 
-\noindent\textbf{Response:} \color{blue}We appreciate the reviewer's careful attention to whether our instrument satisfies the exclusion restriction. The reviewer's concern—that batchers and sequencers may differ in performance in ways beyond batching decisions—is exactly right to scrutinize. All three reviewers raised this same concern, and in response, we have substantially strengthened our identification strategy. We address the exclusion restriction concern first, then discuss the alternative instrument construction.
+\noindent\textbf{Response:} \color{blue}We appreciate the reviewer's careful attention to whether our instrument satisfies the exclusion restriction. The reviewer's concern---that batchers and sequencers may differ in performance in ways beyond batching decisions---is exactly right to scrutinize. In response, we have substantially strengthened our identification strategy. We address the exclusion restriction concern first, then discuss the alternative instrument construction.
 
 The reviewer is correct that if batch tendency captures other aspects of physician behavior (general diagnostic aggressiveness, thoroughness, experience-based practice patterns), this would bias our results. In our original specification, we controlled only for patient characteristics (vital signs, age, demographics, chief complaint severity) and temporal factors (shift-level effects). In response to concerns from all three reviewers, we have substantially expanded our control set to test whether batch tendency reflects general diagnostic intensity versus imaging-specific timing decisions.
 
@@ -1707,7 +1707,7 @@ First-stage results validate the concern while demonstrating that we can isolate
 
 \begin{table}[t!]
 \centering
-\caption*{First-Stage Robustness: Batch Tendency Strongly Predicts Batching}
+\caption*{Table 2: First-Stage Results: Batch Tendency and Batching}
 
 \begin{threeparttable}
 \begin{tabular}{lcc}
@@ -1888,11 +1888,11 @@ where \(\delta\) captures any exclusion restriction violation, including
 
 We then estimate \(\beta(\delta)\) for a range of plausible values of \(\delta\) to assess how sensitive our conclusions are to such violations.
 
-The figure below (now included in Appendix D) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
+The figure below (now included in EC.9) presents sensitivity analyses showing substantial robustness. For all outcomes, the treatment effect remains significant across $\delta \in [-0.2, 0.2]$.
 
 \begin{figure}[t!]
 \centering
-\caption*{Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
+\caption*{Figure EC.9.1: Sensitivity of Treatment Effect Estimates to Exclusion Restriction Violations}
 
 \includegraphics[width=\textwidth]{../outputs/figures/conley_sensitivity_ujive.png}
 \begin{flushleft}
@@ -2010,12 +2010,12 @@ Using nonlinear models in the second stage is even more problematic. The linear 
 
 The linear probability model in 2SLS, while potentially producing predictions outside [0,1] for individual observations, yields consistent estimates of the average marginal effect for compliers—exactly the parameter of policy interest in our quasi-experimental setting.
 
-Nevertheless, to address the reviewer's concern about functional form, we verify that our results are robust to nonlinear outcome models while retaining a linear first stage. Specifically, we estimate logit models for binary outcomes (admission, 72-hour return) and Poisson models for count outcomes (number of imaging tests), using the same linear first stage with batch tendency as the instrument. We then compute average marginal effects (AMEs) from these nonlinear models and compare below (now included in Appendix D).
+Nevertheless, to address the reviewer's concern about functional form, we verify that our results are robust to nonlinear outcome models while retaining a linear first stage. Specifically, we estimate logit models for binary outcomes (admission, 72-hour return) and Poisson models for count outcomes (number of imaging tests), using the same linear first stage with batch tendency as the instrument. We then compute average marginal effects (AMEs) from these nonlinear models and compare below (now included in EC.10).
 
 \begin{table}[t!]
 \centering
 \begin{threeparttable}
-\caption*{Robustness of Estimates to Outcome Model Specification}
+\caption*{EC.10.1: Robustness of Estimates to Outcome Model Specification}
 \begin{tabular}{lccc}
 \toprule
 Outcome
@@ -2055,7 +2055,7 @@ $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.
 
 \textbf{Manuscript changes:}
 
-We have added a discussion in Section 3.4 (Empirical Specification) explaining our choice of linear models in the IV framework, with reference to the econometric literature. We have also added the included robustness table to Appendix D, which shows the OLS robustness check with nonlinear models.
+We have added a discussion in Section 3.4 (Empirical Specification) explaining our choice of linear models in the IV framework, with reference to the econometric literature. We have also added the included robustness table to EC.10, which shows the OLS robustness check with nonlinear models.
 
 We appreciate the reviewer raising this methodological point, as it allows us to clarify why the linear model is preferable in IV settings while also demonstrating that functional form does not drive our OLS results.
 
@@ -2075,13 +2075,13 @@ Given such a substantial reduction in sample size, it is crucial for the authors
 
 \textbf{1. CONSORT flow diagram:}
 
-Figure A2 (Appendix) shows the complete sample selection process:
+Figure EC.3.1 (EC.3) shows the complete sample selection process:
 
 \begin{figure}[t!]
 \centering
 \begin{threeparttable}
 \includegraphics[width=0.8\textwidth]{../outputs/figures/CONSORT.png}    
-\caption*{Figure A2: CONSORT Flow Diagram for Sample Selection}    
+\caption*{Figure EC.3.1: CONSORT Flow Diagram for Sample Selection}    
 \label{fig:consort}    
 \begin{tablenotes}
 \small
@@ -2090,14 +2090,14 @@ Figure A2 (Appendix) shows the complete sample selection process:
 \end{threeparttable}
 \end{figure}
 
-Starting with 48,854 encounters of adult patients, we exclude: (1) encounters with non-full time providers, (2) rare complaints (<1,000 encounters), (3) complaints where batching occurs <5\% of the time, and (4) complaints that do not involve any imaging. This yields our analytical sample of 11,651 encounters (27.4\%). We made this decisions based on conversations and discussions with our medical collaborators (and co-authors on this paper) who are in charge of operations in two leading US hospitals (Mayo Clinic and MGH).
+Starting with 48,854 encounters of adult patients, we exclude: (1) encounters with non-full time providers, (2) rare complaints ($<$500 encounters), (3) complaints where batching occurs $<$5\% of the time, and (4) complaints that do not involve any imaging. This yields our analytical sample of 11,679 encounters (23.7\%). We made this decisions based on conversations and discussions with our medical collaborators (and co-authors on this paper) who are in charge of operations in two leading US hospitals (Mayo Clinic and MGH).
 
-The table included below (now included in Appendix A) compares patient characteristics and outcomes between excluded and included encounters. As can be seen, the  analytical sample differs from excluded encounters in clinically meaningful and expected ways. Included patients are older (62.9 vs. 57.5 years), higher acuity (ESI 2.52 vs. 2.87, where lower numbers indicate greater severity), and more likely to present with concerning vital signs (febrile: 4.6\% vs. 1.4\%, hypotensive: 2.3\% vs. 1.2\%). Consequently, they experience longer ED stays (272 vs. 238 minutes) and higher admission rates (28.4\% vs. 17.0\%).
+The table included below (now included in EC.3) compares patient characteristics and outcomes between excluded and included encounters. As can be seen, the  analytical sample differs from excluded encounters in clinically meaningful and expected ways. Included patients are older (62.9 vs. 57.5 years), higher acuity (ESI 2.52 vs. 2.87, where lower numbers indicate greater severity), and more likely to present with concerning vital signs (febrile: 4.6\% vs. 1.4\%, hypotensive: 2.3\% vs. 1.2\%). Consequently, they experience longer ED stays (272 vs. 238 minutes) and higher admission rates (28.4\% vs. 17.0\%).
 
 
 \begin{table}[t!]
 \centering
-\caption*{Comparison of Excluded vs. Included Encounters}
+\caption*{Table EC.3.2: Comparison of Excluded vs. Included Encounters}
 \begin{threeparttable}
 \begin{tabular}{lccc}
 \toprule
@@ -2120,8 +2120,8 @@ Hypotensive (\%) & 1.2 & 2.3 & <0.001*** \\
 ED LOS (minutes) & 238.3 (135.0) & 272.0 (133.5) & <0.001*** \\
 Admission rate (\%) & 17.0 & 28.4 & <0.001*** \\
 \midrule
-N & 37,450 & 11,651 & \\
-\% of total sample & 72.5\% & 27.4\% & \\
+N & 37,450 & 11,679 & \\
+\% of total sample & 76.2\% & 23.7\% & \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -2150,8 +2150,8 @@ While our results apply to the 25\% of ED visits requiring imaging workups, we w
 \textbf{Manuscript changes:}
 
 \begin{itemize}
-\item Added detailed CONSORT diagram (Appendix A)
-\item Added comparison of excluded vs. included encounters (Appendix A)
+\item Added detailed CONSORT diagram (Figue EC.3.1)
+\item Added comparison of excluded vs. included encounters (Table EC.3.2)
 \item Revised Section 3.2 to clarify sample selection rationale with appropriate citations
 \item Added discussion of generalizability in Section 5.3 (Limitations)
 \end{itemize}
@@ -2178,11 +2178,11 @@ On a related note, how do the authors measure 72-hour ED revisit for patients wh
 
 We appreciate the reviewer highlighting treatment time as a valuable measure that excludes both waiting room delays and post-disposition boarding. Although our primary time-to-disposition measure already excludes boarding time and our controls mitigate variation in waiting room delays, we fully agree that treatment time provides a clean and complementary measure.
 
-We have therefore added this analysis using treatment time (defined as the time from the first physician contact to the disposition decision). The results, shown in the table below (now in Appendix D), demonstrate that our findings are robust to this alternative specification:
+We have therefore added this analysis using treatment time (defined as the time from the first physician contact to the disposition decision). The results, shown in the table below (now in EC.11), demonstrate that our findings are robust to this alternative specification:
 
 \begin{table}[t!]
 \centering
-\caption*{Robustness: Treatment Time and Time to Disposition}
+\caption*{EC.11.1: Robustness: Treatment Time and Time to Disposition}
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
@@ -2234,7 +2234,7 @@ Nevertheless, we acknowledge the reviewer's point about statistical power and co
 
 \begin{table}[t!]
 \centering
-\caption*{Robustness: Effect of Batching on 72-Hour Return Outcomes}
+\caption*{EC.11.2: Robustness: Effect of Batching on 72-Hour Return Outcomes}
 \begin{threeparttable}
 \begin{tabular}{lcccccc}
 \toprule
@@ -2281,8 +2281,8 @@ For patients admitted during their index visit, the 72-hour window begins at hos
 \textbf{Manuscript changes:}
 
 \begin{itemize}
-\item Added treatment time analysis (Appendix D)
-\item Added any 72-hour return analysis (Appendix D)
+\item Added treatment time analysis (EC.11.1)
+\item Added any 72-hour return analysis (EC.11.2)
 \item Clarified 72-hour return measurement for admitted patients (Section 3.2.2)
 \end{itemize}
 
@@ -2325,7 +2325,7 @@ The consistency across complaint types is striking. Despite meaningful variation
 
 \textbf{Manuscript changes:}
 
-We have added Section 4.4, which presents this heterogeneity analysis, with Figure 4 showing coefficient plots and Appendix D providing detailed estimates. Section 5.2 discusses implications for tailoring diagnostic strategies, noting that the lack of heterogeneity simplifies policy recommendations.
+We have added Section 4.4, which presents this heterogeneity analysis, with Figure 4 showing coefficient plots. Section 5.2 discusses implications for tailoring diagnostic strategies, noting that the lack of heterogeneity simplifies policy recommendations.
 
 We appreciate this suggestion, which strengthens our finding that discretionary batching increases resource utilization without demonstrable benefits across diverse clinical scenarios.
 
