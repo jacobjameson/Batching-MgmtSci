@@ -11,10 +11,20 @@ Berlin, L. (2011).
 \newblock The incidentaloma: a medicolegal dilemma.
 \newblock {\em Radiologic Clinics of North America}, 49(2):245--255.
 
+\bibitem[Canellas et~al., 2024]{canellas2024measurement}
+Canellas, M.~M., Jewell, M., Edwards, J.~L., Olivier, D., Jun-O'Connell, A.~H., and Reznek, M.~A. (2024).
+\newblock Measurement of cost of boarding in the emergency department using time-driven activity-based costing.
+\newblock {\em Annals of Emergency Medicine}, 84(4):410--419.
+
 \bibitem[Coen et~al., 2022]{coen2022clinical}
 Coen, M., Sader, J., Junod-Perron, N., Aud{\'e}tat, M.-C., and Nendaz, M. (2022).
 \newblock Clinical reasoning in dire times: Analysis of cognitive biases in clinical cases during the covid-19 pandemic.
 \newblock {\em Internal and Emergency Medicine}, 17(4):979--988.
+
+\bibitem[Dabus et~al., 2025]{dabus2025practice}
+Dabus, G., Hirsch, J.~A., Booker, M.~T., and Silva, E. (2025).
+\newblock Practice expense and its impact on radiology reimbursement.
+\newblock {\em Journal of the American College of Radiology}.
 
 \bibitem[Featherston et~al., 2020]{featherston2020decision}
 Featherston, R., Downie, L.~E., Vogel, A.~P., and Galvin, K.~L. (2020).
@@ -25,6 +35,10 @@ Featherston, R., Downie, L.~E., Vogel, A.~P., and Galvin, K.~L. (2020).
 Fowler, J.~W. and Mönch, L. (2022).
 \newblock A survey of scheduling with parallel batch (p-batch) processing.
 \newblock {\em European Journal of Operational Research}, 298(1):1--24.
+
+\bibitem[Goldsmith-Pinkham et~al., 2025]{goldsmithpinkham2025leniencydesignsoperatorsmanual}
+Goldsmith-Pinkham, P., Hull, P., and Kolesár, M. (2025).
+\newblock Leniency designs: An operator's manual.
 
 \bibitem[Hausman, 1975]{hausman1975}
 Hausman, J.~A. (1975).
@@ -82,6 +96,11 @@ Lumbreras, B., Donat, L., and Hern{\'a}ndez-Aguado, I. (2010).
 Rao, V.~M. and Levin, D.~C. (2012).
 \newblock The overuse of diagnostic imaging and the choosing wisely initiative.
 \newblock {\em Annals of Internal Medicine}, 157(8):574--576.
+
+\bibitem[Schreyer and Martin, 2017]{schreyer2017economics}
+Schreyer, K.~E. and Martin, R. (2017).
+\newblock The economics of an admissions holding unit.
+\newblock {\em Western Journal of Emergency Medicine}, 18(4):553--558.
 
 \bibitem[Skaugset et~al., 2016]{skaugset2016can}
 Skaugset, L.~M., Farrell, S., Carney, M., Wolff, M., Santen, S.~A., Perry, M., and Cico, S.~J. (2016).

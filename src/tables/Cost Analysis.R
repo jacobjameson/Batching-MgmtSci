@@ -1,7 +1,33 @@
 #=========================================================================
 # COST-BENEFIT ANALYSIS OF DISCRETIONARY BATCH ORDERING
 # Conservative Approach: X-Ray Costs Only (Statistically Significant Effect)
+# 
+# Citations for cost parameters:
+#
+# ED BED-HOUR COSTS:
+#   - Schreyer KE, Martin R. (2017). "The Economics of an Admissions Holding 
+#     Unit." Western Journal of Emergency Medicine, 18(4):553-558.
+#     --> Found ED personnel costs of $58.20/bed-hour (2010-2011 data)
+#
+#   - Canellas MM, et al. (2024). "Measurement of Cost of Boarding in the 
+#     Emergency Department Using Time-Driven Activity-Based Costing." 
+#     Annals of Emergency Medicine, 84(4):410-419.
+#     --> Found daily ED boarding costs of $1,856 (~$77/hour)
+#
+# X-RAY COSTS:
+#   - Journal of the American College of Radiology (2025). "Practice Expense 
+#     and Its Impact on Radiology Reimbursement."
+#     --> CPT 71046 (2-view chest X-ray) in ED setting: $98.53 technical component
+#
+#   - CMS Medicare Physician Fee Schedule 2024
+#     --> Professional + facility components for chest radiograph: $60-100
+#
+#   - Iyeke et al. (2022). "Reducing Unnecessary 'Admission' Chest X-rays." 
+#     Cureus, 14(10):e29817.
+#     --> CXR imaging and interpretation costs $150-1,200 (hospital setting)
+#
 #=========================================================================
+
 sink('outputs/tables/costs.txt')
 
 #=========================================================================
@@ -75,27 +101,38 @@ cat("  Additional X-rays per batched complier:", round(effect_xray, 3), "(p < 0.
 cat("  [Other modalities not statistically significant]\n")
 
 #=========================================================================
-# STEP 3: Cost parameters from literature
+# STEP 3: Cost parameters from literature (WITH VERIFIED CITATIONS)
 #=========================================================================
 
-# Imaging costs: Medicare Physician Fee Schedule 2024
-# Source: CMS Fee Schedule Search Tool (professional + facility components)
-# X-ray chest/extremity: CPT 71046, 73030 → $60-100 combined
-cost_xray <- c(low = 60, mean = 80, high = 100)
+# X-RAY COSTS
+# Source: Dabus et al. (2025) JACR "Practice Expense and Its Impact on 
+#         Radiology Reimbursement" doi:10.1016/j.jacr.2025.02.047
+#   - CPT 71046 (2-view chest X-ray) in ED setting:
+#     - Technical component (HOPPS): $98.53
+#     - Professional component (radiologist read): $30-40
+#     - Total Medicare-allowed: ~$120-140
+#   - We use $100-160 range (mean $130) for sensitivity analysis
+cost_xray <- c(low = 100, mean = 130, high = 160)
 
-# ED bed-hour costs from literature
-# Sources: 
-#   - Bamezai et al. (2005) Health Services Research
-#   - Caldwell et al. (2013) Annals of Emergency Medicine  
-#   - Lee et al. (2012) Western Journal of Emergency Medicine
-cost_bedhour <- c(low = 75, mean = 100, high = 125)
+# ED BED-HOUR COSTS
+# Sources:
+#   - Schreyer & Martin (2017) WJEM: $58.20/bed-hour in 2010-11
+#     Inflation adjusted to 2024: $58.20 × 1.42 = ~$83/hour
+#   - Canellas et al. (2024) Ann Emerg Med: $1,856/day = $77/hour
+#   - We use $75-100 range based on these two studies
+cost_bedhour <- c(low = 75, mean = 85, high = 100)
 
-cat("\n=== STEP 3: COST PARAMETERS ===\n")
-cat("\nImaging costs (Medicare Physician Fee Schedule 2024):\n")
-cat("  X-ray (professional + facility): $", cost_xray["low"], 
-    "- $", cost_xray["high"], " (mean $", cost_xray["mean"], ")\n")
-cat("\nED operational costs (from literature):\n")
-cat("  Bed-hour: $", cost_bedhour["low"], "- $", cost_bedhour["high"], 
+cat("\n=== STEP 3: COST PARAMETERS (Literature-Based) ===\n")
+cat("\nX-ray costs (Medicare-allowed, ED setting):\n")
+cat("  Source: Dabus et al. (2025) JACR doi:10.1016/j.jacr.2025.02.047\n")
+cat("  Technical (HOPPS): $98.53 + Professional: $30-40 = $120-140 total\n")
+cat("  Range used: $", cost_xray["low"], "- $", cost_xray["high"], 
+    " (mean $", cost_xray["mean"], ")\n")
+cat("\nED bed-hour costs:\n")
+cat("  Source 1: Schreyer & Martin (2017) WJEM - $58.20/hr (2010-11)\n")
+cat("            Inflation-adjusted to 2024: ~$83/hr\n")
+cat("  Source 2: Canellas et al. (2024) Ann Emerg Med - $77/hr\n")
+cat("  Range: $", cost_bedhour["low"], "- $", cost_bedhour["high"], 
     " (mean $", cost_bedhour["mean"], ")\n")
 
 #=========================================================================
@@ -179,7 +216,7 @@ imaging_share <- n_total / total_ed_volume_study
 # Share of imaging encounters that are batched compliers
 batched_complier_share <- n_batched_compliers / n_total
 
-# ED size categories (annual volumes, following Feizi et al. 2025)
+# ED size categories (annual volumes)
 ed_sizes <- data.frame(
   Type = c("Small (Rural/Community)", 
            "Medium (Suburban)", 
@@ -210,7 +247,7 @@ cat("        TABLE: Estimated Annual Cost of Discretionary Batch Ordering by ED 
 cat("═══════════════════════════════════════════════════════════════════════════════════════\n\n")
 
 cat(sprintf("%-28s %12s %12s %15s %22s\n", 
-            "ED Type", "Annual Vol.", "Batched", "Annual Cost", "95% Range"))
+            "ED Type", "Annual Vol.", "Batched", "Annual Cost", "Range"))
 cat(sprintf("%-28s %12s %12s %15s %22s\n", 
             "", "", "Compliers", "(Mean)", ""))
 cat(paste(rep("─", 95), collapse=""), "\n")
@@ -269,7 +306,7 @@ cat("    Annual savings: $", format(round(annual_cost_mean * 0.50), big.mark=","
 
 cat("\n=== CONSERVATIVE NATURE OF ESTIMATES ===\n")
 cat("\nExcluded cost categories (would increase estimates):\n")
-cat("  1. Non-significant imaging effects (US, CT): +~$68/patient\n")
+cat("  1. Non-significant imaging effects (US, CT): would add ~$50-80/patient\n")
 cat("  2. Radiologist interpretation time\n")
 cat("  3. Physician cognitive burden\n")
 cat("  4. Patient time costs and lost productivity\n")
@@ -279,12 +316,19 @@ cat("  7. Radiation exposure costs\n")
 cat("  8. Spillover congestion effects on other patients\n")
 
 # What would costs be with all imaging (for footnote)
-effect_all_imaging <- 1.174
-imaging_cost_all <- effect_all_imaging * 80 + 0.087 * 200 + (0.053 + 0.075) * 400
+# Using conservative estimates for US ($150) and CT ($350)
+effect_us <- 0.087
+effect_ct_total <- 0.053 + 0.075  # CT with and without contrast
+cost_us <- 150
+cost_ct <- 350
+
+imaging_cost_all <- imaging_cost_mean + (effect_us * cost_us) + (effect_ct_total * cost_ct)
 total_cost_all <- imaging_cost_all + capacity_cost_mean
 
 cat("\nSensitivity: Including all imaging point estimates:\n")
-cat("  Imaging cost would be: $", round(imaging_cost_all), " (vs. $", round(imaging_cost_mean), ")\n")
+cat("  Additional US cost: $", round(effect_us * cost_us), "\n")
+cat("  Additional CT cost: $", round(effect_ct_total * cost_ct), "\n")
+cat("  Total imaging cost would be: $", round(imaging_cost_all), " (vs. $", round(imaging_cost_mean), ")\n")
 cat("  Total cost would be: $", round(total_cost_all), " (vs. $", round(total_cost_mean), ")\n")
 cat("  Increase:", round((total_cost_all - total_cost_mean)/total_cost_mean * 100, 1), "%\n")
 
@@ -313,4 +357,34 @@ cat("  Annual cost (large ED, 60K visits): $",
 cat("  Bed-hours freed (study site): ", round(annual_bedhours_freed), "/year\n")
 cat("  Additional visits enabled: ", round(additional_visits), "/year\n")
 
+#=========================================================================
+# STEP 11: Literature citations for manuscript
+#=========================================================================
+
+cat("\n")
+cat("═══════════════════════════════════════════════════════════════════\n")
+cat("                    CITATIONS FOR MANUSCRIPT                       \n")
+cat("═══════════════════════════════════════════════════════════════════\n")
+
+cat("\nED Bed-Hour Costs:\n")
+cat("  1. Schreyer KE, Martin R. The Economics of an Admissions Holding Unit.\n")
+cat("     Western Journal of Emergency Medicine. 2017;18(4):553-558.\n")
+cat("     doi:10.5811/westjem.2017.4.32740\n")
+cat("     --> Personnel costs: $58.20/bed-hour (2010-2011 data)\n")
+cat("\n")
+cat("  2. Canellas MM, Jewell M, Edwards JL, et al. Measurement of Cost of\n")
+cat("     Boarding in the Emergency Department Using Time-Driven Activity-Based\n")
+cat("     Costing. Annals of Emergency Medicine. 2024;84(4):410-419.\n")
+cat("     doi:10.1016/j.annemergmed.2024.05.013\n")
+cat("     --> Daily boarding cost: $1,856 (~$77/hour)\n")
+
+cat("\nX-Ray Costs:\n")
+cat("  3. Dabus G, Hirsch JA, Booker MT, Silva E. Practice Expense and Its\n")
+cat("     Impact on Radiology Reimbursement. Journal of the American College\n")
+cat("     of Radiology. 2025. doi:10.1016/j.jacr.2025.02.047\n")
+cat("     --> CPT 71046 in ED: $98.53 (technical) + $30-40 (professional)\n")
+cat("     --> Total Medicare-allowed: $120-140 per study\n")
+
 sink()
+
+cat("\n*** Cost analysis complete. Output saved to outputs/tables/costs.txt ***\n")

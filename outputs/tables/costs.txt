@@ -27,35 +27,40 @@ Imaging (statistically significant effects only):
   Additional X-rays per batched complier: 0.959 (p < 0.001)
   [Other modalities not statistically significant]
 
-=== STEP 3: COST PARAMETERS ===
+=== STEP 3: COST PARAMETERS (Literature-Based) ===
 
-Imaging costs (Medicare Physician Fee Schedule 2024):
-  X-ray (professional + facility): $ 60 - $ 100  (mean $ 80 )
+X-ray costs (Medicare-allowed, ED setting):
+  Source: Dabus et al. (2025) JACR doi:10.1016/j.jacr.2025.02.047
+  Technical (HOPPS): $98.53 + Professional: $30-40 = $120-140 total
+  Range used: $ 100 - $ 160  (mean $ 130 )
 
-ED operational costs (from literature):
-  Bed-hour: $ 75 - $ 125  (mean $ 100 )
+ED bed-hour costs:
+  Source 1: Schreyer & Martin (2017) WJEM - $58.20/hr (2010-11)
+            Inflation-adjusted to 2024: ~$83/hr
+  Source 2: Canellas et al. (2024) Ann Emerg Med - $77/hr
+  Range: $ 75 - $ 100  (mean $ 85 )
 
 === STEP 4: PER-PATIENT COSTS ===
 
 Excess imaging cost (X-ray only):
-  Low: $ 58 
-  Mean: $ 77 
-  High: $ 96 
+  Low: $ 96 
+  Mean: $ 125 
+  High: $ 153 
 
 Excess capacity cost:
   Additional bed-hours: 2.64 
   Low: $ 198 
-  Mean: $ 264 
-  High: $ 330 
+  Mean: $ 224 
+  High: $ 264 
 
 TOTAL cost per batched complier:
-  Low: $ 255 
-  Mean: $ 341 
-  High: $ 426 
+  Low: $ 294 
+  Mean: $ 349 
+  High: $ 417 
 
 Cost decomposition (mean estimates):
-  Imaging share: 22.5 %
-  Capacity share: 77.5 %
+  Imaging share: 35.7 %
+  Capacity share: 64.3 %
 
 === STEP 5: ANNUAL COSTS (STUDY SITE) ===
 
@@ -69,8 +74,8 @@ Annualized figures:
   Annual batched compliers: 650 
 
 ANNUAL COST OF DISCRETIONARY BATCHING:
-  Mean: $ 221,558 
-  Range: $ 166,169  - $ 276,948 
+  Mean: $ 226,996 
+  Range: $ 191,118  - $ 271,457 
 
 === STEP 6: ANNUAL COSTS BY ED SIZE ===
 
@@ -83,13 +88,13 @@ Assumptions:
         TABLE: Estimated Annual Cost of Discretionary Batch Ordering by ED Size        
 ═══════════════════════════════════════════════════════════════════════════════════════
 
-ED Type                       Annual Vol.      Batched     Annual Cost              95% Range
+ED Type                       Annual Vol.      Batched     Annual Cost                  Range
                                              Compliers          (Mean)                       
 ─────────────────────────────────────────────────────────────────────────────────────────────── 
-Small (Rural/Community)            20,000          333        $113,436   ($85,077 - $141,795)
-Medium (Suburban)                  40,000          666        $226,872  ($170,154 - $283,590)
-Large (Urban)                      60,000          999        $340,308  ($255,231 - $425,386)
-Study Site (Mayo Clinic)           39,083          650        $221,422  ($166,066 - $276,777)
+Small (Rural/Community)            20,000          333        $116,220   ($97,851 - $138,984)
+Medium (Suburban)                  40,000          666        $232,440  ($195,702 - $277,968)
+Large (Urban)                      60,000          999        $348,661  ($293,553 - $416,952)
+Study Site (Mayo Clinic)           39,083          650        $226,856  ($191,000 - $271,290)
 ─────────────────────────────────────────────────────────────────────────────────────────────── 
 
 === ADDITIONAL METRICS (Study Site, Annualized) ===
@@ -105,14 +110,14 @@ Resource utilization:
 
 Intervention scenarios:
   If intervention reduces discretionary batching by 25%:
-    Annual savings: $ 55,390 
+    Annual savings: $ 56,749 
   If intervention reduces discretionary batching by 50%:
-    Annual savings: $ 110,779 
+    Annual savings: $ 113,498 
 
 === CONSERVATIVE NATURE OF ESTIMATES ===
 
 Excluded cost categories (would increase estimates):
-  1. Non-significant imaging effects (US, CT): +~$68/patient
+  1. Non-significant imaging effects (US, CT): would add ~$50-80/patient
   2. Radiologist interpretation time
   3. Physician cognitive burden
   4. Patient time costs and lost productivity
@@ -122,9 +127,11 @@ Excluded cost categories (would increase estimates):
   8. Spillover congestion effects on other patients
 
 Sensitivity: Including all imaging point estimates:
-  Imaging cost would be: $ 163  (vs. $ 77 )
-  Total cost would be: $ 426  (vs. $ 341 )
-  Increase: 25.2 %
+  Additional US cost: $ 13 
+  Additional CT cost: $ 45 
+  Total imaging cost would be: $ 183  (vs. $ 125 )
+  Total cost would be: $ 407  (vs. $ 349 )
+  Increase: 16.6 %
 
 ═══════════════════════════════════════════════════════════════════
                     SUMMARY FOR MANUSCRIPT                         
@@ -133,10 +140,33 @@ Sensitivity: Including all imaging point estimates:
 Key figures to report:
   Complier share: 20%
   Batched compliers (share of batched that is discretionary): 51%
-  Cost per batched complier: $ 341  ($ 255 -$ 426 )
-    - Imaging component: $ 77  ( 23 %)
-    - Capacity component: $ 264  ( 77 %)
-  Annual cost (medium ED, 40K visits): $ 226,872 
-  Annual cost (large ED, 60K visits): $ 340,308 
+  Cost per batched complier: $ 349  ($ 294 -$ 417 )
+    - Imaging component: $ 125  ( 36 %)
+    - Capacity component: $ 224  ( 64 %)
+  Annual cost (medium ED, 40K visits): $ 232,440 
+  Annual cost (large ED, 60K visits): $ 348,661 
   Bed-hours freed (study site):  1717 /year
   Additional visits enabled:  425 /year
+
+═══════════════════════════════════════════════════════════════════
+                    CITATIONS FOR MANUSCRIPT                       
+═══════════════════════════════════════════════════════════════════
+
+ED Bed-Hour Costs:
+  1. Schreyer KE, Martin R. The Economics of an Admissions Holding Unit.
+     Western Journal of Emergency Medicine. 2017;18(4):553-558.
+     doi:10.5811/westjem.2017.4.32740
+     --> Personnel costs: $58.20/bed-hour (2010-2011 data)
+
+  2. Canellas MM, Jewell M, Edwards JL, et al. Measurement of Cost of
+     Boarding in the Emergency Department Using Time-Driven Activity-Based
+     Costing. Annals of Emergency Medicine. 2024;84(4):410-419.
+     doi:10.1016/j.annemergmed.2024.05.013
+     --> Daily boarding cost: $1,856 (~$77/hour)
+
+X-Ray Costs:
+  3. Dabus G, Hirsch JA, Booker MT, Silva E. Practice Expense and Its
+     Impact on Radiology Reimbursement. Journal of the American College
+     of Radiology. 2025. doi:10.1016/j.jacr.2025.02.047
+     --> CPT 71046 in ED: $98.53 (technical) + $30-40 (professional)
+     --> Total Medicare-allowed: $120-140 per study
