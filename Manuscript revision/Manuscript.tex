@@ -153,7 +153,7 @@ efficiency}
 \maketitle
 
 
-\section{Introduction}\label{sec:1}
+\section{Introduction}\label{sec:introduction}
 
 Advanced imaging is simultaneously an emergency department's (ED) most
 powerful diagnostic tool and one of its most significant operational
@@ -221,7 +221,7 @@ data from two leading U.S. hospitals---Mayo Clinic and Massachusetts
 General Hospital---we first provide evidence of significant variation in
 emergency physicians' batching behavior. Batching varies significantly
 among physicians working in the same ED, treating patients with the same
-complaint and severity (Figure \ref{fig: Variation}). By making use of
+complaint and severity (Figure \ref{fig:Variation}). By making use of
 this variation, we next investigate whether being seen by a ``batcher''
 or a ``sequencer'' physician has implications in terms of performance
 metrics such as length of stay (LOS), number of imaging studies, 72-hr
@@ -240,8 +240,7 @@ tests.
 \end{flushleft}
 \end{figure}
 
-\subsection{Challenges and Empirical
-Strategy}\label{challenges-and-empirical-strategy}
+\subsection{Challenges and Empirical Strategy}\label{sec:challenges}
 
 While the importance of understanding batching behavior in EDs is
 evident, generating causal evidence of its effects on patient outcomes
@@ -338,7 +337,7 @@ Order to result: MRI (mins) & --- & 374.7 [229.5, 683.7] \\
 
 Our empirical strategy closely follows the literature that relies on the
 quasi-random assignment of agents to cases, often referred to as the
-``judges design.'' \citep[\citet{dobbie2018effects}]{Dahl2014}. Studies
+``judges design'' \citep[\citet{dobbie2018effects}]{Dahl2014}. Studies
 in this literature typically exploit variation in judges' sentencing
 leniency within the same court. Similarly, we exploit variation in
 batching across physicians working in the same ED through a measure we
@@ -362,8 +361,7 @@ the effect for marginal patients whose batching decisions depend on the
 provider, we gain deeper insights into the critical implications of
 batch ordering driven by physician discretion.
 
-\subsection{Main Findings and
-Contributions}\label{main-findings-and-contributions}
+\subsection{Main Findings and Contributions}\label{sec:contributions}
 
 Whether batch ordering improves or hinders ED efficiency is an active
 debate among emergency physicians. Proponents argue that initiating
@@ -401,15 +399,15 @@ initiating multiple diagnostic processes simultaneously, batch ordering
 results in significantly longer processing times and increased resource
 utilization without corresponding improvements in patient outcomes. We
 validate these findings through heterogeneity analyses across seven
-high-batching chief complaint categories, finding consistent patterns
---- increased imaging without efficiency gains or quality improvements
---- across all clinical scenarios. These findings have important
-implications, highlighting that ED managers should consider strategies
-to reduce discretionary batching to improve diagnostic testing
-workflows. We shed light on these strategies and provide actionable
-insights on how ED managers can achieve them.
+high-batching chief complaint categories, finding consistent
+patterns---increased imaging without efficiency gains or quality
+improvements---across all clinical scenarios. These findings have
+important implications, highlighting that ED managers should consider
+strategies to reduce discretionary batching to improve diagnostic
+testing workflows. We shed light on these strategies and provide
+actionable insights on how ED managers can achieve them.
 
-\section{Related Literature}\label{related-literature}
+\section{Related Literature}\label{sec:lit}
 
 In EDs, physicians face a fundamental choice in how they sequence
 diagnostic imaging tests: they can order multiple tests simultaneously
@@ -499,8 +497,8 @@ processes simultaneously \citep{song2017closing}, recent evidence
 suggests it may lead to increased testing volumes that could overwhelm
 imaging departments and extend wait times
 \citep[\citet{saghafian2015operations}]{Jessome2020}. The information
-value of sequential testing ---where results from initial tests inform
-the need for subsequent ones ---creates a fundamental tension between
+value of sequential testing---where results from initial tests inform
+the need for subsequent ones---creates a fundamental tension between
 operational and diagnostic efficiency that has not been well studied.
 Our analysis provides novel evidence on this tradeoff, showing how
 different test ordering strategies affect operational metrics and
@@ -511,7 +509,7 @@ through which batch ordering affects operational performance, allowing
 us to distinguish between efficiency gains from parallel processing and
 potential losses from increased diagnostic intensity.
 
-\subsection{Hypothesis Development}\label{hypothesis-development}
+\subsection{Hypothesis Development}\label{sec:hypotheses}
 
 Building on the literature reviewed above, we develop formal hypotheses
 about how batch ordering affects ED operations. While prior work has
@@ -545,6 +543,7 @@ twice as many tests as their peers, batching likely amplifies these
 tendencies by removing the natural stopping points that sequential
 results provide. Therefore:
 
+\vspace{1em}
 \begin{quote}
 \small
 \textit{\textbf{Hypothesis 1.} Batch ordering will increase the total number of imaging tests performed compared to standard practice due to the loss of information value from initial test results.}
@@ -617,9 +616,9 @@ quasi-experimental design. By leveraging variation in physicians'
 batching tendencies under random patient assignment, we can determine
 whether these theoretical mechanisms manifest in actual ED operations.
 
-\section{Setting, Data, and Models}\label{sec:3}
+\section{Setting, Data, and Models}\label{sec:settingdata}
 
-\subsection{Empirical Setting}\label{sec:3.1}
+\subsection{Empirical Setting}\label{sec:setting}
 
 Our study uses data from two large U.S. emergency departments (EDs): the
 Mayo Clinic of Arizona and Massachusetts General Hospital (MGH). The MGH
@@ -668,7 +667,7 @@ ordering for non-urgent cases, resulting in negligible ED MRI use. MGH
 does not have this policy, so we included MRI in their generalizability
 analysis.
 
-\subsection{Data}\label{data}
+\subsection{Data}\label{sec:data}
 
 Our primary data comes from the Mayo Clinic of Arizona ED, a tertiary
 care hospital without obstetrical services, an inpatient pediatrics
@@ -730,7 +729,7 @@ Fevers/Sweats/Chills, Falls/Motor Vehicle Crashes/Assaults/Trauma,
 Dizziness/Lightheadedness/Syncope, Extremity Complaints, and
 Fatigue/Weakness.
 
-\subsubsection{Treatment Variable}\label{treatment-variable}
+\subsubsection{Treatment Variable}\label{sec:treatvar}
 
 Our treatment variable, \(Batched_{i,t}\), is an indicator that equals
 \(1\) if patient \(i\) had their tests batch-ordered during their ED
@@ -763,7 +762,7 @@ conducted around this time window, batch size threshold, and the timing
 of the batch show that our results are robust to variations in these
 values.
 
-\subsubsection{Dependent Variables}\label{dependent-variables}
+\subsubsection{Dependent Variables}\label{sec:dependentvar}
 
 The primary outcomes of interest are the ED's efficiency and
 effectiveness measures. We measure patient length of stay in two ways.
@@ -934,7 +933,7 @@ Together, we observe that batch tendency likely meets the criteria for a
 valid IV. In the next section, we formalize our IV analysis questions
 and more formally establish the validity of our IV.
 
-\subsubsection{IV Analysis}\label{iv-analysis}
+\subsubsection{IV Analysis}\label{sec:ivanalysis}
 
 To estimate the reduced-form effects of being treated by a
 batch-preferring physician (batcher), we estimate the following
@@ -1008,7 +1007,7 @@ Necessary controls & --- & Yes & Yes \\
 Precision controls & --- & No & Yes \\
 \midrule
 Adj. $R^2$ & --- & 0.022 & 0.74 \\
-F-stat & --- & 171.9 & 171.9 \\
+F-stat & --- & 177.5 & 171.9 \\
 Observations & 11,679 & 11,679 & 11,679 \\
 \bottomrule
 \end{tabular}
@@ -1020,7 +1019,7 @@ $^{***} p < 0.01$.
 \end{threeparttable}
 \end{table}
 
-\subsubsection{UJIVE Construction}\label{ujive-construction}
+\subsubsection{UJIVE Construction}\label{sec:ujive}
 
 Leniency designs like ours, where many providers generate the
 identifying variation, can suffer from many-instrument bias in
@@ -1110,8 +1109,7 @@ first-stage results are consistently same-signed and sizable across all
 subsamples. The coefficient magnitudes differ across subgroups because
 rates of batching differ.
 
-\subsubsection{More Details on Our LATE
-Estimates}\label{more-details-on-our-late-estimates}
+\subsubsection{More Details on Our LATE Estimates}\label{sec:late}
 
 Our two-stage least squares estimates represent the LATE of batch
 ordering for ``compliers''---patients whose testing strategy depends on
@@ -1159,7 +1157,7 @@ clinical intuition: these presentations involve diagnostic uncertainty
 where physician practice style most influences testing decisions. EC.4
 provides additional details on complier estimation and characteristics.
 
-\section{Results and Discussion}\label{results-and-discussion}
+\section{Results and Discussion}\label{sec:results}
 
 \subsection{Reduced-Form Results}\label{sec:reducedform}
 
@@ -1232,8 +1230,7 @@ mechanisms behind the observed reduced-form effects. This mediation
 analysis provides a crucial step toward a well-identified IV analysis,
 which we present in Section 4.2 using both 2SLS and UJIVE estimators.
 
-\subsection{Instrumental Variables
-Estimation}\label{instrumental-variables-estimation}
+\subsection{Instrumental Variables Estimation}\label{sec:iv_results}
 
 Next, we examine the effects of batch ordering imaging tests using the
 IV strategy described above. We first analyze the effects of batching on
@@ -1414,7 +1411,7 @@ the causal effect of imaging-specific batching behavior rather than
 general physician diagnostic style.
 
 \subsection{Potential Mechanism: Mediation
-Analysis}\label{potential-mechanism-mediation-analysis}
+Analysis}\label{sec:mediation}
 
 To better understand the mechanisms by which batching in the ED affects
 key operational outcomes---LOS and time to disposition---we investigated
@@ -1504,8 +1501,7 @@ non-significant (\(c^\prime = -0.100\), \(p = 0.216\)). This further
 highlights that the perceived efficiency gains from batching outweigh
 the operational burdens associated with increased diagnostic testing.
 
-\subsection{Heterogeneous Effects: ED Capacity
-Status}\label{heterogeneous-effects-ed-capacity-status}
+\subsection{Heterogeneous Effects: ED Capacity Status}\label{sec:HTEs}
 
 Given that ED capacity constraints significantly influence operational
 decisions, we examine whether the effects of batching vary across
@@ -1593,8 +1589,7 @@ suggests that interventions to reduce unnecessary batching are warranted
 across all operational contexts, not only during periods of normal
 capacity.
 
-\subsection{Determinants of Image
-Batching}\label{determinants-of-image-batching}
+\subsection{Determinants of Image Batching}\label{sec:determinants}
 
 To investigate the drivers of batching and image ordering behavior, we
 examine the relationship between physician characteristics, ED crowding,
@@ -1783,7 +1778,7 @@ Significance levels: $^{***}p < 0.001$
 \end{threeparttable}
 \end{table}
 
-\subsection{Managerial Implications}\label{managerial-implications}
+\subsection{Managerial Implications}\label{sec:implications}
 
 Our findings have important implications for the management of ED
 operations. First, while potentially appealing as a workflow efficiency

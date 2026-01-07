@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 13:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 13:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,12 +846,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 [1
 
-{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `fig: Variation' on page 2 undefined on input line 224.
-
-[2]
-<../outputs/figures/fig1_boxplot.png, id=211, 722.7pt x 433.62pt>
+{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<../outputs/figures/fig1_boxplot.png, id=212, 722.7pt x 433.62pt>
 File: ../outputs/figures/fig1_boxplot.png Graphic file (type png)
 <use ../outputs/figures/fig1_boxplot.png>
 Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 236.
@@ -860,50 +856,54 @@ Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line
 
 LaTeX Warning: Text page 5 contains only floats.
 
-[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
+[5] [6] [7] [8] [9] [10] [11] [12] [13]
+
+LaTeX Warning: Reference `sec:3.1' on page 14 undefined on input line 854.
+
+[14] [15]
 <../outputs/figures/fig2_panel_batched_standardized.png, id=476, 867.24pt x 505.89pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
-Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 905.
+Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 904.
 (pdftex.def)             Requested size: 469.75499pt x 274.02563pt.
 
-LaTeX Warning: Reference `fig: tendency' on page 16 undefined on input line 914.
+LaTeX Warning: Reference `fig: tendency' on page 16 undefined on input line 913.
 
 <../outputs/figures/Fig3_firststage.png, id=478, 578.16pt x 433.62pt>
 File: ../outputs/figures/Fig3_firststage.png Graphic file (type png)
 <use ../outputs/figures/Fig3_firststage.png>
-Package pdftex.def Info: ../outputs/figures/Fig3_firststage.png  used on input line 925.
+Package pdftex.def Info: ../outputs/figures/Fig3_firststage.png  used on input line 924.
 (pdftex.def)             Requested size: 305.33788pt x 229.00368pt.
 [16 <../outputs/figures/fig2_panel_batched_standardized.png>] [17 <../outputs/figures/Fig3_firststage.png>] [18] [19] [20] [21] [22] [23] [24]
 <figures/dag.png, id=574, 960.81503pt x 540.5629pt>
 File: figures/dag.png Graphic file (type png)
 <use figures/dag.png>
-Package pdftex.def Info: figures/dag.png  used on input line 1456.
+Package pdftex.def Info: figures/dag.png  used on input line 1453.
 (pdftex.def)             Requested size: 469.75499pt x 264.28426pt.
 [25 <./figures/dag.png>] [26] [27]
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1606.
+(Font)              size <6> substituted on input line 1601.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1606.
+(Font)              size <6> substituted on input line 1601.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1606.
+(Font)              size <6> substituted on input line 1601.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 1606.
+(Font)              size <6> substituted on input line 1601.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 1606.
+(Font)              size <6> substituted on input line 1601.
 
 [28] [29] [30] [31] [32]
 
-LaTeX Warning: Reference `fig:heterogeneity' on page 33 undefined on input line 1902.
+LaTeX Warning: Reference `fig:heterogeneity' on page 33 undefined on input line 1897.
 
 [33] [34] (./Manuscript.bbl [35
 
@@ -934,14 +934,14 @@ Package rerunfilecheck Info: File `Manuscript.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29307 strings out of 469476
- 576066 string characters out of 5467217
+ 575887 string characters out of 5467217
  957773 words of memory out of 5000000
  57307 multiletter control sequences out of 15000+600000
  648854 words of font info for 117 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,20n,104p,740b,1321s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Manuscript.pdf (41 pages, 1445629 bytes).
+Output written on Manuscript.pdf (41 pages, 1445555 bytes).
 PDF statistics:
  957 PDF objects out of 1000 (max. 8388607)
  855 compressed objects within 9 object streams
