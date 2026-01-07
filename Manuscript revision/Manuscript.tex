@@ -569,6 +569,7 @@ process. This ``information overload'' effect, combined with the
 additional tests ordered as predicted in H1, suggests that batching may
 paradoxically increase rather than decrease processing times:
 
+\vspace{1em}
 \begin{quote}
 \small
 \textit{\textbf{Hypothesis 2.} Batch ordering will increase patient length of stay and time to disposition compared to standard practice, as the operational constraints of imaging and increased test volume outweigh any potential benefits of parallel processing.}
@@ -591,6 +592,7 @@ consequences may opt for more conservative disposition decisions
 multiple test results, particularly with incidental findings, may
 trigger defensive medicine behaviors:
 
+\vspace{1em}
 \begin{quote}
 \small
 \textit{\textbf{Hypothesis 3.} Batch ordering will increase hospital admission rates through increased diagnostic intensity and the influence of incidental findings on clinical decision-making.}
@@ -606,6 +608,7 @@ review intensify. Under these conditions, physicians may reserve
 batching for cases where it is clinically essential rather than
 convenient:
 
+\vspace{1em}
 \begin{quote}
 \small
 \textit{\textbf{Hypothesis 4.} The effects of batch ordering on LOS and test volume will be attenuated under conditions of major ED overcapacity, as physicians become more selective in their batching decisions.}
@@ -1501,7 +1504,58 @@ non-significant (\(c^\prime = -0.100\), \(p = 0.216\)). This further
 highlights that the perceived efficiency gains from batching outweigh
 the operational burdens associated with increased diagnostic testing.
 
-\subsection{Heterogeneous Effects: ED Capacity Status}\label{sec:HTEs}
+\subsection{Heterogeneity Across Clinical
+Presentations}\label{sec:heterogeneity_complaints}
+
+Our sample includes seven chief complaint categories that vary
+substantially in both clinical complexity and prevalence of batching,
+ranging from 7\% for fevers to 24\% for polytrauma cases. To assess
+whether the effects of batching depend on clinical presentation, we
+estimate our primary 2SLS specification separately for each complaint
+category. This analysis allows us to determine whether the operational
+inefficiencies we document are driven by specific clinical scenarios or
+represent a more general phenomenon.
+
+Figure \ref{fig:heterogeneity} presents these results. We frame this as
+an exploratory analysis given multiple-hypothesis-testing concerns
+across seven categories and three outcomes. Rather than emphasizing
+statistical significance in subgroups, we focus on whether any clinical
+scenario shows qualitatively different patterns in direction or
+magnitude.
+
+\begin{figure}[t!] 
+\centering 
+\caption{Heterogeneity in Batch Ordering Effects by Chief Complaint} \includegraphics[width=\textwidth]{../outputs/figures/heterogeneity_by_complaint.png} 
+\label{fig:heterogeneity} 
+\begin{flushleft} 
+\footnotesize \textit{Notes:} Each panel shows 2SLS estimates of batching effects for different chief complaints, ordered by batching rate. Error bars show 95\% confidence intervals. All models include full controls. 
+\end{flushleft} 
+\end{figure}
+
+The results reveal striking consistency across clinical presentations.
+Imaging effects are positive across all seven complaint categories,
+ranging from 1.03 to 1.76 additional tests, with six of seven showing
+statistically significant increases despite smaller subgroup sample
+sizes. Notably, Falls/MVA/Assaults/Trauma---our most complex category
+with the highest batching rate (24\%)---shows a 1.13-test increase,
+comparable to simpler presentations. Time effects similarly show no
+evidence of efficiency gains in any category; the complaint-specific
+effects on log LOS closely track the pooled estimate and are uniformly
+non-negative. Quality effects, measured by 72-hour returns with
+admission, are small and statistically indistinguishable from zero
+across all seven complaints.
+
+This consistency suggests that the operational inefficiencies of
+discretionary batching are not artifacts of specific clinical scenarios.
+Even in complex presentations where comprehensive imaging might seem
+most justified, standard practice --- preserving diagnostic
+flexibilityyields operational performance that is similar or better
+without compromising care quality. These findings simplify policy
+recommendations: interventions to reduce unnecessary batching appear
+warranted across the full spectrum of ED presentations, not only for
+particular complaint types.
+
+\subsection{Heterogeneity Across ED Capacity Status}\label{sec:HTEs}
 
 Given that ED capacity constraints significantly influence operational
 decisions, we examine whether the effects of batching vary across
@@ -1846,65 +1900,99 @@ experience, gender, or training) and the tendency to batch, unobserved
 characteristics could influence both the tendency to batch and other
 aspects of patient care. For instance, physicians who tend to
 batch-order tests might also have different approaches to patient
-assessment, documentation practices, or consultation patterns, each of
-which can independently affect LOS and disposition decisions. Removing
-the potential impact of such unobserved factors might require running a
-fully randomized experiment. However, the consistency and magnitude of
-our findings across (a) both 2SLS and UJIVE specifications, (b)
-specifications with and without precision controls for laboratory
-ordering and physician characteristics, and (c) two different hospitals
-with different practice settings provide strong evidence behind our
-findings. In particular, unobserved physician characteristics would need
-to be substantial to invalidate our core finding that batching increases
-both test utilization and processing times.
+assessment, documentation practices, or consultation patterns. Each of
+these can independently affect LOS and disposition decisions. Removing
+the potential impact of such unobserved factors might require a fully
+randomized experiment. However, we find consistency and magnitude in our
+findings across both 2SLS and UJIVE specifications, with and without
+precision controls for laboratory ordering and physician
+characteristics, and across two hospitals with different practice
+settings. This consistency provides strong evidence behind our findings.
+In particular, unobserved physician characteristics would need to be
+substantial to invalidate our core finding that batching increases both
+test utilization and processing times.
 
 Nevertheless, the validity of our results largely depends on our
-identification strategy (Section \ref{sec:identification}). Thus, we
-performed several robustness checks to further strengthen our confidence
-in the validity of our results. To address potential many-instrument
-bias in leniency designs, we implement the Unbiased Jackknife
-Instrumental Variables Estimator (UJIVE), which uses leave-one-out
-predictions to eliminate mechanical correlation between the instrument
-and structural error
+identification strategy (Section \ref{sec:identification}). To further
+strengthen our confidence, we performed several robustness checks.
+First, to address potential many-instrument bias in leniency designs, we
+implement the Unbiased Jackknife Instrumental Variables Estimator
+(UJIVE). This estimator uses leave-one-out predictions to eliminate
+mechanical correlation between the instrument and structural error
 \citep{kolesar2015manyinvalid, goldsmithpinkham2025leniencydesignsoperatorsmanual}.
 The close agreement between 2SLS and UJIVE estimates across all outcomes
 (Table \ref{tab:results_table}) increases confidence that
-many-instrument bias is not driving our findings. To address potential
-exclusion restriction violations, we conduct sensitivity analyses
-following \citet{conley2012plausibly} that allow for plausible direct
-effects of the instrument on outcomes; our estimates remain significant
-across a wide range of assumed violation magnitudes (Figure EC.9.1).
-Third, we conduct a placebo test examining complaints in which imaging
-is not ordered and find null effects, supporting the idea that batch
-tendency captures batching-specific behavior (Table EC.8.1).
+many-instrument bias is not driving our findings. Second, to address
+potential exclusion restriction violations, we conduct sensitivity
+analyses following \citet{conley2012plausibly}. These analyses allow for
+plausible direct effects of the instrument on outcomes, and our
+estimates remain significant across a wide range of assumed violation
+magnitudes (Figure EC.9.1). Third, we conduct a placebo test by
+examining complaints in which imaging is not ordered and find null
+effects, supporting the idea that batch tendency captures
+batching-specific behavior (Table EC.8.1).
 
-We also verify robustness to alternative outcome measures. We examine
-treatment time (from physician contact to disposition), which excludes
-both waiting room delays and post-disposition boarding; results are
-qualitatively unchanged (Table EC.11.1). We also verify robustness to
-measuring 72-hour returns regardless of admission status; effects remain
-small and statistically indistinguishable from zero (Table EC.11.2).
-Additionally, we confirm robustness to nonlinear model
-specifications---logit for binary outcomes and Poisson for counts---with
-average marginal effects aligning closely with our linear IV estimates
-(Table EC.10.1).
+We also check robustness to other outcome measures. Treatment time,
+meaning time from doctor contact to disposition (excluding waiting and
+post-disposition delays), shows no material difference by treatment
+(Table EC.11.1). For 72-hour returns, regardless of admission, effects
+remain small and statistically insignificant (Table EC.11.2). For
+nonlinear models (logit for binary outcomes, Poisson for counts),
+average marginal effects are similar to linear IV estimates (Table
+EC.10.1).
 
-To assess generalizability across clinical scenarios, we conduct
-heterogeneity analyses across seven chief complaint categories that vary
-in complexity and prevalence of batching. We find consistent
-patterns---increased imaging without efficiency gains or quality
-improvements---across all complaint types (Figure
-\ref{fig:heterogeneity}), strengthening confidence that specific
-clinical presentations do not drive our findings.
+To assess whether our results generalize to different clinical
+scenarios, we conduct heterogeneity analyses across seven chief
+complaint categories that vary in complexity and prevalence of batching.
+In every category, we observe the same key patterns: batching increases
+imaging without efficiency gains or quality improvements (Figure
+\ref{fig:heterogeneity}). Our findings are thus not driven by a specific
+complaint type, which increases confidence in the general applicability
+of our results.
 
-Finally, to address monotonicity, we follow the approaches of
-\citet{dobbie2018effects} and \citet{bhuller2020incarceration} and check
-whether our instrument shows a positive first-stage coefficient across
-key complaint, severity, capacity, and demographic-related subsamples
-(Figure EC.7.1). Across all robustness checks and main outcomes, we find
-that the magnitudes of our estimates remain stable, and the implications
-of our results remain consistent. Our robustness checks thus provide us
-with further confidence in the validity of our main findings.
+To address monotonicity, we follow established methods and check whether
+our instrument has a positive first-stage coefficient across subsamples
+defined by complaint, severity, capacity, and demographics (Figure
+EC.7.1). We consistently find stable effect sizes and implications
+across all robustness checks. Taken together, these robustness analyses
+give us further confidence in our main conclusion that batching reliably
+increases imaging and processing delays.
+
+Beyond these methodological considerations, several scope limitations
+warrant acknowledgment. First, we cannot determine the extent to which
+the additional imaging from batching represents unnecessary testing
+versus frontloading of diagnostics that would eventually occur in the
+inpatient setting. However, interpreting our findings purely as
+frontloading is complicated by the fact that admission itself is
+affected by batching. For example, we observe a 40 percentage-point
+increase in admission probability, suggesting that the tests themselves
+influence disposition decisions rather than simply shifting testing
+location. Multiple mechanisms may operate simultaneously. Some
+additional tests may reveal genuinely admission-worthy conditions, while
+others may trigger defensive admissions through incidental findings.
+Distinguishing between these pathways would require linked ED-inpatient
+imaging data; accordingly, this remains an important direction for
+future research. To address this concern directly, we re-estimated our
+main specifications, restricting the sample to patients who were
+ultimately discharged from the ED. This subsample is informative
+because, by construction, these patients do not receive subsequent
+inpatient diagnostic workups, which eliminates the possibility that ED
+imaging merely substitutes for tests that would have occurred during
+hospitalization. As shown in Table EC.12.1, the estimated effect of
+batching on the number of distinct imaging tests remains large,
+positive, and statistically significant across UJIVE and 2SLS
+specifications. Magnitudes are comparable to those in the full sample.
+
+Second, our findings apply to moderate-to-high acuity patients with
+complaints that commonly require multiple imaging studies. This group
+accounts for approximately 24\% of ED encounters and 41\% of imaging
+resource utilization. In contrast, the effects of batching in low-acuity
+or fast-track settings remain unexplored, as imaging is less common and
+batching is rare in these contexts. Our sample restrictions, therefore,
+ensure statistical identification and focus on the clinically meaningful
+population where batching decisions are consequential and discretionary.
+As a result, readers should interpret our estimates as applying to this
+specific margin of physician decision-making.
 
 \section{Conclusion}\label{conclusion}
 
@@ -1948,6 +2036,20 @@ results of one test may eliminate the need for another. Our findings
 suggest that discretion allows physicians to tailor their test ordering
 to specific situations. However, it may also lead to resource-intensive
 practices that do not benefit patients or the ED system.
+
+Our comparison of batch ordering versus standard practice reflects the
+real choice facing ED managers: should protocols encourage comprehensive
+upfront testing, or should they preserve diagnostic flexibility? Our
+estimates show that preserving optionality through standard
+practice---which allows information from initial tests to guide
+subsequent decisions---reduces both testing intensity and processing
+times without compromising care quality. The consistency of these
+findings across seven chief complaint categories, from simple
+presentations like fevers to complex polytrauma cases (Figure
+\ref{fig:heterogeneity}), simplifies policy recommendations.
+Interventions to reduce discretionary batching appear warranted across
+the full spectrum of ED presentations rather than being limited to
+particular clinical scenarios.
 
 Moreover, excess testing in EDs is not a benign phenomenon. It is
 associated with increased risks, including patient exposure to
