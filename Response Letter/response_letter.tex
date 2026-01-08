@@ -756,7 +756,7 @@ This framing reflects the fundamental information structure of emergency medicin
 We also clarified the policy relevance of this comparison in Section 5.1:
 
 \begin{quote}
-``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice---which allows information from initial tests to guide subsequent decisions---reduces testing intensity and improved outcomes such as LOS.''
+``Our comparison of batch ordering versus standard practice reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces both testing intensity and processing times without compromising care quality.''
 \end{quote}
 
 \textbf{2. Addressing the exclusion restriction concern through expanded controls:}
@@ -1011,7 +1011,7 @@ First, our revised specification directly tests the reviewer's specific examples
 
 Second, even if exclusion restriction concerns persist, our reduced-form estimates—the direct effect of being assigned to a high-batch-tendency physician—represent causal effects of physician assignment that do not require the exclusion restriction. These estimates inform ED management decisions about physician training, feedback, and protocols regardless of the precise mechanism. When we control for observable pathways (labs, physician characteristics), the reduced-form effects remain substantial for imaging volume, while attenuating for time outcomes, providing managers with actionable evidence about which outcomes are most affected by physician assignment.
 
-Third, as mentioned earlier, we have added formal sensitivity analysis to rigorously test the potential impact the violation of exclusion restriction might have on our main findings (EC.9). Finally, have revised Section 4.8 (Limitations) to acknowledge this concern more directly, removing claims that violations ``may likely only have a small impact'' and instead transparently presenting our validation evidence through expanded controls, while acknowledging that definitive exclusion restriction tests are not possible in observational settings.
+Third, as mentioned earlier, we have added formal sensitivity analysis to rigorously test the potential impact the violation of exclusion restriction might have on our main findings (EC.9). Finally, have revised Section 4.9 (Limitations) to acknowledge this concern more directly, removing claims that violations ``may likely only have a small impact'' and instead transparently presenting our validation evidence through expanded controls, while acknowledging that definitive exclusion restriction tests are not possible in observational settings.
 
 \color{black}
 
@@ -1130,14 +1130,14 @@ We have made the following changes to address your concerns which we believe hav
     
     \item \textbf{Added discussion of the information problem}. In Section 3.2.1, we explain why we focus on early batching:
     \begin{quote}
-    ``We focus on batches that concern the first imaging tests ordered during the patient encounter because this represents the moment of maximum diagnostic uncertainty, when physicians must decide their testing strategy before clinical information unfolds. For patients whose testing is not fully determined by medical necessity, physicians cannot know ex-ante which patients will ultimately require multiple tests, leading to instances of early batching as discretionary choice based on practice style rather than clinical necessity.''
+    ``We focus on early batching (within 5 minutes) because this represents the moment of maximum diagnostic uncertainty when physicians must decide their testing strategy before clinical information unfolds. Physicians cannot know ex-ante which patients will ultimately require multiple tests, making early batching a discretionary choice based on practice style rather than clinical necessity.''
     \end{quote}
 
 Regarding potential harms from delayed sequential testing, we find no evidence on 72-hour return, suggesting sequential approaches do not cause harmful diagnostic delays.
 
 \item \textbf{Clarified why ``everything else'' is the right comparison}. We added the following to Section 5.1:
 \begin{quote}
-    ``This comparison reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces testing intensity.''
+    ``Our comparison of batch ordering versus standard practice reflects the real choice facing ED managers: should protocols encourage comprehensive upfront testing or preserve diagnostic flexibility? Our estimates show that preserving optionality through standard practice—which allows information from initial tests to guide subsequent decisions—reduces both testing intensity and processing times without compromising care quality.''
 \end{quote}
 \end{itemize}
 
@@ -1279,7 +1279,7 @@ We have been careful throughout the manuscript to avoid characterizing the addit
 We have added a discussion of this limitation in Section 5.3:
 
 \begin{quote}
-``We cannot determine the extent to which the additional imaging from batching represents unnecessary testing or frontloading of diagnostics that would eventually occur in the inpatient setting. However, interpreting our findings purely as frontloading is complicated by the fact that admission itself is affected by batching—we observe a 39 percentage-point increase in admission probability, suggesting that the tests themselves influence disposition decisions. Multiple mechanisms may operate: some additional tests may reveal genuinely admission-worthy conditions, while others may trigger defensive admissions through incidental findings. Distinguishing between these pathways would require linked ED-inpatient imaging data to examine whether patients who are batched receive correspondingly fewer tests after admission. This remains an important direction for future research.''
+``... we cannot determine the extent to which the additional imaging from batching represents unnecessary testing versus frontloading of diagnostics that would eventually occur in the inpatient setting. However, interpreting our findings purely as frontloading is complicated by the fact that admission itself is affected by batching. For example, we observe a 39 percentage-point increase in admission probability, suggesting that the tests themselves influence disposition decisions rather than simply shifting testing location. Multiple mechanisms may operate simultaneously. Some additional tests may reveal genuinely admission-worthy conditions, while others may trigger defensive admissions through incidental findings. Distinguishing between these pathways would require linked ED-inpatient imaging data; accordingly, this remains an important direction for future research.''
 \end{quote}
 
 We appreciate the reviewer highlighting this distinction, as it has led us to be more precise about the causal pathways our estimates capture and the important questions that remain for future research.
@@ -1337,9 +1337,7 @@ These estimates suggest that relatively modest interventions---such as decision 
 We have added a detailed cost analysis in EC.6, including the above table and discussion. We believe this addition substantially enhances the practical relevance of our findings for ED administrators considering policies to influence physician batching behavior. We thank the reviewer for prompting us to include this important analysis and have referenced it in the main text (Section 4.7), included here for posterity:
 
 \begin{quote}
-``To quantify the financial burden of discretionary batching—where providers intentionally group multiple diagnostic orders rather than placing them individually---we combine our causal estimates with published cost parameters (see EC.6 for details). Adopting a societal perspective, we use Medicare-allowed reimbursement of \$130 per ED radiograph \citep{dabus2025practice} and ED bed-hour costs of \$85 based on time-driven activity-based costing studies \citep{schreyer2017economics, canellas2024measurement}.
-
-Under deliberately conservative assumptions, discretionary batching imposes at least \$349 in direct costs per batched complier: \$125 from excess imaging and \$224 from excess capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (Table EC.X). These estimates represent conservative lower bounds, include only statistically significant imaging effects (excluding ultrasound and CT point estimates), value bed-hours at operational cost rather than throughput value, and exclude downstream costs from the 40 percentage point increase in admission probability. Inpatient stays cost \$10,000–15,000, which would dwarf our direct cost estimates. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies. Even under these conservative assumptions, a 50\% reduction in discretionary batching would save about \$113,000 annually while freeing 850 bed-hours of capacity.''
+``Combining our causal estimates with published cost parameters (see EC.6 for details), we adopt a societal perspective using Medicare-allowed reimbursement of $130 per ED radiograph [@dabus2025practice] and ED bed-hour costs of \$85 based on time-driven activity-based costing studies [@schreyer2017economics, @canellas2024measurement]. Under deliberately conservative assumptions, discretionary batching imposes at least \$349 in direct costs per batched complier: \$125 from excess imaging and \$224 from excess capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (Table EC.6.1). These estimates represent conservative lower bounds, include only statistically significant imaging effects (excluding ultrasound and CT point estimates), value bed-hours at operational cost rather than throughput value, and exclude downstream costs from the 40 percentage point increase in admission probability. Inpatient stays cost \$10,000–15,000, which would dwarf our direct cost estimates. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies. Even under these conservative assumptions, a 50\% reduction in discretionary batching would save about \$113,000 annually while freeing 850 bed-hours of capacity.''
 \end{quote}
 
 We appreciate the reviewer's suggestion, which has led us to provide a more comprehensive assessment of the operational and financial implications of discretionary batching in EDs.
@@ -1407,18 +1405,9 @@ Section 3.2.2 (Dependent Variables):
 
 Section 4.2 (Results): Added clarification: 
 \begin{quote}
-``Discretionary batching also leads to more intensive diagnostic testing. Specifically, the marginal batched patient receives 1.2 more distinct imaging tests (completed studies with documented results), representing a 91\% increase from the mean for standard care patients.''
+``Discretionary batching also leads to more intensive diagnostic testing. The marginal batched patient receives 1.2 additional imaging tests (completed studies with documented results), representing an 88\% increase from the mean for patients managed through standard practice.''
 \end{quote}
 
-Table 4: Added footnote: 
-\begin{quote}
-``Test counts represent performed imaging studies with documented results, not ordered tests. The persistence of increased test volume under batching suggests cancellations do not substantially offset the effect.''
-\end{quote}
-
-Section 5.3 (Limitations): Added: 
-\begin{quote}
-``Our data contains imaging tests that were both ordered and performed. We cannot observe tests that were ordered but subsequently cancelled before completion. However, test cancellation after ordering requires substantial coordination—physicians must call the radiology department to remove patients from imaging queues. This operational friction makes cancellations rare. Moreover, cancelled tests introduce their own inefficiencies: patients experience delays from queuing and preparation, while ED resources are allocated to coordinate cancellations. To the extent that batched orders are more likely to include tests that are ultimately cancelled, our estimates of performed tests would understate the true operational burden of batching behavior.''
-\end{quote}
 
 These clarifications ensure that readers understand our analysis captures actual resource utilization and that potential cancellations would, if anything, strengthen rather than weaken our conclusions about the operational burden of batching.
 
@@ -1927,7 +1916,7 @@ The test asks: if batch tendency captured general physician performance, would w
 
 \item \textbf{Enhanced methods discussion (Section 3.3):} We explain our expanded control strategy and why controlling for laboratory ordering addresses concerns about general diagnostic intensity.
 
-\item \textbf{Expanded limitations (Section 4.8):} We acknowledge that we cannot definitively rule out all exclusion restriction violations. We note that to the extent batch tendency captures general physician intensity, our reduced-form estimates still provide the causal effect of being assigned to a high-batching physician.
+\item \textbf{Expanded limitations (Section 4.9):} We acknowledge that we cannot definitively rule out all exclusion restriction violations. We note that to the extent batch tendency captures general physician intensity, our reduced-form estimates still provide the causal effect of being assigned to a high-batching physician.
 \end{itemize}
 
 
@@ -2153,7 +2142,7 @@ While our results apply to the 25\% of ED visits requiring imaging workups, we w
 \item Added detailed CONSORT diagram (Figure EC.3.1)
 \item Added comparison of excluded vs. included encounters (Table EC.3.2)
 \item Revised Section 3.2 to clarify sample selection rationale with appropriate citations
-\item Added discussion of generalizability in Section 5.3 (Limitations)
+\item Added discussion of generalizability in Section 4.7 
 \end{itemize}
 
 We appreciate the reviewer's attention to this issue, which has led us to provide greater transparency about our sample construction and its implications for interpreting our findings.

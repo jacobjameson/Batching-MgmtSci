@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: response_letter.aux
+The style file: apalike.bst
+Illegal, another \bibstyle command---line 35 of file response_letter.aux
+ : \bibstyle
+ :          {plainnat}
+I'm skipping whatever remains of this command
+Database file #1: ref.bib
+You've used 25 entries,
+            1935 wiz_defined-function locations,
+            644 strings with 9015 characters,
+and the built_in function-call counts, 10855 in all, are:
+= -- 1051
+> -- 535
+< -- 10
++ -- 199
+- -- 186
+* -- 1014
+:= -- 1917
+add.period$ -- 79
+call.type$ -- 25
+change.case$ -- 217
+chr.to.int$ -- 24
+cite$ -- 25
+duplicate$ -- 340
+empty$ -- 697
+format.name$ -- 221
+if$ -- 2048
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 24
+newline$ -- 132
+num.names$ -- 75
+pop$ -- 162
+preamble$ -- 1
+purify$ -- 218
+quote$ -- 0
+skip$ -- 255
+stack$ -- 0
+substring$ -- 809
+swap$ -- 23
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 148
+warning$ -- 0
+while$ -- 87
+width$ -- 0
+write$ -- 331
+(There was 1 error message)
