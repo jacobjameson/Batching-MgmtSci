@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 22:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -327,8 +327,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count325
-)
-No file response_letter.aux.
+) (./response_letter.aux)
 \openout1 = `response_letter.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 101.
@@ -345,6 +344,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 101.
 LaTeX Font Info:    ... okay on input line 101.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 101.
 LaTeX Font Info:    ... okay on input line 101.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -416,19 +416,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 121.
  (/Users/jacobjameson/Library/TinyTeX/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-
-Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 1 undefined on input line 128.
-
-[1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) [1{/Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ] [2] [3
 
-] [4]
-
-Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 5 undefined on input line 196.
-
-[5
+] [4] [5
 
 ]
 <../outputs/figures/fig1_boxplot.png, id=26, 722.7pt x 433.62pt>
@@ -436,46 +428,12 @@ File: ../outputs/figures/fig1_boxplot.png Graphic file (type png)
 <use ../outputs/figures/fig1_boxplot.png>
 Package pdftex.def Info: ../outputs/figures/fig1_boxplot.png  used on input line 236.
 (pdftex.def)             Requested size: 476.98244pt x 286.19008pt.
-
-
-Package natbib Warning: Citation `Traub2016' on page 6 undefined on input line 243.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 6 undefined on input line 243.
-
-
-Package natbib Warning: Citation `Traub2018' on page 6 undefined on input line 243.
-
 <../outputs/figures/fig2_panel_batched_standardized.png, id=27, 867.24pt x 505.89pt>
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
 Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 249.
 (pdftex.def)             Requested size: 476.98244pt x 278.24034pt.
-[6] [7 <../outputs/figures/fig1_boxplot.png>] [8 <../outputs/figures/fig2_panel_batched_standardized.png>]
-
-Package natbib Warning: Citation `Traub2016' on page 9 undefined on input line 301.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 9 undefined on input line 301.
-
-
-Package natbib Warning: Citation `Traub2018' on page 9 undefined on input line 301.
-
-[9]
-
-Package natbib Warning: Citation `Traub2016' on page 10 undefined on input line 306.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 10 undefined on input line 306.
-
-
-Package natbib Warning: Citation `Traub2018' on page 10 undefined on input line 306.
-
-[10] [11]
-
-Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 12 undefined on input line 365.
-
-[12] [13]
+ [6] [7 <../outputs/figures/fig1_boxplot.png>] [8 <../outputs/figures/fig2_panel_batched_standardized.png>] [9] [10] [11] [12] [13]
 <../outputs/figures/conley_sensitivity_ujive.png, id=68, 578.16pt x 361.35pt>
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
@@ -493,94 +451,19 @@ File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
 Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 971.
 (pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
- [27] [28]
-
-Package natbib Warning: Citation `Traub2016' on page 29 undefined on input line 1025.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 29 undefined on input line 1025.
-
-
-Package natbib Warning: Citation `Traub2018' on page 29 undefined on input line 1025.
-
-[29]
-
-Package natbib Warning: Citation `Traub2016' on page 30 undefined on input line 1038.
-
-
-Package natbib Warning: Citation `traub2016emergency' on page 30 undefined on input line 1038.
-
-
-Package natbib Warning: Citation `Traub2018' on page 30 undefined on input line 1038.
-
+ [27] [28] [29]
 File: ../outputs/figures/fig2_panel_batched_standardized.png Graphic file (type png)
 <use ../outputs/figures/fig2_panel_batched_standardized.png>
 Package pdftex.def Info: ../outputs/figures/fig2_panel_batched_standardized.png  used on input line 1049.
 (pdftex.def)             Requested size: 476.98244pt x 278.24034pt.
-[30] [31] [32] [33
+ [30] [31] [32] [33
 
-] [34] [35]
-
-Package natbib Warning: Citation `kc2013does' on page 36 undefined on input line 1170.
-
-
-Package natbib Warning: Citation `skaugset2016can' on page 36 undefined on input line 1170.
-
-
-Package natbib Warning: Citation `lam2020why' on page 36 undefined on input line 1170.
-
-
-Package natbib Warning: Citation `hodgson2018are' on page 36 undefined on input line 1170.
-
-
-Package natbib Warning: Citation `Fowler2022' on page 36 undefined on input line 1179.
-
-
-Package natbib Warning: Citation `Jessome2020' on page 36 undefined on input line 1179.
-
-
-Package natbib Warning: Citation `kc2013does' on page 36 undefined on input line 1181.
-
-[36]
-
-Package natbib Warning: Citation `coen2022clinical' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `featherston2020decision' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `lumbreras2010incidental' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `berlin2011incidentaloma' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `rao2012overuse' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `lam2020why' on page 37 undefined on input line 1190.
-
-
-Package natbib Warning: Citation `kuntz2014stress' on page 37 undefined on input line 1199.
-
-
-Package natbib Warning: Citation `kc2009impact' on page 37 undefined on input line 1199.
-
-
+] [34] [35] [36]
 Overfull \hbox (7.39651pt too wide) in paragraph at lines 1206--1207
 []\T1/cmr/m/n/10.95 These hy-pothe-ses pro-vide testable pre-dic-tions that we ex-am-ine us-ing our quasi-experimental
  []
 
 [37] [38] [39]
-
-Package natbib Warning: Citation `dabus2025practice' on page 40 undefined on input line 1303.
-
-
-Package natbib Warning: Citation `schreyer2017economics' on page 40 undefined on input line 1305.
-
-
-Package natbib Warning: Citation `canellas2024measurement' on page 40 undefined on input line 1305.
-
 
 LaTeX Warning: Reference `tab:results_table' on page 40 undefined on input line 1305.
 
@@ -594,120 +477,36 @@ Overfull \hbox (33.91095pt too wide) in paragraph at lines 1333--1334
 []\T1/cmr/m/n/10.95 Even un-der con-ser-va-tive as-sump-tions, dis-cre-tionary batch or-der-ing im-poses mean-ing-ful costs---approximately
  []
 
-[41]
-
-LaTeX Warning: Command \textendash invalid in math mode on input line 1340.
-
-
-! LaTeX Error: Command \end{quote} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1341 \end{quote}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.1341 \end{quote}
-                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (172.10422pt too wide) in paragraph at lines 1340--1341
-\T1/cmr/m/n/10.95 adopt a so-ci-etal per-spec-tive us-ing Medicare-allowed re-im-burse-ment of $\OT1/cmr/m/n/10.95 130\OML/cmm/m/it/10.95 perEDradiograph\OT1/cmr/m/n/10.95 [@\OML/cmm/m/it/10.95 dabus\OT1/cmr/m/n/10.95 2025\OML/cmm/m/it/10.95 practice\OT1/cmr/m/n/10.95 ]\OML/cmm/m/it/10.95 andEDbed \OMS/cmsy/m/n/10.95 ^^@
- []
-
-
-Overfull \hbox (756.5513pt too wide) in paragraph at lines 1340--1341
-\OML/cmm/m/it/10.95 hourcostsof\OT1/cmr/m/n/10.95 $85\OML/cmm/m/it/10.95 basedontime \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 drivenactivity \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 basedcostingstudies\OT1/cmr/m/n/10.95 [@\OML/cmm/m/it/10.95 schreyer\OT1/cmr/m/n/10.95 2017\OML/cmm/m/it/10.95 economics; \OT1/cmr/m/n/10.95 @\OML/cmm/m/it/10.95 canellas\OT1/cmr/m/n/10.95 2024\OML/cmm/m/it/10.95 measurement\OT1/cmr/m/n/10.95 ]\OML/cmm/m/it/10.95 :Underdeliberatelyconservativeassumptions; discretionarybatchingimposesatleast\OT1/cmr/m/n/10.95 $349\OML/cmm/m/it/10.95 indirectcostsperbatchedcomplier \OT1/cmr/m/n/10.95 :
- []
-
-
-Overfull \hbox (324.18207pt too wide) in paragraph at lines 1340--1341
-\OT1/cmr/m/n/10.95 $125\OML/cmm/m/it/10.95 fromexcessimagingand\OT1/cmr/m/n/10.95 $224\OML/cmm/m/it/10.95 fromexcesscapacityutilization:Scalingtoannualoperations; thisamountstoapproximately\OT1/cmr/m/n/10.95 $232\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000\OML/cmm/m/it/10.95 peryearforamedium \OMS/cmsy/m/n/10.95 ^^@
- []
-
-
-Overfull \hbox (725.88759pt too wide) in paragraph at lines 1340--1341
-\OML/cmm/m/it/10.95 sizedED\OT1/cmr/m/n/10.95 (40\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000\OML/cmm/m/it/10.95 annualvisits\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 and\OT1/cmr/m/n/10.95 $349\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000\OML/cmm/m/it/10.95 foralargeurbanED\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 TableEC:\OT1/cmr/m/n/10.95 6\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 1)\OML/cmm/m/it/10.95 :Theseestimatesrepresentconservativelowerbounds; includeonlystatisticallysignificantimagingeffects\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 excludingultrasoundandCTpointestimates\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; valuebed \OMS/cmsy/m/n/10.95 ^^@
- []
-
-
-Overfull \hbox (826.61707pt too wide) in paragraph at lines 1340--1341
-\OML/cmm/m/it/10.95 hoursatoperationalcostratherthanthroughputvalue; andexcludedownstreamcostsfromthe\OT1/cmr/m/n/10.95 40\OML/cmm/m/it/10.95 percentagepointincreaseinadmissionprobability:Inpatientstayscost\OT1/cmr/m/n/10.95 $10\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000^^U15\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000\OML/cmm/m/it/10.95 ; whichwoulddwarfourdirectcostestimates:Notably; wefindnooffsettingbenefits \OT1/cmr/m/n/10.95 :
- []
-
-
-Overfull \hbox (597.5548pt too wide) in paragraph at lines 1340--1341
-\OT1/cmr/m/n/10.95 72 \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 hourreturnratesarestatisticallyindistinguishablebetweenstrategies:Evenundertheseconservativeassumptions; a\OT1/cmr/m/n/10.95 50%\OML/cmm/m/it/10.95 reductionindiscretionarybatchingwouldsaveabout\OT1/cmr/m/n/10.95 $113\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 000\OML/cmm/m/it/10.95 annuallywhilefreeing\OT1/cmr/m/n/10.95 850\OML/cmm/m/it/10.95 bed \OMS/cmsy/m/n/10.95 ^^@
- []
-
-[42] [43] [44]
+[41] [42] [43] [44]
 Overfull \hbox (2.58746pt too wide) in paragraph at lines 1423--1425
 \T1/cmr/m/n/10.95 lab re-sults might af-fect our es-ti-mates of batch-ing's causal im-pact. This in-sight-ful ob-ser-va-tion prompted
  []
 
-
+[45]
 Overfull \hbox (12.96484pt too wide) in paragraph at lines 1428--1429
 []\T1/cmr/m/n/10.95 If batch ten-dency sim-ply re-flected physi-cians who or-der com-pre-hen-sive di-ag-nos-tics across all modalities---
  []
 
-[45] [46] [47] [48] [49] [50] [51
+[46] [47] [48] [49] [50] [51] [52
 
-] [52]
-
-Package natbib Warning: Citation `goldsmithpinkham2025leniencydesignsoperatorsmanual' on page 53 undefined on input line 1731.
-
-[53] [54]
+] [53] [54] [55]
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
 Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 1886.
 (pdftex.def)             Requested size: 476.98244pt x 298.11191pt.
- [55] [56] [57] [58]
-
-Package natbib Warning: Citation `hausman1975' on page 59 undefined on input line 1990.
-
-
-Package natbib Warning: Citation `Hausman1978' on page 59 undefined on input line 1990.
-
-
-Package natbib Warning: Citation `angrist2009mostly' on page 59 undefined on input line 1996.
-
-[59]
-<../outputs/figures/CONSORT.png, id=217, 514.5624pt x 433.62pt>
+ [56] [57] [58] [59] [60]
+<../outputs/figures/CONSORT.png, id=220, 514.5624pt x 433.62pt>
 File: ../outputs/figures/CONSORT.png Graphic file (type png)
 <use ../outputs/figures/CONSORT.png>
 Package pdftex.def Info: ../outputs/figures/CONSORT.png  used on input line 2072.
 (pdftex.def)             Requested size: 381.5874pt x 321.57512pt.
- [60] [61 <../outputs/figures/CONSORT.png>] [62] [63] [64] [65]
-<../outputs/figures/heterogeneity_by_complaint.png, id=238, 1011.78pt x 289.08pt>
+ [61] [62 <../outputs/figures/CONSORT.png>] [63] [64] [65] [66]
+<../outputs/figures/heterogeneity_by_complaint.png, id=241, 1011.78pt x 289.08pt>
 File: ../outputs/figures/heterogeneity_by_complaint.png Graphic file (type png)
 <use ../outputs/figures/heterogeneity_by_complaint.png>
 Package pdftex.def Info: ../outputs/figures/heterogeneity_by_complaint.png  used on input line 2299.
 (pdftex.def)             Requested size: 476.98244pt x 136.28224pt.
- [66 <../outputs/figures/heterogeneity_by_complaint.png>] [67] [68] [69] [70]
-
-Package natbib Warning: Citation `su2025crisis' on page 71 undefined on input line 2435.
-
-
-Package natbib Warning: Citation `jameson2024variation' on page 71 undefined on input line 2435.
-
-[71] (./response_letter.bbl [72])
-
-Package natbib Warning: There were undefined citations.
-
-[73] (./response_letter.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ [67] [68 <../outputs/figures/heterogeneity_by_complaint.png>] [69] [70] [71] [72] (./response_letter.bbl [73]) [74] (./response_letter.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-29>
@@ -716,23 +515,20 @@ L3 programming layer <2025-12-29>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 7727 strings out of 469476
- 126451 string characters out of 5467217
- 544605 words of memory out of 5000000
- 36255 multiletter control sequences out of 15000+600000
+ 7730 strings out of 469476
+ 126523 string characters out of 5467217
+ 546612 words of memory out of 5000000
+ 36256 multiletter control sequences out of 15000+600000
  649293 words of font info for 98 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  67i,13n,77p,1577b,468s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0900.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1000.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </Users/jacobjameson/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on response_letter.pdf (73 pages, 1643803 bytes).
+Output written on response_letter.pdf (74 pages, 1640015 bytes).
 PDF statistics:
- 900 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
+ 904 PDF objects out of 1000 (max. 8388607)
+ 255 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
