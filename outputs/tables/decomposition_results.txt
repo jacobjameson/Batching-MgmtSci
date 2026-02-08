@@ -1,0 +1,122 @@
+================================================================
+PANEL A: PRODUCT-OF-COEFFICIENTS DECOMPOSITION
+================================================================
+
+Total effects (2SLS):
+  LOS:   0.5972 (SE 0.0883)
+  Disp:  0.6511 (SE 0.1014)
+
+Effects on mediators (2SLS):
+  -> Imaging: 1.2407 (SE 0.1157)
+  -> Admit:   0.4039 (SE 0.0875)
+
+OLS associations (mediator -> outcome):
+  Imaging -> LOS:  0.1240 (SE 0.0069)
+  Admit -> LOS:    0.0417 (SE 0.0093)
+  Imaging -> Disp: 0.0336 (SE 0.0084)
+
+--- LOS Decomposition ---
+  Via imaging:   1.241 x 0.124 = 0.1538  (  26%)
+  Via admission: 0.404 x 0.042 = 0.0168  (   3%)
+  Residual:                    0.4265  (  71%)
+  Total:                       0.5972
+
+--- Disposition Time Decomposition ---
+  Via imaging:   1.241 x 0.034 = 0.0417  (   6%)
+  Residual:                    0.6094  (  94%)
+  Total:                       0.6511
+
+
+================================================================
+PANEL B: REDUCED-FORM ATTENUATION
+================================================================
+
+--- LOS ---
+  Baseline:              1.0460 (SE 0.1350)
+  + Imaging:             0.7855 (SE 0.1337)  [24.9% attenuation]
+  + Imaging & Admission: 0.7685 (SE 0.1335)  [26.5% attenuation]
+
+  Imaging coef (in full spec):   %.4f (SE %.4f)
+ 0.1140067 0.006069025  Admission coef (in full spec): %.4f (SE %.4f)
+
+ 0.04197866 0.009239221--- Disposition Time ---
+  Baseline:              1.1404 (SE 0.1592)
+  + Imaging:             1.0490 (SE 0.1603)  [8.0% attenuation]
+
+  Imaging coef: %.4f (SE %.4f)
+
+ 0.04206509 0.007313141
+================================================================
+REGRESSION TABLES FOR APPENDIX
+================================================================
+
+--- LOS Attenuation ---
+                      rf_los_base         rf_los_img        rf_los_both
+                         Baseline          + Imaging             + Both
+Dependent Var.:         ln_ED_LOS          ln_ED_LOS          ln_ED_LOS
+                                                                       
+batch.tendency  1.046*** (0.1350) 0.7855*** (0.1337) 0.7685*** (0.1335)
+imgTests                          0.1199*** (0.0059) 0.1140*** (0.0061)
+admit                                                0.0420*** (0.0092)
+Fixed-Effects:  ----------------- ------------------ ------------------
+dayofweekt                    Yes                Yes                Yes
+month_of_year                 Yes                Yes                Yes
+complaint_esi                 Yes                Yes                Yes
+race                          Yes                Yes                Yes
+GENDER                        Yes                Yes                Yes
+PROVIDER_SEX                  Yes                Yes                Yes
+capacity_level                Yes                Yes                Yes
+_______________ _________________ __________________ __________________
+S.E. type       Heteroskeda.-rob. Heteroskedas.-rob. Heteroskedas.-rob.
+Observations               11,679             11,679             11,679
+R2                        0.28343            0.30735            0.30858
+Within R2                 0.12564            0.15483            0.15632
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+--- Disposition Time Attenuation ---
+                     rf_disp_base        rf_disp_img
+                         Baseline          + Imaging
+Dependent Var.:      ln_disp_time       ln_disp_time
+                                                    
+batch.tendency  1.140*** (0.1592)  1.049*** (0.1603)
+imgTests                          0.0421*** (0.0073)
+Fixed-Effects:  ----------------- ------------------
+dayofweekt                    Yes                Yes
+month_of_year                 Yes                Yes
+complaint_esi                 Yes                Yes
+race                          Yes                Yes
+GENDER                        Yes                Yes
+PROVIDER_SEX                  Yes                Yes
+capacity_level                Yes                Yes
+_______________ _________________ __________________
+S.E. type       Heteroskeda.-rob. Heteroskedas.-rob.
+Observations               11,679             11,679
+R2                        0.21090            0.21336
+Within R2                 0.03061            0.03363
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+--- OLS Mediator Regressions ---
+                           ols_los           ols_disp
+                           Log LOS     Log Dispo Time
+Dependent Var.:          ln_ED_LOS       ln_disp_time
+                                                     
+imgTests        0.1240*** (0.0069) 0.0336*** (0.0084)
+admit           0.0417*** (0.0093)                   
+batched          -0.0254* (0.0112) 0.0490*** (0.0134)
+Fixed-Effects:  ------------------ ------------------
+dayofweekt                     Yes                Yes
+month_of_year                  Yes                Yes
+complaint_esi                  Yes                Yes
+race                           Yes                Yes
+GENDER                         Yes                Yes
+PROVIDER_SEX                   Yes                Yes
+capacity_level                 Yes                Yes
+_______________ __________________ __________________
+S.E. type       Heteroskedas.-rob. Heteroskedas.-rob.
+Observations                11,679             11,679
+R2                         0.30694            0.21126
+Within R2                  0.15433            0.03105
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

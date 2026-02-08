@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  7 JAN 2026 21:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.7)  8 FEB 2026 10:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -981,51 +981,46 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6] [7] [8] [9
-
-] [10
-
-]
-Overfull \hbox (0.68689pt too wide) in paragraph at lines 654--669
+[6] [7] [8]
+Overfull \hbox (0.68689pt too wide) in paragraph at lines 558--573
  [] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11
+[9
 
-
-{/Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [12]
-<figures/monotonicity.png, id=149, 867.24pt x 578.16pt>
+{/Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [10]
+<figures/monotonicity.png, id=136, 867.24pt x 578.16pt>
 File: figures/monotonicity.png Graphic file (type png)
 <use figures/monotonicity.png>
-Package pdftex.def Info: figures/monotonicity.png  used on input line 694.
+Package pdftex.def Info: figures/monotonicity.png  used on input line 598.
 (pdftex.def)             Requested size: 469.75502pt x 313.17216pt.
-[13
+[11
 
- <./figures/monotonicity.png>] [14
+ <./figures/monotonicity.png>] [12
 
 ]
-<../outputs/figures/conley_sensitivity_ujive.png, id=169, 578.16pt x 361.35pt>
+<../outputs/figures/conley_sensitivity_ujive.png, id=154, 578.16pt x 361.35pt>
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
-Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 821.
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 725.
 (pdftex.def)             Requested size: 469.75502pt x 293.59616pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15
+[13
 
-] [16 <../outputs/figures/conley_sensitivity_ujive.png>] [17
+] [14 <../outputs/figures/conley_sensitivity_ujive.png>] [15
 
-] [18
+] [16
 
-] [19] [20
+] [17] [18
 
-] [21
+] [19
 
-] (./appendix.bbl) [22
+] (./appendix.bbl) [20
 
 ] (./appendix.aux)
  ***********
@@ -1034,18 +1029,18 @@ L3 programming layer <2025-12-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 31146 strings out of 469476
- 612870 string characters out of 5467217
- 1023295 words of memory out of 5000000
- 58955 multiletter control sequences out of 15000+600000
- 714033 words of font info for 206 fonts, out of 8000000 for 9000
+ 31126 strings out of 469476
+ 612629 string characters out of 5467217
+ 1023046 words of memory out of 5000000
+ 58952 multiletter control sequences out of 15000+600000
+ 713566 words of font info for 201 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,17n,94p,1005b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on appendix.pdf (22 pages, 1210028 bytes).
+Output written on appendix.pdf (20 pages, 1203374 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 331 compressed objects within 4 object streams
- 88 named destinations out of 1000 (max. 500000)
- 45201 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 389 PDF objects out of 1000 (max. 8388607)
+ 316 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 45193 words of extra memory for PDF output out of 51595 (max. 10000000)
 

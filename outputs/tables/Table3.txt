@@ -1,12 +1,12 @@
-Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 77.1, p-value < 2.2e-16, on 10 and 11,606 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 75.6, p-value < 2.2e-16, on 10 and 11,606 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 160.5, p-value < 2.2e-16, on 10 and 11,606 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 2.56419, p-value = 0.004283, on 10 and 11,606 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
-[1] "ln_disp_time sd: NA"
-[1] "ln_ED_LOS mean: 5.37549224429252"
-[1] "ln_ED_LOS sd: 0.540600488211565"
-[1] "imgTests mean: 0.979181858813011"
-[1] "imgTests sd: 0.770036613051382"
-[1] "RTN_72_HR_ADMIT mean: 0.013596480910823"
-[1] "RTN_72_HR_ADMIT sd: 0.115809896428897"
+Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 73.3, p-value < 2.2e-16, on 12 and 11,604 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 170.6, p-value < 2.2e-16, on 12 and 11,604 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 92.6, p-value < 2.2e-16, on 12 and 11,604 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 0.927968, p-value = 0.51738, on 12 and 11,604 DoF, VCOV: Heteroskedasticity-robust.[1] "ln_disp_time mean: 5.24813770289118"
+[1] "ln_disp_time sd: 0.492596214251566"
+[1] "ln_ED_LOS mean: 5.50451747443377"
+[1] "ln_ED_LOS sd: 0.449485257095823"
+[1] "imgTests mean: 1.44952478808117"
+[1] "imgTests sd: 0.623372679377748"
+[1] "RTN_72_HR_ADMIT mean: 0.0120729514513229"
+[1] "RTN_72_HR_ADMIT sd: 0.109216375298955"

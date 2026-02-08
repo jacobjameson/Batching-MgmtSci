@@ -1,8 +1,8 @@
-Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 47.9, p-value < 2.2e-16, on 11 and 2,703 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 5 others
- stat = 89.0, p-value < 2.2e-16, on 11 and 2,703 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 160.5, p-value < 2.2e-16, on 10 and 11,606 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
- stat = 3.5823, p-value = 2.51e-5, on 12 and 2,702 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
+Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
+ stat = 449.5, p-value < 2.2e-16, on 10 and 11,391 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 216.6, p-value < 2.2e-16, on 12 and 11,389 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 218.5, p-value < 2.2e-16, on 12 and 11,604 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
+ stat = 10.1, p-value < 2.2e-16, on 12 and 11,389 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
 [1] "ln_disp_time sd: NA"
 [1] "ln_ED_LOS mean: 5.37549224429252"
 [1] "ln_ED_LOS sd: 0.540600488211565"

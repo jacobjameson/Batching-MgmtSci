@@ -1,4 +1,16 @@
 library(fixest)
+library(ManyIV)
+
+# Create physician ID mapping using the full 'data' dataset
+physician_map <- data.frame(
+  ED_PROVIDER = unique(data$ED_PROVIDER),
+  physician_id = as.numeric(factor(unique(data$ED_PROVIDER)))
+)
+
+# Add physician IDs to final dataset
+final <- final %>%
+  left_join(physician_map, by = "ED_PROVIDER")
+
 
 run_models <- function(data, y_var) {
   
@@ -17,7 +29,7 @@ run_models <- function(data, y_var) {
   model_3 <- feols(
     as.formula(paste(
       y_var,
-      "~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age  |
+      "~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age |
        dayofweekt + month_of_year + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level + LAB_PERF |
        batched ~ batch.tendency"
     )),
@@ -219,7 +231,6 @@ run_models_iv(final, "admit")
 
 
 run_models_iv(subset(final, discharge==1), "imgTests")
-
 
 
 run_models_iv(subset(final, capacity_level=='Normal Operations') , "ln_disp_time")
