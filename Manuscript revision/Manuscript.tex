@@ -570,6 +570,7 @@ severe overcrowding, the operational pressures documented in our review
 intensify. Under these conditions, physicians may reserve batching for
 cases where it is clinically essential rather than convenient:
 
+\vspace{1em}
 \begin{quote}
 \small
 \textit{\textbf{Hypothesis 4.} The effects of batch ordering on LOS and test volume will be attenuated under conditions of major ED overcapacity.}
@@ -585,26 +586,27 @@ theoretical mechanisms manifest in actual ED operations.
 \subsection{Empirical Setting}\label{sec:setting}
 
 Our study uses data from two large U.S. EDs: the Mayo Clinic of Arizona
-and MGH. The MGH dataset, which includes 129,489 patient encounters from
-November 10, 2021, through December 10, 2022, provides a robust sample
-for validating the generalizability of our findings. Our primary
-analysis, however, focuses on the Mayo Clinic data due to its unique
-random patient-physician assignment, which enables stronger causal
-inference. Specifically, the Mayo Clinic ED employs a computerized
-rotational patient assignment algorithm that addresses many empirical
-challenges in healthcare settings; see, e.g., \citet{Traub2016},
-\citet{traub2016emergency}, \citet{Traub2018}. The system assigns
-patients on a completely rotational basis to physicians 60 seconds after
-registration in the electronic health record system. At shift start,
-each physician receives four consecutive patients to establish an
-initial load, after which they enter rotation with other on-duty
-physicians. The rotation order is predetermined by the ED scheduler and
-varies across shifts to ensure fairness over time. Critically, these
-assignments are based solely on arrival time---the algorithm does not
-consider patient demographics, chief complaint, Emergency Severity Index
-score, physician workload, or the acuity of recently assigned patients.
-To maintain system integrity, physicians receive no new patients during
-their final 120 minutes and are capped at 18 patients per shift.
+and MGH. The MGH dataset, which includes 111,710 adult patient
+encounters from November 10, 2021, through December 10, 2022, provides a
+robust sample for validating the generalizability of our findings. Our
+primary analysis, however, focuses on the Mayo Clinic data due to its
+unique random patient-physician assignment, which enables stronger
+causal inference. Specifically, the Mayo Clinic ED employs a
+computerized rotational patient assignment algorithm that addresses many
+empirical challenges in healthcare settings; see, e.g.,
+\citet{Traub2016}, \citet{traub2016emergency}, \citet{Traub2018}. The
+system assigns patients on a completely rotational basis to physicians
+60 seconds after registration in the electronic health record system. At
+shift start, each physician receives four consecutive patients to
+establish an initial load, after which they enter rotation with other
+on-duty physicians. The rotation order is predetermined by the ED
+scheduler and varies across shifts to ensure fairness over time.
+Critically, these assignments are based solely on arrival time---the
+algorithm does not consider patient demographics, chief complaint,
+Emergency Severity Index score, physician workload, or the acuity of
+recently assigned patients. To maintain system integrity, physicians
+receive no new patients during their final 120 minutes and are capped at
+18 patients per shift.
 
 Our empirical tests show that this rotational mechanism achieves the
 quasi-randomization necessary for causal inference. Unlike settings
@@ -943,7 +945,7 @@ may be unobserved and correlated with the need to run multiple tests,
 length of stay, and the likelihood of returning with admission. Hence,
 we instrument \(Batched_i\) with the assigned physician \(j\)'s
 underlying tendency to batch, \(BatchTendency_{i,j}^{phys}\). Standard
-errors are heteroskedasticity-robust (EC.13 provides additional
+errors are heteroskedasticity-robust (EC.12 provides additional
 details).
 
 Table \ref{tab:first_stage} presents first-stage results from Eq. (4).
@@ -963,14 +965,13 @@ decision, and the IV is not weak (F-stat = 171.9). For example, across
 all controls (column 3), our results show that a patient assigned to a
 physician at the 90th percentile of batch tendency (0.023) relative to a
 physician at the 10th percentile (-0.024) is 8.2 percentage points more
-likely to have their tests batched. The coefficient is greater than one
-because the BatchTendency instrument has a narrow range centered near
-zero (10th to 90th percentile spans only 0.047 units). A one-unit change
-in the instrument is therefore far outside the observed range, making
-per-unit interpretation uninformative. Instead, we interpret the effect
-over realistic variation: moving from the 10th to 90th percentile of
-batch tendency increases batching probability by 8.2 percentage points,
-as shown above.
+likely to have their tests
+batched.\footnote{The coefficient is greater than one because the BatchTendency instrument has a narrow range centered near zero (10th to 90th percentile spans only 0.047 units).}
+A one-unit change in the instrument is therefore far outside the
+observed range, making per-unit interpretation uninformative. Instead,
+we interpret the effect over realistic variation: moving from the 10th
+to 90th percentile of batch tendency increases batching probability by
+8.2 percentage points, as shown above.
 
 \begin{table}[t!]
 \centering
@@ -998,7 +999,7 @@ Observations & 11,679 & 11,679 & 11,679 \\
 \begin{flushleft}
 \footnotesize
 \textit{Notes:} This table reports first-stage results for the regression of batch tendency on the likelihood of batching. Column 1 reports the overall mean and standard deviation of the dependent variable (Batched) in the baseline sample. Column 2 includes quasi-random assignment necessary controls for year-month and day of week-time of day. Column 3 adds baseline precision controls, including patient characteristics (age, ESI-complaint, race, sex, and vital signs such as tachycardia, tachypnea, febrile status, and hypotensive status), laboratory tests ordered, ED capacity level, and physician characteristics (physician sex, experience, and hours into shift). Robust standard errors are heteroskedasticity-robust.
-$^{***} p < 0.01$.
+$^{***} p < 0.001$.
 \end{flushleft}
 \end{threeparttable}
 \end{table}
@@ -1064,8 +1065,8 @@ include laboratory tests ordered, physician characteristics (experience,
 gender, hours into shift), and ED capacity levels in addition to patient
 complaint, sex, race, acuity, and vital signs. Additionally, we test
 this assumption by performing a placebo check for rarely batched
-complaints (EC.8) and various robustness checks in Section
-\ref{sec:robustness}, including sensitivity analyses (EC.9) that allow
+complaints (EC.7) and various robustness checks in Section
+\ref{sec:robustness}, including sensitivity analyses (EC.8) that allow
 for plausible violations of the exclusion restriction
 \citep{conley2012plausibly}.
 
@@ -1084,7 +1085,7 @@ informal tests to assess monotonicity. The first provides that the first
 stage should be weakly positive for all subsamples
 \citep{dobbie2018effects}. The second asserts that the instrument
 constructed by omitting a particular subsample has predictive power for
-that same subsample \citep{bhuller2020incarceration}. Figure EC.7.1
+that same subsample \citep{bhuller2020incarceration}. Figure EC.6.1
 presents both of these tests for various subsamples of interest. In the
 left panel, our residualized measure of batch tendency is consistently
 positive and sizable across all subsamples, consistent with the
@@ -1179,7 +1180,7 @@ Batch tendency
 & $1.140^{***}$ & $1.046^{***}$ & $2.173^{***}$ & $-0.0257$ \\ 
 & (0.1592) & (0.1350) & (0.2103) & (0.0341) \\[0.75em]
 
-\makecell[l]{Scaled coeffecient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.050$)}  
+\makecell[l]{Scaled coefficient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.050$)}  
 & 0.0576 & 0.0525 & 0.1089 & -0.00129 \\[1em]
 
 Mean dependent variable 
@@ -1209,7 +1210,7 @@ The fact that our primary outcomes respond strongly to physician batch
 tendency suggests that batching is the underlying mechanism behind the
 effects. However, physicians could differ in other dimensions of
 care---some observable and others not---which could be correlated with
-batch tendency. EC.8 attempts to distinguish between and identify the
+batch tendency. EC.7 attempts to distinguish between and identify the
 mechanisms behind the observed reduced-form effects. This mediation
 analysis provides a crucial step toward a well-identified IV analysis,
 which we present in Section 4.2 using both 2SLS and UJIVE estimators.
@@ -1440,8 +1441,8 @@ product-of-coefficients decomposition. For LOS, approximately 26\% of
 the total causal effect (\(0.154\) of \(0.597\) log points) is
 consistent with operating through increased imaging volume: batching
 causally increases imaging by \(1.24\) tests (from Table
-ref\{tab:results\_table\}), and each additional test is associated with
-a \(12.4\%\) increase in LOS conditional on
+\ref{tab:results_table}), and each additional test is associated with a
+\(12.4\%\) increase in LOS conditional on
 controls.\footnote{These total effects are consistent with our preferred UJIVE estimates in Table \ref{tab:results_table}; we use 2SLS here because the decomposition is constructed around the batch tendency instrument.}
 The admission channel accounts for a smaller share (approximately 3\%),
 likely attenuated by conditioning on complaint-by-ESI interactions that
@@ -1464,7 +1465,7 @@ full set of operational mechanisms batching engages.
 \caption{Decomposition of Batching Effects on Operational Outcomes}
 \label{tab:decomp}
 \begin{threeparttable}
-\begin{tabular}{p{10cm}cc}
+\begin{tabular}{p{11cm}cc}
 \toprule
 & Log LOS & \makecell[c]{Log Time to \\ Disposition} \\
 \midrule
@@ -1518,7 +1519,7 @@ Observations & 11{,}679 & 11{,}679 \\
 \end{tabular}
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Panel A decomposes the total 2SLS effect of batching into components attributable to imaging volume and admission. The IV effects on mediators are from Table \ref{tab:results_table} (Column 3). Controlled OLS associations condition on the full set of patient severity, demographics, physician characteristics, and temporal fixed effects described in Section 3. Percentages in parentheses represent the share of the total effect. Panel B shows how the reduced-form coefficient on batch tendency attenuates when mediators are added as controls. Standard errors are heteroskedasticity-robust.
+\textit{Notes:} Panel A decomposes the total 2SLS effect of batching into components attributable to imaging volume and admission. The IV effects on mediators are from Table \ref{tab:results_table} (Column 3). Controlled OLS associations condition on the full set of patient severity, demographics, physician characteristics, and temporal fixed effects described in Section 3. Panel B shows how the reduced-form coefficient on batch tendency attenuates when mediators are added as controls. Standard errors are heteroskedasticity-robust.
 $^{***} p < 0.001$.
 \end{flushleft}
 \end{threeparttable}
@@ -1794,83 +1795,67 @@ modest in magnitude.
 EDs}\label{sec:generalize}
 
 To assess the generalizability of our findings beyond the Mayo Clinic
-ED, we replicated our analysis using data from the MGH ED, one of the
-busiest emergency departments in the United States. The MGH dataset
-comprises 129,489 patient encounters from November 10, 2021, through
-December 10, 2022. This extensive dataset provides a robust sample to
-validate the external applicability of our results.
+ED, we replicated our analysis using data from the Massachusetts General
+Hospital (MGH) ED, one of the busiest emergency departments in the
+United States. The MGH dataset comprises 129,489 patient encounters from
+November 2021 through December 2022. After applying analogous sample
+restrictions---retaining adult patients with imaging orders, excluding
+low-volume providers and rare complaints---the analytical sample
+comprises 26,875 encounters. Full details on the MGH data, sample
+construction, and complete regression tables are provided in EC.13.
 
 Unlike the Mayo Clinic ED, where patients are randomly assigned to
 physicians upon arrival through a rotational system, the MGH ED employs
 a different patient assignment mechanism. At MGH, patients are triaged
-into different care areas (e.g., urgent care, fast track, observation)
+into different care areas (e.g., urgent care, acute care, observation)
 based on acuity and presenting complaints, then assigned to physicians
 based on availability within those areas rather than through random
 rotation. To address this non-random assignment and potential selection
-bias, we adjust our instrumental variable strategy to account for these
-differences by including additional covariates for care area assignment,
-acuity level, and presenting complaints in both stages of our 2SLS and
-instrument construction, thereby accounting for the sorting of patients
-into different ED zones. While this approach cannot guarantee the same
-level of causal identification as making use of Mayo Clinic's randomized
-system, it provides a more robust comparison of the effects of batching
-on patient outcomes across different ED settings
+bias, we adjust our instrumental variable strategy by including care
+area fixed effects in both stages of our 2SLS estimation and in the
+construction of the batch tendency instrument, thereby accounting for
+the sorting of patients into different ED zones. While this approach
+cannot guarantee the same level of causal identification as Mayo
+Clinic's randomized system, it provides a meaningful test of whether the
+relationship between batching and patient outcomes replicates in an
+institutionally distinct setting.
 
-After adjusting for institutional differences and using the same
-exclusion criteria we used with Mayo, we find strong evidence that our
-key findings generalize to the MGH setting. The 2SLS results in Table 7
-suggest that batching leads to a 40.5\% increase in length of stay and
-approximately 1.8 additional imaging tests per patient. To formally
-assess whether the estimated effects differ significantly across the two
-ED settings, we conduct a Z-test comparing the 2SLS coefficients from
-MGH and Mayo by estimating:
+Figure \ref{fig:mgh} presents 2SLS estimates with full controls from
+both sites. The results are broadly consistent: discretionary batching
+significantly increases the number of imaging tests ordered at MGH
+(1.372 additional tests, \(p < 0.001\)) and increases log ED length of
+stay (0.532, \(p < 0.05\)), with no significant effect on 72-hour
+returns with admission (\(-0.042\), \(p > 0.10\)). The first-stage
+F-statistics at MGH are 41.2 and 36.2 with necessary and full controls,
+respectively, indicating a strong instrument. To formally assess whether
+the estimated effects differ across the two sites, we conduct
+independent-samples \(z\)-tests:
 
 \[
-Z = \frac{\hat{\beta}{\text{MGH}} - \hat{\beta}{\text{Mayo}}}{\sqrt{SE_{\text{MGH}}^2 + SE_{\text{Mayo}}^2}}
-\].
+z = \frac{\hat{\beta}_{\text{Mayo}} - \hat{\beta}_{\text{MGH}}}{\sqrt{\text{SE}_{\text{Mayo}}^2 + \text{SE}_{\text{MGH}}^2}}
+\]
 
-As reported in Column 4, the Z-statistics for each outcome indicate no
-statistically significant differences in the estimated effects between
-the two settings. This suggests that the impact of batching is mainly
-consistent across hospitals despite differences in patient assignment
-mechanisms and operational structures. Overall, these results reinforce
-the external validity of our findings and provide further evidence that
-the observed effects of batching are not merely an artifact of a single
-institution's workflow but a systematic consequence of batching in
-high-volume emergency care settings.
+which is valid because the two samples are non-overlapping. As shown in
+Figure \ref{fig:mgh}, none of the four primary outcomes exhibit
+statistically significant differences across sites (\(p > 0.55\) for
+all), indicating that the effects of batching are statistically
+indistinguishable between Mayo Clinic and MGH.
 
-\begin{table}[t!]
+Overall, these results reinforce the external validity of our core
+findings. The effects of discretionary batching on ED efficiency and
+imaging volume are not artifacts of a single institution's workflow but
+a systematic consequence of batch ordering in high-volume emergency care
+settings.
+
+\begin{figure}[t!]
 \centering
-\caption{\textbf{Comparison of Effects of Batching Across Hospital Settings}}
-\label{tab:generalize}
-\begin{threeparttable}
-\begin{tabular}{p{6cm}cccc}
-\toprule
-& \makecell{Sequenced \\ Mean (SD)} & OLS & 2SLS & \makecell{Z-Statistic} \\
-& (1) & (2) & (3) & (4) \\
-\midrule
-Log LOS & 6.42 & $0.21^{***}$ & 0.34 & -0.907  \\
-& (0.847) & (0.010) & (0.450) & \\[0.5em]
-
-Number of distinct imaging tests & 1.34  & $0.780^{***}$ & $1.835^{***}$ & 1.23 \\
-& (0.563) & (0.009) & (0.320) & \\[0.5em]
-
-72hr return with admission & 0.0123  & $-0.0048^{***}$ & 0.0158 & 0.617  \\
-& (0.110) & (0.001) & (0.038) & \\[0.5em]
-
-\midrule
-Time FE & --- & Yes & Yes & --- \\
-Baseline controls & --- & Yes & Yes & --- \\
-Observations & --- & 42,085 & 42,085 & --- \\
-\bottomrule
-\end{tabular}
+\caption{Effect of Discretionary Batching: Mayo Clinic vs. MGH}
+\includegraphics[width=\textwidth]{../outputs/figures/coef_comparison_mayo_mgh.png}
+\label{fig:mgh}
 \begin{flushleft}
-\footnotesize
-\textit{Notes:} This table reports OLS and two-stage least squares estimates from the MGH dataset. All specifications include time-fixed effects, baseline controls, and care-area fixed effects. Column 1 reports the mean and standard deviation for non-batched patients (sequenced). Column 4 reports the Z-statistic from a formal test comparing the 2SLS coefficient in Column 3 to the 2SLS coefficient in Column 5 of Table \ref{tab:results_table}.
-Significance levels: $^{***}p < 0.001$
+\footnotesize{\textit{Notes:} This figure compares 2SLS estimates of the effect of discretionary batching on patient outcomes across Mayo Clinic and MGH, both with full precision controls. Point estimates are shown with 95\% confidence intervals. Red indicates statistical significance at the 5\% level; grey indicates non-significance. Brackets report $p$-values from independent-samples $z$-tests of the null hypothesis $\text{H}_0\text{: } \beta_{\text{Mayo}} = \beta_{\text{MGH}}$. Complete regression tables, first-stage diagnostics, and reduced-form estimates for MGH are reported in EC.13.}
 \end{flushleft}
-\end{threeparttable}
-\end{table}
+\end{figure}
 
 \subsection{Robustness Checks and Limitations}\label{sec:robustness}
 
@@ -1927,7 +1912,7 @@ We also check robustness to other outcome measures. Treatment time,
 meaning time from doctor contact to disposition (excluding waiting and
 post-disposition delays), shows no material difference by treatment
 (Table EC.10.1). For 72-hour returns, regardless of admission, effects
-remain small and statistically insignificant (Table EC.11.2). For
+remain small and statistically insignificant (Table EC.10.2). For
 nonlinear models (logit for binary outcomes, Poisson for counts),
 average marginal effects are similar to linear IV estimates (Table
 EC.9.1).
@@ -1955,7 +1940,7 @@ the additional imaging from batching represents unnecessary testing
 versus frontloading of diagnostics that would eventually occur in the
 inpatient setting. However, interpreting our findings purely as
 frontloading is complicated by the fact that admission itself is
-affected by batching. For example, we observe a 39 percentage-point
+affected by batching. For example, we observe a 40 percentage-point
 increase in admission probability, suggesting that the tests themselves
 influence disposition decisions rather than simply shifting testing
 location. Multiple mechanisms may operate simultaneously. Some

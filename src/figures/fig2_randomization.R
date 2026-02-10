@@ -127,21 +127,50 @@ panels$var <- dplyr::recode(panels$var,
                             'EXPERIENCE' = 'Physician Experience',
 )
 
-ggplot(panels, aes(x = reorder(var, coef),
-                   y = coef, ymin = conf.low, ymax = conf.high)) +
-  geom_hline(yintercept = 0, color = "black") +
-  geom_pointrange(color = '#d8031c', size = 0.6, fatten = 2) +
+
+ggplot(panels, aes(x = coef, y = reorder(var, coef))) +
+  
+  geom_vline(xintercept = 0, color = "#1a365d", linewidth = 0.7) +
+  
+  # Confidence intervals
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0,
+    linewidth = 0.9,
+    color = "#dc2626"
+  ) +
+  
+  # Point estimates
+  geom_point(
+    size = 3.5,
+    fill = "#dc2626",
+    color = "white",
+    shape = 21,
+    stroke = 0.5
+  ) +
+  
   facet_wrap(~model, scales = "free_y") +
-  coord_flip() +
-  theme_bw(base_size = 14) +
+  
+  labs(
+    x = "Standardized Coefficient Estimate (95% CI)",
+    y = NULL
+  ) +
+  
+  theme_bw(base_size = 13) +
   theme(
-    panel.grid.major.y = element_blank(),
     axis.title = element_text(size = 13),
     axis.text = element_text(size = 12, color = "black"),
+    axis.text.y = element_text(size = 11),
     strip.text = element_text(size = 14, face = "bold"),
-    legend.position = "none"
+    axis.title.y = element_blank(),
+    legend.position = "none",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 15, 10, 10)
   ) +
-  labs(y = "Standardized Coefficient Estimate (95% CI)", x = NULL) 
+  
+  coord_cartesian(clip = "off")
+
 
 ggsave("outputs/figures/fig2_panel_batched_standardized.png", width = 12, 
        height = 7, units = "in", bg = "white")

@@ -650,3 +650,235 @@ Because assignment operates at the individual patient level, heteroskedasticity-
 We note that clustering standard errors "just in case" is not innocuous in this setting. When the assignment mechanism implies independent observations, clustering typically produces overly conservative inference by inflating standard errors beyond what the design warrants \citep{abadie2023clustering}. Our choice of heteroskedasticity-robust standard errors thus reflects both the institutional reality of Mayo Clinic's assignment process and best practices for inference in leniency designs with individual-level randomization.
 
 \clearpage
+
+\section{External Replication: Massachusetts General Hospital} \label{app:mgh}
+
+This appendix presents a replication of our main analysis using data from the Massachusetts General Hospital (MGH) Emergency Department. MGH is a large, urban, academic Level I trauma center---offering a setting that differs substantially from Mayo Clinic along several institutional dimensions: patient demographics, payer mix, teaching intensity, and ED operational protocols. Consistency of results across these two sites strengthens the external validity of our findings.
+
+\subsection*{Data and Sample Construction}
+
+We obtained administrative records for 129,489 ED encounters at MGH from November 2021 through December 2022. The data comprise five linked modules: encounters, imaging orders, laboratory orders, provider assignments, and medication administrations. We applied analogous sample restrictions to those described in Appendix \ref{app:sample}: we retained adult patients ($\geq$ 18 years), excluded providers with fewer than 500 encounters, excluded complaints with fewer than 1,000 occurrences, excluded complaints with batch rates below 5\%, and restricted to encounters with at least one imaging order. The resulting analytical sample comprises 26,875 encounters.
+
+Batching is defined identically to our primary analysis: two or more distinct imaging modalities ordered within five minutes of the first imaging order. The MGH data include five modality categories: X-ray, formal ultrasound (excluding bedside point-of-care), CT without contrast, CT with contrast, and MRI. CT contrast status is determined by whether an intravenous contrast agent (cardiovascular diagnostics--radiopaque) was administered within $\pm 60$ minutes of the CT order time.
+
+The physician batch tendency instrument is constructed using the same leave-one-out procedure described in Section 3, residualized on the necessary control set. Because MGH data do not include provider experience (years since graduation) or provider sex, these variables are excluded from the precision control set. All models include care area fixed effects (initial treatment zone within the ED), which capture additional within-ED heterogeneity not available in the Mayo data.
+
+\subsection*{Results}
+
+Table \ref{tab:mgh_results} presents the main 2SLS and OLS estimates. The results are broadly consistent with our Mayo Clinic findings. Discretionary batching significantly increases the number of imaging tests ordered (2SLS: 1.372, $p < 0.001$), increases log ED length of stay (2SLS: 0.532, $p < 0.05$), and has no significant effect on 72-hour returns with admission ($-$0.042, $p > 0.10$). The point estimate for log time to disposition (0.499) is positive and comparable in magnitude to the Mayo estimate (0.651), though estimated less precisely at MGH (p = 0.07).
+
+Table \ref{tab:mgh_first_stage} reports the first-stage relationship between physician batch tendency and batching decisions. The instrument is strong, with F-statistics of 41.2 (necessary controls only) and 36.2 (full controls), well above conventional thresholds for weak instrument concerns.
+
+Table \ref{tab:mgh_reduced_form} presents reduced-form estimates. Moving from the 10th to the 90th percentile of physician batch tendency ($\Delta = 0.032$) increases the number of imaging tests by 0.043 and increases log LOS by 0.017.
+
+
+\begin{table}[t!]
+\centering
+\caption{MGH Replication: Effect of Batching on Patient Outcomes}
+\label{tab:mgh_results}
+\begin{threeparttable}
+\begin{tabular}{lccccc}
+\toprule
+& Sequenced mean & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{OLS}} \\
+& (1) & (2) & (3) & (4) & (5) \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
+Log time to disposition 
+& 5.678 
+& $0.539^{*}$ & $0.499$
+& $0.149^{***}$ & $0.139^{***}$ \\
+& (0.642)
+& (0.273) & (0.278)
+& (0.010) & (0.010) \\[0.5em]
+Log LOS
+& 6.165
+& $0.648^{*}$ & $0.532^{*}$
+& $0.146^{***}$ & $0.120^{***}$ \\
+& (0.611)
+& (0.266) & (0.264)
+& (0.009) & (0.009) \\[0.5em]
+Number of distinct imaging tests 
+& 1.333
+& $1.433^{***}$ & $1.372^{***}$
+& $0.841^{***}$ & $0.826^{***}$ \\
+& (0.572)
+& (0.266) & (0.269)
+& (0.008) & (0.008) \\[0.5em]
+72-hour return with admission 
+& 0.010
+& $-0.039$ & $-0.042$
+& $-0.001$ & $-0.001$ \\
+& (0.097)
+& (0.042) & (0.043)
+& (0.002) & (0.002) \\[0.5em]
+72-hour return 
+& 0.036
+& $0.050$ & $0.056$
+& $-0.011^{***}$ & $-0.010^{***}$ \\
+& (0.186)
+& (0.080) & (0.082)
+& (0.003) & (0.003) \\[0.5em]
+\multicolumn{6}{l}{\textit{Panel B. Test Types}} \\[0.5em]
+X-ray 
+& 0.623
+& $0.142$ & $0.164$
+& $0.352^{***}$ & $0.354^{***}$ \\
+& (0.485)
+& (0.188) & (0.193)
+& (0.005) & (0.005) \\[0.5em]
+Ultrasound 
+& 0.105
+& $0.236$ & $0.220$
+& $0.103^{***}$ & $0.099^{***}$ \\
+& (0.306)
+& (0.136) & (0.140)
+& (0.006) & (0.006) \\[0.5em]
+CT without contrast 
+& 0.363
+& $0.630^{**}$ & $0.617^{**}$
+& $0.320^{***}$ & $0.317^{***}$ \\
+& (0.481)
+& (0.206) & (0.212)
+& (0.007) & (0.007) \\[0.5em]
+CT with contrast 
+& 0.157
+& $0.484^{**}$ & $0.457^{*}$
+& $0.058^{***}$ & $0.051^{***}$ \\
+& (0.364)
+& (0.177) & (0.180)
+& (0.007) & (0.007) \\[0.5em]
+MRI
+& 0.086
+& $-0.059$ & $-0.086$
+& $0.008$ & $0.005$ \\
+& (0.280)
+& (0.121) & (0.125)
+& (0.005) & (0.005) \\[0.5em]
+\multicolumn{6}{l}{\textit{Panel C. Disposition}} \\[0.5em]
+Admission 
+& 0.294
+& $0.093$ & $0.027$
+& $0.051^{***}$ & $0.037^{***}$ \\
+& (0.455)
+& (0.187) & (0.189)
+& (0.007) & (0.007) \\[0.5em]
+\midrule
+Necessary controls & --- & Yes & Yes & Yes & Yes \\
+Precision controls & --- & No & Yes & No & Yes \\
+Observations & 26,875 & 26,875 & 26,874 & 26,875 & 26,874 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS results using physician batch tendency as the instrument. Columns 4--5 report OLS estimates. All models include day-of-week $\times$ time-of-day and month-year fixed effects. Precision controls include patient vitals, demographics, complaint $\times$ ESI fixed effects, care area fixed effects, laboratory ordering, and hours into shift. Provider experience and provider sex are not available in the MGH data. Standard errors are heteroskedasticity-robust. 
+\item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[t!]
+\centering
+\caption{MGH Replication: First Stage}
+\label{tab:mgh_first_stage}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+& \multicolumn{2}{c}{Dependent variable: Batched} \\
+\cmidrule(lr){2-3}
+& (1) & (2) \\
+\midrule
+Batch tendency 
+& $1.086^{***}$ & $0.986^{***}$ \\
+& (0.169) & (0.164) \\[0.75em]
+\midrule
+F-statistic & 41.2 & 36.2 \\
+Sample batch rate & \multicolumn{2}{c}{0.162} \\
+Full-data batch rate & \multicolumn{2}{c}{0.074} \\
+Necessary controls & Yes & Yes \\
+Precision controls & No & Yes \\
+Observations & 26,875 & 26,874 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} This table reports first-stage estimates of the relationship between the leave-one-out physician batch tendency instrument and the batching decision. F-statistics are heteroskedasticity-robust Wald tests. The sample batch rate reflects the analytical sample (encounters with imaging, frequent complaints, and high-volume providers). The full-data batch rate reflects all adult encounters with imaging.
+\item $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[t!]
+\centering
+\caption{MGH Replication: Reduced Form}
+\label{tab:mgh_reduced_form}
+\begin{threeparttable}
+\begin{tabular}{p{5cm}cccc}
+\toprule
+\multicolumn{5}{c}{Dependent variable} \\
+\cmidrule(lr){2-5}
+& \makecell[c]{Log time to \\ disposition\\(1)} 
+& \makecell[c]{Log \\ LOS\\(2)} 
+& \makecell[c]{Number of \\ distinct \\ imaging tests\\(3)} 
+& \makecell[c]{72hr return \\ with admission\\(4)} \\
+\midrule
+Batch tendency  
+& $0.492$ & $0.524^{*}$ & $1.352^{***}$ & $-0.042$ \\ 
+& (0.269) & (0.252) & (0.283) & (0.042) \\[0.75em]
+\makecell[l]{Scaled coefficient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.032$)}  
+& 0.016 & 0.017 & 0.043 & $-$0.001 \\[1em]
+Mean dependent variable 
+& 5.678 & 6.165 & 1.333 & 0.010 \\ 
+& (0.642) & (0.611) & (0.572) & (0.097) \\ 
+Necessary controls & Yes & Yes & Yes & Yes \\ 
+Precision controls & Yes & Yes & Yes & Yes \\ 
+\midrule
+Adj.\ $R^2$ & 0.151 & 0.177 & 0.097 & 0.005 \\ 
+Observations & 26,874 & 26,874 & 26,874 & 26,874 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} This table reports reduced-form estimates of the relationship between physician batch tendency and patient outcomes at MGH. 
+The second row rescales coefficients to represent the effect of moving from the 10th to the 90th percentile of batch tendency ($\Delta = 0.032$).
+Coefficients on log-transformed dependent variables can be interpreted as percentage changes using the formula $(\exp(\beta) - 1) \times 100\%$.
+Standard errors are heteroskedasticity-robust.
+\item $^{*} p < 0.05$, $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+
+\begin{table}[t!]
+\centering
+\caption{Cross-Site Comparison: Test of Equality of 2SLS Estimates}
+\label{tab:cross_site}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{2}{c}{Mayo Clinic} & \multicolumn{2}{c}{MGH} & & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+& $\hat{\beta}$ & SE & $\hat{\beta}$ & SE & $z$ & $p$-value \\
+\midrule
+Log time to disposition 
+& $0.651^{***}$ & (0.101) & $0.499$ & (0.278) & 0.51 & 0.61 \\[0.5em]
+Log LOS 
+& $0.597^{***}$ & (0.088) & $0.532^{*}$ & (0.264) & 0.23 & 0.82 \\[0.5em]
+Number of imaging tests 
+& $1.241^{***}$ & (0.116) & $1.372^{***}$ & (0.269) & $-$0.45 & 0.66 \\[0.5em]
+72-hour return with admission 
+& $-0.015$ & (0.019) & $-0.042$ & (0.043) & 0.58 & 0.56 \\[0.5em]
+\midrule
+Observations & \multicolumn{2}{c}{11,679} & \multicolumn{2}{c}{26,874} & & \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} This table compares 2SLS estimates with full controls across the two study sites. The $z$-statistic tests $\text{H}_0\text{: } \beta_{\text{Mayo}} = \beta_{\text{MGH}}$ using the independent-samples formula $z = (\hat{\beta}_{\text{Mayo}} - \hat{\beta}_{\text{MGH}}) / \sqrt{\text{SE}_{\text{Mayo}}^2 + \text{SE}_{\text{MGH}}^2}$, which is valid because the two samples are non-overlapping.
+\item $^{*} p < 0.05$, $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+\clearpage

@@ -171,6 +171,71 @@ plot_combined <- ggplot(all_results,
 
 print(plot_combined)
 
+plot_combined <- ggplot(all_results,
+                        aes(x = reorder(complaint_label, batch_rate),
+                            y = coefficient)) +
+  
+  geom_hline(yintercept = 0, color = "#1a365d", linewidth = 0.7) +
+  
+  # Confidence intervals
+  geom_errorbar(
+    aes(ymin = ci_lower, ymax = ci_upper, color = batch_rate),
+    width = 0,
+    linewidth = 0.9
+  ) +
+  
+  # Point estimates
+  geom_point(
+    aes(fill = batch_rate),
+    size = 3.5,
+    shape = 21,
+    color = "white",
+    stroke = 0.5
+  ) +
+  
+  # Color scales
+  scale_color_gradient(
+    low = "#2972b6", high = "#dc2626",
+    guide = "none"
+  ) +
+  scale_fill_gradient(
+    low = "#2972b6", high = "#dc2626",
+    name = "Batching\nRate",
+    labels = function(x) paste0(round(x, 0), "%"),
+    guide = guide_colorbar(
+      title.position = "top",
+      title.hjust = 0.5,
+      barwidth = 1,
+      barheight = 8
+    )
+  ) +
+  
+  coord_flip(clip = "off") +
+  facet_wrap(~outcome_label, scales = "free_x", ncol = 3) +
+  
+  labs(
+    x = NULL,
+    y = "2SLS Coefficient (95% CI)"
+  ) +
+  
+  # Theme
+  theme_bw(base_size = 13) +
+  theme(
+    axis.title = element_text(size = 13),
+    axis.text = element_text(size = 12, color = "black"),
+    axis.text.y = element_text(size = 11),
+    axis.title.y = element_blank(),
+    strip.text = element_text(size = 13, face = "bold"),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 11),
+    legend.text = element_text(size = 10),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.margin = margin(10, 15, 10, 10)
+  )
+
+print(plot_combined)
+
 ggsave("outputs/figures/heterogeneity_by_complaint.png", 
-       plot_combined, width = 14, height = 4)
+       plot_combined, width = 13, height = 4)
 
