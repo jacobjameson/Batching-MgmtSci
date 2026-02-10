@@ -124,7 +124,7 @@ Major Overcapacity &
 
 This appendix documents our sample selection process and compares characteristics of included versus excluded encounters. Our analytical sample focuses on encounters where imaging decisions are both consequential and discretionary---the population where our instrumental variables approach can identify meaningful policy-relevant effects.
 
-Figure \ref{fig:consort} displays the sequential exclusion criteria applied to arrive at our analytical sample. Starting with 48,854 adult patient encounters during the study period (October 2018--December 2019), we exclude: (1) encounters with non-full-time providers, (2) rare complaints with fewer than 500 total encounters, (3) complaints where batching occurs in less than 5\% of encounters, and (4) encounters without any imaging ordered. These restrictions yield an analytical sample of 11,659 encounters (23.9\% of the original sample).
+Figure \ref{fig:consort} displays the sequential exclusion criteria applied to arrive at our analytical sample. Starting with 48,854 adult patient encounters during the study period (October 2018--December 2019), we exclude: (1) encounters with non-full-time providers, (2) rare complaints with fewer than 1000 total encounters, (3) complaints where batching occurs in less than 5\% of encounters, and (4) encounters without any imaging ordered. These restrictions yield an analytical sample of 11,679 encounters (23.9\% of the original sample).
 
 \begin{figure}[htbp]
 \centering
@@ -133,7 +133,7 @@ Figure \ref{fig:consort} displays the sequential exclusion criteria applied to a
 \label{fig:consort}
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Sample selection for Mayo Clinic ED encounters (October 2018--December 2019). Rare complaints are those with fewer than 500 total encounters. Low-batching complaints are those where batching occurs in less than 5\% of encounters.
+\textit{Notes:} Sample selection for Mayo Clinic ED encounters (October 2018--December 2019). Rare complaints are those with fewer than 1000 total encounters. Low-batching complaints are those where batching occurs in less than 5\% of encounters.
 \end{flushleft}
 \end{figure}
 
@@ -162,7 +162,7 @@ Table \ref{tab:sample_comparison} compares patient characteristics and outcomes 
 \quad ED LOS (minutes) & 238.3 (135.0) & 272.0 (133.5) & $<$0.001 \\
 \quad Admission rate (\%) & 17.0 & 28.4 & $<$0.001 \\[0.5em]
 \midrule
-N & 37,195 & 11,659 & \\
+N & 37,175 & 11,679 & \\
 \% of total sample & 76.1\% & 23.9\% & \\
 \bottomrule
 \end{tabular}
@@ -406,7 +406,6 @@ We investigate whether the reduced-form effects observed in Section 4.1 are due 
 
 We restrict attention to ED visits for conditions which batching occurs less than 1 percent of the time, as a placebo check. We estimate reduced-form regressions of each main outcome on physician batch tendency for this subsample and the results are presented in Table \ref{tab:placebo}. The results show no significant association between physician batch tendency and patient outcomes for this subsample, providing evidence that the reduced-form effects observed in the main analysis are not driven by unobserved physician differences correlated with batching tendency.
 
-
 \begin{table}[h]
 \centering
 \caption{Placebo Check: Batch Tendency and Patient Outcomes}
@@ -420,15 +419,24 @@ We restrict attention to ED visits for conditions which batching occurs less tha
 & \makecell[c]{Log \\ LOS\\(2)}
 & \makecell[c]{72hr return \\ with admission\\(3)} \\
 \midrule
-Batch tendency  & $3.486$ & $3.580$ & $-0.2158$ \\
-& (1.724) & (1.750) & (0.1069) \\[0.5em]
+Batch tendency  
+& $-0.947$ 
+& $-0.867$ 
+& $-0.086$ \\
+& (0.695) 
+& (0.695) 
+& (0.075) \\[0.5em]
+
 Mean dependent variable & 4.57  & 4.59 & 0.001  \\ 
 & (0.611) & (0.615) & (0.098) \\ 
 Time FE & Yes & Yes & Yes \\ 
 Baseline controls & Yes & Yes & Yes \\ 
 \midrule
-Adj $R^2$ & 0.159 & 0.160 & 0.051 \\ 
-Observations & 1,244 & 1,244 & 1,244 \\ 
+Adj $R^2$ 
+& 0.384 
+& 0.398 
+& 0.012 \\ 
+Observations & 1,323 & 1,323 & 1,323 \\ 
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
@@ -532,7 +540,7 @@ Our primary time-based outcomes---LOS and time to disposition---may capture vari
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
+& Standard care & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 Log treatment time
@@ -544,12 +552,12 @@ Log time to disposition
 \midrule
 Necessary controls & --- & Yes & Yes & Yes & Yes \\
 Precision controls & --- & No & Yes & No & Yes \\
-Observations & 11,659 & 11,659 & 11,659 & 11,659 & 11,659 \\
+Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates using physician batch tendency as the instrument. Columns 4--5 report UJIVE estimates using ED provider identifiers as instruments. Precision controls include patient vitals, demographics, complaint-severity fixed effects, physician characteristics, laboratory ordering, hours into shift, and ED capacity. $^{**}p<0.01$, $^{***}p<0.001$.
+\item \textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates using physician batch tendency as the instrument. Columns 4--5 report UJIVE estimates using ED provider identifiers as instruments. Precision controls include patient vitals, demographics, complaint-severity fixed effects, physician characteristics, laboratory ordering, hours into shift, and ED capacity. $^{**}p<0.01$, $^{***}p<0.001$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -565,7 +573,7 @@ For care quality, our primary measure is 72-hour ED revisit resulting in hospita
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
+& Standard care & \multicolumn{2}{c}{2SLS} & \multicolumn{2}{c}{UJIVE} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 72-hr return with admission 
@@ -577,12 +585,12 @@ For care quality, our primary measure is 72-hour ED revisit resulting in hospita
 \midrule
 Necessary controls & --- & Yes & Yes & Yes & Yes \\
 Precision controls & --- & No & Yes & No & Yes \\
-Observations & 11,659 & 11,659 & 11,659 & 11,659 & 11,659 \\
+Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates; Columns 4--5 report UJIVE estimates. Standard errors are heteroskedasticity-robust. For patients admitted during the index visit, the 72-hour window begins at hospital discharge.
+\item \textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2--3 report 2SLS estimates; Columns 4--5 report UJIVE estimates. Standard errors are heteroskedasticity-robust. For patients admitted during the index visit, the 72-hour window begins at hospital discharge.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -622,7 +630,7 @@ Observations & 6,306 & 6,305 & 6,306 & 6,305 \\
 \end{tabular}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} Sample restricted to patients discharged from the ED (66.8\% of analytical sample). Columns 1--2 report 2SLS estimates using physician batch tendency as the instrument. Columns 3--4 report UJIVE estimates. $^{***}p<0.001$.
+\item \textit{Notes:} Sample restricted to patients discharged from the ED (54\% of analytical sample). Columns 1--2 report 2SLS estimates using physician batch tendency as the instrument. Columns 3--4 report UJIVE estimates. $^{***}p<0.001$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -657,7 +665,7 @@ This appendix presents a replication of our main analysis using data from the Ma
 
 \subsection*{Data and Sample Construction}
 
-We obtained administrative records for 129,489 ED encounters at MGH from November 2021 through December 2022. The data comprise five linked modules: encounters, imaging orders, laboratory orders, provider assignments, and medication administrations. We applied analogous sample restrictions to those described in Appendix \ref{app:sample}: we retained adult patients ($\geq$ 18 years), excluded providers with fewer than 500 encounters, excluded complaints with fewer than 1,000 occurrences, excluded complaints with batch rates below 5\%, and restricted to encounters with at least one imaging order. The resulting analytical sample comprises 26,875 encounters.
+We obtained administrative records for 111,710 adult ED encounters at MGH from November 2021 through December 2022. The data comprise five linked modules: encounters, imaging orders, laboratory orders, provider assignments, and medication administrations. We applied analogous sample restrictions to those described in Appendix \ref{app:sample}: we retained adult patients ($\geq$ 18 years), excluded providers with fewer than 1000 encounters, excluded complaints with fewer than 1,000 occurrences, excluded complaints with batch rates below 5\%, and restricted to encounters with at least one imaging order. The resulting analytical sample comprises 26,875 encounters.
 
 Batching is defined identically to our primary analysis: two or more distinct imaging modalities ordered within five minutes of the first imaging order. The MGH data include five modality categories: X-ray, formal ultrasound (excluding bedside point-of-care), CT without contrast, CT with contrast, and MRI. CT contrast status is determined by whether an intravenous contrast agent (cardiovascular diagnostics--radiopaque) was administered within $\pm 60$ minutes of the CT order time.
 
@@ -679,7 +687,7 @@ Table \ref{tab:mgh_reduced_form} presents reduced-form estimates. Moving from th
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced mean & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{OLS}} \\
+& Standard care mean & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{OLS}} \\
 & (1) & (2) & (3) & (4) & (5) \\
 \midrule
 \multicolumn{6}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
@@ -770,7 +778,7 @@ Observations & 26,875 & 26,875 & 26,874 & 26,875 & 26,874 \\
 \end{tabular}
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2--3 report 2SLS results using physician batch tendency as the instrument. Columns 4--5 report OLS estimates. All models include day-of-week $\times$ time-of-day and month-year fixed effects. Precision controls include patient vitals, demographics, complaint $\times$ ESI fixed effects, care area fixed effects, laboratory ordering, and hours into shift. Provider experience and provider sex are not available in the MGH data. Standard errors are heteroskedasticity-robust. 
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2--3 report 2SLS results using physician batch tendency as the instrument. Columns 4--5 report OLS estimates. All models include day-of-week $\times$ time-of-day and month-year fixed effects. Precision controls include patient vitals, demographics, complaint $\times$ ESI fixed effects, care area fixed effects, laboratory ordering, and hours into shift. Provider experience and provider sex are not available in the MGH data. Standard errors are heteroskedasticity-robust. 
 \item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
 \end{flushleft}
 \end{threeparttable}

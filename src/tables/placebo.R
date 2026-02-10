@@ -13,7 +13,7 @@ placebo <- data %>%
   group_by(complaint_esi) %>%
   mutate(batchmean = mean(batched)) %>%
   ungroup() %>% 
-  filter(imgTests == 0)
+  filter(imgTests == 0, batchmean < 0.01)
 
 placebo$ln_ED_LOS <- log(placebo$ED_LOS)
 placebo$ln_disp_time <- log(placebo$time_to_dispo)
@@ -24,34 +24,64 @@ placebo$capacity_level <- factor(placebo$capacity_level,
                                           'Minor Overcapacity', 
                                           'Major Overcapacity'))
 
+felm(
+  ln_ED_LOS ~ batch.tendency + los.tendency + # instrument
+    tachycardic + tachypneic + febrile + hypotensive +  # patient variables
+    age + # patient variables
+    capacity_level + # ED variables
+    LAB_PERF + EXPERIENCE + hrs_in_shift + PROVIDER_SEX  | # physician variables
+    dayofweekt + month_of_year + # time FE
+    complaint_esi + race + GENDER|0|ED_PROVIDER, # patient variables
+  data = placebo) %>% summary()
+
+felm(
+  ln_disp_time ~ batch.tendency  + los.tendency + # instrument
+    tachycardic + tachypneic + febrile + hypotensive + # patient variables
+    age + # patient variables
+    capacity_level + # ED variables 
+    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
+    dayofweekt + month_of_year + # time FE
+    complaint_esi + race + GENDER|0|ED_PROVIDER, # patient variables
+  data = placebo) %>% summary()
+
+felm(
+  RTN_72_HR_ADMIT ~ batch.tendency + los.tendency + # instrument
+    tachycardic + tachypneic + febrile + hypotensive + # patient variables
+    age + # patient variables
+    capacity_level + # ED variables
+    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
+    dayofweekt + month_of_year + # time FE
+    complaint_esi + race + GENDER|0|ED_PROVIDER, # patient variables
+  data = placebo) %>% summary()
+
 # ------------------------------------------------------------------------------
 
 rf_model_disp <- feols(
-  ln_disp_time ~ batch.tendency + # instrument
+  ln_disp_time ~ batch.tendency  + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + # ED variables
     LAB_PERF + EXPERIENCE  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
-  data = placebo, vcov = "HC1")
+  data = placebo, cluster = ED_PROVIDER)
 
 rf_model_los <- feols(
   ln_ED_LOS ~ batch.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + # ED variables
-    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
+    LAB_PERF  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
   data = placebo, vcov = "HC1")
 
 rf_model_ra <- feols(
-  RTN_72_HR_ADMIT ~ batch.tendency + # instrument
+  RTN_72_HR_ADMIT ~ batch.tendency + los.tendency + # instrument
     tachycardic + tachypneic + febrile + hypotensive + # patient variables
     age + # patient variables
     capacity_level + # ED variables
-    LAB_PERF + EXPERIENCE + hrs_in_shift  + PROVIDER_SEX  | # physician variables
+    LAB_PERF  | # physician variables
     dayofweekt + month_of_year + # time FE
     complaint_esi + race + GENDER, # patient variables
   data = placebo, vcov = "HC1")
@@ -84,6 +114,8 @@ print(paste('RTN_72_HR_ADMIT mean:', mean(data$RTN_72_HR_ADMIT)))
 print(paste('RTN_72_HR_ADMIT sd:', sd(data$RTN_72_HR_ADMIT)))
 
 sink()
+
+
 
 
 ##

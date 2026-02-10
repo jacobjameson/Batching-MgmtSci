@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.9)  9 FEB 2026 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.9)  10 FEB 2026 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1007,7 +1007,7 @@ Package pdftex.def Info: figures/monotonicity.png  used on input line 598.
 <../outputs/figures/conley_sensitivity_ujive.png, id=154, 578.16pt x 361.35pt>
 File: ../outputs/figures/conley_sensitivity_ujive.png Graphic file (type png)
 <use ../outputs/figures/conley_sensitivity_ujive.png>
-Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 725.
+Package pdftex.def Info: ../outputs/figures/conley_sensitivity_ujive.png  used on input line 734.
 (pdftex.def)             Requested size: 469.75502pt x 293.59616pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1033,15 +1033,15 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 31169 strings out of 469471
- 613153 string characters out of 5467160
+ 31165 strings out of 469471
+ 613109 string characters out of 5467160
  1035488 words of memory out of 5000000
  58965 multiletter control sequences out of 15000+600000
- 717519 words of font info for 212 fonts, out of 8000000 for 9000
+ 717304 words of font info for 210 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  84i,20n,94p,1005b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/jacobjameson/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on appendix.pdf (24 pages, 1219794 bytes).
+Output written on appendix.pdf (24 pages, 1219752 bytes).
 PDF statistics:
  428 PDF objects out of 1000 (max. 8388607)
  350 compressed objects within 4 object streams

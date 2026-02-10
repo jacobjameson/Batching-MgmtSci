@@ -125,7 +125,7 @@
 We have carefully revised the paper to address all comments, and it has significantly benefited from the suggested revisions. In revising the paper, we have also benefited from several conversations with our medical collaborators (and coauthors of this study), who are responsible for running the EDs at two leading US hospitals (our partner hospitals): Mayo Clinic and Massachusetts General Hospital (MGH). In what follows, we first briefly summarize the main changes and then provide individual responses.
 
 \begin{enumerate}
-\item We have substantially strengthened our identification strategy to address concerns about the exclusion restriction. The review team raised the concern that our instrument (physician batch tendency) might capture general diagnostic intensity rather than imaging-specific ordering behavior. We carefully address this in three ways: (a) we expanded our control set to include laboratory tests ordered, physician characteristics (experience, gender, hours into shift), and ED capacity levels; (b) we implemented the Unbiased Jackknife Instrumental Variables Estimator (UJIVE) following \citet{goldsmithpinkham2025leniencydesignsoperatorsmanual}, which is specifically designed for leniency designs with many providers and eliminates the many-instrument bias that arises when 2SLS uses numerous physician indicators; and (c) we conducted various robustness checks, including Conley et al. (2012) sensitivity analyses demonstrating robustness to plausible exclusion restriction violations. Our sensitivity analyses, as well as the close agreement between our 2SLS and the newly added UJIVE estimates---both before and after adding precision controls---provide strong evidence that our approaches isolate batching-specific effects.
+\item We have substantially strengthened our identification strategy to address concerns about the exclusion restriction. The review team raised the concern that our instrument (physician batch tendency) might capture general diagnostic intensity rather than imaging-specific ordering behavior. We carefully address this in three ways: (a) we expanded our control set to include laboratory tests ordered, physician characteristics (experience, gender, hours into shift), and ED capacity levels; (b) we implemented the Unbiased Jackknife Instrumental Variables Estimator (UJIVE) following \cite{goldsmithpinkham2025leniencydesignsoperatorsmanual}, which is specifically designed for leniency designs with many providers and eliminates the many-instrument bias that arises when 2SLS uses numerous physician indicators; and (c) we conducted various robustness checks, including Conley et al. (2012) sensitivity analyses demonstrating robustness to plausible exclusion restriction violations. Our sensitivity analyses, as well as the close agreement between our 2SLS and the newly added UJIVE estimates---both before and after adding precision controls---provide strong evidence that our approaches isolate batching-specific effects.
 \item We have clarified our theoretical framework and the definition of treatment. Following guidance from the AE and all three reviewers, we reframed our comparison throughout the manuscript as ``batch ordering versus standard practice'' rather than ``batching versus sequencing.'' We added a formal hypothesis development section (Section 2.3) that articulates testable predictions grounded in the cognitive load, information value, and diagnostic momentum literatures. We also clarified that our Local Average Treatment Effect (LATE) estimator identifies effects for ``compliers''---the approximately 20\% of patients whose testing strategy depends on physician practice style rather than clinical necessity---which is precisely the margin where ED management interventions can influence practice.
 \item We have added robustness checks and refined outcome measures. Following Reviewer 3's suggestion, we added treatment time (from physician contact to disposition) as another outcome variable, excluding both waiting room delays and post-disposition boarding. We verified robustness to nonlinear model specifications (logit for binary outcomes, Poisson for counts). We conducted heterogeneity analyses across seven chief complaint categories, finding consistent patterns of increased imaging without efficiency gains or quality improvements across all clinical scenarios. We also provided detailed sample selection documentation, including a CONSORT flow diagram and comparison of included versus excluded encounters.
 \item We have updated our estimates to reflect the enhanced specification. Our revised results show that discretionary batching increases ED length of stay by approximately 65–81\% (attenuated from the original 130\% after adding precision controls), increases imaging tests by 88–93\%, and increases admission probability by 40 percentage points, with no effect on 72-hour returns. The attenuation confirms reviewers' intuition that our original specification likely contained some correlation with general diagnostic intensity, while the persistence of large, significant effects across both of the leading US hospitals we have partnered with demonstrates that substantial imaging-specific variation remains.
@@ -372,7 +372,7 @@ Our newly added results (Table 4) show close agreement between 2SLS and UJIVE---
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 
@@ -473,7 +473,7 @@ Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
 \item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
 \end{flushleft}
 
@@ -582,7 +582,7 @@ The AE correctly notes that ED LOS captures multiple processes beyond physician 
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 Log treatment time
@@ -610,7 +610,7 @@ Observations & 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 \\
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). 
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). 
 Columns 2–3 report 2SLS estimates using physician batch tendency as the instrument. 
 Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. 
 All models include day-of-week and month fixed effects. Precision controls include patient vital signs, demographics, complaint-severity fixed effects, physician characteristics, laboratory ordering, hours into shift, and ED capacity. 
@@ -821,7 +821,7 @@ Our revised main results (Table 4) now incorporate the expanded controls and add
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 
@@ -922,7 +922,7 @@ Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
 \item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
 \end{flushleft}
 
@@ -1337,7 +1337,7 @@ These estimates suggest that relatively modest interventions---such as decision 
 We have added a detailed cost analysis in EC.6, including the above table and discussion. We believe this addition substantially enhances the practical relevance of our findings for ED administrators considering policies to influence physician batching behavior. We thank the reviewer for prompting us to include this important analysis and have referenced it in the main text (Section 4.7), included here for posterity:
 
 \begin{quote}
-``Combining our causal estimates with published cost parameters (see EC.6 for details), we adopt a societal perspective using Medicare-allowed reimbursement of \$130 per ED radiograph [@dabus2025practice] and ED bed-hour costs of \$85 based on time-driven activity-based costing studies [@schreyer2017economics, @canellas2024measurement]. Under deliberately conservative assumptions, discretionary batching imposes at least \$349 in direct costs per batched complier: \$125 from excess imaging and \$224 from excess capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (Table EC.6.1). These estimates represent conservative lower bounds, include only statistically significant imaging effects (excluding ultrasound and CT point estimates), value bed-hours at operational cost rather than throughput value, and exclude downstream costs from the 40 percentage point increase in admission probability. Inpatient stays cost \$10,000–15,000, which would dwarf our direct cost estimates. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies. Even under these conservative assumptions, a 50\% reduction in discretionary batching would save about \$113,000 annually while freeing 850 bed-hours of capacity.''
+``Combining our causal estimates with published cost parameters (see EC.6 for details), we adopt a societal perspective using Medicare-allowed reimbursement of \$130 per ED radiograph \citep{dabus2025practice} and ED bed-hour costs of \$85 based on time-driven activity-based costing studies \citep{schreyer2017economics, canellas2024measurement}. Under deliberately conservative assumptions, discretionary batching imposes at least \$349 in direct costs per batched complier: \$125 from excess imaging and \$224 from excess capacity utilization. Scaling to annual operations, this amounts to approximately \$232,000 per year for a medium-sized ED (40,000 annual visits) and \$349,000 for a large urban ED (Table EC.6.1). These estimates represent conservative lower bounds, include only statistically significant imaging effects (excluding ultrasound and CT point estimates), value bed-hours at operational cost rather than throughput value, and exclude downstream costs from the 40 percentage point increase in admission probability. Inpatient stays cost \$10,000–15,000, which would dwarf our direct cost estimates. Notably, we find no offsetting benefits: 72-hour return rates are statistically indistinguishable between strategies. Even under these conservative assumptions, a 50\% reduction in discretionary batching would save about \$113,000 annually while freeing 850 bed-hours of capacity.''
 \end{quote}
 
 We appreciate the reviewer's suggestion, which has led us to provide a more comprehensive assessment of the operational and financial implications of discretionary batching in EDs.
@@ -1506,7 +1506,7 @@ We thank the reviewer for this important observation. In response to concerns fr
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 \multicolumn{6}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
@@ -1593,7 +1593,7 @@ Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 \end{tabular}
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
 \item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
 \end{flushleft}
 \end{threeparttable}
@@ -1737,7 +1737,7 @@ Our revised main results (Table 4) now incorporate the expanded controls and res
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 
@@ -1838,7 +1838,7 @@ Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2–3 report 2SLS results using physician batch tendency as the instrument. Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. All models include day-of-week and month fixed effects. Precision controls described in text. Standard errors are heteroskedasticity-robust.
 \item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
 \end{flushleft}
 
@@ -2074,12 +2074,12 @@ Figure EC.3.1 (EC.3) shows the complete sample selection process:
 \label{fig:consort}    
 \begin{tablenotes}
 \small
-\item \textit{Notes:} Sample selection for Mayo Clinic ED encounters (October 2018 - December 2019). Starting with 48,854 encounters, we apply sequential exclusion criteria to arrive at our analytical sample of 11,404 encounters. Rare complaints have fewer than 1,000 total encounters. Low-batching complaints have batching rates below 5\%.
+\item \textit{Notes:} Sample selection for Mayo Clinic ED encounters (October 2018 - December 2019). Starting with 48,854 encounters, we apply sequential exclusion criteria to arrive at our analytical sample of 11,697 encounters. Rare complaints have fewer than 1,000 total encounters. Low-batching complaints have batching rates below 5\%.
 \end{tablenotes}
 \end{threeparttable}
 \end{figure}
 
-Starting with 48,854 encounters of adult patients, we exclude: (1) encounters with non-full time providers, (2) rare complaints ($<$500 encounters), (3) complaints where batching occurs $<$5\% of the time, and (4) complaints that do not involve any imaging. This yields our analytical sample of 11,679 encounters (23.7\%). We made this decisions based on conversations and discussions with our medical collaborators (and co-authors on this paper) who are in charge of operations in two leading US hospitals (Mayo Clinic and MGH).
+Starting with 48,854 encounters of adult patients, we exclude: (1) encounters with non-full time providers, (2) rare complaints ($<1000$ encounters), (3) complaints where batching occurs $<$5\% of the time, and (4) complaints that do not involve any imaging. This yields our analytical sample of 11,679 encounters (23.9\%). We made this decisions based on conversations and discussions with our medical collaborators (and co-authors on this paper) who are in charge of operations in two leading US hospitals (Mayo Clinic and MGH).
 
 The table included below (now included in EC.3) compares patient characteristics and outcomes between excluded and included encounters. As can be seen, the  analytical sample differs from excluded encounters in clinically meaningful and expected ways. Included patients are older (62.9 vs. 57.5 years), higher acuity (ESI 2.52 vs. 2.87, where lower numbers indicate greater severity), and more likely to present with concerning vital signs (febrile: 4.6\% vs. 1.4\%, hypotensive: 2.3\% vs. 1.2\%). Consequently, they experience longer ED stays (272 vs. 238 minutes) and higher admission rates (28.4\% vs. 17.0\%).
 
@@ -2109,13 +2109,13 @@ Hypotensive (\%) & 1.2 & 2.3 & <0.001*** \\
 ED LOS (minutes) & 238.3 (135.0) & 272.0 (133.5) & <0.001*** \\
 Admission rate (\%) & 17.0 & 28.4 & <0.001*** \\
 \midrule
-N & 37,450 & 11,679 & \\
-\% of total sample & 76.2\% & 23.7\% & \\
+N & 37,175 & 11,679 & \\
+\% of total sample & 76.1\% & 23.9\% & \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
 \footnotesize
-\item \textit{Notes:} Comparison of patient characteristics and outcomes between excluded encounters (n=37,450) and analytical sample (n=11,651). Standard deviations in parentheses for continuous variables. ESI (Emergency Severity Index) ranges from 1 (highest acuity) to 5 (lowest acuity). P-values from two-sample t-tests for continuous variables and proportion tests for binary variables. *** p<0.001.
+\item \textit{Notes:} Comparison of patient characteristics and outcomes between excluded encounters (n=37,175) and analytical sample (n=11,679). Standard deviations in parentheses for continuous variables. ESI (Emergency Severity Index) ranges from 1 (highest acuity) to 5 (lowest acuity). P-values from two-sample t-tests for continuous variables and proportion tests for binary variables. *** p<0.001.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -2175,7 +2175,7 @@ We have therefore added this analysis using treatment time (defined as the time 
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
 Log treatment time
@@ -2203,7 +2203,7 @@ Observations & 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 \\
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). 
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). 
 Columns 2–3 report 2SLS estimates using physician batch tendency as the instrument. 
 Columns 4–5 report UJIVE estimates using ED provider identifiers as many weak instruments. 
 All models include day-of-week and month fixed effects. Precision controls include patient vital signs, demographics, complaint-severity fixed effects, physician characteristics, laboratory ordering, hours into shift, and ED capacity. 
@@ -2227,7 +2227,7 @@ Nevertheless, we acknowledge the reviewer's point about statistical power and co
 \begin{threeparttable}
 \begin{tabular}{lcccccc}
 \toprule
-& Sequenced & \multicolumn{2}{c}{\underline{2SLS}} 
+& Standard care & \multicolumn{2}{c}{\underline{2SLS}} 
 & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & mean & (2) & (3) & (4) & (5) \\
 \midrule
@@ -2254,7 +2254,7 @@ Observations       & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 \\
 \end{tabular}
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} Column 1 reports means for sequenced patients (standard deviations in parentheses). 
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). 
 Columns 2--3 report 2SLS estimates using batch tendency as the instrument. Columns 4--5 report UJIVE estimates using ED provider identifiers as many weak instruments. All specifications include day-of-week and month fixed effects. Precision controls include demographic, clinical, physician, and contextual covariates as described in Section~3. Standard errors are heteroskedasticity-robust.
 \end{flushleft}
 

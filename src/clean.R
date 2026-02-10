@@ -409,7 +409,10 @@ data <- data %>%
          batch.tendency = (Sum_Resid - residual_batch) / (n() - 1),
          
          Sum_Resid=sum(residual_los, na.rm=T),
-         los.tendency = (Sum_Resid - residual_los) / (n() - 1)) %>%
+         los.tendency = (Sum_Resid - residual_los) / (n() - 1),
+         
+         Sum_Resid=sum(residual_admit, na.rm=T),
+         admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)) %>%
   ungroup()
 
 
@@ -426,7 +429,7 @@ final <- data %>%
   group_by(complaint_esi) %>%
   mutate(batchmean = mean(batched)) %>%
   ungroup() %>% 
-  filter(batchmean > 0.05, imaging == 1)
+  filter(batchmean > 0.05,  imaging == 1)
 
 final$ln_ED_LOS <- log(final$ED_LOS)
 final$ln_disp_time <- log(final$time_to_dispo)

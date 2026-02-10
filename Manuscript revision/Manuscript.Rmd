@@ -453,7 +453,7 @@ Panel A of Table \ref{tab:results_table} presents 2SLS and UJIVE estimates of th
 \begin{threeparttable}
 \begin{tabular}{lccccc}
 \toprule
-& Sequenced mean & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
+& Standard care mean & \multicolumn{2}{c}{\underline{2SLS}} & \multicolumn{2}{c}{\underline{UJIVE}} \\
 & (1) & (2) & (3) & (4) & (5) \\
 \midrule
 
@@ -804,7 +804,7 @@ ED capacity conditions also influence test ordering patterns. Under minor overca
 
 ## Generalizability of Results Across EDs {#sec:generalize}
 
-To assess the generalizability of our findings beyond the Mayo Clinic ED, we replicated our analysis using data from the Massachusetts General Hospital (MGH) ED, one of the busiest emergency departments in the United States. The MGH dataset comprises 129,489 patient encounters from November 2021 through December 2022. After applying analogous sample restrictions---retaining adult patients with imaging orders, excluding low-volume providers and rare complaints---the analytical sample comprises 26,875 encounters. Full details on the MGH data, sample construction, and complete regression tables are provided in EC.13.
+To assess the generalizability of our findings beyond the Mayo Clinic ED, we replicated our analysis using data from the Massachusetts General Hospital (MGH) ED, one of the busiest emergency departments in the United States. The MGH dataset comprises 111,710 adult patient encounters from November 2021 through December 2022 (. After applying analogous sample restrictions---retaining adult patients with imaging orders, excluding low-volume providers and rare complaints---the analytical sample comprises 26,875 encounters. Full details on the MGH data, sample construction, and complete regression tables are provided in EC.13.
 
 Unlike the Mayo Clinic ED, where patients are randomly assigned to physicians upon arrival through a rotational system, the MGH ED employs a different patient assignment mechanism. At MGH, patients are triaged into different care areas (e.g., urgent care, acute care, observation) based on acuity and presenting complaints, then assigned to physicians based on availability within those areas rather than through random rotation. To address this non-random assignment and potential selection bias, we adjust our instrumental variable strategy by including care area fixed effects in both stages of our 2SLS estimation and in the construction of the batch tendency instrument, thereby accounting for the sorting of patients into different ED zones. While this approach cannot guarantee the same level of causal identification as Mayo Clinic's randomized system, it provides a meaningful test of whether the relationship between batching and patient outcomes replicates in an institutionally distinct setting.
 
