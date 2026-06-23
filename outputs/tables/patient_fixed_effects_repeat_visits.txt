@@ -1,0 +1,88 @@
+Repeat-patient fixed-effects analysis
+Patient FE absorb time-invariant patient characteristics
+
+Repeat-visit sample size: 3739 
+Unique repeat patients: 1508 
+Switching sample size: 3648 
+Unique switching patients: 1463 
+
+Actual batching models:
+                           pf_los          pf_dispo           pf_treat           pf_tests
+Dependent Var.:         ln_ED_LOS      ln_disp_time      ln_treat_time           imgTests
+                                                                                         
+Batched         0.0479** (0.0164) 0.0650** (0.0179) 0.0846*** (0.0169) 0.6366*** (0.0291)
+Fixed-Effects:  ----------------- ----------------- ------------------ ------------------
+EXT_ID                        Yes               Yes                Yes                Yes
+complaint_esi                 Yes               Yes                Yes                Yes
+dayofweekt                    Yes               Yes                Yes                Yes
+month_of_year                 Yes               Yes                Yes                Yes
+_______________ _________________ _________________ __________________ __________________
+S.E.: Clustered   by: ED_PROVIDER   by: ED_PROVIDER    by: ED_PROVIDER    by: ED_PROVIDER
+Observations                3,646             3,646              3,613              3,646
+R2                        0.57397           0.55548            0.51383            0.57741
+Within R2                 0.10451           0.06039            0.03877            0.16704
+
+                        pf_admit pf_stable_admit     pf_downgrade      pf_upgrade       pf_return
+Dependent Var.:            admit    stable_admit        downgrade         upgrade       RTN_72_HR
+                                                                                                 
+Batched         -0.0163 (0.0179) 0.0032 (0.0263) -0.0158 (0.0181) 0.0149 (0.0157) 0.0142 (0.0102)
+Fixed-Effects:  ---------------- --------------- ---------------- --------------- ---------------
+EXT_ID                       Yes             Yes              Yes             Yes             Yes
+complaint_esi                Yes             Yes              Yes             Yes             Yes
+dayofweekt                   Yes             Yes              Yes             Yes             Yes
+month_of_year                Yes             Yes              Yes             Yes             Yes
+_______________ ________________ _______________ ________________ _______________ _______________
+S.E.: Clustered  by: ED_PROVIDER by: ED_PROVIDER  by: ED_PROVIDER by: ED_PROVIDER by: ED_PROVIDER
+Observations               3,646           3,646            3,646           3,646           3,646
+R2                       0.58945         0.59368          0.42852         0.43611         0.42988
+Within R2                0.06241         0.06977          0.01174         0.01252         0.00618
+
+                pf_return_admit
+Dependent Var.: RTN_72_HR_ADMIT
+                               
+Batched         0.0109 (0.0091)
+Fixed-Effects:  ---------------
+EXT_ID                      Yes
+complaint_esi               Yes
+dayofweekt                  Yes
+month_of_year               Yes
+_______________ _______________
+S.E.: Clustered by: ED_PROVIDER
+Observations              3,646
+R2                      0.40768
+Within R2               0.00683
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Physician batch style exposure models:
+                              pfs_los       pfs_dispo      pfs_treat         pfs_tests        pfs_admit
+Dependent Var.:             ln_ED_LOS    ln_disp_time  ln_treat_time          imgTests            admit
+                                                                                                       
+Physician Batch Style 0.3276 (0.5349) 0.3452 (0.8455) 0.2584 (1.072) 2.561*** (0.4694) 0.6452. (0.3515)
+Fixed-Effects:        --------------- --------------- -------------- ----------------- ----------------
+EXT_ID                            Yes             Yes            Yes               Yes              Yes
+complaint_esi                     Yes             Yes            Yes               Yes              Yes
+dayofweekt                        Yes             Yes            Yes               Yes              Yes
+month_of_year                     Yes             Yes            Yes               Yes              Yes
+_____________________ _______________ _______________ ______________ _________________ ________________
+S.E.: Clustered       by: ED_PROVIDER by: ED_PROVIDER by: ED_PROVI..   by: ED_PROVIDER  by: ED_PROVIDER
+Observations                    3,646           3,646          3,613             3,646            3,646
+R2                            0.57338         0.55456        0.51250           0.52087          0.59013
+Within R2                     0.10325         0.05844        0.03613           0.05559          0.06395
+
+                      pfs_stable_ad..   pfs_downgrade      pfs_upgrade
+Dependent Var.:          stable_admit       downgrade          upgrade
+                                                                      
+Physician Batch Style 0.3695 (0.2937) 0.2073 (0.1609) -0.1263 (0.3290)
+Fixed-Effects:        --------------- --------------- ----------------
+EXT_ID                            Yes             Yes              Yes
+complaint_esi                     Yes             Yes              Yes
+dayofweekt                        Yes             Yes              Yes
+month_of_year                     Yes             Yes              Yes
+_____________________ _______________ _______________ ________________
+S.E.: Clustered       by: ED_PROVIDER by: ED_PROVIDER  by: ED_PROVIDER
+Observations                    3,646           3,646            3,646
+R2                            0.59394         0.42855          0.43602
+Within R2                     0.07036         0.01179          0.01236
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1

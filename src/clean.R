@@ -50,6 +50,16 @@ data$dispo_time <- pmin(data$ED_DISCHARGE_DT_REL,
                         data$ADMIT_INP_ORD_DTTM_REL,
                         na.rm = TRUE)
 
+data$downgrade <- ifelse(
+  !is.na(data$ADMIT_INP_ORD_DTTM_REL) & !is.na(data$ADMIT_OBS_ORD_DTTM_REL) &
+    data$ADMIT_INP_ORD_DTTM_REL < data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
+)
+
+data$upgrade <- ifelse(
+  !is.na(data$ADMIT_INP_ORD_DTTM_REL) & !is.na(data$ADMIT_OBS_ORD_DTTM_REL) &
+    data$ADMIT_INP_ORD_DTTM_REL > data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
+)
+
 
 # create time to disposition variable
 data$time_to_dispo <- data$dispo_time - data$ARRIVAL_DTTM_REL
@@ -169,11 +179,8 @@ data$age <- ifelse(
 )
 data$age <- as.numeric(data$age)
 
-data <- data %>% 
-  filter(ARRIVAL_AGE_DI >= 18)
+data <- data %>% filter(age >= 18)
 
-# get IQR median for treatment time
-summary(data$treatment_time)
 #=========================================================================
 # Clean Chief Complaint --------------------------------------------------
 #=========================================================================
@@ -234,7 +241,7 @@ data$patients_in_ed <- sapply(
 data <- data %>%
   mutate(
     actual_date = as.POSIXct("2018-10-06 00:00:00", 
-                             tz = "UTC") + minutes(ARRIVAL_DTTM_REL),
+                             tz = "UTC") + minutes(rel_minutes_arrival),
     hour_of_day = hour(actual_date),
     is_weekend = if_else(wday(actual_date) %in% c(1, 7), "Weekend", "Weekday"),
     month = month(actual_date, label = TRUE)
@@ -387,20 +394,22 @@ source('src/figures/fig1_batch_rates.R')
 
 data$ln_ED_LOS <- log(data$ED_LOS)
 
-data$residual_admit <- resid(
-  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age 
-       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
-)
 
 data$residual_batch <- resid(
   felm(batched ~ tachycardic + tachypneic + febrile + hypotensive + age 
        | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
 
-data$residual_los <- resid(
-  felm(ln_ED_LOS ~ tachycardic + tachypneic + febrile + hypotensive + age 
+data$residual_lab <- resid(
+  felm(LAB_PERF ~ tachycardic + tachypneic + febrile + hypotensive + age 
        | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
 )
+
+data$residual_admit <- resid(
+  felm(admit ~ tachycardic + tachypneic + febrile + hypotensive + age 
+       | dayofweekt + month_of_year + complaint_esi + race + GENDER |0| ED_PROVIDER, data=data)
+)
+
 
 # Step 2: get batch tendency for each provider
 data <- data %>%
@@ -408,11 +417,14 @@ data <- data %>%
   mutate(Sum_Resid=sum(residual_batch, na.rm=T),
          batch.tendency = (Sum_Resid - residual_batch) / (n() - 1),
          
-         Sum_Resid=sum(residual_los, na.rm=T),
-         los.tendency = (Sum_Resid - residual_los) / (n() - 1),
+         Sum_Resid=sum(residual_lab, na.rm=T),
+         lab.tendency = (Sum_Resid - residual_lab) / (n() - 1),
          
          Sum_Resid=sum(residual_admit, na.rm=T),
-         admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)) %>%
+         admit.tendency = (Sum_Resid - residual_admit) / (n() - 1)
+         
+         
+         ) %>%
   ungroup()
 
 

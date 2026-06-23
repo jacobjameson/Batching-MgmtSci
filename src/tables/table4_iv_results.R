@@ -29,8 +29,8 @@ run_models <- function(data, y_var) {
   model_3 <- feols(
     as.formula(paste(
       y_var,
-      "~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age |
-       dayofweekt + month_of_year + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level + LAB_PERF |
+      "~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency + img.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
        batched ~ batch.tendency"
     )),
     data = data,
@@ -48,8 +48,8 @@ run_models <- function(data, y_var) {
   model_5 <- feols(
     as.formula(paste(
       y_var,
-      "~ batched + tachycardic + tachypneic + hrs_in_shift + febrile + hypotensive + age + EXPERIENCE   |
-       dayofweekt + month_of_year + race +  complaint_esi + GENDER + PROVIDER_SEX + capacity_level"
+      "~ batched + tachycardic + tachypneic + hrs_in_shift + febrile + hypotensive + age + EXPERIENCE + lab.tendency + admit.tendency + img.tendency   |
+       dayofweekt + month_of_year + race + complaint_esi + GENDER + PROVIDER_SEX + capacity_level"
     )),
     vcov = 'HC1',
     data = data
@@ -84,6 +84,115 @@ run_models <- function(data, y_var) {
   )
 }
 
+final$stable_admit <- ifelse(final$downgrade == 0 & final$admit == 1, 1, 0)
+final$unstable_admit <- ifelse(final$downgrade == 1 & final$admit == 1, 1, 0)
+
+feols(
+  as.formula(
+    "ln_ED_LOS ~ 0 |
+       dayofweekt + month_of_year |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "ln_ED_LOS ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "ln_ED_LOS ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+
+
+
+
+feols(
+  as.formula(
+    "stable_admit ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "unstable_admit ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "ln_ED_LOS ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "ln_disp_time ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "ln_disp_time ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "imgTests ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+feols(
+  as.formula(
+    "RTN_72_HR_ADMIT ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+       dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
+       batched ~ batch.tendency"
+  ),
+  data = final,
+  vcov = 'HC1'
+) %>% summary()
+
+
+
 run_models(final, "ln_total_testing_time")
 run_models(final, "ln_treat_time")
 run_models(final, "ln_disp_time")
@@ -96,9 +205,10 @@ run_models(final, "US_PERF")
 run_models(final, "NON_CON_CT_PERF")
 run_models(final, "CON_CT_PERF")
 run_models(final, "admit")
+run_models(final, "downgrade")
+run_models(final, "upgrade")
 
-
-
+run_models(final, "stable_admit")
 
 
 ## START HERE JACOB
@@ -123,9 +233,11 @@ run_models_iv <- function(data, y_var) {
     "factor(race)",
     "factor(GENDER)",
     "factor(PROVIDER_SEX)",
-    #"factor(capacity_level)",
+    "factor(capacity_level)",
     "tachycardic", "tachypneic", "febrile", "hypotensive",
-    "LAB_PERF", "age", "EXPERIENCE", "hrs_in_shift",
+    #'LAB_PERF',
+    "lab.tendency", "admit.tendency", 
+    "age", "EXPERIENCE", "hrs_in_shift",
     sep = " + "
   )
   
@@ -166,7 +278,7 @@ run_models_iv <- function(data, y_var) {
     as.formula(paste0(
       y_var, " ~ ", PRECISION, " | ",
       NECESSARY, " + factor(complaint_esi) + factor(race) + factor(GENDER) + ",
-      "factor(PROVIDER_SEX) + LAB_PERF | ",
+      "factor(PROVIDER_SEX) | ",
       "batched ~ batch.tendency"
     )),
     data = data, vcov = "HC1"
@@ -211,6 +323,7 @@ run_models_iv <- function(data, y_var) {
   )
 }
 
+run_models_iv(final, "ln_ED_LOS")
 
 ###############################################
 # Run on your outcomes
@@ -815,6 +928,323 @@ run_models_ujive(final, "admit")
 
 
 
+############################################################
+# TABLE 4 PIPELINE
+# 2SLS + Control Function Models
+############################################################
+
+library(fixest)
+library(dplyr)
+library(purrr)
+library(tibble)
+library(marginaleffects)
+library(knitr)
+
+############################################################
+# Helpers
+############################################################
+
+stars <- function(p) {
+  dplyr::case_when(
+    is.na(p) ~ "",
+    p < 0.001 ~ "***",
+    p < 0.01 ~ "**",
+    p < 0.05 ~ "*",
+    p < 0.10 ~ ".",
+    TRUE ~ ""
+  )
+}
+
+fmt_est <- function(est, se, p, digits = 3) {
+  ifelse(
+    is.na(est) | is.na(se),
+    "",
+    paste0(
+      sprintf(paste0("%.", digits, "f"), est),
+      stars(p),
+      " (",
+      sprintf(paste0("%.", digits, "f"), se),
+      ")"
+    )
+  )
+}
+
+get_coef <- function(model, term) {
+  out <- coef(model)[term]
+  if (length(out) == 0 || is.na(out)) return(NA_real_)
+  unname(out)
+}
+
+get_se <- function(model, term) {
+  out <- se(model)[term]
+  if (length(out) == 0 || is.na(out)) return(NA_real_)
+  unname(out)
+}
+
+get_p <- function(model, term) {
+  ct <- coeftable(model)
+  if (!term %in% rownames(ct)) return(NA_real_)
+  p_col <- grep("Pr", colnames(ct), value = TRUE)[1]
+  unname(ct[term, p_col])
+}
+
+get_first_stage_f <- function(model) {
+  fs <- tryCatch(fitstat(model, "ivf"), error = function(e) NULL)
+  if (is.null(fs)) return(NA_real_)
+  as.numeric(fs[[1]][["stat"]])
+}
+
+############################################################
+# Main function
+############################################################
+
+run_table4_model <- function(data,
+                             y_var,
+                             outcome_label,
+                             outcome_type = c("continuous", "binary", "count"),
+                             binary_link = c("probit", "logit")) {
+  
+  outcome_type <- match.arg(outcome_type)
+  binary_link <- match.arg(binary_link)
+  
+  cat("\n=====================================================\n")
+  cat("                 RESULTS FOR", y_var, "\n")
+  cat("=====================================================\n\n")
+  
+  NECESSARY <- "factor(dayofweekt) + factor(month_of_year)"
+  
+  PRECISION <- paste(
+    "factor(complaint_esi)",
+    "factor(race)",
+    "factor(GENDER)",
+    "factor(PROVIDER_SEX)",
+    "factor(capacity_level)",
+    "tachycardic",
+    "tachypneic",
+    "febrile",
+    "hypotensive",
+    "lab.tendency",
+    "admit.tendency",
+    "age",
+    "EXPERIENCE",
+    "hrs_in_shift",
+    sep = " + "
+  )
+  
+  FE <- paste(
+    "dayofweekt",
+    "month_of_year",
+    "complaint_esi",
+    "race",
+    "GENDER",
+    "PROVIDER_SEX",
+    "capacity_level",
+    sep = " + "
+  )
+  
+  data_model <- as.data.frame(data)
+  
+  # Standard care mean among non-batched patients
+  y_standard <- data_model[[y_var]][data_model$batched == 0]
+  standard_care_mean <- mean(y_standard, na.rm = TRUE)
+  standard_care_sd <- stats::sd(y_standard, na.rm = TRUE)
+  
+  # First stage for control function
+  first_stage <- feols(
+    as.formula(paste0(
+      "batched ~ batch.tendency + ", PRECISION, " | ", FE
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  data_model$cf_resid <- resid(first_stage)
+  
+  # 2SLS necessary controls only
+  tsls_nec <- feols(
+    as.formula(paste0(
+      y_var, " ~ 0 | ", NECESSARY, " | batched ~ batch.tendency"
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  # 2SLS full controls
+  tsls_full <- feols(
+    as.formula(paste0(
+      y_var, " ~ ", PRECISION, " | ", FE, " | batched ~ batch.tendency"
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  # Control-function model
+  cf_formula <- as.formula(paste0(
+    y_var, " ~ batched + cf_resid + ", PRECISION, " | ", FE
+  ))
+  
+  if (outcome_type == "continuous") {
+    cf_model <- feols(cf_formula, data = data_model, vcov = "HC1")
+  } else if (outcome_type == "binary") {
+    cf_model <- feglm(
+      cf_formula,
+      data = data_model,
+      family = binomial(link = binary_link),
+      vcov = "HC1"
+    )
+  } else if (outcome_type == "count") {
+    cf_model <- fepois(cf_formula, data = data_model, vcov = "HC1")
+  }
+  
+  # AME for control-function model
+  if (outcome_type == "continuous") {
+    ame_est <- get_coef(cf_model, "batched")
+    ame_se <- get_se(cf_model, "batched")
+    ame_p <- get_p(cf_model, "batched")
+  } else {
+    ame_obj <- tryCatch(
+      marginaleffects::avg_comparisons(
+        cf_model,
+        variables = "batched",
+        vcov = vcov(cf_model)
+      ),
+      error = function(e) {
+        message("AME failed for ", y_var, ": ", e$message)
+        NULL
+      }
+    )
+    
+    if (is.null(ame_obj)) {
+      ame_est <- NA_real_
+      ame_se <- NA_real_
+      ame_p <- NA_real_
+    } else {
+      ame_est <- ame_obj$estimate[1]
+      ame_se <- ame_obj$std.error[1]
+      ame_p <- ame_obj$p.value[1]
+    }
+  }
+  
+  tibble(
+    outcome = y_var,
+    outcome_label = outcome_label,
+    outcome_type = outcome_type,
+    n_2sls = nobs(tsls_full),
+    n_cf = nobs(cf_model),
+    standard_care_mean = standard_care_mean,
+    standard_care_sd = standard_care_sd,
+    first_stage_f = get_first_stage_f(tsls_full),
+    
+    tsls_nec_coef = get_coef(tsls_nec, "fit_batched"),
+    tsls_nec_se = get_se(tsls_nec, "fit_batched"),
+    tsls_nec_p = get_p(tsls_nec, "fit_batched"),
+    
+    tsls_full_coef = get_coef(tsls_full, "fit_batched"),
+    tsls_full_se = get_se(tsls_full, "fit_batched"),
+    tsls_full_p = get_p(tsls_full, "fit_batched"),
+    
+    cf_index_coef = get_coef(cf_model, "batched"),
+    cf_index_se = get_se(cf_model, "batched"),
+    cf_index_p = get_p(cf_model, "batched"),
+    
+    cf_ame = ame_est,
+    cf_ame_se = ame_se,
+    cf_ame_p = ame_p,
+    
+    cf_resid_coef = get_coef(cf_model, "cf_resid"),
+    cf_resid_se = get_se(cf_model, "cf_resid"),
+    cf_resid_p = get_p(cf_model, "cf_resid")
+  )
+}
+
+# 3. Define Table 4 outcomes
+############################################################
+
+table4_specs <- tribble(
+  ~outcome,              ~label,                              ~type,
+  "ln_disp_time",        "Log time to disposition",            "continuous",
+  "ln_ED_LOS",           "Log ED LOS",                         "continuous",
+  "imgTests",            "Number of distinct imaging tests",   "count",
+  "RTN_72_HR_ADMIT",     "72-hour return with admission",      "binary",
+  'XRAY_PERF',          "Any X-ray performed",                 "binary",
+  "US_PERF",            "Any ultrasound performed",            "binary",
+  "NON_CON_CT_PERF",    "Any non-contrast CT performed",       "binary",
+  "CON_CT_PERF",        "Any contrast CT performed",           "binary",
+  "admit",               "Admission",                          "binary",
+  "stable_admit",        "Stable admission",                   "binary",
+  "unstable_admit",      "Unstable/downgraded admission",      "binary"
+)
+
+# Drop outcomes not in data
+table4_specs <- table4_specs %>%
+  filter(outcome %in% names(final))
+
+############################################################
+# Run models
+############################################################
+
+table4_results <- pmap_dfr(
+  list(table4_specs$outcome, table4_specs$label, table4_specs$type),
+  ~ run_table4_model(
+    data = final,
+    y_var = ..1,
+    outcome_label = ..2,
+    outcome_type = ..3,
+    binary_link = "probit"
+  )
+)
+
+############################################################
+# Clean manuscript table
+############################################################
+
+table4_clean <- table4_results %>%
+  mutate(
+    standard_care = paste0(
+      sprintf("%.3f", standard_care_mean),
+      " (",
+      sprintf("%.3f", standard_care_sd),
+      ")"
+    ),
+    `2SLS Necessary` = fmt_est(tsls_nec_coef, tsls_nec_se, tsls_nec_p),
+    `2SLS Full` = fmt_est(tsls_full_coef, tsls_full_se, tsls_full_p),
+    `CF Index` = fmt_est(cf_index_coef, cf_index_se, cf_index_p),
+    `CF AME` = fmt_est(cf_ame, cf_ame_se, cf_ame_p),
+    `CF Residual` = fmt_est(cf_resid_coef, cf_resid_se, cf_resid_p),
+    first_stage_f = sprintf("%.1f", first_stage_f)
+  ) %>%
+  select(
+    Outcome = outcome_label,
+    `Standard care mean` = standard_care,
+    `2SLS Necessary`,
+    `2SLS Full`,
+    `CF Index`,
+    `CF AME`,
+    `CF Residual`,
+    `N 2SLS` = n_2sls,
+    `N CF` = n_cf,
+    `First-stage F` = first_stage_f
+  )
+
+print(table4_clean)
+
+############################################################
+# LaTeX output
+############################################################
+
+cat(
+  knitr::kable(
+    table4_clean,
+    format = "latex",
+    booktabs = TRUE,
+    escape = FALSE,
+    caption = "Effect of Batch Ordering on Patient Outcomes"
+  )
+)
+
+write.csv(table4_results, "table4_results_raw.csv", row.names = FALSE)
+write.csv(table4_clean, "table4_clean.csv", row.names = FALSE)
+############################################################
 
 
 
@@ -824,5 +1254,377 @@ run_models_ujive(final, "admit")
 
 
 
+############################################################
+# TABLE 4 PIPELINE
+# 2SLS + Control Function with GLM AMEs and SEs
+############################################################
 
+library(fixest)
+library(dplyr)
+library(purrr)
+library(tibble)
+library(marginaleffects)
+library(sandwich)
+library(knitr)
 
+############################################################
+# Helpers
+############################################################
+
+stars <- function(p) {
+  dplyr::case_when(
+    is.na(p) ~ "",
+    p < 0.001 ~ "***",
+    p < 0.01 ~ "**",
+    p < 0.05 ~ "*",
+    p < 0.10 ~ ".",
+    TRUE ~ ""
+  )
+}
+
+fmt_est <- function(est, se, p, digits = 3) {
+  ifelse(
+    is.na(est) | is.na(se),
+    "",
+    paste0(
+      sprintf(paste0("%.", digits, "f"), est),
+      stars(p),
+      " (",
+      sprintf(paste0("%.", digits, "f"), se),
+      ")"
+    )
+  )
+}
+
+get_coef <- function(model, term) {
+  out <- coef(model)[term]
+  if (length(out) == 0 || is.na(out)) return(NA_real_)
+  unname(out)
+}
+
+get_p_fixest <- function(model, term) {
+  ct <- coeftable(model)
+  if (!term %in% rownames(ct)) return(NA_real_)
+  p_col <- grep("Pr", colnames(ct), value = TRUE)[1]
+  unname(ct[term, p_col])
+}
+
+get_p_glm_robust <- function(model, term, vcov_mat) {
+  if (!term %in% names(coef(model))) return(NA_real_)
+  beta <- coef(model)[term]
+  se <- sqrt(diag(vcov_mat))[term]
+  z <- beta / se
+  2 * pnorm(abs(z), lower.tail = FALSE)
+}
+
+get_first_stage_f <- function(model) {
+  fs <- tryCatch(fitstat(model, "ivf"), error = function(e) NULL)
+  if (is.null(fs)) return(NA_real_)
+  as.numeric(fs[[1]][["stat"]])
+}
+
+############################################################
+# Main function
+############################################################
+
+run_table4_model <- function(data,
+                             y_var,
+                             outcome_label,
+                             outcome_type = c("continuous", "binary", "count"),
+                             binary_link = c("probit", "logit")) {
+  
+  outcome_type <- match.arg(outcome_type)
+  binary_link <- match.arg(binary_link)
+  
+  cat("\n=====================================================\n")
+  cat("                 RESULTS FOR", y_var, "\n")
+  cat("=====================================================\n\n")
+  
+  data_model <- as.data.frame(data)
+  
+  NECESSARY <- "factor(dayofweekt) + factor(month_of_year)"
+  
+  PRECISION <- paste(
+    "factor(complaint_esi)",
+    "factor(race)",
+    "factor(GENDER)",
+    "factor(PROVIDER_SEX)",
+    "factor(capacity_level)",
+    "tachycardic",
+    "tachypneic",
+    "febrile",
+    "hypotensive",
+    "lab.tendency",
+    "admit.tendency",
+    "age",
+    "EXPERIENCE",
+    "hrs_in_shift",
+    sep = " + "
+  )
+  
+  FE_FIXEST <- paste(
+    "dayofweekt",
+    "month_of_year",
+    "complaint_esi",
+    "race",
+    "GENDER",
+    "PROVIDER_SEX",
+    "capacity_level",
+    sep = " + "
+  )
+  
+  FE_GLM <- paste(
+    "factor(dayofweekt)",
+    "factor(month_of_year)",
+    "factor(complaint_esi)",
+    "factor(race)",
+    "factor(GENDER)",
+    "factor(PROVIDER_SEX)",
+    "factor(capacity_level)",
+    sep = " + "
+  )
+  
+  GLM_CONTROLS <- paste(
+    "tachycardic",
+    "tachypneic",
+    "febrile",
+    "hypotensive",
+    "lab.tendency",
+    "admit.tendency",
+    "age",
+    "EXPERIENCE",
+    "hrs_in_shift",
+    FE_GLM,
+    sep = " + "
+  )
+  
+  #----------------------------------------------------------
+  # Standard care mean among non-batched patients
+  #----------------------------------------------------------
+  
+  y_standard <- data_model[[y_var]][data_model$batched == 0]
+  standard_care_mean <- mean(y_standard, na.rm = TRUE)
+  standard_care_sd <- stats::sd(y_standard, na.rm = TRUE)
+  
+  #----------------------------------------------------------
+  # First stage for control function
+  # Use same controls as full 2SLS
+  #----------------------------------------------------------
+  
+  first_stage <- feols(
+    as.formula(paste0(
+      "batched ~ batch.tendency + ", PRECISION, " | ", FE_FIXEST
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  data_model$cf_resid <- resid(first_stage)
+  
+  #----------------------------------------------------------
+  # 2SLS necessary controls only
+  #----------------------------------------------------------
+  
+  tsls_nec <- feols(
+    as.formula(paste0(
+      y_var, " ~ 0 | ", NECESSARY, " | batched ~ batch.tendency"
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  #----------------------------------------------------------
+  # 2SLS full controls
+  #----------------------------------------------------------
+  
+  tsls_full <- feols(
+    as.formula(paste0(
+      y_var, " ~ ", PRECISION, " | ", FE_FIXEST, " | batched ~ batch.tendency"
+    )),
+    data = data_model,
+    vcov = "HC1"
+  )
+  
+  #----------------------------------------------------------
+  # Control function model using glm/lm with factor FEs
+  # This lets marginaleffects compute AMEs with robust SEs.
+  #----------------------------------------------------------
+  
+  cf_formula_glm <- as.formula(paste0(
+    y_var, " ~ batched + cf_resid + ", GLM_CONTROLS
+  ))
+  
+  if (outcome_type == "continuous") {
+    
+    cf_model <- lm(
+      cf_formula_glm,
+      data = data_model
+    )
+    
+    cf_vcov <- sandwich::vcovHC(cf_model, type = "HC1")
+    
+  } else if (outcome_type == "binary") {
+    
+    cf_model <- glm(
+      cf_formula_glm,
+      data = data_model,
+      family = binomial(link = binary_link),
+      control = glm.control(maxit = 100)
+    )
+    
+    cf_vcov <- sandwich::vcovHC(cf_model, type = "HC1")
+    
+  } else if (outcome_type == "count") {
+    
+    cf_model <- glm(
+      cf_formula_glm,
+      data = data_model,
+      family = poisson(link = "log"),
+      control = glm.control(maxit = 100)
+    )
+    
+    cf_vcov <- sandwich::vcovHC(cf_model, type = "HC1")
+  }
+  
+  #----------------------------------------------------------
+  # Control function index-scale coefficient
+  #----------------------------------------------------------
+  
+  cf_index_coef <- get_coef(cf_model, "batched")
+  cf_index_se <- sqrt(diag(cf_vcov))["batched"]
+  cf_index_p <- get_p_glm_robust(cf_model, "batched", cf_vcov)
+  
+  cf_resid_coef <- get_coef(cf_model, "cf_resid")
+  cf_resid_se <- sqrt(diag(cf_vcov))["cf_resid"]
+  cf_resid_p <- get_p_glm_robust(cf_model, "cf_resid", cf_vcov)
+  
+  #----------------------------------------------------------
+  # Average marginal effect for batched
+  #----------------------------------------------------------
+  
+  ame_obj <- tryCatch(
+    marginaleffects::avg_comparisons(
+      cf_model,
+      variables = "batched",
+      vcov = cf_vcov
+    ),
+    error = function(e) {
+      message("AME failed for ", y_var, ": ", e$message)
+      NULL
+    }
+  )
+  
+  if (is.null(ame_obj)) {
+    cf_ame <- NA_real_
+    cf_ame_se <- NA_real_
+    cf_ame_p <- NA_real_
+  } else {
+    cf_ame <- ame_obj$estimate[1]
+    cf_ame_se <- ame_obj$std.error[1]
+    cf_ame_p <- ame_obj$p.value[1]
+  }
+  
+  #----------------------------------------------------------
+  # Store results
+  #----------------------------------------------------------
+  
+  tibble(
+    outcome = y_var,
+    outcome_label = outcome_label,
+    outcome_type = outcome_type,
+    n_2sls = nobs(tsls_full),
+    n_cf = nobs(cf_model),
+    standard_care_mean = standard_care_mean,
+    standard_care_sd = standard_care_sd,
+    first_stage_f = get_first_stage_f(tsls_full),
+    
+    tsls_nec_coef = get_coef(tsls_nec, "fit_batched"),
+    tsls_nec_se = se(tsls_nec)["fit_batched"],
+    tsls_nec_p = get_p_fixest(tsls_nec, "fit_batched"),
+    
+    tsls_full_coef = get_coef(tsls_full, "fit_batched"),
+    tsls_full_se = se(tsls_full)["fit_batched"],
+    tsls_full_p = get_p_fixest(tsls_full, "fit_batched"),
+    
+    cf_index_coef = cf_index_coef,
+    cf_index_se = unname(cf_index_se),
+    cf_index_p = cf_index_p,
+    
+    cf_ame = cf_ame,
+    cf_ame_se = cf_ame_se,
+    cf_ame_p = cf_ame_p,
+    
+    cf_resid_coef = cf_resid_coef,
+    cf_resid_se = unname(cf_resid_se),
+    cf_resid_p = cf_resid_p
+  )
+}
+
+############################################################
+# Outcome list
+############################################################
+
+table4_specs <- tribble(
+  ~outcome,              ~label,                              ~type,
+  "ln_disp_time",        "Log time to disposition",            "continuous",
+  "ln_ED_LOS",           "Log ED LOS",                         "continuous",
+  "imgTests",            "Number of distinct imaging tests",   "count",
+  "RTN_72_HR_ADMIT",     "72-hour return with admission",      "binary",
+  "RTN_72_HR",           "72-hour return",                     "binary",
+  "US_PERF",             "Any ultrasound performed",           "binary",
+  "NON_CON_CT_PERF",     "Any non-contrast CT performed",      "binary",
+  "CON_CT_PERF",         "Any contrast CT performed",          "binary",
+  "admit",               "Admission",                          "binary",
+  "stable_admit",        "Stable admission",                   "binary",
+  "unstable_admit",      "Unstable/downgraded admission",      "binary"
+) %>%
+  filter(outcome %in% names(final))
+
+############################################################
+# Run models
+############################################################
+
+table4_results <- pmap_dfr(
+  list(table4_specs$outcome, table4_specs$label, table4_specs$type),
+  ~ run_table4_model(
+    data = final,
+    y_var = ..1,
+    outcome_label = ..2,
+    outcome_type = ..3,
+    binary_link = "probit"
+  )
+)
+
+############################################################
+# Clean table
+############################################################
+
+table4_clean <- table4_results %>%
+  mutate(
+    standard_care = paste0(
+      sprintf("%.3f", standard_care_mean),
+      " (",
+      sprintf("%.3f", standard_care_sd),
+      ")"
+    ),
+    `2SLS Necessary` = fmt_est(tsls_nec_coef, tsls_nec_se, tsls_nec_p),
+    `2SLS Full` = fmt_est(tsls_full_coef, tsls_full_se, tsls_full_p),
+    `CF Index` = fmt_est(cf_index_coef, cf_index_se, cf_index_p),
+    `CF AME` = fmt_est(cf_ame, cf_ame_se, cf_ame_p),
+    `CF Residual` = fmt_est(cf_resid_coef, cf_resid_se, cf_resid_p),
+    first_stage_f = sprintf("%.1f", first_stage_f)
+  ) %>%
+  select(
+    Outcome = outcome_label,
+    `Standard care mean` = standard_care,
+    `2SLS Necessary`,
+    `2SLS Full`,
+    `CF Index`,
+    `CF AME`,
+    `CF Residual`,
+    `N 2SLS` = n_2sls,
+    `N CF` = n_cf,
+    `First-stage F` = first_stage_f
+  )
+
+print(table4_clean, n = Inf, width = Inf)

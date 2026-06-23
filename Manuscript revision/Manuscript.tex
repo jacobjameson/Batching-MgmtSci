@@ -4,7 +4,7 @@
 %% ver. 0.91, March 2015 - updated November 2020 by Matthew Walls, matthew.walls@informs.org
 %% Adapted for rticles by Rob J Hyndman Rob.Hyndman@monash.edu. Dec 2021
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[,,nonblindrev]{informs}
+\documentclass[,,blindrev]{informs}
 
 \OneAndAHalfSpacedXI
 %%\OneAndAHalfSpacedXII % Current default line spacing
@@ -1167,40 +1167,64 @@ utilization\footnote{For reduced-form results for a less strict sample see, e.g.
 \caption{Reduced Form: Batch Tendency and Patient Outcomes}
 \label{tab:red_form}
 \begin{threeparttable}
-\begin{tabular}{p{5cm}cccc}
+\begin{tabular}{p{5.2cm}cccc}
 \toprule
 \multicolumn{5}{c}{Dependent variable} \\
 \cmidrule(lr){2-5}
-& \makecell[c]{Log time to \\ disposition\\(1)} 
-& \makecell[c]{Log \\ LOS\\(2)} 
-& \makecell[c]{Number of \\ distinct \\ imaging tests\\(3)} 
+& \makecell[c]{Log time to \\ disposition\\(1)}
+& \makecell[c]{Log \\ LOS\\(2)}
+& \makecell[c]{Number of \\ distinct \\ imaging tests\\(3)}
 & \makecell[c]{72hr return \\ with admission\\(4)} \\
 \midrule
-Batch tendency  
-& $1.140^{***}$ & $1.046^{***}$ & $2.173^{***}$ & $-0.0257$ \\ 
-& (0.1592) & (0.1350) & (0.2103) & (0.0341) \\[0.75em]
 
-\makecell[l]{Scaled coefficient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.050$)}  
-& 0.0576 & 0.0525 & 0.1089 & -0.00129 \\[1em]
+\multicolumn{5}{l}{\textit{Panel A. Linear reduced form}} \\[0.5em]
 
-Mean dependent variable 
-& 5.248 & 5.505 & 1.450 & 0.0121 \\ 
-& (0.493) & (0.449) & (0.623) & (0.109) \\ 
+Batch tendency
+& $0.695^{**}$ & $0.717^{***}$ & $1.696^{***}$ & $0.0277$ \\
+& (0.234) & (0.210) & (0.325) & (0.0603) \\[0.75em]
 
-Necessary controls & Yes & Yes & Yes & Yes \\ 
-Precision controls & Yes & Yes & Yes & Yes \\ 
+\makecell[l]{Scaled coefficient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.046$)}
+& 0.0318 & 0.0328 & 0.0775 & 0.0013 \\[1em]
+\\
+
+\multicolumn{5}{l}{\textit{Panel B. Poisson/logit reduced form for count/binary outcomes}} \\[0.5em]
+
+\makecell[l]{Batch tendency}
+& --- & --- & $1.111^{***}$ & $1.033$ \\
+& --- & --- & (0.217) & (2.135) \\[0.75em]
+
+Avg marginal effect (AME)
+& --- & --- & $1.610^{***}$ & $0.030$ \\
+& --- & --- & (0.315) & (0.063) \\[0.75em]
+
+\makecell[l]{Scaled AME:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.046$)}
+& --- & --- & 0.0736 & 0.0014 \\[1em]
+
+Mean dependent variable
+& 5.248 & 5.505 & 1.450 & 0.0121 \\
+& (0.493) & (0.449) & (0.623) & (0.109) \\
+
 \midrule
-Adj.\ $R^2$ & 0.2109 & 0.2834 & 0.1346 & 0.0103 \\ 
-Observations & 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 \\
+\textit{Controls} \\
+Necessary controls & Yes & Yes & Yes & Yes \\
+Precision controls & Yes & Yes & Yes & Yes \\
+
+\midrule
+Adj.\ $R^2$ (linear models)
+& 0.2093 & 0.2096 & 0.1013 & 0.0040 \\
+
+Observations
+& 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 \\
 \bottomrule
 \end{tabular}
 
 \begin{flushleft}
 \footnotesize
-\textit{Notes:} This table reports reduced-form estimates of the relationship between physician batch tendency and patient outcomes. 
-The second row rescales coefficients to represent the effect of moving from the 10th to the 90th percentile of batch tendency ($\Delta = 0.050$).
+\textit{Notes:}
+This table reports reduced-form estimates of the relationship between physician batch tendency and patient outcomes. Panel A reports linear reduced-form estimates for all outcomes. Panel B reports nonlinear reduced-form models for outcomes where nonlinear functional form is most relevant: Poisson for the count outcome and probit/logit for the binary outcome. Average marginal effects (AMEs) are reported on the outcome scale. Scaled coefficients and AMEs represent the estimated effect of moving from the 10th percentile to the 90th percentile of physician batch tendency ($\Delta = 0.046$). For log-transformed dependent variables, coefficients can be interpreted approximately as percentage changes using $(\exp(\beta)-1)\times100\%$. Negative binomial models yielded nearly identical estimates and failed to detect meaningful overdispersion, supporting the Poisson specification for the imaging count outcome.
+$^{*} p < 0.05$,
+$^{**} p < 0.01$,
 $^{***} p < 0.001$.
-Coefficients on log-transformed dependent variables can be interpreted as percentage changes using the formula $(\exp(\beta) - 1) \times 100\%$.
 \end{flushleft}
 
 \end{threeparttable}

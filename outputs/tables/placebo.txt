@@ -1,12 +1,24 @@
-Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 4 others
- stat = 449.5, p-value < 2.2e-16, on 10 and 11,391 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
- stat = 216.6, p-value < 2.2e-16, on 12 and 11,389 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
- stat = 218.5, p-value < 2.2e-16, on 12 and 11,604 DoF, VCOV: Clustered (ED_PROVIDER).Wald test, H0: joint nullity of batch.tendency, tachycardic, tachypneic, febrile, hypotensive, age and 6 others
- stat = 10.1, p-value < 2.2e-16, on 12 and 11,389 DoF, VCOV: Clustered (ED_PROVIDER).[1] "ln_disp_time mean: NA"
-[1] "ln_disp_time sd: NA"
-[1] "ln_ED_LOS mean: 5.37549224429252"
-[1] "ln_ED_LOS sd: 0.540600488211565"
-[1] "imgTests mean: 0.979181858813011"
-[1] "imgTests sd: 0.770036613051382"
-[1] "RTN_72_HR_ADMIT mean: 0.013596480910823"
-[1] "RTN_72_HR_ADMIT sd: 0.115809896428897"
+[1] "First-Stage Results: Batch Tendency and Batching"
+Wald test, H0: nullity of batch.tendency
+ stat = 177.5, p-value < 2.2e-16, on 1 and 11,639 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: nullity of batch.tendency
+ stat = 171.9, p-value < 2.2e-16, on 1 and 11,604 DoF, VCOV: Heteroskedasticity-robust.                       fs_model_1        fs_model_2
+Dependent Var.:           batched           batched
+                                                   
+batch.tendency  1.837*** (0.1379) 1.752*** (0.1336)
+Fixed-Effects:  ----------------- -----------------
+dayofweekt                    Yes               Yes
+month_of_year                 Yes               Yes
+complaint_esi                  No               Yes
+race                           No               Yes
+GENDER                         No               Yes
+_______________ _________________ _________________
+S.E. type       Heteroskeda.-rob. Heteroskeda.-rob.
+Observations               11,679            11,679
+R2                        0.02248           0.07359
+Within R2                 0.01939           0.03521
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+[1] "Sample mean: 0.0562913128366755"
+[1] "Sample sd: 0.230486117988227"
+        10%         90% 
+-0.02806751  0.02199851 

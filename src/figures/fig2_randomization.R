@@ -1,13 +1,13 @@
 # Standardize continuous predictors
 plot <- data %>%
-  mutate(across(c(age, EXPERIENCE), scale))
+  mutate(across(c(age), scale))
 
 # Run models
 mod1 <- felm(batched ~ CHIEF_COMPLAINT + as.factor(ESI) + tachycardic + tachypneic +
-               febrile + hypotensive + age + GENDER + race + EXPERIENCE + PROVIDER_SEX |
+               febrile + hypotensive + age + GENDER + race |
                dayofweekt + month_of_year | 0 | ED_PROVIDER, data = plot)
 mod2 <- felm(batch.tendency ~ CHIEF_COMPLAINT + as.factor(ESI) + tachycardic + tachypneic +
-               febrile + hypotensive + age + GENDER + race + EXPERIENCE + PROVIDER_SEX |
+               febrile + hypotensive + age + GENDER + race  |
                dayofweekt + month_of_year | 0 | ED_PROVIDER, data = plot)
 
 # Pull coefficients

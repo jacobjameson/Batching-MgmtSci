@@ -1,0 +1,1061 @@
+\documentclass[11pt]{article}
+
+% ---------------------------------------------------------------------
+% Standard packages
+% ---------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}       % Adjust margins cleanly
+\usepackage[utf8]{inputenc}             % Proper encoding
+\usepackage[T1]{fontenc}                % Better font encoding
+\usepackage{setspace}                   % For line spacing if needed
+
+% ---------------------------------------------------------------------
+% Math and symbols
+% ---------------------------------------------------------------------
+\usepackage{amsmath, amssymb, amsfonts, mathtools}
+\usepackage{mathrsfs}                   % Script math fonts
+
+% ---------------------------------------------------------------------
+% Figures and tables
+% ---------------------------------------------------------------------
+\usepackage{graphicx}                   % For including graphics
+\usepackage{subcaption}                 % For subfigures
+\usepackage{booktabs, threeparttable}   % For nice tables
+\usepackage{multirow, array}            % For complex table layouts
+\usepackage{caption}                    % Custom caption formatting
+\usepackage{float}                      % Better float handling
+\usepackage{changepage}                 % For adjusting table/figure widths
+
+% ---------------------------------------------------------------------
+% Colors and highlighting
+% ---------------------------------------------------------------------
+\usepackage{xcolor, soul}
+
+% ---------------------------------------------------------------------
+% References / citations
+% ---------------------------------------------------------------------
+\usepackage[authoryear,round]{natbib}   % Author-year citation style
+\bibliographystyle{apalike}             % APA-like reference formatting
+
+% ---------------------------------------------------------------------
+% Misc
+% ---------------------------------------------------------------------
+\usepackage{url}                        % For URLs in references
+
+% ---------------------------------------------------------------------
+% Line spacing and paragraph spacing
+% ---------------------------------------------------------------------
+\setstretch{1.2}                        % Adjust line spacing (e.g., 1.2)
+\setlength{\parskip}{0.8em}             % Add space between paragraphs
+\setlength{\parindent}{0pt}             % No paragraph indentation
+
+\usepackage{fancyhdr}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} \DeclareMathAlphabet{\mathfrak}{U}{euf}{m}{n}
+ \vspace{5mm} \setlength{\topmargin}{-.5in} \setlength{\textheight}{8.85in}
+\setlength{\oddsidemargin}{-.02in} \setlength{\textwidth}{6.6in}
+\parskip.10in
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\def\proof{\noindent{\bf Proof.}}
+\newcommand{\remove}[1]{}
+\newenvironment{quote1}
+{\begin{list}
+         {\setlength{\leftmargin}{1.0in}}
+         {\setlength{\rightmargin}{0.25in}}
+         \small
+         \baselineskip=14pt
+         \item[]
+}{\end{list}}
+\newenvironment{quote2}
+{ \bigskip
+\noindent
+         \small\em
+         \baselineskip=14pt
+}
+
+\newcommand{\teq}{\triangleq}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathbb N}
+\newcommand{\F}{\cal F}
+\newcommand{\1}{\hbox{\rm 1\kern-.35em 1}}
+\newcommand{\un}{\underline}
+\newcommand{\ov}{\overline}
+\newcommand{\MD}{\mathscr D}
+\newcommand{\MT}{\mathscr T}
+\pagenumbering{arabic}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{General Response \& Summary of Main Changes}}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\begin{center}
+{Authors' Response to Second-Round Review of Manuscript MS-HCM-2025-01252.R1}
+
+\vspace{1mm}
+\Large
+\textbf{The Impact of Batching Advanced Imaging Tests\\ in Emergency Departments}
+\vspace{1mm}
+
+\end{center}
+ \pagenumbering{arabic}
+ \normalsize
+\baselineskip=16pt
+
+\noindent\underline{\textbf{I. General Response to the Entire Review Team}}
+
+\noindent \color{blue}[PLACEHOLDER --- General response to the review team. Thank the DE, AE, and three referees for the second-round feedback. Acknowledge the panel's recognition of substantial progress, and address the central concern: the credibility of the magnitude of effects (especially on admissions) and whether the instrument captures batching-specific variation vs. broader physician heterogeneity. Summarize the main changes you plan to make in this revision --- e.g., (1) physician FE in all baseline models with a new within-physician IV, (2) semi-structured clinician interviews for triangulation, (3) resolution of the bad-control concern with laboratory ordering, (4) control function approach per Wooldridge (2015), (5) separate estimation for admitted vs. discharged patients, (6) physician historical admission-rate control, (7) tempered decomposition and intervention claims, (8) engagement with Luo, Niewoehner, and Xia (2026).]
+\color{black}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  RESPONSES TO DEPARTMENT EDITOR (DE) COMMENTS                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{Responses to Department Editor Comments}}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\noindent\underline{\textbf{II. Responses to Department Editor (DE) Comments}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  DE Comment 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{DE Wrote (Overall assessment \& progress):}
+
+\noindent ``Thank you for your resubmission. The manuscript has been evaluated by the same review panel and I would like to thank our colleagues for their careful reading of the paper and their thoughtful reports, which are attached. The panel acknowledges substantial progress and appreciates the effort invested in addressing the earlier concerns.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank the DE for the opportunity to revise again and for recognizing the progress made in the first round.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  DE Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{DE Wrote (Central concern --- magnitude of the admission effect):}
+
+\noindent ``That said, important issues remain regarding the robustness and interpretation of the empirical results. In a nutshell --- we are all concerned about the magnitude of the reported effect of batching on hospital admissions. This large effect, if true, could be the central contribution of the paper. However, it is also the main source of concern in terms of face validity and credibility. Within your current empirical models it is not possible to determine whether the estimated effect is caused by the batching mechanism or is at least partially driven by unobserved physician heterogeneity. Your current instrumental variable does not allow for a distinction between these competing explanations.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Acknowledge the DE's central concern about face validity of the 40pp admission effect. Explain your strategy for disentangling batching effects from unobserved physician heterogeneity: physician FE specification + new compatible IV + separate estimation by disposition + qualitative triangulation.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  DE Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{DE Wrote (Requirement 1 --- Physician fixed effects and new IV):}
+
+\noindent ``To move the paper towards publication, it is therefore necessary to substantially strengthen the empirical specification and provide corroborating evidence, to account for this challenge. First, you need to re-estimate your baseline models including physician fixed effects, as already requested in the first round. This is essential to isolate within-physician variation and to address concerns that the results may be driven by unobserved heterogeneity across physicians. In parallel, you must develop and justify an instrumental variable that is compatible with a physician fixed effects specification and allows you to disentangle batching effects from other unobserved effects. We recognise that this is challenging, but it is necessary for establishing the credibility of an effect of this magnitude.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Describe the revised empirical strategy: physician FE included in all baseline models; development of a new instrument compatible with within-physician variation (e.g., within-physician, within-shift leave-one-out leniency; time-varying instruments such as shift-level workload or prior patient composition; Mountjoy-style design exploiting variation over a physician's career). Present the new first-stage results and confirm that LOS, imaging, and admission effects survive the more demanding specification, or transparently describe how they attenuate.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  DE Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{DE Wrote (Requirement 2 --- Qualitative triangulation with clinicians):}
+
+\noindent ``Second, given the size of the reported effect on admissions, it should be possible to elicit context-specific explanations from clinicians. The AE therefore requests that you conduct a set of semi-structured interviews across units, to triangulate the findings with evidence from clinicians on the ground. I concur with this recommendation.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Describe the qualitative study: sampling frame (ED physicians across Mayo and MGH; high- and low-batch-tendency providers), interview protocol, number of interviews conducted, coding procedure, and triangulation findings. Explicitly address the three competing mechanisms: (i) coordination costs of concurrent workflows, (ii) broader physician practice style, (iii) information filtering. Report clinician perspectives on whether ordering sequence is consciously managed and whether a shift toward sequential ordering would plausibly change admission rates.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  DE Comment 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{DE Wrote (Further issues and decision):}
+
+\noindent ``Further issues are raised and highlighted at the end of the AE report and also require significant additional work. For this reason, we cannot move to a minor revision. While this would ordinarily lead to rejection, we believe the paper may contain an important contribution if the results can be convincingly supported. We have therefore taken the unusual step of inviting a second major revision.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Acknowledge the significance of the second major-revision invitation, and commit to addressing each item flagged at the end of the AE report as well as each reviewer concern. Briefly map where each issue is addressed in the revised manuscript.]
+\color{black}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  RESPONSES TO ASSOCIATE EDITOR (AE) COMMENTS                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{Responses to Associate Editor Comments}}
+\renewcommand{\headrulewidth}{0.0pt}
+
+\noindent\underline{\textbf{III. Responses to Associate Editor (AE) Comments}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Overall assessment):}
+
+\noindent ``The authors have invested substantial effort in this revision, and I commend them for the meaningful improvements to hypothesis development, cost-benefit analysis, theoretical framing, and empirical methodology. The paper has developed in the right direction, and the core research question---whether batching advanced imaging tests in the emergency department affects operational and quality outcomes---remains both important and timely for healthcare operations management.
+
+However, the empirical strategy has not addressed all concerns raised in the first round in a fully satisfying way. Several important issues remain only partially resolved, and all three reviewers converge on a central theme: the large effect sizes---particularly the approximately 40--45 percentage point increase in admission probability---lack sufficient credibility given the remaining identification concerns. In the current form, the gap between what the data can support and what the paper claims is too wide to warrant publication.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank the AE for the recognition of progress and acknowledge the central concern about effect magnitudes. Provide a high-level roadmap of the revisions that address the gap between empirical evidence and claims, previewing the physician FE specification, new IV, triangulation, and tempered interpretation.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Physician FE and model specification):}
+
+\noindent ``Referee 2 raises a fundamental point about model specification that I find compelling. The concern is not about including physician fixed effects (FE) in constructing the instrumental variable, but about their absence from all econometric models. While I acknowledge the authors' argument that physician FE would absorb the between-physician variation needed for the current IV, the empirical strategy should begin with an appropriate baseline specification and then address identification challenges within that framework---not the reverse. As it stands, the feasibility of a particular IV appears to have driven model selection, which is methodologically problematic.
+
+I recommend including physician FE in all models. There remains within-physician variation in test-ordering behavior---this is the key quantity of interest in the study. The authors should then develop a new IV that addresses endogeneity under this more demanding specification. It is an open question whether the results, particularly at their current magnitude, would survive a properly specified model with an alternative instrument.
+
+An important additional nuance: even with physician fixed effects, substantial unobserved variation will persist. Physician behavior is inherently dynamic and depends on organizational situational factors (workload, ED crowding, staffing levels, bed availability) as well as individual time-varying factors (fatigue, shift timing, work-home conflict). Fixed effects absorb physician-level averages, not the dynamic process that governs encounter-level decision-making. The authors should acknowledge this fundamental limitation explicitly and discuss what it implies for the interpretation of their estimates.
+
+More broadly: the main model should be determined by what constitutes a defensible specification, not by what makes a particular IV feasible.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Commit to including physician FE in all baseline models. Describe the new IV compatible with within-physician variation (candidate designs: within-physician $\times$ within-shift leniency residualized at a finer level; time-varying workload-based instruments; instruments based on the composition of concurrently-treated patients; or an entirely new source of variation such as system-level workflow changes). Present the first-stage and second-stage estimates under the physician-FE specification. Explicitly acknowledge that even with physician FE, dynamic within-physician unobserved heterogeneity (fatigue, crowding, work-home conflict) is not absorbed, and discuss what this implies for interpretation. Add a limitations paragraph making this transparent.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Instrument validity and the exclusion restriction):}
+
+\noindent ``The expanded controls, UJIVE estimator, and Conley sensitivity analyses represent genuine improvements, and I recognize the considerable effort behind them. Nevertheless, important questions about the exclusion restriction persist.
+
+The approximately 40 percentage point increase in admission probability among compliers is a striking finding whose magnitude warrants careful reflection (as noted by Referee 1 and echoed by Referee 3). Admission is a complex, judgment-driven decision that reflects a physician's overall clinical approach---their risk tolerance, interpretation of ambiguous clinical findings, and general handling of diagnostic uncertainty---not merely when imaging orders are placed. That a difference of this size arises among patients who are, by the complier characterization, relatively similar in acuity is difficult to reconcile with an ordering-sequence explanation alone. Rather, it suggests that high- and low-batch-tendency physicians may differ more broadly in their clinical decision-making style. The expanded controls address observable differences, but the core concern pertains to unobservable differences---specifically, how physicians process diagnostic uncertainty, interpret ambiguous results, and make borderline disposition decisions. These are precisely the dimensions that the current robustness checks cannot reach.
+
+The authors should discuss this explicitly as a limitation of the identification strategy. Specifically, they should acknowledge that the instrument may be capturing a broader latent construct---physician diagnostic aggressiveness or cautiousness---rather than imaging order timing per se. This distinction is critical because it affects every downstream interpretation, from the decomposition to the policy recommendations.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Acknowledge explicitly in both the main text and limitations section that the instrument may capture a broader latent construct of physician diagnostic style rather than batching per se. Describe how the revised specification with physician FE and the new IV partly addresses this, while recognizing the residual concern. Temper downstream claims (decomposition, policy implications) accordingly. Report new evidence from the qualitative interviews that speaks to whether ordering sequence and diagnostic style are distinguishable from the clinician's perspective.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Reverse causality and mediation analysis):}
+
+\noindent ``Referee 2 restates a concern from the first round that was not adequately addressed in this revision---an omission that should not recur. The mediation analysis appears to suffer from reverse causality: when a physician orders a particular test type, it mechanically increases the likelihood that the order is classified as part of a batch. The decision to batch may therefore be a consequence rather than a cause of the number and type of tests ordered. Without a convincing strategy to disentangle this simultaneity, the mediation analysis and its implied causal chain remain questionable.
+
+Furthermore, the change in the magnitude of the admission effect after adjusting for endogeneity is striking: an approximately 45 percentage point increase is difficult to accept at face value without a substantive clinical explanation. Referee 2 flagged this in the first round, and I share the concern. The authors must either provide a compelling account of why the IV estimate is so much larger than the OLS estimate or acknowledge that this inflation may itself be a signal of instrument invalidity.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- (1) Directly address the reverse-causality critique of the mediation analysis. Explain the definitional issue (batching is defined by multiple tests ordered within 5 minutes, so test-type outcomes are mechanically related). Either (a) redesign the mediation/decomposition analysis to avoid this circularity, (b) clearly label Panel B as descriptive rather than causal, or (c) drop the mediation analysis and rely on clinician interviews plus the new within-physician IV to speak to mechanisms. (2) Provide a substantive clinical explanation for the IV--OLS gap on admissions, grounded in complier characteristics and clinician interviews, or transparently discuss the possibility that the gap signals instrument invalidity and present the revised within-physician-IV estimate that is likely more credible.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Decomposition analysis and intervention implications):}
+
+\noindent ``The decomposition in Section 4.3 attributes 26\% of the LOS effect to test volume and 71\% to ``coordination costs and decision complexity.'' This framing requires substantially more careful treatment. As Referee 1 points out, the 71\% residual is arrived at by subtraction, not direct measurement. Because the decomposition can only quantify the test volume channel on the treated side, the residual is equally consistent with several competing explanations: genuine sequencing-related coordination costs from managing concurrent workflows; residual confounding from physician style differences that the instrument does not purge; or an information filtering effect whereby sequential ordering reduces total test volume (rather than merely reordering the same tests in time).
+
+The current framing effectively asserts: ``we cannot explain 71\% of the effect through observable channels; therefore it must reflect coordination costs from concurrent workflows.'' This inferential leap is not warranted. The policy recommendation to encourage sequential ordering presupposes that ordering sequence is the causal lever---that the same tests, ordered differently, would yield shorter stays and fewer admissions. But if the dominant driver is broader physician style or an information filtering mechanism, the appropriate intervention would target overall diagnostic intensity rather than the timing of orders. These are fundamentally different policy implications, and the paper must distinguish between them.
+
+The authors should acknowledge this interpretive ambiguity explicitly as a limitation and temper their intervention recommendations accordingly. Drawing strong policy prescriptions from largely unexplained variation is premature.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Rewrite Section 4.3 to drop the unwarranted attribution of the 71\% residual to coordination costs. Present the decomposition as bounding exercise only. Explicitly lay out the three competing mechanisms (coordination costs, physician style, information filtering) and discuss which can be ruled in or out using (a) the new within-physician IV, (b) the qualitative interviews, and (c) any additional tests you can construct. Temper the intervention recommendations in Section 5 to distinguish between ``reschedule the same tests'' policies versus ``reduce overall diagnostic intensity'' policies, and refrain from prescriptive recommendations where the empirical evidence cannot adjudicate.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Control variables --- bad control for labs):}
+
+\noindent ``The control variable strategy raises several interrelated concerns. First, the authors introduce realized laboratory ordering as a precision control, reasoning that if batch tendency captures generally aggressive physicians, controlling for lab ordering should attenuate the imaging-specific effect. The observed attenuation from $\sim$130\% to $\sim$65--81\% is presented as supporting evidence. However, as Referee 1 notes, laboratory ordering is a post-assignment clinical decision made during the same encounter---plausibly part of the same diagnostic strategy that drives imaging batching---and therefore constitutes a potential bad control in the sense of Angrist and Pischke (2009). Conditioning on a post-treatment variable can introduce bias rather than remove it, and this issue must be addressed head-on.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Acknowledge directly that realized laboratory ordering is a post-assignment clinical decision and therefore potentially a bad control in the Angrist-Pischke sense. Remove lab ordering from the primary specification, or replace it with a pre-assignment measure of lab-ordering propensity (e.g., physician's historical lab-ordering rate) that is not post-treatment. Re-run the main results without the bad control and report how estimates change. Be transparent: if attenuation was partly driven by conditioning on a post-treatment variable, the new estimates may be larger, and you should explain this honestly.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 7  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Control variables --- physician admission propensity):}
+
+\noindent ``Second, Referee 3 observes that physician-level admission behavior (e.g., historical admission rates) is absent from the current control set. This is a notable omission. Including a physician's baseline propensity to admit could help disentangle whether the batching--admission relationship reflects a causal mechanism or a common cause such as physician cautiousness or risk aversion. If both batching and admissions are driven by an underlying tendency toward diagnostic caution, then the policy implications change fundamentally---discouraging batching might not reduce admissions but could instead leave risk-averse physicians with less diagnostic information.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Add a physician-level historical admission propensity control (leave-one-out, to preserve the identifying variation) and other pre-assignment measures of physician diagnostic style (e.g., historical imaging volume, historical lab intensity, historical return rates). Report how the batching--admission coefficient changes after adding these controls. This is a direct test of the common-cause hypothesis raised by R3. Discuss the managerial implications under both scenarios (batching causes admissions vs. common cause).]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 8  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Control variables --- diagnostic complexity):}
+
+\noindent ``Third, additional controls for the complexity of the diagnostic workup should be explored (Referee 3). The existing control set may inadequately capture case-level variation in the intensity of the clinical decision problem, leaving room for omitted variable bias.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Add additional controls capturing case complexity at the encounter level: e.g., number of comorbidities, prior ED utilization, chief complaint interacted with ESI, presenting symptom constellations, and any structured complexity score available in the EHR. Report how results change.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 9  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Control variables --- admitted vs. discharged patients):}
+
+\noindent ``Fourth, Referee 2 recommends including an admission indicator and its interaction with the main independent variable, and estimating effects separately for admitted and discharged patients. This is well-motivated: admitted and discharged patients follow fundamentally different care pathways, and the current pooled estimates average over these heterogeneous trajectories. The authors should further examine whether batching itself influences the admission decision---a plausible channel given the effect sizes reported---and, if so, address the resulting endogeneity appropriately.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Estimate the main results separately for admitted and discharged patients. Add an admission indicator and its interaction with batching to the pooled specification. Note that admission is itself an outcome (potentially caused by batching), so stratifying by admission conditions on a post-treatment variable --- acknowledge this selection concern directly. One disciplined approach: report (a) pooled effects on admission, (b) effects on LOS unconditional on admission, and (c) separate effects on LOS for admitted and discharged patients with clear acknowledgment of the selection-on-post-treatment issue in the stratified analysis.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 10  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Placebo test):}
+
+\noindent ``Referee 2 remains unconvinced by the placebo test, and I share this reservation. Using a clinically distinct subsample to demonstrate that the main results are driven by batch ordering rather than general physician performance faces a fundamental comparability problem. Differences in condition severity, case complexity, patient needs, and physician practice patterns across the two subsamples limit what can be inferred from a null result in the placebo group. A more convincing falsification strategy would hold the patient population constant while varying the mechanism's relevance.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Redesign the placebo test to hold the patient population constant while varying mechanism relevance. Candidate designs: (i) within the same sample, use a ``pre-assignment'' outcome that cannot be affected by physician behavior (e.g., time between registration and first triage, arrival-mode characteristics); (ii) examine outcomes unrelated to imaging workflow but potentially related to general physician style; (iii) randomization inference by permuting physician identifiers within shift. Either include a revised placebo test or drop it and rely on the stronger within-physician specification for identification credibility.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 11  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Control function / Wooldridge 2015):}
+
+\noindent ``While the authors cite canonical references to justify linear probability and linear count models, well-established alternatives exist that are widely used in empirical operations management and applied economics. In particular, a control function approach (Wooldridge 2015) is a natural fit for this setting: it accommodates nonlinear outcome models while still addressing endogeneity, and it would provide a useful robustness check on the linear specifications. I recommend that the authors adopt this as a primary or at least co-equal empirical strategy.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 12  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Magnitude of attenuation):}
+
+\noindent ``Referee 3 notes that the magnitude of estimate attenuation between the original and revised manuscripts is itself informative: it signals that the original estimates were substantially confounded. While the attenuation is a positive sign that the expanded controls are doing some work, it also raises the question of how much further the estimates might move under a still more demanding specification (e.g., with physician FE and a new IV). The authors should reflect on this trajectory and what it implies for the stability of their findings.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Reflect honestly on the trajectory: R0 $\sim$130\% LOS, R1 $\sim$65--81\% LOS, R2 [new estimate under physician FE + new IV]. Either (a) show that estimates stabilize under the new specification, which reinforces credibility, or (b) acknowledge that the effects further attenuate and discuss the implications for the contribution. Either way, be transparent about the trajectory and avoid overclaiming.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 13  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Qualitative triangulation --- detailed guidance):}
+
+\noindent ``Given the remaining identification concerns and the implausibly large effect sizes, I strongly recommend supplementing the quantitative analysis with qualitative evidence. Semi-structured interviews with emergency physicians could address several open questions simultaneously: How do physicians perceive and rationalize batching decisions? Do they view ordering sequence as something they consciously manage, or is it an artifact of their broader diagnostic style? Would they expect a shift toward sequential ordering to change admission rates? Such evidence would help adjudicate between the competing mechanisms (coordination costs vs. physician style vs. information filtering) that the quantitative decomposition cannot disentangle. Even a modest interview study would substantially strengthen the paper's credibility and the grounding of its policy recommendations.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Describe the semi-structured interview protocol. Sampling: purposive, stratified by batch tendency (high/low) and site (Mayo/MGH). Target: 10--20 interviews. Protocol covers: (i) how physicians perceive and rationalize batching; (ii) whether ordering sequence is consciously managed vs. an artifact of diagnostic style; (iii) expectations about whether a policy shift to sequential ordering would change admission rates. Use an established qualitative coding framework (e.g., thematic analysis). Present findings in a new section (or EC) integrated with the quantitative results. Use the interview evidence to adjudicate among the three competing mechanisms in the decomposition discussion.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 14  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Additional literature --- Luo, Niewoehner, and Xia 2026):}
+
+\noindent ``Referee 3 identifies a recent working paper on a closely related topic. Although the research question differs, the shared empirical setting makes it directly relevant, and the authors should engage with it in their literature review: Luo, Danqi and Niewoehner, Robert J. and Xia, Yong, Batch Ordering Across Patients: Diagnostic Queues in Emergency Department Patient Flow (January 2026). Available at SSRN: https://ssrn.com/abstract=6180358.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Add \citet{luo2026batch} (or the appropriate BibTeX key) to the literature review. Briefly distinguish scope: Luo et al. study batch ordering \textit{across} patients (diagnostic queues), whereas this paper studies batch ordering \textit{within} a patient encounter across imaging modalities. Highlight complementary insights.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  AE Comment 15  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{AE Wrote (Summary and decision):}
+
+\noindent ``The paper addresses an important research question with clear practical relevance for ED operations, and the revision has improved the manuscript in several dimensions---most notably the theoretical framing and the expanded robustness analyses. However, the empirical strategy retains significant gaps that prevent the core findings from reaching the level of credibility required for publication. The central issues are:
+
+(1) Physician fixed effects should be included in all models, with a new IV developed for the within-physician specification.
+
+(2) The instrument likely captures broader physician diagnostic style rather than imaging order timing alone, which conditions all downstream interpretations.
+
+(3) the reverse causality concern in the mediation analysis---raised in the first round and left unaddressed---must be resolved convincingly.
+
+(4) the decomposition analysis overreaches in attributing the unexplained residual to coordination costs, and intervention recommendations should be tempered accordingly
+
+(5) the control variable strategy requires revision, including resolution of the bad-control problem with laboratory ordering, addition of controls for physician admission propensity and diagnostic complexity, and separate estimation for admitted and discharged patients.
+
+(6) A control function approach (Wooldridge 2015) should be adopted as a primary or co-equal empirical strategy for binary and count outcomes.
+
+I recommend a major revision. The research question is compelling, and the underlying story has real potential to contribute to the healthcare operations literature. However, substantially more work is needed to build confidence in the empirical analysis before publication can be warranted. Please respond point by point to all issues raised by each referee.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Provide a point-by-point map of where each of the six items has been addressed in the revision. This may be presented as a short table or a numbered list corresponding to each numbered issue.]
+\color{black}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  RESPONSES TO REVIEWER 1 COMMENTS                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{Responses to Referee 1 Comments}}
+\renewcommand{\headrulewidth}{0pt}
+
+\noindent\underline{\textbf{IV. Responses to Referee 1 (R1) Comments}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R1 Comment 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R1 Wrote (Overall assessment \& recognition of progress):}
+
+\noindent ``I commend the authors for carefully and comprehensively addressing the comments from the DE, AE, and reviewers, and for the substantial effort invested in revising the manuscript. The additions around hypothesis development, cost-benefit analysis, framing, and empirical methodology represent meaningful improvements. That said, after reading the all the concerns raised by the review team and the authors responses, I have a few remaining concerns that in my view are only partially resolved, which I outline below.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank R1 for the recognition of progress and acknowledge the remaining concerns. Preview the three issues raised: (1) the admission-effect magnitude and whether the instrument captures broader diagnostic style; (2) the decomposition/intervention implications; (3) the bad-control problem with laboratory ordering.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R1 Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R1 Wrote (Remaining concern 1 --- Admission effect and instrument scope):}
+
+\noindent ``The most significant remaining concern is on the instrument side. The expanded controls, UJIVE, and Conley sensitivity analyses are all genuine improvements, and I recognize the effort that has gone into addressing the exclusion restriction concern. That said, I think one result in the revised paper warrants more careful discussion. The approximately 40 percentage point increase in admission probability is an interesting finding, but its magnitude raises a question worth reflecting on. Admission is a complex, judgment-driven decision that reflects a physician's overall assessment of the patient for e.g. their risk tolerance, their interpretation of clinical information, their general approach to uncertainty and not just when they placed their imaging orders. A difference of this magnitude among patients who are, by the complier characterization, relatively similar in acuity is not easy to attribute to ordering sequence alone and may suggest that high- and low-batch-tendency physicians differ more broadly in their clinical approach. The added controls address observable differences between physicians, but the concern is specifically about unobservable differences which is how physicians handle diagnostic uncertainty, interpret ambiguous results, or make borderline disposition decisions; which the current robustness checks cannot fully address. I would encourage the authors to discuss this more explicitly as a limitation of the identification strategy and to acknowledge that the instrument may be capturing something broader than imaging order timing.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Acknowledge explicitly in the main text and limitations section that the instrument may capture a broader latent construct of physician diagnostic style rather than imaging order timing alone. Describe how the revised specification with physician FE and the new IV partly addresses this concern, while recognizing that some residual concern may persist. Temper downstream claims (decomposition, policy implications) accordingly. Report new evidence from the qualitative interviews that speaks to whether ordering sequence and diagnostic style are distinguishable from the clinician's perspective.]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R1 Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R1 Wrote (Remaining concern 2 --- Decomposition and intervention implications):}
+
+\noindent ``This carries through directly to the decomposition and intervention implications. The decomposition in Section 4.3 attributes 26\% of the LOS effect to test volume and 71\% to ``coordination costs and decision complexity,'' but this residual is arrived at by subtraction rather than direct measurement. The decomposition can only measure the test volume channel on the treated side, so the 71\% is equally consistent with multiple explanations: genuine sequencing costs from managing concurrent workflows, residual physician style confounding, or an information filtering effect whereby sequential ordering reduces total test volume rather than simply reordering when tests are placed. Currently what you are implying is ``we cannot explain 71\% of the effect through observable channels, therefore it must be coordination costs from concurrent workflows''. This matters for intervention design. The recommendation to encourage sequential ordering assumes that ordering sequence is the key mechanism i.e. same tests, ordered differently, would produce better outcomes. But if the dominant driver is broader physician style or information filtering, the right lever is reducing overall diagnostic intensity, not changing when orders are placed. I would encourage the authors to acknowledge this ambiguity more explicitly as a limitation and to temper their intervention recommendations accordingly.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Rewrite Section 4.3 to frame the decomposition as a bound rather than a point attribution. Present the three competing mechanisms explicitly (coordination costs, residual style confounding, information filtering). Use evidence from the new within-physician IV and the qualitative interviews to discuss which mechanisms are most consistent with the data. In Section 5 (policy implications), distinguish between ``change ordering sequence'' interventions and ``reduce overall diagnostic intensity'' interventions, and temper strong prescriptions that hinge on the uncertain mechanism.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R1 Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R1 Wrote (Remaining concern 3 --- Bad control for laboratory ordering):}
+
+\noindent ``The authors add realized laboratory ordering as a precision control, arguing that if batch tendency captures generally aggressive physicians rather than imaging-specific behavior, controlling for lab ordering should attenuate the imaging-specific effect; the attenuation from $\sim$130\% to $\sim$65--81\% is presented as evidence of this. However, laboratory ordering is a post-assignment clinical decision made during the encounter, plausibly part of the same diagnostic strategy as imaging batching, and therefore a potential bad control (see Angrist and Pischke for more on bad controls).''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue} We thank the reviewer for bringing up this concern. We had originally included realized laboratory ordering as a control due to laboratory tests being ordered
+
+. We will remove it from the main specification and instead use a pre-treatment measure of physician lab-ordering propensity, such as the physician's historical leave-one-out lab-ordering rate, which does not condition on post-treatment information. We will re-run the main specification with this new control and report how the estimates change. If some of the attenuation from round 1 was due to bad-control bias rather than genuine confounding, we may find that the new corrected estimate is larger, and we will report this transparently in our revision.]
+
+
+
+[PLACEHOLDER --- Acknowledge that realized laboratory ordering is post-assignment and therefore a potential bad control. Replace it with a pre-assignment measure (e.g., physician's historical leave-one-out lab-ordering rate) that does not condition on post-treatment information. Re-run the main specification and report how the estimates change. Discuss honestly: if some of the attenuation from round 1 was due to bad-control bias rather than genuine confounding, the new corrected estimate may be larger, and that is important to report transparently.]
+\color{black}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  RESPONSES TO REVIEWER 2 COMMENTS                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{Responses to Referee 2 Comments}}
+\renewcommand{\headrulewidth}{0pt}
+
+\noindent\underline{\textbf{V. Responses to Referee 2 (R2) Comments}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Overall assessment):}
+
+\noindent ``As in the original submission, the paper focuses on the implications of batching imaging tests in the emergency department on both operational and quality outcomes. In this revision, the authors have made efforts to strengthen the empirical strategy. While the paper has improved, I still have several important concerns, which I elaborate on below. To streamline the review process, I focus primarily on issues that follow up on my comments from the previous round.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank R2 for the recognition of progress and acknowledge the focus on follow-up issues from the first round. Preview the response to each of the five remaining concerns: physician FE in all models, reverse causality, placebo test, model selection (control function), and admitted vs. discharged patients.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Physician fixed effects in all models):}
+
+\noindent ``Physician fixed effects (FE): I would like to clarify my earlier comment regarding the inclusion of physician fixed effects. My concern was not about including physician FE in constructing the instrumental variable (IV), but rather about their inclusion in all econometric models. The authors argue that including physician FE would eliminate the variation required to construct their proposed IV. While I agree with this point, I believe the empirical strategy should begin with an appropriate baseline specification, and only then address identification challenges within that framework. As it stands, it appears that the authors prioritize the feasibility of their IV over a properly specified model. I recommend including physician FE in all models. There is still within-physician variation in test-ordering behavior---the key quantity of interest in this study. The authors should then develop a new IV that addresses endogeneity under this specification, which would differ substantially from the current instrument. It is unclear whether the results (particularly in their current magnitude) would hold under a properly specified model with an alternative IV.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue} We thank the reviewer for clarifying the intent of the original comment. We agree with the methodological principle that the empirical strategy should begin with a defensible specification, not be driven by the feasibility of a particular instrument. We address the comment in four parts. First, we explain why physician fixed effects in the outcome equation are mechanically incompatible with the leniency design we employ. Second, we explain why within-physician instruments would identify a different estimand than the one of policy interest. Third, we operationalize the spirit of the reviewer's concern through three new analyses: (i) pre-assignment leave-one-out measures of other physician practice tendencies entered as controls in the 2SLS specification, (ii) within-physician OLS as a robustness specification with physician fixed effects in the outcome equation, and (iii) complier-weighted within-physician OLS following \citet{bhuller2020incarceration} and \citet{dobbie2018effects}. Fourth, we strengthen the limitations discussion around the admission outcome.
+
+\textbf{1. Including physician fixed effects in the outcome equation is mechanically incompatible with the across-physician instrumental variable.}
+
+The leniency design uses leave-one-out physician batch tendency as its identifying source of variation. The instrument is constructed from \textit{between}-physician variation: it captures whether a patient was assigned to a physician with a higher or lower tendency to batch relative to peers. Including physician fixed effects in the outcome equation removes precisely the variation the instrument exploits. This is not a feature of our particular implementation but a property of the design class: \citet{chyn2025examiner}, in their recent JEL synthesis of examiner tendency designs across 136+ studies, document that across-decisionmaker variation is the universal identifying source in this literature, and physician fixed effects in the outcome equation reduce the first stage to zero by construction. The canonical references in the design class \citep{kling2006incarceration, dahl2014family, dobbie2018effects, bhuller2020incarceration} all rely on across-decisionmaker variation, and recent methodological advances such as UJIVE \citep{kolesar2013estimation, goldsmithpinkham2025leniencydesignsoperatorsmanual}---which we adopt---address many-instrument bias while preserving the across-physician identifying variation.
+
+We agree this constraint cannot be the end of the response, and it motivates the analyses that follow.
+
+\textbf{2. Within-physician IVs would identify a different estimand and face severe exclusion restriction violations in the ED setting.}
+
+We considered candidate instruments that vary within physician---including time into shift, concurrent patient load, shift-level workload, and peer batching intensity in the contemporaneous time window \citep[similar in spirit to][]{luo2026batch}. Each faces serious exclusion restriction violations specific to ED operations: time into shift, concurrent load, and shift-level workload all directly affect ED LOS, wait times, and disposition decisions through channels that have nothing to do with batching. Peer batching intensity is more promising in cross-patient EHR-workflow contexts, but in our within-patient diagnostic-strategy setting it reflects ED-level conditions (crowding, patient mix, staffing) that plausibly affect outcomes directly. We do not view these as credible alternatives to the across-physician design.
+
+We also want to be transparent about a conceptual point: a within-physician IV identifies a fundamentally different estimand. The across-physician LATE captures the effect for marginal patients whose testing strategy depends on which physician they are assigned to---the population on which ED management interventions (peer feedback, decision support, protocol standardization) operate. A within-physician estimand captures what happens when a given physician sometimes batches and sometimes does not, which is a behavioral question about within-shift decision dynamics rather than an operational policy question. We believe the across-physician LATE is the right parameter for the management contribution we make, and we now state this explicitly in Section 3.3.
+
+\textbf{3. We address the underlying concern about physician heterogeneity through three new analyses.}
+
+\textit{3a. Pre-assignment leave-one-out measures of other physician practice tendencies.} Our revised primary specification adds pre-assignment leave-one-out measures for each physician's laboratory ordering propensity and admission propensity, constructed from the physician's behavior on \textit{other} patients during the study period and residualized against patient characteristics and shift fixed effects. These measures capture broader dimensions of physician diagnostic style that are conceptually distinct from batching itself, even if correlated with it in practice. By including them as controls, we isolate the batching-specific component of physician practice in the 2SLS specification. We have also added evidence that batch tendency is a stable physician characteristic in our data: the correlation between first-half and second-half residualized batch tendency at the physician level is $0.73$, supporting the interpretation that batching is a durable practice characteristic.
+
+Under this more demanding specification, our 2SLS estimates attenuate substantially relative to the previous round (Table~\ref{tab:wp_ols_results}, column 2): the LOS effect attenuates from approximately 81\% to 52\%, and the admission effect from 40 to 31 percentage points. The qualitative conclusions are unchanged: batching causally increases LOS, time to disposition, imaging volume, and admission probability, with no measurable change in 72-hour returns with admission. The attenuation is exactly what we would expect if some of the original variation reflected broader physician diagnostic style rather than the batching decision itself.
+
+\textit{3b. Within-physician OLS as a robustness specification.} We additionally report within-physician OLS as a robustness specification (Table~\ref{tab:wp_ols_results}, column 3). These models include physician fixed effects in the outcome equation and regress outcomes on realized batching status. In this specification we drop the physician-level controls (lab tendency, admission tendency, experience, provider sex) because they are constant within physician and absorbed by the fixed effects; the patient-level and shift-level controls remain. The within-physician OLS estimates point in the same direction as the 2SLS LATE across every primary outcome and are statistically significant for LOS, time to disposition, imaging, and admission---demonstrating that the relationship between batching and outcomes is not an artifact of cross-physician comparisons.
+
+\textit{3c. Complier-weighted within-physician OLS.} A natural concern with the within-physician OLS in (3b) is that it estimates an effect on a different population than the 2SLS LATE: the average effect across all patients seen within a physician's panel, rather than the effect on the complier-relevant population on which the IV identifies the LATE. To address this, we additionally implement the complier reweighting procedure of \citet{bhuller2020incarceration}, applied in \citet{dobbie2018effects, footnote 19}. We partition the sample into eight cells based on observable characteristics that drive complier heterogeneity (vital sign status, lab ordering, and chief complaint group, identified from our complier characteristics analysis in Appendix B), compute the complier share within each cell following \citet{abadie2003} and \citet{dahl2014family}, and reweight each observation by the ratio of complier share to sample share in its cell. This reweighting makes the estimation sample's observable composition mirror the complier population's, yielding a within-physician association estimate over the population for which the IV LATE is identified. Following Dobbie et al., we interpret the reweighted estimates as descriptive associations on the LATE-relevant population, not as causal estimates.
+
+Table~\ref{tab:wp_ols_results}, column 4 reports the complier-weighted within-physician OLS estimates. Three patterns are worth highlighting. First, all primary effects remain positive and statistically significant for LOS, time to disposition, imaging, and admission. Second, complier reweighting shifts the LOS and admission estimates slightly upward (LOS: $0.104 \to 0.108$; admission: $0.040 \to 0.047$), consistent with the interpretation that the complier population---patients at the margin of physician disagreement---is the population on which batching has meaningful disposition effects. Third, the within-physician estimates remain smaller than the 2SLS LATE for two reasons that we view as conceptual rather than indicative of bias in the IV: (i) the within-physician average effect captures a different population than the LATE for compliers at the physician-disagreement margin, even after observable reweighting, and (ii) classical measurement error in the binary batching indicator attenuates OLS toward zero, with attenuation likely more pronounced once physician fixed effects absorb stable practice-style variation.
+
+\begin{table}[t!]
+\centering
+\caption{Within-Physician Robustness: OLS Estimates with Physician Fixed Effects}
+\label{tab:wp_ols_results}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+& Standard care mean & 2SLS & \multicolumn{2}{c}{\underline{Within-physician OLS}} \\
+& & (preferred) & Unweighted & Complier-weighted \\
+& (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
+Log time to disposition 
+& 5.237 
+& $0.405^{**}$
+& $0.083^{***}$ & $0.078^{***}$ \\
+& (0.499)
+& (0.140)
+& (0.011) & (0.014) \\[0.5em]
+Log LOS
+& 5.490
+& $0.417^{***}$
+& $0.104^{***}$ & $0.108^{***}$ \\
+& (0.456)
+& (0.127)
+& (0.010) & (0.012) \\[0.5em]
+Number of distinct imaging tests 
+& 1.335
+& $0.986^{***}$
+& $0.820^{***}$ & $0.790^{***}$ \\
+& (0.572)
+& (0.168)
+& (0.013) & (0.016) \\[0.5em]
+72-hour return with admission 
+& 0.012
+& $0.016$
+& $0.000$ & $0.002$ \\
+& (0.110)
+& (0.035)
+& (0.003) & (0.005) \\[0.5em]
+\multicolumn{5}{l}{\textit{Panel B. Disposition}} \\[0.5em]
+Admission 
+& 0.279
+& $0.306^{*}$
+& $0.040^{***}$ & $0.047^{***}$ \\
+& (0.449)
+& (0.128)
+& (0.011) & (0.014) \\[0.5em]
+\midrule
+Necessary controls       & --- & Yes & Yes & Yes \\
+Precision controls       & --- & Yes & Yes & Yes \\
+Physician fixed effects  & --- & No  & Yes & Yes \\
+Complier reweighting     & --- & No  & No  & Yes \\
+Observations             & 11,679 & 11,679 & 11,679 & 11,550 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Column 2 reports the preferred 2SLS estimates using physician batch tendency as the instrument, with pre-assignment leave-one-out controls for physician laboratory ordering and admission propensities. Columns 3--4 report within-physician OLS estimates, which include physician fixed effects in the outcome equation; column 3 is unweighted and column 4 is reweighted to match the complier population following the procedure of \citet{bhuller2020incarceration} and \citet{dobbie2018effects}. In the within-physician specifications, physician-level controls (lab tendency, admission tendency, experience, provider sex) are dropped because they are absorbed by physician fixed effects. All models include day-of-week, month-of-year, complaint-by-ESI, race, and gender fixed effects. Standard errors are heteroskedasticity-robust. Coefficients on log-transformed dependent variables can be interpreted as percentage changes using the formula $(\exp(\beta) - 1) \times 100\%$.
+\item $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+\textbf{4. We strengthen the limitations discussion around admission.}
+
+Even with the additional controls and the within-physician analyses above, the across-physician IV may capture aspects of physician diagnostic style beyond the timing of imaging orders---particularly for admission, which is a holistic disposition decision that reflects how physicians handle diagnostic uncertainty, interpret ambiguous results, and make borderline calls. The expanded controls we now include absorb physician-level lab and admission tendencies, but they cannot absorb every unobservable dimension of physician practice that may correlate with batching. We have revised Section 4.9 (Limitations) to acknowledge this explicitly:
+
+\begin{quote}
+``Our identification strategy relies on across-physician variation in batching propensity, the canonical approach in the leniency design literature \citep{chyn2025examiner}. While we have taken substantial steps to isolate batching-specific variation---including controls for pre-assignment physician lab and admission propensities, UJIVE estimation, Conley sensitivity analyses, and within-physician OLS robustness checks (both unweighted and complier-weighted)---the instrument may still partly capture broader dimensions of physician diagnostic style that we cannot fully observe. This concern is most acute for the admission outcome, which is a holistic clinical judgment that reflects how physicians handle diagnostic uncertainty, interpret ambiguous results, and make borderline disposition calls, not solely how they sequence imaging orders. The 31 percentage point admission effect in our preferred specification, while statistically robust, should be interpreted with this caveat in mind. The decomposition of admissions into those that remain stable inpatient cases versus those subsequently downgraded to observation status (Section 4.X) provides additional evidence on the mechanism: the effect of batching on admission is concentrated in admissions that are later reclassified to observation, consistent with batching shifting marginal disposition decisions rather than altering judgments about clearly admission-warranting cases.''
+\end{quote}
+
+We have also tempered the language around managerial implications and decomposition in Sections 4.3 and 5 to reflect this more careful interpretation.
+
+\textbf{Summary.}
+
+We share the reviewer's underlying concern that physician heterogeneity should not contaminate causal estimates. The structure of the leniency design prevents us from including physician fixed effects in the outcome equation of the IV specification directly, and within-physician IVs face exclusion restriction violations specific to the ED setting while identifying a different estimand than the policy-relevant cross-physician LATE. We operationalize the spirit of the reviewer's request through three new analyses: pre-assignment leave-one-out measures of other physician practice tendencies entered as controls in the primary 2SLS specification, within-physician OLS as a robustness specification with physician fixed effects in the outcome equation, and complier-weighted within-physician OLS following \citet{bhuller2020incarceration} and \citet{dobbie2018effects}. All three support the substantive conclusions of the paper. We have also strengthened the limitations discussion to explicitly acknowledge that the instrument may capture aspects of physician diagnostic style beyond order timing, particularly for the admission outcome.
+
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Reverse causality --- restated from round 1):}
+
+\noindent ``Reverse causality: The authors did not address one of my previous comments, so I restate it here for clarity (note that table references correspond to the original submission):
+
+`All estimates in Panel B of Table 4 appear to suffer from reverse causality. Specifically, when a particular test type is ordered, it is more likely that the physician will order it as part of a batch. This means that the decision to batch tests may be a consequence rather than a cause of the test order itself. Without adequately addressing this issue, the mediation analysis in the paper becomes questionable. The same concern applies to the number of diagnostic imaging tests in Panel A of Table 4.
+
+Related to the mediation analysis, the change in the magnitude of the effect on hospital admission (Panel C of Table 4) after adjusting for endogeneity is striking and somewhat difficult to believe. Specifically, the analysis suggests that batching tests leads to an approximately 45 percentage-point increase in hospital admissions. This value is unexpectedly large. How do the authors explain this significant change?' ''
+\end{quote2}
+\noindent\textbf{Response:} \color{blue} We thank the reviewer for restating this comment, and we owe a sincere apology. We addressed this concern empirically in the first round---including a figure on test combination frequencies, a discussion of which tests are added during discretionary batching, a sensitivity analysis controlling for admission tendency, and corresponding manuscript and Electronic Companion changes---but our written response did not make it into the response letter the reviewer received. The manuscript edits reflected the analysis; the cover letter discussion did not. We regret the omission and take this opportunity to address the comment substantively, updated for the further changes made in this revision.
+
+We organize our response in three parts: (1) clarifying why our 2SLS identification strategy breaks the strict reverse-causality channel the reviewer describes; (2) acknowledging a related but more subtle concern that the IV cannot fully resolve, and reframing the Panel B interpretation accordingly; and (3) clarifying that the imaging count finding is a substantive empirical result, not a mechanical consequence of how batching is defined.
+
+\textbf{1. The strict reverse-causality channel is broken by the 2SLS specification.}
+
+The reviewer's concern, as we understand it, is that the decision to order a particular test type and the decision to batch are not separable: once a physician commits to ordering a specific test (for example, a CT with contrast), they may be more likely to batch other tests with it in the same EHR session. Under OLS, this creates a simultaneity problem in which the test-ordering decision and the batching decision are jointly determined. We agree that an OLS regression of test-type outcomes on batching status would be biased by this channel.
+
+Our 2SLS specification is designed precisely to break this simultaneity. The leave-one-out physician batch tendency varies across physicians for reasons unrelated to the focal patient's test ordering: it captures the physician's general practice style based on \textit{other} patients in the study period. The variation in batching status that 2SLS uses for identification is therefore driven by physician-level practice variation rather than by the focal patient's specific test-ordering pattern. For the focal encounter, the IV does break the strict reverse-causality channel the reviewer describes.
+
+The contrast between OLS and 2SLS in the test-type panel illustrates this point empirically, as Table~\ref{tab:ols_vs_iv_testtypes} shows.
+
+\begin{table}[h!]
+\centering
+\caption{OLS vs.\ 2SLS Estimates for Test-Type Outcomes}
+\label{tab:ols_vs_iv_testtypes}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+& OLS & 2SLS \\
+& (with controls) & (preferred spec) \\
+\midrule
+X-ray             & $0.356^{***}$ & $0.972^{**}$ \\
+                  & (0.012)       & (0.260) \\[0.3em]
+Ultrasound        & $0.117^{***}$ & $0.089$ \\
+                  & (0.014)       & (0.082) \\[0.3em]
+CT with contrast  & $0.051^{**}$  & $0.085$ \\
+                  & (0.014)       & (0.069) \\[0.3em]
+CT without contrast & $0.279^{***}$ & $0.067$ \\
+                  & (0.012)       & (0.138) \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Heteroskedasticity-robust standard errors in parentheses. The OLS column reports the within-encounter association between batching status and each test-type indicator with the full control set; the 2SLS column reports the IV estimate using physician batch tendency as the instrument with the same control set.  $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+For ultrasound, OLS shows a strong positive association ($0.117$, $p<0.001$) while the 2SLS estimate is smaller and statistically insignificant. For CT without contrast, OLS shows a large positive association ($0.279$, $p<0.001$) while 2SLS gives a small and insignificant estimate. These differences are consistent with OLS being substantially contaminated by the simultaneity the reviewer identifies, and with 2SLS removing this contamination. For X-ray, by contrast, the 2SLS estimate ($0.972$, $p<0.01$) is larger than the OLS estimate ($0.356$, $p<0.001$), consistent with X-ray being the test physicians actually add when they choose to batch.
+
+\textbf{2. A related concern remains for the test-type interpretation, and we have reframed Panel B accordingly.}
+
+We want to be transparent that a more subtle concern remains. The IV identifies the effect of being assigned to a higher-batching physician on the probability of receiving each test type. This estimand combines two channels: (i) the direct effect of the ordering pattern (batching versus sequencing) on which tests are added to the workup, and (ii) the indirect effect of being assigned to a physician whose batching tendency may be correlated with broader test-ordering preferences. The expanded leave-one-out controls for physician laboratory and admission tendencies that we now include absorb the most obvious correlated preferences, but we cannot fully rule out that physicians with high batch tendency may also have systematically different preferences over specific imaging modalities.
+
+Figure~\ref{fig:test_combinations} provides descriptive context for interpreting the test-type estimates. The figure shows the distribution of test combinations in our data and their associated batching rates.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{outputs/figures/combined_tests.png}
+\caption{Frequency and batching rate of imaging test combinations}
+\label{fig:test_combinations}
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Figure shows the frequency of different imaging test combinations and the proportion of each combination that was batch-ordered (defined as tests ordered within 5 minutes). Sample restricted to encounters where at least one imaging test was ordered. X-ray alone is by definition never batched because batching requires 2+ tests; X-ray combined with non-contrast CT is batched 40.6\% of the time, while X-ray with contrast CT is batched 14.6\% of the time.
+\end{flushleft}
+\end{figure}
+
+The figure makes two points relevant to the reviewer's concern. First, the same test type can appear in batched and non-batched encounters at very different rates depending on the combination it is part of, which is what the reviewer's concern is fundamentally about: the batching classification is not independent of the test-ordering decision. Second, X-ray is the test that appears in almost every batched encounter, while advanced imaging modalities (ultrasound, CT) appear in batches at much lower and more variable rates.
+
+In light of this, we have revised the interpretation of the test-type estimates in Panel B. Rather than presenting these as a causal mediation analysis that decomposes the total imaging effect into specific test types, we now present them descriptively, as evidence on which test types are more likely to be ordered when patients are assigned to higher-batching physicians. We have revised the text in Section 4.X as follows:
+
+\begin{quote}
+``Table~\ref{tab:test_types} reports IV estimates for the probability of receiving each test type. We interpret these estimates as evidence on the composition of the additional imaging associated with discretionary batching, rather than as a strict causal mediation decomposition. The IV breaks the simultaneity between the focal patient's test ordering and the focal encounter's batching status, but the estimand may also reflect correlated physician preferences over imaging modalities. The pattern we observe---a large and significant increase in X-ray ordering, with smaller and statistically insignificant changes in ultrasound and CT modalities---is consistent with X-ray being the marginal test added during discretionary batching.''
+\end{quote}
+
+\textbf{3. The imaging count finding is a substantive empirical result, not a mechanical consequence of how batching is defined.}
+
+We want to address directly the reviewer's suggestion that the imaging count outcome in Panel A may suffer from the same concern. Batching, as we define it, refers to a property of \textit{timing}: multiple imaging tests placed within a short window of each other. It does not impose any restriction on the \textit{number} of tests a physician orders. Consider two physicians treating the same patient who, on careful clinical assessment, needs an X-ray and a CT. A batching physician orders both within five minutes of each other; a sequencing physician orders the X-ray first, waits for the result, and then orders the CT 45 minutes later. Both physicians order the same total imaging volume; only the batching physician is classified as batched. The finding that batching is associated with approximately one additional imaging test is therefore a substantive empirical result, not a mechanical implication of how batching is defined: it tells us that when physicians choose to batch, they do not merely rearrange the timing of the same tests they would have ordered sequentially---they actually expand the diagnostic workup.
+
+This is, to our knowledge, a novel finding. The clinical literature on diagnostic strategy has long debated whether comprehensive upfront ordering produces more imaging than sequential information-driven ordering. Our 2SLS estimate of approximately one additional imaging test under batching provides the first causal evidence that discretionary batching is associated with measurably more diagnostic intensity, not just a different temporal pattern of the same workup.
+
+\textbf{Updated revisions for this round.}
+
+Several changes in this revision further support the interpretive discipline the reviewer's comment encouraged:
+
+\begin{itemize}
+\item The expanded leave-one-out controls in our preferred 2SLS specification absorb correlated physician practice tendencies, reducing the share of the test-type and imaging count estimates that could reflect non-batching dimensions of physician style.
+\item The within-physician OLS robustness specifications (Table~\ref{tab:wp_ols_results}) confirm that the relationship between batching and imaging volume is present within physicians as well as across them.
+\item The decomposition of admission into stable and downgraded admissions (Section 4.X) provides additional evidence on the disposition mechanism, showing that the admission effect is concentrated in admissions that are later reclassified to observation status---consistent with batching shifting marginal disposition decisions through the imaging pathway rather than altering judgments about clearly admission-warranting cases.
+\end{itemize}
+
+We are grateful for the reviewer's persistence on this point. The reframing of Panel B as descriptive evidence sharpens the interpretive discipline of the paper, and the clarification of the imaging count finding---that it reflects a real expansion of the diagnostic workup rather than a mechanical artifact of how batching is defined---makes the substantive contribution clearer. We apologize again for the failure to communicate our R1 response on this point.
+
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Placebo test):}
+
+\noindent ``Placebo test: I remain unconvinced about the value of the placebo test. The authors state that they intentionally use a clinically different subsample to show that the main results are driven by batch ordering rather than general physician performance. However, due to clear clinical differences across the two samples, it is difficult to generalize physician behavior from one subsample to another. Differences in condition severity, case complexity, patient needs, and physician practice patterns may all affect both behavior and measured performance, limiting the interpretability of this test.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Either redesign the placebo test using a within-sample approach that holds the patient population constant, or drop it and rely on the stronger identification from the physician-FE + new-IV specification. If redesigned, candidate designs include: randomization inference by permuting physician assignment within shift; outcomes that are not mechanically affected by imaging workflow (e.g., pre-arrival characteristics); or leave-one-out tests that exclude a physician and re-estimate.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Model selection --- Control function approach):}
+
+\noindent ``Model selection: The authors argue that linear models for binary and count outcomes are standard in the causal inference literature, citing classic references. While I understand this perspective, there are well-established alternative approaches that address these concerns and are widely used in empirical OM and applied economics literature. In particular, a control function approach (e.g., Wooldridge 2015) appears to be a natural and appropriate choice in this context and should be considered as the primary empirical strategy.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}Thank you for reiterating this suggestion. We agree that a control function (CF) approach is a natural complement to our primary 2SLS analysis, particularly given that several of our outcomes are binary (e.g., admission, 72-hour return) or count-valued (e.g., number of imaging tests). In response, we substantially expanded the empirical analysis to implement nonlinear control function models alongside our original 2SLS specifications and now present these analyses as a co-equal empirical strategy throughout the revised manuscript.
+
+Specifically, we implemented a two-stage residual inclusion (2SRI) / control function approach following Wooldridge (2015) as suggested by the reviewer. As in our primary IV design, the first stage uses physician-specific batch tendency as an instrument for whether a patient’s imaging tests were batched:
+
+Importantly, the control function approach uses the same underlying identification strategy and instrumental variable design developed throughout Sections \ref{sec:identification}--\ref{sec:late}. Specifically, we continue to exploit quasi-random assignment of patients to ED physicians with different underlying tendencies to batch order diagnostic imaging tests. As in our primary IV specifications, the first stage is:
+
+\[Batched_i = \delta_0 + \delta_1 \, BatchTendency_{i,j}^{phys} + \mathbf{\delta_2 X_i} + \eta_i\]
+
+where \(BatchTendency_{i,j}^{phys}\) is our residualized leave-out physician batch tendency instrument and \(\mathbf{X_i}\) includes the same assignment and precision controls used in our primary specifications.
+
+Under the control function approach, rather than carrying forward the fitted treatment values \(\widehat{Batched}_i\) as in 2SLS, we instead carry forward the first-stage residual:
+
+\[\hat{\eta}_i = Batched_i - \widehat{Batched}_i\]
+
+The second stage then augments the outcome equation with this residual inclusion term:
+
+\[g(E[Y_i])=\beta_0+\beta_1 Batched_i+\gamma \hat{\eta}_i+\mathbf{\theta X_i}\]
+
+where \(g(\cdot)\) denotes the appropriate link function for the outcome being studied. Following the reviewer's suggestion, we estimated:
+
+(i) Gaussian control function models for continuous outcomes,
+
+(ii) Poisson control function models for count outcomes, and
+
+(iii) probit control function models for binary outcomes.
+
+We added a new subsection entitled ``Control Function Robustness Analyses'' to Section \ref{sec:robustness} describing this estimation strategy and now report both nonlinear control function coefficients and average marginal effects (AMEs) in revised Table 4. Importantly, the substantive conclusions remain highly consistent across the linear IV and nonlinear control function specifications.
+
+\begin{table}[t!]
+\centering
+\caption{Reduced Form: Batch Tendency and Patient Outcomes}
+\label{tab:red_form}
+\begin{threeparttable}
+\begin{tabular}{p{5.2cm}cccc}
+\toprule
+\multicolumn{5}{c}{Dependent variable} \\
+\cmidrule(lr){2-5}
+& \makecell[c]{Log time to \\ disposition\\(1)}
+& \makecell[c]{Log \\ LOS\\(2)}
+& \makecell[c]{Number of \\ distinct \\ imaging tests\\(3)}
+& \makecell[c]{72hr return \\ with admission\\(4)} \\
+\midrule
+
+\multicolumn{5}{l}{\textit{Panel A. Linear reduced form}} \\[0.5em]
+
+Batch tendency
+& $0.695^{**}$ & $0.717^{***}$ & $1.696^{***}$ & $0.0277$ \\
+& (0.234) & (0.210) & (0.325) & (0.0603) \\[0.75em]
+
+\makecell[l]{Scaled coefficient:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.046$)}
+& 0.0318 & 0.0328 & 0.0775 & 0.0013 \\[1em]
+\\
+
+\multicolumn{5}{l}{\textit{Panel B. Poisson/logit reduced form for count/binary outcomes}} \\[0.5em]
+
+\makecell[l]{Batch tendency}
+& --- & --- & $1.111^{***}$ & $1.033$ \\
+& --- & --- & (0.217) & (2.135) \\[0.75em]
+
+Average marginal effect (AME)
+& --- & --- & $1.610^{***}$ & $0.030$ \\
+& --- & --- & (0.315) & (0.063) \\[0.75em]
+
+\makecell[l]{Scaled AME:\\ 10th $\rightarrow$ 90th pct. ($\Delta = 0.046$)}
+& --- & --- & 0.0736 & 0.0014 \\[1em]
+
+Mean dependent variable
+& 5.248 & 5.505 & 1.450 & 0.0121 \\
+& (0.493) & (0.449) & (0.623) & (0.109) \\
+
+\midrule
+\textit{Controls} \\
+Necessary controls & Yes & Yes & Yes & Yes \\
+Precision controls & Yes & Yes & Yes & Yes \\
+
+\midrule
+Adj.\ $R^2$
+& 0.2093 & 0.2096 & 0.1013 & 0.0040 \\
+
+Observations
+& 11{,}679 & 11{,}679 & 11{,}679 & 11{,}679 \\
+\bottomrule
+\end{tabular}
+
+\begin{flushleft}
+\footnotesize
+\textit{Notes:}
+This table reports reduced-form estimates of the relationship between physician batch tendency and patient outcomes. Panel A reports linear reduced-form estimates for all outcomes. Panel B reports nonlinear reduced-form models for outcomes where nonlinear functional form is most relevant: Poisson for the count outcome and probit/logit for the binary outcome. Average marginal effects (AMEs) are reported on the outcome scale. Scaled coefficients and AMEs represent the estimated effect of moving from the 10th percentile to the 90th percentile of physician batch tendency ($\Delta = 0.046$). For log-transformed dependent variables, coefficients can be interpreted approximately as percentage changes using $(\exp(\beta)-1)\times100\%$. Negative binomial models yielded nearly identical estimates and failed to detect meaningful overdispersion, supporting the Poisson specification for the imaging count outcome.
+$^{*} p < 0.05$,
+$^{**} p < 0.01$,
+$^{***} p < 0.001$.
+\end{flushleft}
+
+\end{threeparttable}
+\end{table}
+
+\begin{table}[t!]
+\centering
+\caption{Effect of Batching Tests on Patient Outcomes: Linear IV, UJIVE, and Nonlinear Control Function Estimates}
+\label{tab:results_table}
+\begin{threeparttable}
+\begin{tabular}{lccccccc}
+\toprule
+& Standard care mean 
+& \multicolumn{2}{c}{\underline{2SLS}} 
+& \multicolumn{2}{c}{\underline{UJIVE}} 
+& \multicolumn{2}{c}{\underline{Control Function}} \\
+& (1) & (2) & (3) & (4) & (5) & (6) & (7) \\
+\midrule
+
+\multicolumn{8}{l}{\textit{Panel A. Primary Outcomes}} \\[0.5em]
+
+Log time to disposition 
+& 5.237 
+& $0.659^{***}$ & $0.404^{**}$
+& $0.583^{***}$ & $0.522^{***}$
+& $0.404^{**}$ & $0.404^{**}$ \\
+& (0.499)
+& (0.103) & (0.140)
+& (0.189) & (0.177)
+& (0.136) & (0.136) \\[0.5em]
+
+Log LOS
+& 5.490
+& $0.717^{***}$ & $0.417^{***}$
+& $0.653^{***}$ & $0.503^{***}$
+& $0.417^{***}$ & $0.417^{***}$ \\
+& (0.456)
+& (0.094) & (0.126)
+& (0.158) & (0.144)
+& (0.121) & (0.121) \\[0.5em]
+
+Number of distinct imaging tests 
+& 1.335
+& $1.385^{***}$ & $0.986^{***}$
+& $1.316^{***}$ & $1.174^{***}$
+& $0.569^{***}$ & $1.012^{***}$ \\
+& (0.572)
+& (0.118) & (0.168)
+& (0.126) & (0.119)
+& (0.112) & (0.262) \\[0.5em]
+
+72-hour return with admission 
+& 0.012
+& -0.0137 & 0.0161
+& -0.0079 & -0.0039
+& 0.601 & 0.031 \\
+& (0.110)
+& (0.018) & (0.035)
+& (0.020) & (0.022)
+& (1.241) & (0.104) \\[0.5em]
+
+72-hour return 
+& 0.030
+& -0.0512 & -0.011
+& -0.0440 & -0.0396
+& -0.115 & 0.015 \\
+& (0.170)
+& (0.029) & (0.053)
+& (0.032) & (0.034)
+& (0.847) & (0.845) \\[0.5em]
+
+\multicolumn{8}{l}{\textit{Panel B. Test Types}} \\[0.5em]
+
+X-ray 
+& 0.576
+& $0.943^{***}$ & $0.989^{***}$
+& $0.960^{***}$ & $0.959^{***}$
+& --- & --- \\
+& (0.494)
+& (0.100) & (0.101)
+& (0.116) & (0.117)
+& --- & --- \\[0.5em]
+
+Ultrasound 
+& 0.171
+& $0.160^{**}$ & $0.087$
+& $0.164^{*}$ & $0.087$
+& --- & --- \\
+& (0.377)
+& (0.076) & (0.073)
+& (0.082) & (0.078)
+& --- & --- \\[0.5em]
+
+CT without contrast 
+& 0.400
+& $0.102$ & $0.062$
+& $0.052$ & $0.053$
+& --- & --- \\
+& (0.490)
+& (0.095) & (0.086)
+& (0.112) & (0.102)
+& --- & --- \\[0.5em]
+
+CT with contrast 
+& 0.187
+& $0.180^{*}$ & $0.102$
+& $0.140$ & $0.075$
+& --- & --- \\
+& (0.390)
+& (0.078) & (0.076)
+& (0.087) & (0.079)
+& --- & --- \\[0.5em]
+
+\multicolumn{8}{l}{\textit{Panel C. Disposition}} \\[0.5em]
+
+Admission 
+& 0.279
+& $0.419^{***}$ & $0.306^{*}$
+& $0.424^{***}$ & $0.398^{***}$
+& $1.024^{*}$ & $0.290^{*}$ \\
+& (0.449)
+& (0.096) & (0.127)
+& (0.103) & (0.090)
+& (0.467) & (0.142) \\[0.5em]
+
+Stable admission
+& 0.224
+& $0.247^{**}$ & $0.172$
+& --- & ---
+& $0.579$ & $0.155$ \\
+& (0.417)
+& (0.088) & (0.120)
+& --- & ---
+& (0.479) & (0.143) \\[0.5em]
+
+Unstable/downgraded admission
+& 0.055
+& $0.172^{***}$ & $0.134^{*}$
+& --- & ---
+& $1.497^{\dagger}$ & $0.281$ \\
+& (0.229)
+& (0.044) & (0.063)
+& --- & ---
+& (0.768) & (0.241) \\[0.5em]
+
+\midrule
+Necessary controls & --- & Yes & Yes & Yes & Yes & Yes & Yes \\
+Precision controls & --- & No & Yes & No & Yes & Yes & Yes \\
+Observations & 11,679 & 11,679 & 11,679 & 11,679 & 11,679 & varies & varies \\
+\bottomrule
+\end{tabular}
+
+\begin{flushleft}
+\footnotesize
+\textit{Notes:} Column 1 reports means for standard care patients (standard deviations in parentheses). Columns 2--3 report 2SLS results using physician batch tendency as the instrument. Columns 4--5 report UJIVE estimates using ED provider identifiers as many instruments. Columns 6--7 report nonlinear control function specifications following Wooldridge (2015). Column 6 reports the control function index coefficient, while Column 7 reports average marginal effects (AMEs). Continuous outcomes use Gaussian control function models, count outcomes use Poisson control function models, and binary outcomes use probit control function models. All models include day-of-week and time-of-day fixed effects, month-year fixed effects, and the precision controls described in the text where indicated. Standard errors are heteroskedasticity-robust. Coefficients on log-transformed dependent variables can be interpreted as percentage changes using the formula $(\exp(\beta)-1)\times100\%$.
+
+\item $^{\dagger} p < 0.10$, $^{*} p < 0.05$, $^{**} p < 0.01$, $^{***} p < 0.001$.
+\end{flushleft}
+\end{threeparttable}
+\end{table}
+
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R2 Comment 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R2 Wrote (Admitted vs. discharged patients):}
+
+\noindent ``Admitted patients: Based on the authors' clarification, the estimates pool admitted and discharged patients. However, these groups follow fundamentally different care pathways, and admitted patients experience additional care due to inpatient stay. Averaging effects across these groups may therefore be inappropriate. I recommend including an admission indicator and its interaction with the main independent variable, and estimating effects separately for admitted and discharged patients. In addition, the authors should examine whether batching itself influences the admission decision and, if so, address the resulting endogeneity appropriately.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- (1) Add an admission indicator and its interaction with batching to the pooled specification; report heterogeneous effects. (2) Estimate the main results separately for admitted and discharged patients, explicitly acknowledging that admission is a post-treatment variable and that stratifying on it conditions on an outcome. Discuss what this means for interpretation (Frangakis--Rubin principal stratification framing is one option). (3) Since batching increases admission probability substantially, address the resulting endogeneity in the stratified analysis: one approach is bounding analysis (e.g., Lee bounds) for the effect on LOS conditional on each disposition. (4) Report treatment time as the primary outcome for discharged patients (post-disposition boarding is the main inpatient-LOS pathway for admitted patients and is a different causal channel).]
+\color{black}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  RESPONSES TO REVIEWER 3 COMMENTS                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{\small{Responses to Referee 3 Comments}}
+\renewcommand{\headrulewidth}{0pt}
+
+\noindent\underline{\textbf{VI. Responses to Referee 3 (R3) Comments}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Summary of key argument):}
+
+\noindent ``This paper studies the impact of batching advanced imaging tests in the emergency department (ED) on ED efficiency and effectiveness outcomes. The authors use detailed electronic health record data from two major U.S. EDs and a ``judges design'' residual instrumental variable approach to try and uncover the causal impact of batching imaging tests on ED outcome variables such as length of stay (LOS), imaging test volume, admissions, and 72-hour revisit. The authors find that a marginal batched patient experiences a 65\% increase in total ED LOS, an 88\% increase in the volume of testing received, a 40\% increase in admission probability, with no statistically significant effect on 72-hour returns to the ED. Through a decomposition analysis combining estimates with controlled associations, the authors find that increased testing volume accounts for approximately one-quarter of the higher LOS caused by discretionary batch ordering. Looking upstream, the authors find that physicians are more likely to engage in batching behavior earlier in their shifts and for patients with higher acuity and more complex chief complaints.
+
+I would like to begin by thanking the authors for their detailed attention to my comments from the previous round. The revised paper is much stronger because of the changes made, and the story is much more compelling. I have a couple of follow-up questions that I hope will help push the paper closer towards publication.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank R3 for the accurate and concise summary and for the recognition of progress from round 1. Acknowledge the follow-up questions and preview the responses.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 2  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Research question and contribution):}
+
+\noindent ``The research question is clear, and it is an important area of study. Emergency departments are high-stress work environments where the stakes are high and patient lives are at stake. Anything we can learn to improve the performance and outcomes of the work that is done there could save lives, and also enhance our understanding of the impact of ``work behavior / preferences'' on operational outcomes.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 3  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Method --- Attenuation magnitude and confounding):}
+
+\noindent ``The paper provides credible causal evidence that batching behavior increases LOS. The revisions have strengthened the paper considerably, and I am much more comfortable with both the model specification (batching vs. counterfactual) as well as the discussion surrounding the exclusion restriction. The additional robustness checks added by the author team also helped lend credibility to the results. However, the magnitude of the estimate attenuation between rounds is large enough that I believe additional thought about the sources of confounding is warranted.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}\noindent\textbf{Response:} We thank Referee 3 for this thoughtful observation and for recognizing the substantial progress made in strengthening the identification strategy and exclusion-restriction discussion. We agree that the attenuation in effect magnitudes across revisions is itself informative and warrants careful investigation into the remaining sources of confounding and heterogeneity in physician decision-making.
+
+Motivated directly by this concern, we substantially expanded the analysis in the current revision to better separate batching behavior from broader physician diagnostic style. In particular, we introduced new leave-one-out physician-level historical practice-style controls, including residual admission propensity and laboratory-ordering propensity measures constructed from physicians’ behavior in other encounters. These controls are designed to capture broader diagnostic and disposition tendencies without conditioning on realized decisions within the focal encounter itself.
+
+The revised analyses suggest a more nuanced pattern than in earlier versions of the manuscript. While the estimated effects on ED LOS and imaging utilization remain positive, statistically significant, and operationally meaningful after incorporating these richer physician-style controls, the admission effects attenuate meaningfully relative to prior specifications. We now discuss this attenuation explicitly in the manuscript and interpret it as evidence that part of the originally estimated admission effect likely reflected broader physician disposition tendencies in addition to batching behavior itself.
+
+To further investigate this issue, we also introduced a more granular analysis of admission outcomes distinguishing between more stable admissions and admissions later downgraded in level of care. We find that the remaining admission effect is concentrated disproportionately among less stable admission pathways, whereas the estimated effect on stable admissions is substantially smaller and no longer statistically distinguishable from zero (Table X). We emphasize this analysis cautiously, but we believe it provides additional evidence that batching may primarily influence more marginal disposition decisions rather than uniformly increasing clearly necessary admissions.
+
+Importantly, these additional analyses led us to substantially temper the interpretation and managerial implications of the admission findings throughout the manuscript. The revised paper now distinguishes more carefully between operational consequences of batching that remain highly robust across specifications (particularly imaging utilization and LOS) and downstream disposition effects that appear more sensitive to assumptions regarding physician practice style and diagnostic decision-making. We are grateful to the referee for encouraging a more careful examination of these distinctions, which ultimately strengthened both the empirical analysis and the interpretation of the results.
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 4  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Proposed mechanism --- common cause between batching and admissions):}
+
+\noindent ``One thing that I had trouble believing as I was reading the paper is the proposed mechanism between batching tests and admission decisions. Why would this be the case? It seems much more likely that there is a common cause driving both batching behavior and admission behavior, such as physician cautiousness, or some unobserved measure of patient severity. I brought up this concern in my previous review and appreciate the author team's efforts to expand the set of controls to include variables such as the lab ordering intensity as a proxy for cautiousness. How about adding something like the MD's historical admissions rate? This would help to further isolate the residual towards capturing primarily variability associated with diagnostic testing. The reason this is concerning is that it leads to a tangible impact on what you can say about the managerial implications of your paper. If batching diagnostics is the reason that many patients are being admitted, then it would make sense that urging physicians to engage in sequential lab ordering would help to mitigate this behavior. However, if the root cause of more diagnostic batching AND more admissions is a common cause such as cautiousness or risk-aversion, then it is less clear what the impact of turning off batching would be. Would physicians respond by admitting more patients due to risk aversion and even less information due to fewer tests, or would it remain unchanged? I am not sure if you are able to cleanly differentiate between these cases, but I noticed that admissions behavior is not reflected in the control variables of the current models, so it might be worth another look.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Add physician historical admission propensity (leave-one-out, pre-assignment) as a control. Report how the batching--admission coefficient changes. This is a direct test of the common-cause hypothesis. Expected scenarios:
+
+(i) If the coefficient attenuates sharply, the common-cause interpretation gains weight, and the policy implications must change: discouraging batching may not reduce admissions, and interventions should target diagnostic intensity more broadly.
+
+(ii) If the coefficient is stable, the causal interpretation is strengthened.
+
+In either case, discuss the managerial implications under both scenarios and temper recommendations where the evidence cannot adjudicate. Integrate findings from the qualitative interviews on how physicians perceive the link between batching and disposition decisions.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 5  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Acknowledgment of rotational design and UJIVE):}
+
+\noindent ``Otherwise, I think the authors do a great job of laying out a convincing case for a causal story in a setting where there are many potential sources of confounding. The rotational nature of patient assignment assists a lot with identification and the expanded robustness analysis and inclusion of the UJIVE help a lot to convince the reader as well.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Thank R3 for the acknowledgment. Briefly note that the rotational design and UJIVE estimates remain central to the revised strategy, now complemented by physician FE and a new compatible IV.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 6  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Potential impact --- Managerial implications hinge on mechanism):}
+
+\noindent ``The paper currently presents an interesting counterintuitive argument that while batching tests appears to be a smart operational choice to save time, the authors find that batching in fact prolongs the hospital LOS, and increases the number of tests ordered. An additional look at the mechanism between batching diagnostic orders and admission decisions is warranted. This will help ensure an accurate set of actionable recommendations that have the potential to impact ED operations in practice.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Commit to strengthening the mechanism discussion. Describe how the combination of (i) the physician-FE specification with a new IV, (ii) the addition of historical admission-rate controls, and (iii) the qualitative clinician interviews jointly sharpen the mechanism story. Revise Section 5 (managerial implications) to make the recommendations conditional on the mechanism (e.g., ``if the driver is coordination cost, then X; if the driver is broader diagnostic style, then Y'').]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 7  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Writing quality):}
+
+\noindent ``Yes, the paper is well written and clear.''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}Thank you for the positive feedback on writing quality. We hope that these new revisions enhance the readability and interpretability of the paper while maintaining a clear narrative thread throughout.
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%  R3 Comment 8  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{quote2}
+\textbf{R3 Wrote (Additional literature --- Luo et al. 2026):}
+
+\noindent ``There is a relatively recent paper that I came across that would be worth citing in your paper. Their research question is quite different from yours, but the topic is similar:
+
+Luo, Danqi and Niewoehner, Robert J. and Xia, Yong, Batch Ordering Across Patients: Diagnostic Queues in Emergency Department Patient Flow (January 01, 2026). Available at SSRN: https://ssrn.com/abstract=6180358''
+\end{quote2}
+
+\noindent\textbf{Response:} \color{blue}[PLACEHOLDER --- Add Luo, Niewoehner, and Xia (2026) to the literature review. Distinguish scope: they study batch ordering across patients (diagnostic queues at the system level); this paper studies batch ordering within a patient encounter. Discuss complementary insights.]
+\color{black}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of Reviewer 3 responses
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\end{document}

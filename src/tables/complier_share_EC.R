@@ -290,3 +290,341 @@ for (complaint in complaint_categories) {
               complaint_short, result["p_x"], result["p_x_complier"], result["ratio"]))
 }
 
+
+
+
+# Approach 1: Restrict to complier-like observable profile
+
+# First, identify which characteristics have high complier ratios
+# (Your existing code already computes these — pull from results_table)
+# Compliers tend to have: normal vitals, standard ESI, certain complaints
+
+# Define complier-like subsample based on observable profile
+complier_like <- final %>%
+  mutate(
+    complier_like = case_when(
+      normal_vitals == 1 & ESI %in% c(2, 3) ~ 1,
+      TRUE ~ 0
+    )
+  )
+
+# Within-physician OLS on complier-like subsample
+wp_los_complier <- feols(
+  ln_ED_LOS ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  vcov = "HC1", 
+  data = complier_like %>% filter(complier_like == 1)
+)
+
+wp_admit_complier <- feols(
+  admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  vcov = "HC1", 
+  data = complier_like %>% filter(complier_like == 1)
+)
+
+wp_img_complier <- feols(
+  imgTests ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  vcov = "HC1", 
+  data = complier_like %>% filter(complier_like == 1)
+)
+
+wp_downgrade_complier <- feols(
+  unstable_admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  vcov = "HC1", 
+  data = complier_like %>% filter(complier_like == 1)
+)
+
+etable(wp_los_complier, wp_admit_complier, wp_img_complier, wp_downgrade_complier,
+       keep = "batched")
+
+# Also report sample size
+cat("Complier-like sample size:", sum(complier_like$complier_like), "\n")
+cat("Full sample size:", nrow(final), "\n")
+
+# Approach 2: Abadie kappa-weighted within-physician OLS
+# Following Abadie (2003) and the Chyn-Frandsen-Leslie (2025) JEL implementation
+
+library(fixest)
+library(dplyr)
+
+# Step 1: Binarize the instrument at the median
+# Z* = 1 if above-median batch tendency, 0 otherwise
+final <- final %>%
+  mutate(
+    Z_star = ifelse(batch.tendency > median(batch.tendency, na.rm = TRUE), 1, 0)
+  )
+
+# Step 2: Estimate propensity score P(Z* = 1 | X)
+# Use the same covariates as in the main specification
+ps_model <- glm(
+  Z_star ~ tachycardic + tachypneic + febrile + hypotensive + 
+    age + EXPERIENCE + PROVIDER_SEX + hrs_in_shift +
+    factor(dayofweekt) + factor(month_of_year) + factor(complaint_esi) +
+    factor(race) + factor(GENDER) + factor(capacity_level) +
+    lab.tendency + admit.tendency,
+  data = final,
+  family = binomial(link = "logit")
+)
+
+final$ps <- predict(ps_model, type = "response")
+
+# Trim extreme propensity scores to avoid weight instability
+final$ps <- pmin(pmax(final$ps, 0.05), 0.95)
+
+# Step 3: Construct Abadie kappa weights
+# kappa_i = 1 - D_i*(1-Z*_i)/(1-PS_i) - (1-D_i)*Z*_i/PS_i
+final <- final %>%
+  mutate(
+    kappa = 1 - 
+      (batched * (1 - Z_star)) / (1 - ps) - 
+      ((1 - batched) * Z_star) / ps
+  )
+
+# Sanity check on weights
+cat("\n=== Abadie weights summary ===\n")
+cat("Mean kappa:", round(mean(final$kappa, na.rm = TRUE), 3), "\n")
+cat("Share negative weights:", round(mean(final$kappa < 0, na.rm = TRUE) * 100, 1), "%\n")
+cat("Range of kappa:", round(range(final$kappa, na.rm = TRUE), 3), "\n")
+
+# Note: Some kappa weights will be negative. This is a known feature
+# of the Abadie weighting; common practice is to either keep them
+# (the IV identification still holds in expectation) or trim them.
+# We'll report both.
+
+# Step 4: Complier-weighted within-physician OLS
+# Including physician FE + full controls, weighted by kappa
+
+# All weights (including negative)
+wp_los_kappa <- feols(
+  ln_ED_LOS ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final
+)
+
+wp_admit_kappa <- feols(
+  admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final
+)
+
+wp_img_kappa <- feols(
+  imgTests ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final
+)
+
+wp_downgrade_kappa <- feols(
+  unstable_admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final
+)
+
+etable(wp_los_kappa, wp_admit_kappa, wp_img_kappa, wp_downgrade_kappa,
+       keep = "batched")
+
+# Also: trimmed version (drop negative weights)
+final_trimmed <- final %>% filter(kappa > 0)
+
+wp_los_kappa_trim <- feols(
+  ln_ED_LOS ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final_trimmed
+)
+
+wp_admit_kappa_trim <- feols(
+  admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final_trimmed
+)
+
+wp_img_kappa_trim <- feols(
+  imgTests ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final_trimmed
+)
+
+wp_downgrade_kappa_trim <- feols(
+  unstable_admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~kappa,
+  vcov = "HC1", data = final_trimmed
+)
+
+cat("\n=== Kappa-weighted within-physician OLS (trimmed) ===\n")
+etable(wp_los_kappa_trim, wp_admit_kappa_trim, wp_img_kappa_trim, wp_downgrade_kappa_trim,
+       keep = "batched")
+
+library(dplyr)
+library(fixest)
+
+#=========================================================================
+# STEP 1: Define cells based on observables driving complier heterogeneity
+#=========================================================================
+# From your Table B.2/B.3 results, the strongest complier signals are:
+# - Normal vitals (ratio 1.13) vs abnormal (ratio 0.79)
+# - Labs ordered (ratio 1.13) vs no labs (ratio 0.49)
+# - Trauma complaints (ratio 1.66), Neuro (1.24) over-represented
+# - Abdominal (0.62), Fevers (0.62) under-represented
+
+# Following Dobbie's footnote 19, we use a small number of mutually exclusive
+# subgroups. We'll use vitals × labs × complaint group (high vs. low complier ratio)
+
+final <- final %>%
+  mutate(
+    complaint_complier_group = case_when(
+      CHIEF_COMPLAINT %in% c("Falls, MVA, Assaults, and Trauma",
+                             "Neurological Issue") ~ "high",
+      TRUE ~ "low"
+    ),
+    cell = paste(normal_vitals, labs_ordered, complaint_complier_group, sep = "_")
+  )
+
+# Check cell sizes
+table(final$cell)
+
+#=========================================================================
+# STEP 2: For each cell, compute complier share using your existing approach
+#=========================================================================
+
+# Function: computes complier share within a subsample using batch.tendency
+calc_complier_share_in_cell <- function(data, cutoff = 0.01) {
+  if (nrow(data) < 100) return(NA_real_)
+  
+  z_bar <- quantile(data$batch.tendency, 1 - cutoff, na.rm = TRUE)
+  z_underbar <- quantile(data$batch.tendency, cutoff, na.rm = TRUE)
+  
+  # Use linear model (more stable than loess for subsamples)
+  lm_fit <- lm(batched ~ batch.tendency, data = data)
+  alpha_0 <- coef(lm_fit)["(Intercept)"]
+  alpha_1 <- coef(lm_fit)["batch.tendency"]
+  
+  p_high <- alpha_0 + alpha_1 * z_bar
+  p_low <- alpha_0 + alpha_1 * z_underbar
+  
+  pi_c <- as.numeric(p_high - p_low)
+  
+  if (is.na(pi_c) || pi_c < 0) return(NA_real_)
+  return(pi_c)
+}
+
+# Compute complier share and sample share for each cell
+cell_stats <- final %>%
+  group_by(cell) %>%
+  group_modify(~ tibble(
+    n_cell = nrow(.x),
+    sample_share = nrow(.x) / nrow(final),
+    complier_share = calc_complier_share_in_cell(.x)
+  )) %>%
+  ungroup()
+
+cat("\n=== Cell-level statistics ===\n")
+print(cell_stats)
+
+#=========================================================================
+# STEP 3: Compute Bhuller-Dobbie reweighting weights
+#=========================================================================
+# Weight = (complier share in cell) / (sample share in cell)
+# This makes the reweighted sample's cell composition match the complier population
+
+# Overall complier share for normalization
+pi_c_overall <- 0.203  # from your existing analysis
+
+cell_stats <- cell_stats %>%
+  mutate(
+    # Bhuller-Dobbie weight: P(complier | cell) / P(cell)
+    # Equivalently: complier share in cell / sample share in cell
+    # Following Dobbie footnote 19: "share of compliers relative to share of
+    # the estimation sample in each subgroup"
+    weight = complier_share / sample_share
+  )
+
+cat("\n=== Cell weights ===\n")
+print(cell_stats)
+
+# Merge weights back to main data
+final <- final %>%
+  left_join(cell_stats %>% dplyr::select(cell, complier_weight = weight), by = "cell")
+
+# Check: any missing or weird weights?
+summary(final$complier_weight)
+cat("Share missing:", round(mean(is.na(final$complier_weight)) * 100, 1), "%\n")
+cat("Share <= 0:", round(mean(final$complier_weight <= 0, na.rm = TRUE) * 100, 1), "%\n")
+
+#=========================================================================
+# STEP 4: Run complier-weighted OLS with physician fixed effects
+#=========================================================================
+# This is the move R2 wants:
+# - Physician FE in the outcome equation
+# - OLS on realized batching
+# - Reweighted to make the sample reflect the complier population
+
+# Filter to non-missing, positive weights
+final_weighted <- final %>% filter(!is.na(complier_weight), complier_weight > 0)
+
+cat("\nSample for weighted analysis:", nrow(final_weighted), "of", nrow(final), "\n")
+
+# Outcome 1: Log LOS
+cw_los_fe <- feols(
+  ln_ED_LOS ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level + lab.tendency + admit.tendency |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~complier_weight,
+  vcov = "HC1",
+  data = final_weighted
+)
+
+# Outcome 2: Admission
+cw_admit_fe <- feols(
+  admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level + lab.tendency + admit.tendency |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~complier_weight,
+  vcov = "HC1",
+  data = final_weighted
+)
+
+# Outcome 3: Imaging tests
+cw_img_fe <- feols(
+  imgTests ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level + lab.tendency + admit.tendency |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~complier_weight,
+  vcov = "HC1",
+  data = final_weighted
+)
+
+# Outcome 4: Unstable admission
+cw_unstable_fe <- feols(
+  unstable_admit ~ batched + tachycardic + tachypneic + febrile + hypotensive +
+    age + hrs_in_shift + capacity_level  |
+    ED_PROVIDER + dayofweekt + month_of_year + complaint_esi + race + GENDER,
+  weights = ~complier_weight,
+  vcov = "HC1",
+  data = final_weighted
+)
+
+cat("\n=== Complier-Weighted Within-Physician OLS ===\n")
+etable(cw_los_fe, cw_admit_fe, cw_img_fe, cw_unstable_fe, keep = "%batched")
+
