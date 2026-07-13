@@ -1,0 +1,46 @@
+[1] "First-Stage Results: Batch Tendency and Batching"
+Wald test, H0: nullity of batch.tendency
+ stat = 177.5, p-value < 2.2e-16, on 1 and 11,608 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: nullity of batch.tendency
+ stat = 68.9, p-value < 2.2e-16, on 1 and 11,572 DoF, VCOV: Heteroskedasticity-robust.                       fs_model_1        fs_model_2
+Dependent Var.:           batched           batched
+                                                   
+batch.tendency  1.831*** (0.1374) 1.718*** (0.2070)
+Fixed-Effects:  ----------------- -----------------
+dayofweekt                    Yes               Yes
+month_of_year                 Yes               Yes
+complaint_esi                  No               Yes
+race                           No               Yes
+GENDER                         No               Yes
+_______________ _________________ _________________
+S.E. type       Heteroskeda.-rob. Heteroskeda.-rob.
+Observations               11,648            11,648
+R2                        0.02251           0.06402
+Within R2                 0.01942           0.02517
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+[1] "Sample mean: 0.0566341509612671"
+[1] "Sample sd: 0.231144952125507"
+        10%         90% 
+-0.02809438  0.02196446 
+Wald test, H0: nullity of batch.tendency.complaint
+ stat = 45.5, p-value = 1.61e-11, on 1 and 11,585 DoF, VCOV: Heteroskedasticity-robust.Wald test, H0: nullity of batch.tendency.complaint
+ stat = 40.4, p-value = 2.137e-10, on 1 and 11,553 DoF, VCOV: Heteroskedasticity-robust.                                 fs_model_1         fs_model_2
+Dependent Var.:                     batched            batched
+                                                              
+batch.tendency.complaint 0.6018*** (0.0892) 0.5522*** (0.0869)
+Fixed-Effects:           ------------------ ------------------
+dayofweekt                              Yes                Yes
+month_of_year                           Yes                Yes
+ED_PROVIDER                             Yes                Yes
+complaint_esi                            No                Yes
+race                                     No                Yes
+GENDER                                   No                Yes
+________________________ __________________ __________________
+S.E. type                Heteroskedas.-rob. Heteroskedas.-rob.
+Observations                         11,648             11,648
+R2                                  0.03047            0.07129
+Within R2                           0.00519            0.00925
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+[1] "Sample mean: 0.0566341509612671"
+[1] "Sample sd: 0.231144952125507"

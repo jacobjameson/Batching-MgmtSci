@@ -119,11 +119,9 @@ feols(
 
 
 
-
-
 feols(
   as.formula(
-    "stable_admit ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+    "stable_admit ~ tachycardic + admit + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
        dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
        batched ~ batch.tendency"
   ),
@@ -133,7 +131,7 @@ feols(
 
 feols(
   as.formula(
-    "unstable_admit ~ tachycardic + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
+    "unstable_admit ~ tachycardic + admit + tachypneic + febrile + hypotensive + hrs_in_shift + EXPERIENCE + age + lab.tendency + admit.tendency |
        dayofweekt + month_of_year  + complaint_esi + race + GENDER + PROVIDER_SEX + capacity_level |
        batched ~ batch.tendency"
   ),

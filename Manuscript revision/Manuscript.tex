@@ -1162,6 +1162,28 @@ role in putting patients on a path toward longer LOS and increased
 resource
 utilization\footnote{For reduced-form results for a less strict sample see, e.g., \cite{jameson2024variation}, \cite{hodgson2018are}, and the references therein.}
 
+\begin{figure}[t!]
+\begin{center}
+\caption{Reduced Form: Batch Tendency and Patient Outcomes}
+\includegraphics[width=\textwidth]{../outputs/figures/reduced_form.png}
+\label{fig:tendency}
+\end{center}
+\begin{flushleft}
+\footnotesize \textit{Notes:} Markers show the reduced-form effect of moving from a
+low- to high-batching physician (10th vs.\ 90th percentile of batch
+tendency, $\Delta = 0.046$) on each patient outcome. Effects in the top
+panel (throughput and utilization) are expressed as a percent change
+relative to each outcome's baseline mean. The effect in the bottom panel
+(72-hour readmission) is expressed in percentage points, so the two panels
+use different units and horizontal scales. Markers denote linear
+(OLS) estimates vs. nonlinear estimates (Poisson for
+imaging tests, probit for readmission), reported as average marginal
+effects on the outcome scale. Horizontal bars are 95\% confidence intervals
+based on heteroskedasticity-robust standard errors. All specifications
+include necessary and precision controls (see Table \ref{tab:red_form} for details).
+\end{flushleft}
+\end{figure}
+
 \begin{table}[t!]
 \centering
 \caption{Reduced Form: Batch Tendency and Patient Outcomes}
@@ -1193,7 +1215,7 @@ Batch tendency
 & --- & --- & $1.111^{***}$ & $1.033$ \\
 & --- & --- & (0.217) & (2.135) \\[0.75em]
 
-Avg marginal effect (AME)
+Avg. marginal effect (AME)
 & --- & --- & $1.610^{***}$ & $0.030$ \\
 & --- & --- & (0.315) & (0.063) \\[0.75em]
 

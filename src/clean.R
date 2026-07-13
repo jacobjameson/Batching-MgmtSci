@@ -52,12 +52,12 @@ data$dispo_time <- pmin(data$ED_DISCHARGE_DT_REL,
 
 data$downgrade <- ifelse(
   !is.na(data$ADMIT_INP_ORD_DTTM_REL) & !is.na(data$ADMIT_OBS_ORD_DTTM_REL) &
-    data$ADMIT_INP_ORD_DTTM_REL < data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
+    data$ADMIT_INP_ORD_DTTM_REL <= data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
 )
 
 data$upgrade <- ifelse(
   !is.na(data$ADMIT_INP_ORD_DTTM_REL) & !is.na(data$ADMIT_OBS_ORD_DTTM_REL) &
-    data$ADMIT_INP_ORD_DTTM_REL > data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
+    data$ADMIT_INP_ORD_DTTM_REL >= data$ADMIT_OBS_ORD_DTTM_REL, 1, 0
 )
 
 
@@ -428,6 +428,18 @@ data <- data %>%
   ungroup()
 
 
+data <- data %>%
+  group_by(ED_PROVIDER, CHIEF_COMPLAINT) %>%
+  mutate(Sum_Resid=sum(residual_batch, na.rm=T),
+         batch.tendency.complaint = (Sum_Resid - residual_batch) / (n() - 1)
+         
+         
+  ) %>%
+  ungroup()
+
+
+
+
 rm(list = setdiff(ls(), c("data")))
 
 
@@ -446,12 +458,8 @@ final <- data %>%
 final$ln_ED_LOS <- log(final$ED_LOS)
 final$ln_disp_time <- log(final$time_to_dispo)
 final$ln_treat_time <- log(final$treatment_time)
-
-# if total_testing_time > 1440 (24 hours), set to 1440
-final$total_testing_time <- ifelse(final$total_testing_time > 1440, 
-                                   1440, final$total_testing_time)
-
 final$ln_total_testing_time <- log(final$total_testing_time)
+
 
 final$capacity_level <- factor(final$capacity_level,
                               levels = c('Normal Operations', 
